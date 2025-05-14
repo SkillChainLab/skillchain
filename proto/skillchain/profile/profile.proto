@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
+
+message Profile {
+  string creator = 1;
+  string username = 2;
+  string bio = 3;
+}

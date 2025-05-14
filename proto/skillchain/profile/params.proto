@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
+
+message Params {
+  // Add module parameters here if needed later
+}
+
+message QueryParamsRequest {}
+
+message QueryParamsResponse {
+  Params params = 1;
+}

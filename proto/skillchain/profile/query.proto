@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/profile/params.proto";
+import "skillchain/profile/profile.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/profile/params";
+  
+  }
+  
+  // Get a specific profile by username
+  rpc ShowProfile (QueryShowProfileRequest) returns (QueryShowProfileResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/profile/{username}";
+  }
+    
+  // Queries a list of ListProfile items.
+  rpc ListProfile (QueryListProfileRequest) returns (QueryListProfileResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/profile/list_profile";
+  
+  }
+}
+// Request to get one profile
+message QueryShowProfileRequest {
+  string username = 1;
+}
+
+// Response containing the profile
+message QueryShowProfileResponse {
+  string username = 1;
+  string bio      = 2;
+}
+
+message QueryListProfileRequest {}
+
+message QueryListProfileResponse {
+  repeated Profile profiles = 1;
+}
