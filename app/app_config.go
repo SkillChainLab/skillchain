@@ -53,8 +53,11 @@ import (
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
 
+	jobmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/job/module"
 	profilemodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/profile/module"
 	skillchainmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/skillchain/module"
+	_ "github.com/SkillChainLab/skillchain/x/job/module" // import for side-effects
+	jobmoduletypes "github.com/SkillChainLab/skillchain/x/job/types"
 	_ "github.com/SkillChainLab/skillchain/x/profile/module" // import for side-effects
 	profilemoduletypes "github.com/SkillChainLab/skillchain/x/profile/types"
 	_ "github.com/SkillChainLab/skillchain/x/skillchain/module" // import for side-effects
@@ -98,6 +101,7 @@ var (
 		// chain modules
 		skillchainmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		jobmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -124,6 +128,7 @@ var (
 		// chain modules
 		skillchainmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		jobmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -144,6 +149,7 @@ var (
 		// chain modules
 		skillchainmoduletypes.ModuleName,
 		profilemoduletypes.ModuleName,
+		jobmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -306,6 +312,10 @@ var (
 			{
 				Name:   profilemoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&profilemodulev1.Module{}),
+			},
+			{
+				Name:   jobmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&jobmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

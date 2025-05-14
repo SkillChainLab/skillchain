@@ -78,6 +78,7 @@ import (
 	profilemodulekeeper "github.com/SkillChainLab/skillchain/x/profile/keeper"
 	skillchainmodulekeeper "github.com/SkillChainLab/skillchain/x/skillchain/keeper"
 
+	jobmodulekeeper "github.com/SkillChainLab/skillchain/x/job/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"github.com/SkillChainLab/skillchain/docs"
@@ -149,6 +150,7 @@ type App struct {
 
 	SkillchainKeeper skillchainmodulekeeper.Keeper
 	ProfileKeeper    profilemodulekeeper.Keeper
+	JobKeeper        jobmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -254,6 +256,7 @@ func New(
 		&app.CircuitBreakerKeeper,
 		&app.SkillchainKeeper,
 		&app.ProfileKeeper,
+		&app.JobKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

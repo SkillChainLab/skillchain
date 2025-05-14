@@ -5,7 +5,11 @@ package skillchain.profile;
 option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
 
 message Profile {
-  string creator = 1;
-  string username = 2;
-  string bio = 3;
+  string username = 1;
+  string bio = 2;
+  string github = 3;
+  string linkedin = 4;
+  string website = 5;
+  string skills = 6;
+  string creator = 7;
 }

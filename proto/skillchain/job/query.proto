@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package skillchain.job;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/job/params.proto";
+import "skillchain/job/job.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/params";
+  
+  }
+  
+  // Queries a list of ListJob items.
+  rpc ListJob (QueryListJobRequest) returns (QueryListJobResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/list_job";
+  
+  }
+  
+  // Queries a list of ShowJob items.
+  rpc ShowJob (QueryShowJobRequest) returns (QueryShowJobResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/show_job/{id}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+
+
+message QueryListJobRequest {}
+
+message QueryListJobResponse {
+  repeated Job jobs = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryShowJobRequest {
+  string id = 1;
+}
+
+message QueryShowJobResponse {}
+

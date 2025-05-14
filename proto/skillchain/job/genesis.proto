@@ -1,0 +1,17 @@
+syntax = "proto3";
+package skillchain.job;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/job/params.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
+
+// GenesisState defines the job module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
