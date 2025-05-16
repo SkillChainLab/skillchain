@@ -9,7 +9,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 func (k Keeper) ListJob(goCtx context.Context, req *types.QueryListJobRequest) (*types.QueryListJobResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")

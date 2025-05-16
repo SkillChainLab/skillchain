@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package skillchain.job;
+
+option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
+
+message Application {
+  uint64 jobId = 1;
+  string applicant = 2;
+  string coverLetter = 3;
+}

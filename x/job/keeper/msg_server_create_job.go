@@ -21,4 +21,3 @@ func (k msgServer) CreateJob(goCtx context.Context, msg *types.MsgCreateJob) (*t
 
 	return &types.MsgCreateJobResponse{Id: job.Id}, nil
 }
-

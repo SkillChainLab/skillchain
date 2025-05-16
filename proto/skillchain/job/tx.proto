@@ -18,6 +18,7 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
   rpc CreateJob    (MsgCreateJob   ) returns (MsgCreateJobResponse   );
+  rpc ApplyJob     (MsgApplyJob    ) returns (MsgApplyJobResponse    );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -46,5 +47,16 @@ message MsgCreateJob {
 }
 
 message MsgCreateJobResponse {
+  uint64 id = 1;
+}
+
+message MsgApplyJob {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string jobId       = 2;
+  string coverLetter = 3;
+}
+
+message MsgApplyJobResponse {
   uint64 id = 1;
 }

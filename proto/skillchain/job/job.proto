@@ -3,6 +3,7 @@ syntax = "proto3";
 package skillchain.job;
 
 import "gogoproto/gogo.proto";
+import "skillchain/job/application.proto";
 
 option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
 

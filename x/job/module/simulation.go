@@ -27,6 +27,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreateJob int = 100
 
+	opWeightMsgApplyJob = "op_weight_msg_apply_job"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgApplyJob int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -61,6 +65,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		jobsimulation.SimulateMsgCreateJob(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgApplyJob int
+	simState.AppParams.GetOrGenerate(opWeightMsgApplyJob, &weightMsgApplyJob, nil,
+		func(_ *rand.Rand) {
+			weightMsgApplyJob = defaultWeightMsgApplyJob
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgApplyJob,
+		jobsimulation.SimulateMsgApplyJob(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -74,6 +89,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgCreateJob,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				jobsimulation.SimulateMsgCreateJob(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgApplyJob,
+			defaultWeightMsgApplyJob,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				jobsimulation.SimulateMsgApplyJob(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

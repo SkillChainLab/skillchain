@@ -43,7 +43,6 @@ message QueryParamsResponse {
 }
 
 
-
 message QueryListJobRequest {}
 
 message QueryListJobResponse {
@@ -54,5 +53,6 @@ message QueryShowJobRequest {
   string id = 1;
 }
 
-message QueryShowJobResponse {}
-
+message QueryShowJobResponse {
+  Job job = 1;
+}
