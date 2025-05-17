@@ -6,12 +6,12 @@ import (
 	"fmt"
 
 	"cosmossdk.io/core/store"
+	errorsmod "cosmossdk.io/errors"
 	"cosmossdk.io/log"
 	"cosmossdk.io/store/prefix"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	errorsmod "cosmossdk.io/errors"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
 	"github.com/SkillChainLab/skillchain/x/job/types"
@@ -61,7 +61,24 @@ func (k Keeper) getStore(ctx context.Context) prefix.Store {
 func (k Keeper) getBaseStore(ctx context.Context) prefix.Store {
 	raw := k.storeService.OpenKVStore(ctx)
 	store := runtime.KVStoreAdapter(raw)
-	return prefix.NewStore(store, []byte{})
+	return prefix.NewStore(store, []byte(types.StoreKey))
+}
+
+func (k Keeper) GetJob(ctx context.Context, id uint64) (types.Job, bool) {
+	store := k.getStore(ctx)
+	key := types.JobKey(id)
+	fmt.Printf("DEBUG: Looking for job with key: %x\n", key)
+
+	bz := store.Get(key)
+	if bz == nil {
+		fmt.Printf("DEBUG: No job found for ID: %d\n", id)
+		return types.Job{}, false
+	}
+
+	var job types.Job
+	k.cdc.MustUnmarshal(bz, &job)
+	fmt.Printf("DEBUG: Found job: %+v\n", job)
+	return job, true
 }
 
 func (k Keeper) AppendJob(ctx context.Context, title, desc, budget, creator string) uint64 {
@@ -122,10 +139,8 @@ func (k Keeper) AppendApplication(ctx context.Context, jobID uint64, applicant s
 	return nil
 }
 
-
-
-func (k Keeper) GetApplicationCount(ctx sdk.Context) uint64 {
-	store := k.getStore(ctx)
+func (k Keeper) GetApplicationCount(ctx context.Context) uint64 {
+	store := k.getBaseStore(ctx)
 	bz := store.Get([]byte(types.ApplicationCountKey))
 	if bz == nil {
 		return 0
@@ -133,8 +148,8 @@ func (k Keeper) GetApplicationCount(ctx sdk.Context) uint64 {
 	return binary.BigEndian.Uint64(bz)
 }
 
-func (k Keeper) SetApplicationCount(ctx sdk.Context, count uint64) {
-	store := k.getStore(ctx)
+func (k Keeper) SetApplicationCount(ctx context.Context, count uint64) {
+	store := k.getBaseStore(ctx)
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
 	store.Set([]byte(types.ApplicationCountKey), bz)

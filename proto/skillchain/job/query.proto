@@ -8,40 +8,50 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "skillchain/job/params.proto";
 import "skillchain/job/job.proto";
+import "skillchain/job/application.proto";
 
 option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
 
 // Query defines the gRPC querier service.
 service Query {
-  
   // Parameters queries the parameters of the module.
   rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/SkillChainLab/skillchain/job/params";
-  
   }
-  
+
   // Queries a list of ListJob items.
   rpc ListJob (QueryListJobRequest) returns (QueryListJobResponse) {
     option (google.api.http).get = "/SkillChainLab/skillchain/job/list_job";
-  
   }
-  
+
   // Queries a list of ShowJob items.
   rpc ShowJob (QueryShowJobRequest) returns (QueryShowJobResponse) {
     option (google.api.http).get = "/SkillChainLab/skillchain/job/show_job/{id}";
-  
+  }
+
+  // Queries a list of all applications.
+  rpc ListApplication (QueryListApplicationRequest) returns (QueryListApplicationResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/list_application";
+  }
+
+  // Queries a list of my applications.
+  rpc ListMyApplications (QueryListMyApplicationsRequest) returns (QueryListMyApplicationsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/list_my_applications/{applicant}";
+  }
+
+  // Queries all applications for a specific job.
+  rpc ListJobApplications (QueryListJobApplicationsRequest) returns (QueryListJobApplicationsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/list_job_applications/{job_id}";
   }
 }
-// QueryParamsRequest is request type for the Query/Params RPC method.
+
+// Request/Response messages
+
 message QueryParamsRequest {}
 
-// QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
-  
-  // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
-
 
 message QueryListJobRequest {}
 
@@ -55,4 +65,28 @@ message QueryShowJobRequest {
 
 message QueryShowJobResponse {
   Job job = 1;
+}
+
+message QueryListApplicationRequest {
+  uint64 job_id = 1;
+}
+
+message QueryListApplicationResponse {
+  repeated Application applications = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryListMyApplicationsRequest {
+  string applicant = 1;
+}
+
+message QueryListMyApplicationsResponse {
+  repeated Application applications = 1;
+}
+
+message QueryListJobApplicationsRequest {
+  uint64 job_id = 1;
+}
+
+message QueryListJobApplicationsResponse {
+  repeated Application applications = 1;
 }

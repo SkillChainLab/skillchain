@@ -2512,6 +2512,2716 @@ func (x *fastReflection_QueryShowJobResponse) ProtoMethods() *protoiface.Methods
 	}
 }
 
+var (
+	md_QueryListApplicationRequest        protoreflect.MessageDescriptor
+	fd_QueryListApplicationRequest_job_id protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListApplicationRequest = File_skillchain_job_query_proto.Messages().ByName("QueryListApplicationRequest")
+	fd_QueryListApplicationRequest_job_id = md_QueryListApplicationRequest.Fields().ByName("job_id")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListApplicationRequest)(nil)
+
+type fastReflection_QueryListApplicationRequest QueryListApplicationRequest
+
+func (x *QueryListApplicationRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListApplicationRequest)(x)
+}
+
+func (x *QueryListApplicationRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListApplicationRequest_messageType fastReflection_QueryListApplicationRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListApplicationRequest_messageType{}
+
+type fastReflection_QueryListApplicationRequest_messageType struct{}
+
+func (x fastReflection_QueryListApplicationRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListApplicationRequest)(nil)
+}
+func (x fastReflection_QueryListApplicationRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListApplicationRequest)
+}
+func (x fastReflection_QueryListApplicationRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListApplicationRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListApplicationRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListApplicationRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListApplicationRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListApplicationRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListApplicationRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryListApplicationRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListApplicationRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryListApplicationRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListApplicationRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.JobId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.JobId)
+		if !f(fd_QueryListApplicationRequest_job_id, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListApplicationRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		return x.JobId != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		x.JobId = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListApplicationRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		value := x.JobId
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		x.JobId = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		panic(fmt.Errorf("field job_id of message skillchain.job.QueryListApplicationRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListApplicationRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationRequest.job_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListApplicationRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListApplicationRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListApplicationRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListApplicationRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListApplicationRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListApplicationRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.JobId != 0 {
+			n += 1 + runtime.Sov(uint64(x.JobId))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListApplicationRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.JobId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.JobId))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListApplicationRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListApplicationRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListApplicationRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field JobId", wireType)
+				}
+				x.JobId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.JobId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.List = (*_QueryListApplicationResponse_1_list)(nil)
+
+type _QueryListApplicationResponse_1_list struct {
+	list *[]*Application
+}
+
+func (x *_QueryListApplicationResponse_1_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryListApplicationResponse_1_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryListApplicationResponse_1_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryListApplicationResponse_1_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryListApplicationResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(Application)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListApplicationResponse_1_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryListApplicationResponse_1_list) NewElement() protoreflect.Value {
+	v := new(Application)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListApplicationResponse_1_list) IsValid() bool {
+	return x.list != nil
+}
+
+var (
+	md_QueryListApplicationResponse              protoreflect.MessageDescriptor
+	fd_QueryListApplicationResponse_applications protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListApplicationResponse = File_skillchain_job_query_proto.Messages().ByName("QueryListApplicationResponse")
+	fd_QueryListApplicationResponse_applications = md_QueryListApplicationResponse.Fields().ByName("applications")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListApplicationResponse)(nil)
+
+type fastReflection_QueryListApplicationResponse QueryListApplicationResponse
+
+func (x *QueryListApplicationResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListApplicationResponse)(x)
+}
+
+func (x *QueryListApplicationResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListApplicationResponse_messageType fastReflection_QueryListApplicationResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListApplicationResponse_messageType{}
+
+type fastReflection_QueryListApplicationResponse_messageType struct{}
+
+func (x fastReflection_QueryListApplicationResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListApplicationResponse)(nil)
+}
+func (x fastReflection_QueryListApplicationResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListApplicationResponse)
+}
+func (x fastReflection_QueryListApplicationResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListApplicationResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListApplicationResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListApplicationResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListApplicationResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListApplicationResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListApplicationResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryListApplicationResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListApplicationResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryListApplicationResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListApplicationResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.Applications) != 0 {
+		value := protoreflect.ValueOfList(&_QueryListApplicationResponse_1_list{list: &x.Applications})
+		if !f(fd_QueryListApplicationResponse_applications, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListApplicationResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		return len(x.Applications) != 0
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		x.Applications = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListApplicationResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		if len(x.Applications) == 0 {
+			return protoreflect.ValueOfList(&_QueryListApplicationResponse_1_list{})
+		}
+		listValue := &_QueryListApplicationResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(listValue)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		lv := value.List()
+		clv := lv.(*_QueryListApplicationResponse_1_list)
+		x.Applications = *clv.list
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		if x.Applications == nil {
+			x.Applications = []*Application{}
+		}
+		value := &_QueryListApplicationResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(value)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListApplicationResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListApplicationResponse.applications":
+		list := []*Application{}
+		return protoreflect.ValueOfList(&_QueryListApplicationResponse_1_list{list: &list})
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListApplicationResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListApplicationResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListApplicationResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListApplicationResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListApplicationResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListApplicationResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListApplicationResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListApplicationResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListApplicationResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if len(x.Applications) > 0 {
+			for _, e := range x.Applications {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListApplicationResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Applications) > 0 {
+			for iNdEx := len(x.Applications) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Applications[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0xa
+			}
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListApplicationResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListApplicationResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListApplicationResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Applications", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Applications = append(x.Applications, &Application{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Applications[len(x.Applications)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryListMyApplicationsRequest           protoreflect.MessageDescriptor
+	fd_QueryListMyApplicationsRequest_applicant protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListMyApplicationsRequest = File_skillchain_job_query_proto.Messages().ByName("QueryListMyApplicationsRequest")
+	fd_QueryListMyApplicationsRequest_applicant = md_QueryListMyApplicationsRequest.Fields().ByName("applicant")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListMyApplicationsRequest)(nil)
+
+type fastReflection_QueryListMyApplicationsRequest QueryListMyApplicationsRequest
+
+func (x *QueryListMyApplicationsRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListMyApplicationsRequest)(x)
+}
+
+func (x *QueryListMyApplicationsRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListMyApplicationsRequest_messageType fastReflection_QueryListMyApplicationsRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListMyApplicationsRequest_messageType{}
+
+type fastReflection_QueryListMyApplicationsRequest_messageType struct{}
+
+func (x fastReflection_QueryListMyApplicationsRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListMyApplicationsRequest)(nil)
+}
+func (x fastReflection_QueryListMyApplicationsRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListMyApplicationsRequest)
+}
+func (x fastReflection_QueryListMyApplicationsRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListMyApplicationsRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListMyApplicationsRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListMyApplicationsRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListMyApplicationsRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListMyApplicationsRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListMyApplicationsRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryListMyApplicationsRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListMyApplicationsRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryListMyApplicationsRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListMyApplicationsRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Applicant != "" {
+		value := protoreflect.ValueOfString(x.Applicant)
+		if !f(fd_QueryListMyApplicationsRequest_applicant, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListMyApplicationsRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		return x.Applicant != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		x.Applicant = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListMyApplicationsRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		value := x.Applicant
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		x.Applicant = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		panic(fmt.Errorf("field applicant of message skillchain.job.QueryListMyApplicationsRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListMyApplicationsRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsRequest.applicant":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListMyApplicationsRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListMyApplicationsRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListMyApplicationsRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListMyApplicationsRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListMyApplicationsRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListMyApplicationsRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Applicant)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListMyApplicationsRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Applicant) > 0 {
+			i -= len(x.Applicant)
+			copy(dAtA[i:], x.Applicant)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Applicant)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListMyApplicationsRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListMyApplicationsRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListMyApplicationsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Applicant", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Applicant = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.List = (*_QueryListMyApplicationsResponse_1_list)(nil)
+
+type _QueryListMyApplicationsResponse_1_list struct {
+	list *[]*Application
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(Application)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) NewElement() protoreflect.Value {
+	v := new(Application)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListMyApplicationsResponse_1_list) IsValid() bool {
+	return x.list != nil
+}
+
+var (
+	md_QueryListMyApplicationsResponse              protoreflect.MessageDescriptor
+	fd_QueryListMyApplicationsResponse_applications protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListMyApplicationsResponse = File_skillchain_job_query_proto.Messages().ByName("QueryListMyApplicationsResponse")
+	fd_QueryListMyApplicationsResponse_applications = md_QueryListMyApplicationsResponse.Fields().ByName("applications")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListMyApplicationsResponse)(nil)
+
+type fastReflection_QueryListMyApplicationsResponse QueryListMyApplicationsResponse
+
+func (x *QueryListMyApplicationsResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListMyApplicationsResponse)(x)
+}
+
+func (x *QueryListMyApplicationsResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListMyApplicationsResponse_messageType fastReflection_QueryListMyApplicationsResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListMyApplicationsResponse_messageType{}
+
+type fastReflection_QueryListMyApplicationsResponse_messageType struct{}
+
+func (x fastReflection_QueryListMyApplicationsResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListMyApplicationsResponse)(nil)
+}
+func (x fastReflection_QueryListMyApplicationsResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListMyApplicationsResponse)
+}
+func (x fastReflection_QueryListMyApplicationsResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListMyApplicationsResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListMyApplicationsResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListMyApplicationsResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListMyApplicationsResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListMyApplicationsResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListMyApplicationsResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryListMyApplicationsResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListMyApplicationsResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryListMyApplicationsResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListMyApplicationsResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.Applications) != 0 {
+		value := protoreflect.ValueOfList(&_QueryListMyApplicationsResponse_1_list{list: &x.Applications})
+		if !f(fd_QueryListMyApplicationsResponse_applications, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListMyApplicationsResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		return len(x.Applications) != 0
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		x.Applications = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListMyApplicationsResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		if len(x.Applications) == 0 {
+			return protoreflect.ValueOfList(&_QueryListMyApplicationsResponse_1_list{})
+		}
+		listValue := &_QueryListMyApplicationsResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(listValue)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		lv := value.List()
+		clv := lv.(*_QueryListMyApplicationsResponse_1_list)
+		x.Applications = *clv.list
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		if x.Applications == nil {
+			x.Applications = []*Application{}
+		}
+		value := &_QueryListMyApplicationsResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(value)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListMyApplicationsResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListMyApplicationsResponse.applications":
+		list := []*Application{}
+		return protoreflect.ValueOfList(&_QueryListMyApplicationsResponse_1_list{list: &list})
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListMyApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListMyApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListMyApplicationsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListMyApplicationsResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListMyApplicationsResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListMyApplicationsResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListMyApplicationsResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListMyApplicationsResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListMyApplicationsResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if len(x.Applications) > 0 {
+			for _, e := range x.Applications {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListMyApplicationsResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Applications) > 0 {
+			for iNdEx := len(x.Applications) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Applications[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0xa
+			}
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListMyApplicationsResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListMyApplicationsResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListMyApplicationsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Applications", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Applications = append(x.Applications, &Application{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Applications[len(x.Applications)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryListJobApplicationsRequest        protoreflect.MessageDescriptor
+	fd_QueryListJobApplicationsRequest_job_id protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListJobApplicationsRequest = File_skillchain_job_query_proto.Messages().ByName("QueryListJobApplicationsRequest")
+	fd_QueryListJobApplicationsRequest_job_id = md_QueryListJobApplicationsRequest.Fields().ByName("job_id")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListJobApplicationsRequest)(nil)
+
+type fastReflection_QueryListJobApplicationsRequest QueryListJobApplicationsRequest
+
+func (x *QueryListJobApplicationsRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListJobApplicationsRequest)(x)
+}
+
+func (x *QueryListJobApplicationsRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListJobApplicationsRequest_messageType fastReflection_QueryListJobApplicationsRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListJobApplicationsRequest_messageType{}
+
+type fastReflection_QueryListJobApplicationsRequest_messageType struct{}
+
+func (x fastReflection_QueryListJobApplicationsRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListJobApplicationsRequest)(nil)
+}
+func (x fastReflection_QueryListJobApplicationsRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListJobApplicationsRequest)
+}
+func (x fastReflection_QueryListJobApplicationsRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListJobApplicationsRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListJobApplicationsRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListJobApplicationsRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListJobApplicationsRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListJobApplicationsRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListJobApplicationsRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryListJobApplicationsRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListJobApplicationsRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryListJobApplicationsRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListJobApplicationsRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.JobId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.JobId)
+		if !f(fd_QueryListJobApplicationsRequest_job_id, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListJobApplicationsRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		return x.JobId != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		x.JobId = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListJobApplicationsRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		value := x.JobId
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		x.JobId = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		panic(fmt.Errorf("field job_id of message skillchain.job.QueryListJobApplicationsRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListJobApplicationsRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsRequest.job_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsRequest"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListJobApplicationsRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListJobApplicationsRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListJobApplicationsRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListJobApplicationsRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListJobApplicationsRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListJobApplicationsRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.JobId != 0 {
+			n += 1 + runtime.Sov(uint64(x.JobId))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListJobApplicationsRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.JobId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.JobId))
+			i--
+			dAtA[i] = 0x8
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListJobApplicationsRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListJobApplicationsRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListJobApplicationsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field JobId", wireType)
+				}
+				x.JobId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.JobId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.List = (*_QueryListJobApplicationsResponse_1_list)(nil)
+
+type _QueryListJobApplicationsResponse_1_list struct {
+	list *[]*Application
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Application)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(Application)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) NewElement() protoreflect.Value {
+	v := new(Application)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryListJobApplicationsResponse_1_list) IsValid() bool {
+	return x.list != nil
+}
+
+var (
+	md_QueryListJobApplicationsResponse              protoreflect.MessageDescriptor
+	fd_QueryListJobApplicationsResponse_applications protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_job_query_proto_init()
+	md_QueryListJobApplicationsResponse = File_skillchain_job_query_proto.Messages().ByName("QueryListJobApplicationsResponse")
+	fd_QueryListJobApplicationsResponse_applications = md_QueryListJobApplicationsResponse.Fields().ByName("applications")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryListJobApplicationsResponse)(nil)
+
+type fastReflection_QueryListJobApplicationsResponse QueryListJobApplicationsResponse
+
+func (x *QueryListJobApplicationsResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryListJobApplicationsResponse)(x)
+}
+
+func (x *QueryListJobApplicationsResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_job_query_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryListJobApplicationsResponse_messageType fastReflection_QueryListJobApplicationsResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryListJobApplicationsResponse_messageType{}
+
+type fastReflection_QueryListJobApplicationsResponse_messageType struct{}
+
+func (x fastReflection_QueryListJobApplicationsResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryListJobApplicationsResponse)(nil)
+}
+func (x fastReflection_QueryListJobApplicationsResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryListJobApplicationsResponse)
+}
+func (x fastReflection_QueryListJobApplicationsResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListJobApplicationsResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryListJobApplicationsResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryListJobApplicationsResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryListJobApplicationsResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryListJobApplicationsResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryListJobApplicationsResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryListJobApplicationsResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryListJobApplicationsResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryListJobApplicationsResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryListJobApplicationsResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.Applications) != 0 {
+		value := protoreflect.ValueOfList(&_QueryListJobApplicationsResponse_1_list{list: &x.Applications})
+		if !f(fd_QueryListJobApplicationsResponse_applications, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryListJobApplicationsResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		return len(x.Applications) != 0
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		x.Applications = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryListJobApplicationsResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		if len(x.Applications) == 0 {
+			return protoreflect.ValueOfList(&_QueryListJobApplicationsResponse_1_list{})
+		}
+		listValue := &_QueryListJobApplicationsResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(listValue)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		lv := value.List()
+		clv := lv.(*_QueryListJobApplicationsResponse_1_list)
+		x.Applications = *clv.list
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		if x.Applications == nil {
+			x.Applications = []*Application{}
+		}
+		value := &_QueryListJobApplicationsResponse_1_list{list: &x.Applications}
+		return protoreflect.ValueOfList(value)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryListJobApplicationsResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.job.QueryListJobApplicationsResponse.applications":
+		list := []*Application{}
+		return protoreflect.ValueOfList(&_QueryListJobApplicationsResponse_1_list{list: &list})
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.QueryListJobApplicationsResponse"))
+		}
+		panic(fmt.Errorf("message skillchain.job.QueryListJobApplicationsResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryListJobApplicationsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.job.QueryListJobApplicationsResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryListJobApplicationsResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryListJobApplicationsResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryListJobApplicationsResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryListJobApplicationsResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryListJobApplicationsResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if len(x.Applications) > 0 {
+			for _, e := range x.Applications {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListJobApplicationsResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Applications) > 0 {
+			for iNdEx := len(x.Applications) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Applications[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0xa
+			}
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryListJobApplicationsResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListJobApplicationsResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryListJobApplicationsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Applications", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Applications = append(x.Applications, &Application{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Applications[len(x.Applications)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -2525,7 +5235,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// QueryParamsRequest is request type for the Query/Params RPC method.
 type QueryParamsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2552,13 +5261,11 @@ func (*QueryParamsRequest) Descriptor() ([]byte, []int) {
 	return file_skillchain_job_query_proto_rawDescGZIP(), []int{0}
 }
 
-// QueryParamsResponse is response type for the Query/Params RPC method.
 type QueryParamsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// params holds all the parameters of this module.
 	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
 }
 
@@ -2720,6 +5427,216 @@ func (x *QueryShowJobResponse) GetJob() *Job {
 	return nil
 }
 
+type QueryListApplicationRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JobId uint64 `protobuf:"varint,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+}
+
+func (x *QueryListApplicationRequest) Reset() {
+	*x = QueryListApplicationRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListApplicationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListApplicationRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryListApplicationRequest.ProtoReflect.Descriptor instead.
+func (*QueryListApplicationRequest) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *QueryListApplicationRequest) GetJobId() uint64 {
+	if x != nil {
+		return x.JobId
+	}
+	return 0
+}
+
+type QueryListApplicationResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Applications []*Application `protobuf:"bytes,1,rep,name=applications,proto3" json:"applications,omitempty"`
+}
+
+func (x *QueryListApplicationResponse) Reset() {
+	*x = QueryListApplicationResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListApplicationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListApplicationResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryListApplicationResponse.ProtoReflect.Descriptor instead.
+func (*QueryListApplicationResponse) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *QueryListApplicationResponse) GetApplications() []*Application {
+	if x != nil {
+		return x.Applications
+	}
+	return nil
+}
+
+type QueryListMyApplicationsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Applicant string `protobuf:"bytes,1,opt,name=applicant,proto3" json:"applicant,omitempty"`
+}
+
+func (x *QueryListMyApplicationsRequest) Reset() {
+	*x = QueryListMyApplicationsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListMyApplicationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListMyApplicationsRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryListMyApplicationsRequest.ProtoReflect.Descriptor instead.
+func (*QueryListMyApplicationsRequest) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *QueryListMyApplicationsRequest) GetApplicant() string {
+	if x != nil {
+		return x.Applicant
+	}
+	return ""
+}
+
+type QueryListMyApplicationsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Applications []*Application `protobuf:"bytes,1,rep,name=applications,proto3" json:"applications,omitempty"`
+}
+
+func (x *QueryListMyApplicationsResponse) Reset() {
+	*x = QueryListMyApplicationsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListMyApplicationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListMyApplicationsResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryListMyApplicationsResponse.ProtoReflect.Descriptor instead.
+func (*QueryListMyApplicationsResponse) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *QueryListMyApplicationsResponse) GetApplications() []*Application {
+	if x != nil {
+		return x.Applications
+	}
+	return nil
+}
+
+type QueryListJobApplicationsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	JobId uint64 `protobuf:"varint,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+}
+
+func (x *QueryListJobApplicationsRequest) Reset() {
+	*x = QueryListJobApplicationsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListJobApplicationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListJobApplicationsRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryListJobApplicationsRequest.ProtoReflect.Descriptor instead.
+func (*QueryListJobApplicationsRequest) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *QueryListJobApplicationsRequest) GetJobId() uint64 {
+	if x != nil {
+		return x.JobId
+	}
+	return 0
+}
+
+type QueryListJobApplicationsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Applications []*Application `protobuf:"bytes,1,rep,name=applications,proto3" json:"applications,omitempty"`
+}
+
+func (x *QueryListJobApplicationsResponse) Reset() {
+	*x = QueryListJobApplicationsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_job_query_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryListJobApplicationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryListJobApplicationsResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryListJobApplicationsResponse.ProtoReflect.Descriptor instead.
+func (*QueryListJobApplicationsResponse) Descriptor() ([]byte, []int) {
+	return file_skillchain_job_query_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *QueryListJobApplicationsResponse) GetApplications() []*Application {
+	if x != nil {
+		return x.Applications
+	}
+	return nil
+}
+
 var File_skillchain_job_query_proto protoreflect.FileDescriptor
 
 var file_skillchain_job_query_proto_rawDesc = []byte{
@@ -2736,63 +5653,130 @@ var file_skillchain_job_query_proto_rawDesc = []byte{
 	0x1b, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f,
 	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x18, 0x73, 0x6b,
 	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x6a, 0x6f, 0x62,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x50, 0x0a, 0x13,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f,
-	0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x15,
-	0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x45, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69,
-	0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a,
-	0x04, 0x6a, 0x6f, 0x62, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x73, 0x6b,
-	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x4a, 0x6f, 0x62,
-	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x22, 0x25, 0x0a, 0x13,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x02, 0x69, 0x64, 0x22, 0x3d, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77,
-	0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x25, 0x0a, 0x03, 0x6a,
-	0x6f, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x4a, 0x6f, 0x62, 0x52, 0x03, 0x6a,
-	0x6f, 0x62, 0x32, 0x9b, 0x03, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x7f, 0x0a, 0x06,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73, 0x6b, 0x69,
-	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x2c, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43,
-	0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x84, 0x01,
-	0x0a, 0x07, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x12, 0x23, 0x2e, 0x73, 0x6b, 0x69, 0x6c,
-	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24,
-	0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x28, 0x12, 0x26, 0x2f, 0x53,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x50,
+	0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8,
+	0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x22, 0x15, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x45, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x2d, 0x0a, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x4a,
+	0x6f, 0x62, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x22, 0x25,
+	0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77, 0x4a, 0x6f, 0x62, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x3d, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68,
+	0x6f, 0x77, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x25, 0x0a,
+	0x03, 0x6a, 0x6f, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x73, 0x6b, 0x69,
+	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x4a, 0x6f, 0x62, 0x52,
+	0x03, 0x6a, 0x6f, 0x62, 0x22, 0x34, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73,
+	0x74, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x22, 0x65, 0x0a, 0x1c, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45, 0x0a, 0x0c, 0x61, 0x70,
+	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1b, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
+	0x62, 0x2e, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x04, 0xc8,
+	0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x22, 0x3e, 0x0a, 0x1e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79,
+	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x6e, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x6e,
+	0x74, 0x22, 0x62, 0x0a, 0x1f, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79,
+	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0c, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x6b, 0x69,
+	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x41, 0x70, 0x70, 0x6c,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0c, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x38, 0x0a, 0x1f, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69,
+	0x73, 0x74, 0x4a, 0x6f, 0x62, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x15, 0x0a, 0x06, 0x6a, 0x6f, 0x62, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x22,
+	0x63, 0x0a, 0x20, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x41,
+	0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0c, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x6b, 0x69, 0x6c,
+	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x41, 0x70, 0x70, 0x6c, 0x69,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0c, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x32, 0xc3, 0x07, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x7f,
+	0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x73,
+	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x2c, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x53, 0x6b, 0x69, 0x6c,
+	0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x84, 0x01, 0x0a, 0x07, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x12, 0x23, 0x2e, 0x73, 0x6b,
+	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
+	0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x28, 0x12, 0x26,
+	0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73,
+	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x6c, 0x69,
+	0x73, 0x74, 0x5f, 0x6a, 0x6f, 0x62, 0x12, 0x89, 0x01, 0x0a, 0x07, 0x53, 0x68, 0x6f, 0x77, 0x4a,
+	0x6f, 0x62, 0x12, 0x23, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77, 0x4a, 0x6f, 0x62,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68,
+	0x6f, 0x77, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61,
+	0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x73, 0x68, 0x6f, 0x77, 0x5f, 0x6a, 0x6f, 0x62, 0x2f, 0x7b, 0x69,
+	0x64, 0x7d, 0x12, 0xa4, 0x01, 0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x70, 0x70, 0x6c, 0x69,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2b, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
+	0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73,
+	0x74, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x70,
+	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x36, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x30, 0x12, 0x2e, 0x2f, 0x53, 0x6b, 0x69, 0x6c,
+	0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x6c, 0x69, 0x73, 0x74, 0x5f, 0x61, 0x70,
+	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0xbd, 0x01, 0x0a, 0x12, 0x4c, 0x69,
+	0x73, 0x74, 0x4d, 0x79, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x12, 0x2e, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
+	0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x41, 0x70, 0x70,
+	0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2f, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
+	0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x79, 0x41, 0x70, 0x70,
+	0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x46, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x40, 0x12, 0x3e, 0x2f, 0x53, 0x6b, 0x69, 0x6c,
+	0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x6c, 0x69, 0x73, 0x74, 0x5f, 0x6d, 0x79,
+	0x5f, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x7b, 0x61,
+	0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x6e, 0x74, 0x7d, 0x12, 0xbe, 0x01, 0x0a, 0x13, 0x4c, 0x69,
+	0x73, 0x74, 0x4a, 0x6f, 0x62, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x12, 0x2f, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a,
+	0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62, 0x41,
+	0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x30, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x4a, 0x6f, 0x62,
+	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x44, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x3e, 0x12, 0x3c, 0x2f, 0x53,
 	0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69,
 	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0x2f, 0x6c, 0x69, 0x73, 0x74,
-	0x5f, 0x6a, 0x6f, 0x62, 0x12, 0x89, 0x01, 0x0a, 0x07, 0x53, 0x68, 0x6f, 0x77, 0x4a, 0x6f, 0x62,
-	0x12, 0x23, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
-	0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77, 0x4a, 0x6f, 0x62, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x68, 0x6f, 0x77,
-	0x4a, 0x6f, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e,
-	0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a,
-	0x6f, 0x62, 0x2f, 0x73, 0x68, 0x6f, 0x77, 0x5f, 0x6a, 0x6f, 0x62, 0x2f, 0x7b, 0x69, 0x64, 0x7d,
-	0x42, 0xb1, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
-	0x6d, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f,
-	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73,
-	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02, 0x03,
-	0x53, 0x4a, 0x58, 0xaa, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x4a, 0x6f, 0x62, 0xca, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x5c, 0x4a, 0x6f, 0x62, 0xe2, 0x02, 0x1a, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x5c, 0x4a, 0x6f, 0x62, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0xea, 0x02, 0x0f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a,
-	0x3a, 0x4a, 0x6f, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x5f, 0x6a, 0x6f, 0x62, 0x5f, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x2f, 0x7b, 0x6a, 0x6f, 0x62, 0x5f, 0x69, 0x64, 0x7d, 0x42, 0xb1, 0x01, 0x0a, 0x12, 0x63,
+	0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f,
+	0x62, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6b, 0x69, 0x6c,
+	0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
+	0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02, 0x03, 0x53, 0x4a, 0x58, 0xaa, 0x02, 0x0e,
+	0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x4a, 0x6f, 0x62, 0xca, 0x02,
+	0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x4a, 0x6f, 0x62, 0xe2,
+	0x02, 0x1a, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x4a, 0x6f, 0x62,
+	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x53,
+	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x4a, 0x6f, 0x62, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2807,32 +5791,48 @@ func file_skillchain_job_query_proto_rawDescGZIP() []byte {
 	return file_skillchain_job_query_proto_rawDescData
 }
 
-var file_skillchain_job_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_skillchain_job_query_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_skillchain_job_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),   // 0: skillchain.job.QueryParamsRequest
-	(*QueryParamsResponse)(nil),  // 1: skillchain.job.QueryParamsResponse
-	(*QueryListJobRequest)(nil),  // 2: skillchain.job.QueryListJobRequest
-	(*QueryListJobResponse)(nil), // 3: skillchain.job.QueryListJobResponse
-	(*QueryShowJobRequest)(nil),  // 4: skillchain.job.QueryShowJobRequest
-	(*QueryShowJobResponse)(nil), // 5: skillchain.job.QueryShowJobResponse
-	(*Params)(nil),               // 6: skillchain.job.Params
-	(*Job)(nil),                  // 7: skillchain.job.Job
+	(*QueryParamsRequest)(nil),               // 0: skillchain.job.QueryParamsRequest
+	(*QueryParamsResponse)(nil),              // 1: skillchain.job.QueryParamsResponse
+	(*QueryListJobRequest)(nil),              // 2: skillchain.job.QueryListJobRequest
+	(*QueryListJobResponse)(nil),             // 3: skillchain.job.QueryListJobResponse
+	(*QueryShowJobRequest)(nil),              // 4: skillchain.job.QueryShowJobRequest
+	(*QueryShowJobResponse)(nil),             // 5: skillchain.job.QueryShowJobResponse
+	(*QueryListApplicationRequest)(nil),      // 6: skillchain.job.QueryListApplicationRequest
+	(*QueryListApplicationResponse)(nil),     // 7: skillchain.job.QueryListApplicationResponse
+	(*QueryListMyApplicationsRequest)(nil),   // 8: skillchain.job.QueryListMyApplicationsRequest
+	(*QueryListMyApplicationsResponse)(nil),  // 9: skillchain.job.QueryListMyApplicationsResponse
+	(*QueryListJobApplicationsRequest)(nil),  // 10: skillchain.job.QueryListJobApplicationsRequest
+	(*QueryListJobApplicationsResponse)(nil), // 11: skillchain.job.QueryListJobApplicationsResponse
+	(*Params)(nil),                           // 12: skillchain.job.Params
+	(*Job)(nil),                              // 13: skillchain.job.Job
+	(*Application)(nil),                      // 14: skillchain.job.Application
 }
 var file_skillchain_job_query_proto_depIdxs = []int32{
-	6, // 0: skillchain.job.QueryParamsResponse.params:type_name -> skillchain.job.Params
-	7, // 1: skillchain.job.QueryListJobResponse.jobs:type_name -> skillchain.job.Job
-	7, // 2: skillchain.job.QueryShowJobResponse.job:type_name -> skillchain.job.Job
-	0, // 3: skillchain.job.Query.Params:input_type -> skillchain.job.QueryParamsRequest
-	2, // 4: skillchain.job.Query.ListJob:input_type -> skillchain.job.QueryListJobRequest
-	4, // 5: skillchain.job.Query.ShowJob:input_type -> skillchain.job.QueryShowJobRequest
-	1, // 6: skillchain.job.Query.Params:output_type -> skillchain.job.QueryParamsResponse
-	3, // 7: skillchain.job.Query.ListJob:output_type -> skillchain.job.QueryListJobResponse
-	5, // 8: skillchain.job.Query.ShowJob:output_type -> skillchain.job.QueryShowJobResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	12, // 0: skillchain.job.QueryParamsResponse.params:type_name -> skillchain.job.Params
+	13, // 1: skillchain.job.QueryListJobResponse.jobs:type_name -> skillchain.job.Job
+	13, // 2: skillchain.job.QueryShowJobResponse.job:type_name -> skillchain.job.Job
+	14, // 3: skillchain.job.QueryListApplicationResponse.applications:type_name -> skillchain.job.Application
+	14, // 4: skillchain.job.QueryListMyApplicationsResponse.applications:type_name -> skillchain.job.Application
+	14, // 5: skillchain.job.QueryListJobApplicationsResponse.applications:type_name -> skillchain.job.Application
+	0,  // 6: skillchain.job.Query.Params:input_type -> skillchain.job.QueryParamsRequest
+	2,  // 7: skillchain.job.Query.ListJob:input_type -> skillchain.job.QueryListJobRequest
+	4,  // 8: skillchain.job.Query.ShowJob:input_type -> skillchain.job.QueryShowJobRequest
+	6,  // 9: skillchain.job.Query.ListApplication:input_type -> skillchain.job.QueryListApplicationRequest
+	8,  // 10: skillchain.job.Query.ListMyApplications:input_type -> skillchain.job.QueryListMyApplicationsRequest
+	10, // 11: skillchain.job.Query.ListJobApplications:input_type -> skillchain.job.QueryListJobApplicationsRequest
+	1,  // 12: skillchain.job.Query.Params:output_type -> skillchain.job.QueryParamsResponse
+	3,  // 13: skillchain.job.Query.ListJob:output_type -> skillchain.job.QueryListJobResponse
+	5,  // 14: skillchain.job.Query.ShowJob:output_type -> skillchain.job.QueryShowJobResponse
+	7,  // 15: skillchain.job.Query.ListApplication:output_type -> skillchain.job.QueryListApplicationResponse
+	9,  // 16: skillchain.job.Query.ListMyApplications:output_type -> skillchain.job.QueryListMyApplicationsResponse
+	11, // 17: skillchain.job.Query.ListJobApplications:output_type -> skillchain.job.QueryListJobApplicationsResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_skillchain_job_query_proto_init() }
@@ -2842,6 +5842,7 @@ func file_skillchain_job_query_proto_init() {
 	}
 	file_skillchain_job_params_proto_init()
 	file_skillchain_job_job_proto_init()
+	file_skillchain_job_application_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_skillchain_job_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryParamsRequest); i {
@@ -2915,6 +5916,78 @@ func file_skillchain_job_query_proto_init() {
 				return nil
 			}
 		}
+		file_skillchain_job_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListApplicationRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_skillchain_job_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListApplicationResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_skillchain_job_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListMyApplicationsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_skillchain_job_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListMyApplicationsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_skillchain_job_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListJobApplicationsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_skillchain_job_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryListJobApplicationsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2922,7 +5995,7 @@ func file_skillchain_job_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_skillchain_job_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

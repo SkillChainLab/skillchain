@@ -21,5 +21,14 @@ func (msg *MsgApplyJob) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}
+
+	if msg.JobId == "" {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidRequest, "job ID cannot be empty")
+	}
+
+	if msg.CoverLetter == "" {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidRequest, "cover letter cannot be empty")
+	}
+
 	return nil
 }

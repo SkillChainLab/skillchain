@@ -19,9 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName  = "/skillchain.job.Query/Params"
-	Query_ListJob_FullMethodName = "/skillchain.job.Query/ListJob"
-	Query_ShowJob_FullMethodName = "/skillchain.job.Query/ShowJob"
+	Query_Params_FullMethodName              = "/skillchain.job.Query/Params"
+	Query_ListJob_FullMethodName             = "/skillchain.job.Query/ListJob"
+	Query_ShowJob_FullMethodName             = "/skillchain.job.Query/ShowJob"
+	Query_ListApplication_FullMethodName     = "/skillchain.job.Query/ListApplication"
+	Query_ListMyApplications_FullMethodName  = "/skillchain.job.Query/ListMyApplications"
+	Query_ListJobApplications_FullMethodName = "/skillchain.job.Query/ListJobApplications"
 )
 
 // QueryClient is the client API for Query service.
@@ -34,6 +37,12 @@ type QueryClient interface {
 	ListJob(ctx context.Context, in *QueryListJobRequest, opts ...grpc.CallOption) (*QueryListJobResponse, error)
 	// Queries a list of ShowJob items.
 	ShowJob(ctx context.Context, in *QueryShowJobRequest, opts ...grpc.CallOption) (*QueryShowJobResponse, error)
+	// Queries a list of all applications.
+	ListApplication(ctx context.Context, in *QueryListApplicationRequest, opts ...grpc.CallOption) (*QueryListApplicationResponse, error)
+	// Queries a list of my applications.
+	ListMyApplications(ctx context.Context, in *QueryListMyApplicationsRequest, opts ...grpc.CallOption) (*QueryListMyApplicationsResponse, error)
+	// Queries all applications for a specific job.
+	ListJobApplications(ctx context.Context, in *QueryListJobApplicationsRequest, opts ...grpc.CallOption) (*QueryListJobApplicationsResponse, error)
 }
 
 type queryClient struct {
@@ -71,6 +80,33 @@ func (c *queryClient) ShowJob(ctx context.Context, in *QueryShowJobRequest, opts
 	return out, nil
 }
 
+func (c *queryClient) ListApplication(ctx context.Context, in *QueryListApplicationRequest, opts ...grpc.CallOption) (*QueryListApplicationResponse, error) {
+	out := new(QueryListApplicationResponse)
+	err := c.cc.Invoke(ctx, Query_ListApplication_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListMyApplications(ctx context.Context, in *QueryListMyApplicationsRequest, opts ...grpc.CallOption) (*QueryListMyApplicationsResponse, error) {
+	out := new(QueryListMyApplicationsResponse)
+	err := c.cc.Invoke(ctx, Query_ListMyApplications_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListJobApplications(ctx context.Context, in *QueryListJobApplicationsRequest, opts ...grpc.CallOption) (*QueryListJobApplicationsResponse, error) {
+	out := new(QueryListJobApplicationsResponse)
+	err := c.cc.Invoke(ctx, Query_ListJobApplications_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -81,6 +117,12 @@ type QueryServer interface {
 	ListJob(context.Context, *QueryListJobRequest) (*QueryListJobResponse, error)
 	// Queries a list of ShowJob items.
 	ShowJob(context.Context, *QueryShowJobRequest) (*QueryShowJobResponse, error)
+	// Queries a list of all applications.
+	ListApplication(context.Context, *QueryListApplicationRequest) (*QueryListApplicationResponse, error)
+	// Queries a list of my applications.
+	ListMyApplications(context.Context, *QueryListMyApplicationsRequest) (*QueryListMyApplicationsResponse, error)
+	// Queries all applications for a specific job.
+	ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -96,6 +138,15 @@ func (UnimplementedQueryServer) ListJob(context.Context, *QueryListJobRequest) (
 }
 func (UnimplementedQueryServer) ShowJob(context.Context, *QueryShowJobRequest) (*QueryShowJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowJob not implemented")
+}
+func (UnimplementedQueryServer) ListApplication(context.Context, *QueryListApplicationRequest) (*QueryListApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListApplication not implemented")
+}
+func (UnimplementedQueryServer) ListMyApplications(context.Context, *QueryListMyApplicationsRequest) (*QueryListMyApplicationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMyApplications not implemented")
+}
+func (UnimplementedQueryServer) ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListJobApplications not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -164,6 +215,60 @@ func _Query_ShowJob_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListApplication_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListApplication(ctx, req.(*QueryListApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ListMyApplications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListMyApplicationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListMyApplications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListMyApplications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListMyApplications(ctx, req.(*QueryListMyApplicationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ListJobApplications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListJobApplicationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListJobApplications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListJobApplications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListJobApplications(ctx, req.(*QueryListJobApplicationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -182,6 +287,18 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ShowJob",
 			Handler:    _Query_ShowJob_Handler,
+		},
+		{
+			MethodName: "ListApplication",
+			Handler:    _Query_ListApplication_Handler,
+		},
+		{
+			MethodName: "ListMyApplications",
+			Handler:    _Query_ListMyApplications_Handler,
+		},
+		{
+			MethodName: "ListJobApplications",
+			Handler:    _Query_ListJobApplications_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

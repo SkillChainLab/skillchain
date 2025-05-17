@@ -1,8 +1,8 @@
 package types
 
 import (
-	"fmt"
 	"encoding/binary"
+	"fmt"
 )
 
 const (
@@ -12,12 +12,11 @@ const (
 
 	MemStoreKey = "mem_job"
 
-	JobKeyPrefix = "Job/value/"
-	JobCountKey  = "Job/count"
-	ApplicationKeyPrefix   = "Application/value/"
-	ApplicationCountKey    = "Application/count"
+	JobKeyPrefix         = "Job/value/"
+	JobCountKey          = "Job/count"
+	ApplicationKeyPrefix = "Application/value/"
+	ApplicationCountKey  = "Application/count"
 )
-
 
 var ParamsKey = []byte("p_job")
 
