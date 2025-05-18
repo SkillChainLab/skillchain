@@ -8,7 +8,6 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-
 func (k Keeper) ListMyApplications(goCtx context.Context, req *types.QueryListMyApplicationsRequest) (*types.QueryListMyApplicationsResponse, error) {
 	if req == nil || req.Applicant == "" {
 		return nil, status.Error(codes.InvalidArgument, "invalid request: applicant required")

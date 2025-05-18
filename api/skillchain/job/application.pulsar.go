@@ -2,8 +2,10 @@
 package job
 
 import (
+	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -13,10 +15,14 @@ import (
 )
 
 var (
-	md_Application             protoreflect.MessageDescriptor
-	fd_Application_jobId       protoreflect.FieldDescriptor
-	fd_Application_applicant   protoreflect.FieldDescriptor
-	fd_Application_coverLetter protoreflect.FieldDescriptor
+	md_Application                protoreflect.MessageDescriptor
+	fd_Application_jobId          protoreflect.FieldDescriptor
+	fd_Application_applicant      protoreflect.FieldDescriptor
+	fd_Application_coverLetter    protoreflect.FieldDescriptor
+	fd_Application_status         protoreflect.FieldDescriptor
+	fd_Application_jobTitle       protoreflect.FieldDescriptor
+	fd_Application_jobDescription protoreflect.FieldDescriptor
+	fd_Application_jobBudget      protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -25,6 +31,10 @@ func init() {
 	fd_Application_jobId = md_Application.Fields().ByName("jobId")
 	fd_Application_applicant = md_Application.Fields().ByName("applicant")
 	fd_Application_coverLetter = md_Application.Fields().ByName("coverLetter")
+	fd_Application_status = md_Application.Fields().ByName("status")
+	fd_Application_jobTitle = md_Application.Fields().ByName("jobTitle")
+	fd_Application_jobDescription = md_Application.Fields().ByName("jobDescription")
+	fd_Application_jobBudget = md_Application.Fields().ByName("jobBudget")
 }
 
 var _ protoreflect.Message = (*fastReflection_Application)(nil)
@@ -110,6 +120,30 @@ func (x *fastReflection_Application) Range(f func(protoreflect.FieldDescriptor, 
 			return
 		}
 	}
+	if x.Status != "" {
+		value := protoreflect.ValueOfString(x.Status)
+		if !f(fd_Application_status, value) {
+			return
+		}
+	}
+	if x.JobTitle != "" {
+		value := protoreflect.ValueOfString(x.JobTitle)
+		if !f(fd_Application_jobTitle, value) {
+			return
+		}
+	}
+	if x.JobDescription != "" {
+		value := protoreflect.ValueOfString(x.JobDescription)
+		if !f(fd_Application_jobDescription, value) {
+			return
+		}
+	}
+	if x.JobBudget != "" {
+		value := protoreflect.ValueOfString(x.JobBudget)
+		if !f(fd_Application_jobBudget, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -131,6 +165,14 @@ func (x *fastReflection_Application) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Applicant != ""
 	case "skillchain.job.Application.coverLetter":
 		return x.CoverLetter != ""
+	case "skillchain.job.Application.status":
+		return x.Status != ""
+	case "skillchain.job.Application.jobTitle":
+		return x.JobTitle != ""
+	case "skillchain.job.Application.jobDescription":
+		return x.JobDescription != ""
+	case "skillchain.job.Application.jobBudget":
+		return x.JobBudget != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.Application"))
@@ -153,6 +195,14 @@ func (x *fastReflection_Application) Clear(fd protoreflect.FieldDescriptor) {
 		x.Applicant = ""
 	case "skillchain.job.Application.coverLetter":
 		x.CoverLetter = ""
+	case "skillchain.job.Application.status":
+		x.Status = ""
+	case "skillchain.job.Application.jobTitle":
+		x.JobTitle = ""
+	case "skillchain.job.Application.jobDescription":
+		x.JobDescription = ""
+	case "skillchain.job.Application.jobBudget":
+		x.JobBudget = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.Application"))
@@ -177,6 +227,18 @@ func (x *fastReflection_Application) Get(descriptor protoreflect.FieldDescriptor
 		return protoreflect.ValueOfString(value)
 	case "skillchain.job.Application.coverLetter":
 		value := x.CoverLetter
+		return protoreflect.ValueOfString(value)
+	case "skillchain.job.Application.status":
+		value := x.Status
+		return protoreflect.ValueOfString(value)
+	case "skillchain.job.Application.jobTitle":
+		value := x.JobTitle
+		return protoreflect.ValueOfString(value)
+	case "skillchain.job.Application.jobDescription":
+		value := x.JobDescription
+		return protoreflect.ValueOfString(value)
+	case "skillchain.job.Application.jobBudget":
+		value := x.JobBudget
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -204,6 +266,14 @@ func (x *fastReflection_Application) Set(fd protoreflect.FieldDescriptor, value 
 		x.Applicant = value.Interface().(string)
 	case "skillchain.job.Application.coverLetter":
 		x.CoverLetter = value.Interface().(string)
+	case "skillchain.job.Application.status":
+		x.Status = value.Interface().(string)
+	case "skillchain.job.Application.jobTitle":
+		x.JobTitle = value.Interface().(string)
+	case "skillchain.job.Application.jobDescription":
+		x.JobDescription = value.Interface().(string)
+	case "skillchain.job.Application.jobBudget":
+		x.JobBudget = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.Application"))
@@ -230,6 +300,14 @@ func (x *fastReflection_Application) Mutable(fd protoreflect.FieldDescriptor) pr
 		panic(fmt.Errorf("field applicant of message skillchain.job.Application is not mutable"))
 	case "skillchain.job.Application.coverLetter":
 		panic(fmt.Errorf("field coverLetter of message skillchain.job.Application is not mutable"))
+	case "skillchain.job.Application.status":
+		panic(fmt.Errorf("field status of message skillchain.job.Application is not mutable"))
+	case "skillchain.job.Application.jobTitle":
+		panic(fmt.Errorf("field jobTitle of message skillchain.job.Application is not mutable"))
+	case "skillchain.job.Application.jobDescription":
+		panic(fmt.Errorf("field jobDescription of message skillchain.job.Application is not mutable"))
+	case "skillchain.job.Application.jobBudget":
+		panic(fmt.Errorf("field jobBudget of message skillchain.job.Application is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.job.Application"))
@@ -248,6 +326,14 @@ func (x *fastReflection_Application) NewField(fd protoreflect.FieldDescriptor) p
 	case "skillchain.job.Application.applicant":
 		return protoreflect.ValueOfString("")
 	case "skillchain.job.Application.coverLetter":
+		return protoreflect.ValueOfString("")
+	case "skillchain.job.Application.status":
+		return protoreflect.ValueOfString("")
+	case "skillchain.job.Application.jobTitle":
+		return protoreflect.ValueOfString("")
+	case "skillchain.job.Application.jobDescription":
+		return protoreflect.ValueOfString("")
+	case "skillchain.job.Application.jobBudget":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -329,6 +415,22 @@ func (x *fastReflection_Application) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.Status)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.JobTitle)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.JobDescription)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.JobBudget)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -357,6 +459,34 @@ func (x *fastReflection_Application) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.JobBudget) > 0 {
+			i -= len(x.JobBudget)
+			copy(dAtA[i:], x.JobBudget)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.JobBudget)))
+			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.JobDescription) > 0 {
+			i -= len(x.JobDescription)
+			copy(dAtA[i:], x.JobDescription)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.JobDescription)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.JobTitle) > 0 {
+			i -= len(x.JobTitle)
+			copy(dAtA[i:], x.JobTitle)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.JobTitle)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.Status) > 0 {
+			i -= len(x.Status)
+			copy(dAtA[i:], x.Status)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Status)))
+			i--
+			dAtA[i] = 0x22
 		}
 		if len(x.CoverLetter) > 0 {
 			i -= len(x.CoverLetter)
@@ -509,6 +639,134 @@ func (x *fastReflection_Application) ProtoMethods() *protoiface.Methods {
 				}
 				x.CoverLetter = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Status = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field JobTitle", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.JobTitle = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field JobDescription", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.JobDescription = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field JobBudget", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.JobBudget = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -562,9 +820,13 @@ type Application struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	JobId       uint64 `protobuf:"varint,1,opt,name=jobId,proto3" json:"jobId,omitempty"`
-	Applicant   string `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant,omitempty"`
-	CoverLetter string `protobuf:"bytes,3,opt,name=coverLetter,proto3" json:"coverLetter,omitempty"`
+	JobId          uint64 `protobuf:"varint,1,opt,name=jobId,proto3" json:"jobId,omitempty"`
+	Applicant      string `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant,omitempty"`
+	CoverLetter    string `protobuf:"bytes,3,opt,name=coverLetter,proto3" json:"coverLetter,omitempty"`
+	Status         string `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"` // PENDING, APPROVED, or REJECTED
+	JobTitle       string `protobuf:"bytes,5,opt,name=jobTitle,proto3" json:"jobTitle,omitempty"`
+	JobDescription string `protobuf:"bytes,6,opt,name=jobDescription,proto3" json:"jobDescription,omitempty"`
+	JobBudget      string `protobuf:"bytes,7,opt,name=jobBudget,proto3" json:"jobBudget,omitempty"`
 }
 
 func (x *Application) Reset() {
@@ -608,31 +870,69 @@ func (x *Application) GetCoverLetter() string {
 	return ""
 }
 
+func (x *Application) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Application) GetJobTitle() string {
+	if x != nil {
+		return x.JobTitle
+	}
+	return ""
+}
+
+func (x *Application) GetJobDescription() string {
+	if x != nil {
+		return x.JobDescription
+	}
+	return ""
+}
+
+func (x *Application) GetJobBudget() string {
+	if x != nil {
+		return x.JobBudget
+	}
+	return ""
+}
+
 var File_skillchain_job_application_proto protoreflect.FileDescriptor
 
 var file_skillchain_job_application_proto_rawDesc = []byte{
 	0x0a, 0x20, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62,
 	0x2f, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x12, 0x0e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a,
-	0x6f, 0x62, 0x22, 0x63, 0x0a, 0x0b, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x70, 0x70, 0x6c, 0x69,
-	0x63, 0x61, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x70, 0x70, 0x6c,
-	0x69, 0x63, 0x61, 0x6e, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x4c, 0x65,
-	0x74, 0x74, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x76, 0x65,
-	0x72, 0x4c, 0x65, 0x74, 0x74, 0x65, 0x72, 0x42, 0xb7, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e,
-	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a, 0x6f, 0x62, 0x42, 0x10,
-	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53,
-	0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69,
-	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x6b, 0x69, 0x6c,
-	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02, 0x03, 0x53, 0x4a, 0x58,
-	0xaa, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x4a, 0x6f,
-	0x62, 0xca, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x4a,
-	0x6f, 0x62, 0xe2, 0x02, 0x1a, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c,
-	0x4a, 0x6f, 0x62, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
-	0x02, 0x0f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x4a, 0x6f,
-	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x62, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xdd, 0x01, 0x0a, 0x0b,
+	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6a,
+	0x6f, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x6a, 0x6f, 0x62, 0x49,
+	0x64, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x6e, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x6e, 0x74, 0x12,
+	0x20, 0x0a, 0x0b, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x4c, 0x65, 0x74, 0x74, 0x65, 0x72, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x76, 0x65, 0x72, 0x4c, 0x65, 0x74, 0x74, 0x65,
+	0x72, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x6a, 0x6f, 0x62,
+	0x54, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6a, 0x6f, 0x62,
+	0x54, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x6a, 0x6f, 0x62, 0x44, 0x65, 0x73, 0x63,
+	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6a,
+	0x6f, 0x62, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1c, 0x0a,
+	0x09, 0x6a, 0x6f, 0x62, 0x42, 0x75, 0x64, 0x67, 0x65, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x6a, 0x6f, 0x62, 0x42, 0x75, 0x64, 0x67, 0x65, 0x74, 0x42, 0xb7, 0x01, 0x0a, 0x12,
+	0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x6a,
+	0x6f, 0x62, 0x42, 0x10, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62,
+	0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02,
+	0x03, 0x53, 0x4a, 0x58, 0xaa, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2e, 0x4a, 0x6f, 0x62, 0xca, 0x02, 0x0e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x5c, 0x4a, 0x6f, 0x62, 0xe2, 0x02, 0x1a, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
+	0x61, 0x69, 0x6e, 0x5c, 0x4a, 0x6f, 0x62, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x3a, 0x3a, 0x4a, 0x6f, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

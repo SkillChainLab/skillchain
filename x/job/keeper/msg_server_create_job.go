@@ -10,14 +10,8 @@ import (
 func (k msgServer) CreateJob(goCtx context.Context, msg *types.MsgCreateJob) (*types.MsgCreateJobResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// İş ilanı nesnesi
-	job := types.Job{
-		Creator:     msg.Creator,
-		Id:          k.AppendJob(ctx, msg.Title, msg.Description, msg.Budget, msg.Creator),
-		Title:       msg.Title,
-		Description: msg.Description,
-		Budget:      msg.Budget,
-	}
+	// Create job and get its ID
+	jobID := k.AppendJob(ctx, msg.Title, msg.Description, msg.Budget, msg.Creator)
 
-	return &types.MsgCreateJobResponse{Id: job.Id}, nil
+	return &types.MsgCreateJobResponse{Id: jobID}, nil
 }

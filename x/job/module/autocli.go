@@ -68,6 +68,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a apply-job tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "jobId"}, {ProtoField: "coverLetter"}},
 				},
+				{
+					RpcMethod:      "ReviewApplication",
+					Use:            "review-application [job-id] [applicant] [status]",
+					Short:          "Send a review-application tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "jobId"}, {ProtoField: "applicant"}, {ProtoField: "status"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

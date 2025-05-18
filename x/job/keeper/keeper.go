@@ -77,18 +77,23 @@ func (k Keeper) GetJob(ctx context.Context, id uint64) (types.Job, bool) {
 
 	var job types.Job
 	k.cdc.MustUnmarshal(bz, &job)
+	
+	// Ensure ID is set
+	job.Id = id
+	
 	fmt.Printf("DEBUG: Found job: %+v\n", job)
 	return job, true
 }
 
 func (k Keeper) AppendJob(ctx context.Context, title, desc, budget, creator string) uint64 {
 	count := k.GetJobCount(ctx)
+	jobID := count + 1 // Start from 1 instead of 0
 
 	store := k.getStore(ctx)
-	key := types.JobKey(count)
+	key := types.JobKey(jobID)
 
 	job := types.Job{
-		Id:          count,
+		Id:          jobID,
 		Creator:     creator,
 		Title:       title,
 		Description: desc,
@@ -98,14 +103,14 @@ func (k Keeper) AppendJob(ctx context.Context, title, desc, budget, creator stri
 	bz := k.cdc.MustMarshal(&job)
 	store.Set(key, bz)
 
-	k.SetJobCount(ctx, count+1)
+	k.SetJobCount(ctx, jobID)
 
-	return count
+	return jobID
 }
 
 func (k Keeper) GetJobCount(ctx context.Context) uint64 {
 	store := k.getBaseStore(ctx)
-	bz := store.Get([]byte(types.JobCountKey))
+	bz := store.Get(types.JobCountKey())
 	if bz == nil {
 		return 0
 	}
@@ -116,21 +121,31 @@ func (k Keeper) SetJobCount(ctx context.Context, count uint64) {
 	store := k.getBaseStore(ctx)
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
-	store.Set([]byte(types.JobCountKey), bz)
+	store.Set(types.JobCountKey(), bz)
 }
 
 func (k Keeper) AppendApplication(ctx context.Context, jobID uint64, applicant string, coverLetter string) error {
+	// First verify that the job exists
+	job, found := k.GetJob(ctx, jobID)
+	if !found {
+		return errorsmod.Wrapf(types.ErrJobNotFound, "job %d not found", jobID)
+	}
+
 	store := k.getStore(ctx)
-	key := []byte(fmt.Sprintf("Application/value/%d", jobID))
+	key := []byte(fmt.Sprintf("Application/value/%d:%s", jobID, applicant))
 
 	if store.Has(key) {
 		return errorsmod.Wrapf(sdkerrors.ErrUnauthorized, "already applied to job %d", jobID)
 	}
 
 	app := types.Application{
-		JobId:       jobID,
-		Applicant:   applicant,
-		CoverLetter: coverLetter,
+		JobId:           jobID,
+		Applicant:       applicant,
+		CoverLetter:     coverLetter,
+		Status:          "PENDING",
+		JobTitle:        job.Title,
+		JobDescription:  job.Description,
+		JobBudget:       job.Budget,
 	}
 
 	bz := k.cdc.MustMarshal(&app)
@@ -141,7 +156,7 @@ func (k Keeper) AppendApplication(ctx context.Context, jobID uint64, applicant s
 
 func (k Keeper) GetApplicationCount(ctx context.Context) uint64 {
 	store := k.getBaseStore(ctx)
-	bz := store.Get([]byte(types.ApplicationCountKey))
+	bz := store.Get(types.ApplicationCountKey())
 	if bz == nil {
 		return 0
 	}
@@ -152,5 +167,5 @@ func (k Keeper) SetApplicationCount(ctx context.Context, count uint64) {
 	store := k.getBaseStore(ctx)
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
-	store.Set([]byte(types.ApplicationCountKey), bz)
+	store.Set(types.ApplicationCountKey(), bz)
 }

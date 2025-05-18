@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package skillchain.job;
 
+import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "skillchain/job/application.proto";
 
@@ -9,9 +10,9 @@ option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
 
 // Job defines a job listing
 message Job {
-  uint64 id = 1;
-  string creator = 2;
-  string title = 3;
-  string description = 4;
-  string budget = 5;
+  uint64 id = 1 [(gogoproto.moretags) = "yaml:\"id\""];
+  string creator = 2 [(gogoproto.moretags) = "yaml:\"creator\""];
+  string title = 3 [(gogoproto.moretags) = "yaml:\"title\""];
+  string description = 4 [(gogoproto.moretags) = "yaml:\"description\""];
+  string budget = 5 [(gogoproto.moretags) = "yaml:\"budget\""];
 }

@@ -5,6 +5,8 @@ package types
 
 import (
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
 	math "math"
@@ -23,9 +25,13 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Application struct {
-	JobId       uint64 `protobuf:"varint,1,opt,name=jobId,proto3" json:"jobId,omitempty"`
-	Applicant   string `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant,omitempty"`
-	CoverLetter string `protobuf:"bytes,3,opt,name=coverLetter,proto3" json:"coverLetter,omitempty"`
+	JobId          uint64 `protobuf:"varint,1,opt,name=jobId,proto3" json:"jobId,omitempty"`
+	Applicant      string `protobuf:"bytes,2,opt,name=applicant,proto3" json:"applicant,omitempty"`
+	CoverLetter    string `protobuf:"bytes,3,opt,name=coverLetter,proto3" json:"coverLetter,omitempty"`
+	Status         string `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	JobTitle       string `protobuf:"bytes,5,opt,name=jobTitle,proto3" json:"jobTitle,omitempty"`
+	JobDescription string `protobuf:"bytes,6,opt,name=jobDescription,proto3" json:"jobDescription,omitempty"`
+	JobBudget      string `protobuf:"bytes,7,opt,name=jobBudget,proto3" json:"jobBudget,omitempty"`
 }
 
 func (m *Application) Reset()         { *m = Application{} }
@@ -82,6 +88,34 @@ func (m *Application) GetCoverLetter() string {
 	return ""
 }
 
+func (m *Application) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *Application) GetJobTitle() string {
+	if m != nil {
+		return m.JobTitle
+	}
+	return ""
+}
+
+func (m *Application) GetJobDescription() string {
+	if m != nil {
+		return m.JobDescription
+	}
+	return ""
+}
+
+func (m *Application) GetJobBudget() string {
+	if m != nil {
+		return m.JobBudget
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Application)(nil), "skillchain.job.Application")
 }
@@ -89,20 +123,25 @@ func init() {
 func init() { proto.RegisterFile("skillchain/job/application.proto", fileDescriptor_dda493dc9bbebcea) }
 
 var fileDescriptor_dda493dc9bbebcea = []byte{
-	// 196 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x28, 0xce, 0xce, 0xcc,
-	0xc9, 0x49, 0xce, 0x48, 0xcc, 0xcc, 0xd3, 0xcf, 0xca, 0x4f, 0xd2, 0x4f, 0x2c, 0x28, 0xc8, 0xc9,
-	0x4c, 0x4e, 0x2c, 0xc9, 0xcc, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x43, 0xa8,
-	0xd0, 0xcb, 0xca, 0x4f, 0x52, 0x4a, 0xe6, 0xe2, 0x76, 0x44, 0x28, 0x12, 0x12, 0xe1, 0x62, 0xcd,
-	0xca, 0x4f, 0xf2, 0x4c, 0x91, 0x60, 0x54, 0x60, 0xd4, 0x60, 0x09, 0x82, 0x70, 0x84, 0x64, 0xb8,
-	0x38, 0xa1, 0x26, 0xe5, 0x95, 0x48, 0x30, 0x29, 0x30, 0x6a, 0x70, 0x06, 0x21, 0x04, 0x84, 0x14,
-	0xb8, 0xb8, 0x93, 0xf3, 0xcb, 0x52, 0x8b, 0x7c, 0x52, 0x4b, 0x4a, 0x52, 0x8b, 0x24, 0x98, 0xc1,
-	0xf2, 0xc8, 0x42, 0x4e, 0x9e, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91,
-	0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78, 0x2c, 0xc7, 0x10, 0xa5,
-	0x9f, 0x9e, 0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97, 0x9c, 0x9f, 0xab, 0x1f, 0x0c, 0x72, 0x99, 0x33,
-	0xc8, 0x65, 0x3e, 0x89, 0x49, 0xfa, 0x48, 0x3e, 0xa9, 0x00, 0xfb, 0xa5, 0xa4, 0xb2, 0x20, 0xb5,
-	0x38, 0x89, 0x0d, 0xec, 0x0d, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc5, 0x24, 0x15, 0xd4,
-	0xea, 0x00, 0x00, 0x00,
+	// 287 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x90, 0xcf, 0x4a, 0xc3, 0x30,
+	0x1c, 0xc7, 0x1b, 0xdd, 0xaa, 0xcb, 0x60, 0x60, 0x18, 0x12, 0x8a, 0x84, 0xe2, 0x41, 0x76, 0x6a,
+	0x0e, 0x3e, 0x81, 0xd3, 0xcb, 0x60, 0xa7, 0xe9, 0xc9, 0x5b, 0xd2, 0x85, 0x2e, 0xb1, 0xeb, 0xaf,
+	0xb4, 0xa9, 0xe8, 0x5b, 0xf8, 0x58, 0x1e, 0x77, 0xf4, 0x22, 0x48, 0xfb, 0x22, 0xd2, 0x74, 0xac,
+	0x63, 0x97, 0xf2, 0xfb, 0xfe, 0xa1, 0xf9, 0xf2, 0xc1, 0x61, 0xf9, 0xa6, 0xd3, 0x34, 0xde, 0x08,
+	0x9d, 0x71, 0x03, 0x92, 0x8b, 0x3c, 0x4f, 0x75, 0x2c, 0xac, 0x86, 0x2c, 0xca, 0x0b, 0xb0, 0x40,
+	0x26, 0x7d, 0x23, 0x32, 0x20, 0x83, 0x2b, 0xb1, 0xd5, 0x19, 0x70, 0xf7, 0xed, 0x2a, 0xc1, 0x34,
+	0x81, 0x04, 0xdc, 0xc9, 0xdb, 0xab, 0x73, 0x6f, 0x7f, 0x11, 0x1e, 0x3f, 0xf4, 0xbf, 0x23, 0x53,
+	0x3c, 0x34, 0x20, 0x17, 0x6b, 0x8a, 0x42, 0x34, 0x1b, 0xac, 0x3a, 0x41, 0x6e, 0xf0, 0x68, 0xff,
+	0x66, 0x66, 0xe9, 0x59, 0x88, 0x66, 0xa3, 0x55, 0x6f, 0x90, 0x10, 0x8f, 0x63, 0x78, 0x57, 0xc5,
+	0x52, 0x59, 0xab, 0x0a, 0x7a, 0xee, 0xf2, 0x63, 0x8b, 0x5c, 0x63, 0xbf, 0xb4, 0xc2, 0x56, 0x25,
+	0x1d, 0xb8, 0x70, 0xaf, 0x48, 0x80, 0x2f, 0x0d, 0xc8, 0x17, 0x6d, 0x53, 0x45, 0x87, 0x2e, 0x39,
+	0x68, 0x72, 0x87, 0x27, 0x06, 0xe4, 0x93, 0x2a, 0xe3, 0x42, 0xe7, 0xed, 0x36, 0xea, 0xbb, 0xc6,
+	0x89, 0xdb, 0x6e, 0x33, 0x20, 0xe7, 0xd5, 0x3a, 0x51, 0x96, 0x5e, 0x74, 0xdb, 0x0e, 0xc6, 0x7c,
+	0xf1, 0x5d, 0x33, 0xb4, 0xab, 0x19, 0xfa, 0xab, 0x19, 0xfa, 0x6a, 0x98, 0xb7, 0x6b, 0x98, 0xf7,
+	0xd3, 0x30, 0xef, 0x95, 0x27, 0xda, 0x6e, 0x2a, 0x19, 0xc5, 0xb0, 0xe5, 0xcf, 0x2d, 0xbd, 0xc7,
+	0x96, 0xde, 0x52, 0x48, 0x7e, 0x44, 0xfb, 0xc3, 0xf1, 0xb6, 0x9f, 0xb9, 0x2a, 0xa5, 0xef, 0x88,
+	0xdd, 0xff, 0x07, 0x00, 0x00, 0xff, 0xff, 0x15, 0x47, 0x9c, 0xdc, 0x8e, 0x01, 0x00, 0x00,
 }
 
 func (m *Application) Marshal() (dAtA []byte, err error) {
@@ -125,6 +164,34 @@ func (m *Application) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.JobBudget) > 0 {
+		i -= len(m.JobBudget)
+		copy(dAtA[i:], m.JobBudget)
+		i = encodeVarintApplication(dAtA, i, uint64(len(m.JobBudget)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.JobDescription) > 0 {
+		i -= len(m.JobDescription)
+		copy(dAtA[i:], m.JobDescription)
+		i = encodeVarintApplication(dAtA, i, uint64(len(m.JobDescription)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.JobTitle) > 0 {
+		i -= len(m.JobTitle)
+		copy(dAtA[i:], m.JobTitle)
+		i = encodeVarintApplication(dAtA, i, uint64(len(m.JobTitle)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintApplication(dAtA, i, uint64(len(m.Status)))
+		i--
+		dAtA[i] = 0x22
+	}
 	if len(m.CoverLetter) > 0 {
 		i -= len(m.CoverLetter)
 		copy(dAtA[i:], m.CoverLetter)
@@ -172,6 +239,22 @@ func (m *Application) Size() (n int) {
 		n += 1 + l + sovApplication(uint64(l))
 	}
 	l = len(m.CoverLetter)
+	if l > 0 {
+		n += 1 + l + sovApplication(uint64(l))
+	}
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovApplication(uint64(l))
+	}
+	l = len(m.JobTitle)
+	if l > 0 {
+		n += 1 + l + sovApplication(uint64(l))
+	}
+	l = len(m.JobDescription)
+	if l > 0 {
+		n += 1 + l + sovApplication(uint64(l))
+	}
+	l = len(m.JobBudget)
 	if l > 0 {
 		n += 1 + l + sovApplication(uint64(l))
 	}
@@ -295,6 +378,134 @@ func (m *Application) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.CoverLetter = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApplication
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApplication
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApplication
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field JobTitle", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApplication
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApplication
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApplication
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.JobTitle = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field JobDescription", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApplication
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApplication
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApplication
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.JobDescription = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field JobBudget", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApplication
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApplication
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApplication
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.JobBudget = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

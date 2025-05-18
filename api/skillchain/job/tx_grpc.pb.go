@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/skillchain.job.Msg/UpdateParams"
-	Msg_CreateJob_FullMethodName    = "/skillchain.job.Msg/CreateJob"
-	Msg_ApplyJob_FullMethodName     = "/skillchain.job.Msg/ApplyJob"
+	Msg_UpdateParams_FullMethodName      = "/skillchain.job.Msg/UpdateParams"
+	Msg_CreateJob_FullMethodName         = "/skillchain.job.Msg/CreateJob"
+	Msg_ApplyJob_FullMethodName          = "/skillchain.job.Msg/ApplyJob"
+	Msg_ReviewApplication_FullMethodName = "/skillchain.job.Msg/ReviewApplication"
 )
 
 // MsgClient is the client API for Msg service.
@@ -33,6 +34,7 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreateJob(ctx context.Context, in *MsgCreateJob, opts ...grpc.CallOption) (*MsgCreateJobResponse, error)
 	ApplyJob(ctx context.Context, in *MsgApplyJob, opts ...grpc.CallOption) (*MsgApplyJobResponse, error)
+	ReviewApplication(ctx context.Context, in *MsgReviewApplication, opts ...grpc.CallOption) (*MsgReviewApplicationResponse, error)
 }
 
 type msgClient struct {
@@ -70,6 +72,15 @@ func (c *msgClient) ApplyJob(ctx context.Context, in *MsgApplyJob, opts ...grpc.
 	return out, nil
 }
 
+func (c *msgClient) ReviewApplication(ctx context.Context, in *MsgReviewApplication, opts ...grpc.CallOption) (*MsgReviewApplicationResponse, error) {
+	out := new(MsgReviewApplicationResponse)
+	err := c.cc.Invoke(ctx, Msg_ReviewApplication_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -79,6 +90,7 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreateJob(context.Context, *MsgCreateJob) (*MsgCreateJobResponse, error)
 	ApplyJob(context.Context, *MsgApplyJob) (*MsgApplyJobResponse, error)
+	ReviewApplication(context.Context, *MsgReviewApplication) (*MsgReviewApplicationResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -94,6 +106,9 @@ func (UnimplementedMsgServer) CreateJob(context.Context, *MsgCreateJob) (*MsgCre
 }
 func (UnimplementedMsgServer) ApplyJob(context.Context, *MsgApplyJob) (*MsgApplyJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApplyJob not implemented")
+}
+func (UnimplementedMsgServer) ReviewApplication(context.Context, *MsgReviewApplication) (*MsgReviewApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReviewApplication not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -162,6 +177,24 @@ func _Msg_ApplyJob_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ReviewApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgReviewApplication)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ReviewApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ReviewApplication_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ReviewApplication(ctx, req.(*MsgReviewApplication))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +213,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ApplyJob",
 			Handler:    _Msg_ApplyJob_Handler,
+		},
+		{
+			MethodName: "ReviewApplication",
+			Handler:    _Msg_ReviewApplication_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
