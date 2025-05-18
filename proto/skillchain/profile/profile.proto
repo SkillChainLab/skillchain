@@ -2,14 +2,31 @@ syntax = "proto3";
 
 package skillchain.profile;
 
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
 option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
 
 message Profile {
-  string username = 1;
-  string bio = 2;
-  string github = 3;
-  string linkedin = 4;
-  string website = 5;
-  string skills = 6;
-  string creator = 7;
+  string creator = 1;
+  string username = 2;
+  string bio = 3;
+  repeated string skills = 4;
+  repeated Experience experiences = 5;
+  string website = 6;
+  string github = 7;
+  string linkedin = 8;
+  string twitter = 9;
+  string avatar = 10;
+  string location = 11;
+  string email = 12;
+}
+
+message Experience {
+  string title = 1;
+  string company = 2;
+  string description = 3;
+  string startDate = 4;
+  string endDate = 5;
+  bool isCurrent = 6;
 }

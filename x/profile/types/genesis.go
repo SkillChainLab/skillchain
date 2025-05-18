@@ -1,22 +1,36 @@
 package types
 
-// this line is used by starport scaffolding # genesis/types/import
-
-// DefaultIndex is the default global index
-const DefaultIndex uint64 = 1
+import (
+	"fmt"
+)
 
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		// this line is used by starport scaffolding # genesis/types/default
-		Params: DefaultParams(),
+		Params:      DefaultParams(),
+		ProfileList: []Profile{},
 	}
 }
 
-// Validate performs basic genesis state validation returning an error upon any
-// failure.
+// Validate performs basic genesis state validation returning an error upon any failure.
 func (gs GenesisState) Validate() error {
-	// this line is used by starport scaffolding # genesis/types/validate
+	// Validate params
+	if err := gs.Params.Validate(); err != nil {
+		return err
+	}
 
-	return gs.Params.Validate()
-}
+	// Validate profiles
+	for _, profile := range gs.ProfileList {
+		if profile.Username == "" {
+			return fmt.Errorf("profile username cannot be empty")
+		}
+		if profile.Bio == "" {
+			return fmt.Errorf("profile bio cannot be empty")
+		}
+		if profile.Creator == "" {
+			return fmt.Errorf("profile creator cannot be empty")
+		}
+	}
+
+	return nil
+} 

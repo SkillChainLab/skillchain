@@ -24,6 +24,9 @@ func (k Keeper) ListMyApplications(goCtx context.Context, req *types.QueryListMy
 		k.cdc.MustUnmarshal(iterator.Value(), &app)
 
 		if app.Applicant == req.Applicant {
+			if req.Status != "" && app.Status != req.Status {
+				continue
+			}
 			copy := app
 			applications = append(applications, &copy)
 		}

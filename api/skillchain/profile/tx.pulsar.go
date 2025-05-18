@@ -871,11 +871,117 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 	}
 }
 
+var _ protoreflect.List = (*_MsgCreateProfile_4_list)(nil)
+
+type _MsgCreateProfile_4_list struct {
+	list *[]string
+}
+
+func (x *_MsgCreateProfile_4_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgCreateProfile_4_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfString((*x.list)[i])
+}
+
+func (x *_MsgCreateProfile_4_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgCreateProfile_4_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgCreateProfile_4_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message MsgCreateProfile at list field Skills as it is not of Message kind"))
+}
+
+func (x *_MsgCreateProfile_4_list) Truncate(n int) {
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgCreateProfile_4_list) NewElement() protoreflect.Value {
+	v := ""
+	return protoreflect.ValueOfString(v)
+}
+
+func (x *_MsgCreateProfile_4_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_MsgCreateProfile_5_list)(nil)
+
+type _MsgCreateProfile_5_list struct {
+	list *[]*Experience
+}
+
+func (x *_MsgCreateProfile_5_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgCreateProfile_5_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_MsgCreateProfile_5_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgCreateProfile_5_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgCreateProfile_5_list) AppendMutable() protoreflect.Value {
+	v := new(Experience)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgCreateProfile_5_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgCreateProfile_5_list) NewElement() protoreflect.Value {
+	v := new(Experience)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgCreateProfile_5_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_MsgCreateProfile          protoreflect.MessageDescriptor
-	fd_MsgCreateProfile_creator  protoreflect.FieldDescriptor
-	fd_MsgCreateProfile_username protoreflect.FieldDescriptor
-	fd_MsgCreateProfile_bio      protoreflect.FieldDescriptor
+	md_MsgCreateProfile             protoreflect.MessageDescriptor
+	fd_MsgCreateProfile_creator     protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_username    protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_bio         protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_skills      protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_experiences protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_website     protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_github      protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_linkedin    protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_twitter     protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_avatar      protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_location    protoreflect.FieldDescriptor
+	fd_MsgCreateProfile_email       protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -884,6 +990,15 @@ func init() {
 	fd_MsgCreateProfile_creator = md_MsgCreateProfile.Fields().ByName("creator")
 	fd_MsgCreateProfile_username = md_MsgCreateProfile.Fields().ByName("username")
 	fd_MsgCreateProfile_bio = md_MsgCreateProfile.Fields().ByName("bio")
+	fd_MsgCreateProfile_skills = md_MsgCreateProfile.Fields().ByName("skills")
+	fd_MsgCreateProfile_experiences = md_MsgCreateProfile.Fields().ByName("experiences")
+	fd_MsgCreateProfile_website = md_MsgCreateProfile.Fields().ByName("website")
+	fd_MsgCreateProfile_github = md_MsgCreateProfile.Fields().ByName("github")
+	fd_MsgCreateProfile_linkedin = md_MsgCreateProfile.Fields().ByName("linkedin")
+	fd_MsgCreateProfile_twitter = md_MsgCreateProfile.Fields().ByName("twitter")
+	fd_MsgCreateProfile_avatar = md_MsgCreateProfile.Fields().ByName("avatar")
+	fd_MsgCreateProfile_location = md_MsgCreateProfile.Fields().ByName("location")
+	fd_MsgCreateProfile_email = md_MsgCreateProfile.Fields().ByName("email")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgCreateProfile)(nil)
@@ -969,6 +1084,60 @@ func (x *fastReflection_MsgCreateProfile) Range(f func(protoreflect.FieldDescrip
 			return
 		}
 	}
+	if len(x.Skills) != 0 {
+		value := protoreflect.ValueOfList(&_MsgCreateProfile_4_list{list: &x.Skills})
+		if !f(fd_MsgCreateProfile_skills, value) {
+			return
+		}
+	}
+	if len(x.Experiences) != 0 {
+		value := protoreflect.ValueOfList(&_MsgCreateProfile_5_list{list: &x.Experiences})
+		if !f(fd_MsgCreateProfile_experiences, value) {
+			return
+		}
+	}
+	if x.Website != "" {
+		value := protoreflect.ValueOfString(x.Website)
+		if !f(fd_MsgCreateProfile_website, value) {
+			return
+		}
+	}
+	if x.Github != "" {
+		value := protoreflect.ValueOfString(x.Github)
+		if !f(fd_MsgCreateProfile_github, value) {
+			return
+		}
+	}
+	if x.Linkedin != "" {
+		value := protoreflect.ValueOfString(x.Linkedin)
+		if !f(fd_MsgCreateProfile_linkedin, value) {
+			return
+		}
+	}
+	if x.Twitter != "" {
+		value := protoreflect.ValueOfString(x.Twitter)
+		if !f(fd_MsgCreateProfile_twitter, value) {
+			return
+		}
+	}
+	if x.Avatar != "" {
+		value := protoreflect.ValueOfString(x.Avatar)
+		if !f(fd_MsgCreateProfile_avatar, value) {
+			return
+		}
+	}
+	if x.Location != "" {
+		value := protoreflect.ValueOfString(x.Location)
+		if !f(fd_MsgCreateProfile_location, value) {
+			return
+		}
+	}
+	if x.Email != "" {
+		value := protoreflect.ValueOfString(x.Email)
+		if !f(fd_MsgCreateProfile_email, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -990,6 +1159,24 @@ func (x *fastReflection_MsgCreateProfile) Has(fd protoreflect.FieldDescriptor) b
 		return x.Username != ""
 	case "skillchain.profile.MsgCreateProfile.bio":
 		return x.Bio != ""
+	case "skillchain.profile.MsgCreateProfile.skills":
+		return len(x.Skills) != 0
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		return len(x.Experiences) != 0
+	case "skillchain.profile.MsgCreateProfile.website":
+		return x.Website != ""
+	case "skillchain.profile.MsgCreateProfile.github":
+		return x.Github != ""
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		return x.Linkedin != ""
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		return x.Twitter != ""
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		return x.Avatar != ""
+	case "skillchain.profile.MsgCreateProfile.location":
+		return x.Location != ""
+	case "skillchain.profile.MsgCreateProfile.email":
+		return x.Email != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfile"))
@@ -1012,6 +1199,24 @@ func (x *fastReflection_MsgCreateProfile) Clear(fd protoreflect.FieldDescriptor)
 		x.Username = ""
 	case "skillchain.profile.MsgCreateProfile.bio":
 		x.Bio = ""
+	case "skillchain.profile.MsgCreateProfile.skills":
+		x.Skills = nil
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		x.Experiences = nil
+	case "skillchain.profile.MsgCreateProfile.website":
+		x.Website = ""
+	case "skillchain.profile.MsgCreateProfile.github":
+		x.Github = ""
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		x.Linkedin = ""
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		x.Twitter = ""
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		x.Avatar = ""
+	case "skillchain.profile.MsgCreateProfile.location":
+		x.Location = ""
+	case "skillchain.profile.MsgCreateProfile.email":
+		x.Email = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfile"))
@@ -1036,6 +1241,39 @@ func (x *fastReflection_MsgCreateProfile) Get(descriptor protoreflect.FieldDescr
 		return protoreflect.ValueOfString(value)
 	case "skillchain.profile.MsgCreateProfile.bio":
 		value := x.Bio
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.skills":
+		if len(x.Skills) == 0 {
+			return protoreflect.ValueOfList(&_MsgCreateProfile_4_list{})
+		}
+		listValue := &_MsgCreateProfile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		if len(x.Experiences) == 0 {
+			return protoreflect.ValueOfList(&_MsgCreateProfile_5_list{})
+		}
+		listValue := &_MsgCreateProfile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.MsgCreateProfile.website":
+		value := x.Website
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.github":
+		value := x.Github
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		value := x.Linkedin
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		value := x.Twitter
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		value := x.Avatar
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.location":
+		value := x.Location
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgCreateProfile.email":
+		value := x.Email
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -1063,6 +1301,28 @@ func (x *fastReflection_MsgCreateProfile) Set(fd protoreflect.FieldDescriptor, v
 		x.Username = value.Interface().(string)
 	case "skillchain.profile.MsgCreateProfile.bio":
 		x.Bio = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.skills":
+		lv := value.List()
+		clv := lv.(*_MsgCreateProfile_4_list)
+		x.Skills = *clv.list
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		lv := value.List()
+		clv := lv.(*_MsgCreateProfile_5_list)
+		x.Experiences = *clv.list
+	case "skillchain.profile.MsgCreateProfile.website":
+		x.Website = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.github":
+		x.Github = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		x.Linkedin = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		x.Twitter = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		x.Avatar = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.location":
+		x.Location = value.Interface().(string)
+	case "skillchain.profile.MsgCreateProfile.email":
+		x.Email = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfile"))
@@ -1083,12 +1343,38 @@ func (x *fastReflection_MsgCreateProfile) Set(fd protoreflect.FieldDescriptor, v
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateProfile) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfile.skills":
+		if x.Skills == nil {
+			x.Skills = []string{}
+		}
+		value := &_MsgCreateProfile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(value)
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		if x.Experiences == nil {
+			x.Experiences = []*Experience{}
+		}
+		value := &_MsgCreateProfile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(value)
 	case "skillchain.profile.MsgCreateProfile.creator":
 		panic(fmt.Errorf("field creator of message skillchain.profile.MsgCreateProfile is not mutable"))
 	case "skillchain.profile.MsgCreateProfile.username":
 		panic(fmt.Errorf("field username of message skillchain.profile.MsgCreateProfile is not mutable"))
 	case "skillchain.profile.MsgCreateProfile.bio":
 		panic(fmt.Errorf("field bio of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.website":
+		panic(fmt.Errorf("field website of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.github":
+		panic(fmt.Errorf("field github of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		panic(fmt.Errorf("field linkedin of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		panic(fmt.Errorf("field twitter of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		panic(fmt.Errorf("field avatar of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.location":
+		panic(fmt.Errorf("field location of message skillchain.profile.MsgCreateProfile is not mutable"))
+	case "skillchain.profile.MsgCreateProfile.email":
+		panic(fmt.Errorf("field email of message skillchain.profile.MsgCreateProfile is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfile"))
@@ -1107,6 +1393,26 @@ func (x *fastReflection_MsgCreateProfile) NewField(fd protoreflect.FieldDescript
 	case "skillchain.profile.MsgCreateProfile.username":
 		return protoreflect.ValueOfString("")
 	case "skillchain.profile.MsgCreateProfile.bio":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.skills":
+		list := []string{}
+		return protoreflect.ValueOfList(&_MsgCreateProfile_4_list{list: &list})
+	case "skillchain.profile.MsgCreateProfile.experiences":
+		list := []*Experience{}
+		return protoreflect.ValueOfList(&_MsgCreateProfile_5_list{list: &list})
+	case "skillchain.profile.MsgCreateProfile.website":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.github":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.linkedin":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.twitter":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.avatar":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.location":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgCreateProfile.email":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -1189,6 +1495,46 @@ func (x *fastReflection_MsgCreateProfile) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.Skills) > 0 {
+			for _, s := range x.Skills {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if len(x.Experiences) > 0 {
+			for _, e := range x.Experiences {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		l = len(x.Website)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Github)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Linkedin)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Twitter)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Avatar)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Location)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Email)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1217,6 +1563,80 @@ func (x *fastReflection_MsgCreateProfile) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Email) > 0 {
+			i -= len(x.Email)
+			copy(dAtA[i:], x.Email)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Email)))
+			i--
+			dAtA[i] = 0x62
+		}
+		if len(x.Location) > 0 {
+			i -= len(x.Location)
+			copy(dAtA[i:], x.Location)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Location)))
+			i--
+			dAtA[i] = 0x5a
+		}
+		if len(x.Avatar) > 0 {
+			i -= len(x.Avatar)
+			copy(dAtA[i:], x.Avatar)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Avatar)))
+			i--
+			dAtA[i] = 0x52
+		}
+		if len(x.Twitter) > 0 {
+			i -= len(x.Twitter)
+			copy(dAtA[i:], x.Twitter)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Twitter)))
+			i--
+			dAtA[i] = 0x4a
+		}
+		if len(x.Linkedin) > 0 {
+			i -= len(x.Linkedin)
+			copy(dAtA[i:], x.Linkedin)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Linkedin)))
+			i--
+			dAtA[i] = 0x42
+		}
+		if len(x.Github) > 0 {
+			i -= len(x.Github)
+			copy(dAtA[i:], x.Github)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Github)))
+			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.Website) > 0 {
+			i -= len(x.Website)
+			copy(dAtA[i:], x.Website)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Website)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.Experiences) > 0 {
+			for iNdEx := len(x.Experiences) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Experiences[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x2a
+			}
+		}
+		if len(x.Skills) > 0 {
+			for iNdEx := len(x.Skills) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.Skills[iNdEx])
+				copy(dAtA[i:], x.Skills[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Skills[iNdEx])))
+				i--
+				dAtA[i] = 0x22
+			}
 		}
 		if len(x.Bio) > 0 {
 			i -= len(x.Bio)
@@ -1384,6 +1804,296 @@ func (x *fastReflection_MsgCreateProfile) ProtoMethods() *protoiface.Methods {
 				}
 				x.Bio = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Skills = append(x.Skills, string(dAtA[iNdEx:postIndex]))
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Experiences", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Experiences = append(x.Experiences, &Experience{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Experiences[len(x.Experiences)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Website = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Github = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Linkedin = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Twitter", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Twitter = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 10:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Avatar", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Avatar = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 11:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Location", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Location = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 12:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Email = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1420,12 +2130,14 @@ func (x *fastReflection_MsgCreateProfile) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgCreateProfileResponse protoreflect.MessageDescriptor
+	md_MsgCreateProfileResponse          protoreflect.MessageDescriptor
+	fd_MsgCreateProfileResponse_username protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_skillchain_profile_tx_proto_init()
 	md_MsgCreateProfileResponse = File_skillchain_profile_tx_proto.Messages().ByName("MsgCreateProfileResponse")
+	fd_MsgCreateProfileResponse_username = md_MsgCreateProfileResponse.Fields().ByName("username")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgCreateProfileResponse)(nil)
@@ -1493,6 +2205,12 @@ func (x *fastReflection_MsgCreateProfileResponse) Interface() protoreflect.Proto
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgCreateProfileResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Username != "" {
+		value := protoreflect.ValueOfString(x.Username)
+		if !f(fd_MsgCreateProfileResponse_username, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -1508,6 +2226,8 @@ func (x *fastReflection_MsgCreateProfileResponse) Range(f func(protoreflect.Fiel
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgCreateProfileResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		return x.Username != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1524,6 +2244,8 @@ func (x *fastReflection_MsgCreateProfileResponse) Has(fd protoreflect.FieldDescr
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateProfileResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		x.Username = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1540,6 +2262,9 @@ func (x *fastReflection_MsgCreateProfileResponse) Clear(fd protoreflect.FieldDes
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgCreateProfileResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		value := x.Username
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1560,6 +2285,8 @@ func (x *fastReflection_MsgCreateProfileResponse) Get(descriptor protoreflect.Fi
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateProfileResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		x.Username = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1580,6 +2307,8 @@ func (x *fastReflection_MsgCreateProfileResponse) Set(fd protoreflect.FieldDescr
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateProfileResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		panic(fmt.Errorf("field username of message skillchain.profile.MsgCreateProfileResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1593,6 +2322,8 @@ func (x *fastReflection_MsgCreateProfileResponse) Mutable(fd protoreflect.FieldD
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgCreateProfileResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgCreateProfileResponse.username":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgCreateProfileResponse"))
@@ -1662,6 +2393,10 @@ func (x *fastReflection_MsgCreateProfileResponse) ProtoMethods() *protoiface.Met
 		var n int
 		var l int
 		_ = l
+		l = len(x.Username)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1690,6 +2425,13 @@ func (x *fastReflection_MsgCreateProfileResponse) ProtoMethods() *protoiface.Met
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Username) > 0 {
+			i -= len(x.Username)
+			copy(dAtA[i:], x.Username)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Username)))
+			i--
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -1740,6 +2482,38 @@ func (x *fastReflection_MsgCreateProfileResponse) ProtoMethods() *protoiface.Met
 				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Username = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -2615,11 +3389,117 @@ func (x *fastReflection_MsgDeleteProfileResponse) ProtoMethods() *protoiface.Met
 	}
 }
 
+var _ protoreflect.List = (*_MsgUpdateProfile_4_list)(nil)
+
+type _MsgUpdateProfile_4_list struct {
+	list *[]string
+}
+
+func (x *_MsgUpdateProfile_4_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgUpdateProfile_4_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfString((*x.list)[i])
+}
+
+func (x *_MsgUpdateProfile_4_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgUpdateProfile_4_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgUpdateProfile_4_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message MsgUpdateProfile at list field Skills as it is not of Message kind"))
+}
+
+func (x *_MsgUpdateProfile_4_list) Truncate(n int) {
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgUpdateProfile_4_list) NewElement() protoreflect.Value {
+	v := ""
+	return protoreflect.ValueOfString(v)
+}
+
+func (x *_MsgUpdateProfile_4_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_MsgUpdateProfile_5_list)(nil)
+
+type _MsgUpdateProfile_5_list struct {
+	list *[]*Experience
+}
+
+func (x *_MsgUpdateProfile_5_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgUpdateProfile_5_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_MsgUpdateProfile_5_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgUpdateProfile_5_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgUpdateProfile_5_list) AppendMutable() protoreflect.Value {
+	v := new(Experience)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgUpdateProfile_5_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgUpdateProfile_5_list) NewElement() protoreflect.Value {
+	v := new(Experience)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgUpdateProfile_5_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_MsgUpdateProfile          protoreflect.MessageDescriptor
-	fd_MsgUpdateProfile_creator  protoreflect.FieldDescriptor
-	fd_MsgUpdateProfile_username protoreflect.FieldDescriptor
-	fd_MsgUpdateProfile_bio      protoreflect.FieldDescriptor
+	md_MsgUpdateProfile             protoreflect.MessageDescriptor
+	fd_MsgUpdateProfile_creator     protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_username    protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_bio         protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_skills      protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_experiences protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_website     protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_github      protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_linkedin    protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_twitter     protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_avatar      protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_location    protoreflect.FieldDescriptor
+	fd_MsgUpdateProfile_email       protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -2628,6 +3508,15 @@ func init() {
 	fd_MsgUpdateProfile_creator = md_MsgUpdateProfile.Fields().ByName("creator")
 	fd_MsgUpdateProfile_username = md_MsgUpdateProfile.Fields().ByName("username")
 	fd_MsgUpdateProfile_bio = md_MsgUpdateProfile.Fields().ByName("bio")
+	fd_MsgUpdateProfile_skills = md_MsgUpdateProfile.Fields().ByName("skills")
+	fd_MsgUpdateProfile_experiences = md_MsgUpdateProfile.Fields().ByName("experiences")
+	fd_MsgUpdateProfile_website = md_MsgUpdateProfile.Fields().ByName("website")
+	fd_MsgUpdateProfile_github = md_MsgUpdateProfile.Fields().ByName("github")
+	fd_MsgUpdateProfile_linkedin = md_MsgUpdateProfile.Fields().ByName("linkedin")
+	fd_MsgUpdateProfile_twitter = md_MsgUpdateProfile.Fields().ByName("twitter")
+	fd_MsgUpdateProfile_avatar = md_MsgUpdateProfile.Fields().ByName("avatar")
+	fd_MsgUpdateProfile_location = md_MsgUpdateProfile.Fields().ByName("location")
+	fd_MsgUpdateProfile_email = md_MsgUpdateProfile.Fields().ByName("email")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgUpdateProfile)(nil)
@@ -2713,6 +3602,60 @@ func (x *fastReflection_MsgUpdateProfile) Range(f func(protoreflect.FieldDescrip
 			return
 		}
 	}
+	if len(x.Skills) != 0 {
+		value := protoreflect.ValueOfList(&_MsgUpdateProfile_4_list{list: &x.Skills})
+		if !f(fd_MsgUpdateProfile_skills, value) {
+			return
+		}
+	}
+	if len(x.Experiences) != 0 {
+		value := protoreflect.ValueOfList(&_MsgUpdateProfile_5_list{list: &x.Experiences})
+		if !f(fd_MsgUpdateProfile_experiences, value) {
+			return
+		}
+	}
+	if x.Website != "" {
+		value := protoreflect.ValueOfString(x.Website)
+		if !f(fd_MsgUpdateProfile_website, value) {
+			return
+		}
+	}
+	if x.Github != "" {
+		value := protoreflect.ValueOfString(x.Github)
+		if !f(fd_MsgUpdateProfile_github, value) {
+			return
+		}
+	}
+	if x.Linkedin != "" {
+		value := protoreflect.ValueOfString(x.Linkedin)
+		if !f(fd_MsgUpdateProfile_linkedin, value) {
+			return
+		}
+	}
+	if x.Twitter != "" {
+		value := protoreflect.ValueOfString(x.Twitter)
+		if !f(fd_MsgUpdateProfile_twitter, value) {
+			return
+		}
+	}
+	if x.Avatar != "" {
+		value := protoreflect.ValueOfString(x.Avatar)
+		if !f(fd_MsgUpdateProfile_avatar, value) {
+			return
+		}
+	}
+	if x.Location != "" {
+		value := protoreflect.ValueOfString(x.Location)
+		if !f(fd_MsgUpdateProfile_location, value) {
+			return
+		}
+	}
+	if x.Email != "" {
+		value := protoreflect.ValueOfString(x.Email)
+		if !f(fd_MsgUpdateProfile_email, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -2734,6 +3677,24 @@ func (x *fastReflection_MsgUpdateProfile) Has(fd protoreflect.FieldDescriptor) b
 		return x.Username != ""
 	case "skillchain.profile.MsgUpdateProfile.bio":
 		return x.Bio != ""
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		return len(x.Skills) != 0
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		return len(x.Experiences) != 0
+	case "skillchain.profile.MsgUpdateProfile.website":
+		return x.Website != ""
+	case "skillchain.profile.MsgUpdateProfile.github":
+		return x.Github != ""
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		return x.Linkedin != ""
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		return x.Twitter != ""
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		return x.Avatar != ""
+	case "skillchain.profile.MsgUpdateProfile.location":
+		return x.Location != ""
+	case "skillchain.profile.MsgUpdateProfile.email":
+		return x.Email != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfile"))
@@ -2756,6 +3717,24 @@ func (x *fastReflection_MsgUpdateProfile) Clear(fd protoreflect.FieldDescriptor)
 		x.Username = ""
 	case "skillchain.profile.MsgUpdateProfile.bio":
 		x.Bio = ""
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		x.Skills = nil
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		x.Experiences = nil
+	case "skillchain.profile.MsgUpdateProfile.website":
+		x.Website = ""
+	case "skillchain.profile.MsgUpdateProfile.github":
+		x.Github = ""
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		x.Linkedin = ""
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		x.Twitter = ""
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		x.Avatar = ""
+	case "skillchain.profile.MsgUpdateProfile.location":
+		x.Location = ""
+	case "skillchain.profile.MsgUpdateProfile.email":
+		x.Email = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfile"))
@@ -2780,6 +3759,39 @@ func (x *fastReflection_MsgUpdateProfile) Get(descriptor protoreflect.FieldDescr
 		return protoreflect.ValueOfString(value)
 	case "skillchain.profile.MsgUpdateProfile.bio":
 		value := x.Bio
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		if len(x.Skills) == 0 {
+			return protoreflect.ValueOfList(&_MsgUpdateProfile_4_list{})
+		}
+		listValue := &_MsgUpdateProfile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		if len(x.Experiences) == 0 {
+			return protoreflect.ValueOfList(&_MsgUpdateProfile_5_list{})
+		}
+		listValue := &_MsgUpdateProfile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.MsgUpdateProfile.website":
+		value := x.Website
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.github":
+		value := x.Github
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		value := x.Linkedin
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		value := x.Twitter
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		value := x.Avatar
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.location":
+		value := x.Location
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.MsgUpdateProfile.email":
+		value := x.Email
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -2807,6 +3819,28 @@ func (x *fastReflection_MsgUpdateProfile) Set(fd protoreflect.FieldDescriptor, v
 		x.Username = value.Interface().(string)
 	case "skillchain.profile.MsgUpdateProfile.bio":
 		x.Bio = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		lv := value.List()
+		clv := lv.(*_MsgUpdateProfile_4_list)
+		x.Skills = *clv.list
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		lv := value.List()
+		clv := lv.(*_MsgUpdateProfile_5_list)
+		x.Experiences = *clv.list
+	case "skillchain.profile.MsgUpdateProfile.website":
+		x.Website = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.github":
+		x.Github = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		x.Linkedin = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		x.Twitter = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		x.Avatar = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.location":
+		x.Location = value.Interface().(string)
+	case "skillchain.profile.MsgUpdateProfile.email":
+		x.Email = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfile"))
@@ -2827,12 +3861,38 @@ func (x *fastReflection_MsgUpdateProfile) Set(fd protoreflect.FieldDescriptor, v
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateProfile) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		if x.Skills == nil {
+			x.Skills = []string{}
+		}
+		value := &_MsgUpdateProfile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(value)
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		if x.Experiences == nil {
+			x.Experiences = []*Experience{}
+		}
+		value := &_MsgUpdateProfile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(value)
 	case "skillchain.profile.MsgUpdateProfile.creator":
 		panic(fmt.Errorf("field creator of message skillchain.profile.MsgUpdateProfile is not mutable"))
 	case "skillchain.profile.MsgUpdateProfile.username":
 		panic(fmt.Errorf("field username of message skillchain.profile.MsgUpdateProfile is not mutable"))
 	case "skillchain.profile.MsgUpdateProfile.bio":
 		panic(fmt.Errorf("field bio of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.website":
+		panic(fmt.Errorf("field website of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.github":
+		panic(fmt.Errorf("field github of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		panic(fmt.Errorf("field linkedin of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		panic(fmt.Errorf("field twitter of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		panic(fmt.Errorf("field avatar of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.location":
+		panic(fmt.Errorf("field location of message skillchain.profile.MsgUpdateProfile is not mutable"))
+	case "skillchain.profile.MsgUpdateProfile.email":
+		panic(fmt.Errorf("field email of message skillchain.profile.MsgUpdateProfile is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfile"))
@@ -2851,6 +3911,26 @@ func (x *fastReflection_MsgUpdateProfile) NewField(fd protoreflect.FieldDescript
 	case "skillchain.profile.MsgUpdateProfile.username":
 		return protoreflect.ValueOfString("")
 	case "skillchain.profile.MsgUpdateProfile.bio":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.skills":
+		list := []string{}
+		return protoreflect.ValueOfList(&_MsgUpdateProfile_4_list{list: &list})
+	case "skillchain.profile.MsgUpdateProfile.experiences":
+		list := []*Experience{}
+		return protoreflect.ValueOfList(&_MsgUpdateProfile_5_list{list: &list})
+	case "skillchain.profile.MsgUpdateProfile.website":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.github":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.linkedin":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.twitter":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.avatar":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.location":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.MsgUpdateProfile.email":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -2933,6 +4013,46 @@ func (x *fastReflection_MsgUpdateProfile) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.Skills) > 0 {
+			for _, s := range x.Skills {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if len(x.Experiences) > 0 {
+			for _, e := range x.Experiences {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		l = len(x.Website)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Github)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Linkedin)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Twitter)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Avatar)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Location)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Email)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -2961,6 +4081,80 @@ func (x *fastReflection_MsgUpdateProfile) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Email) > 0 {
+			i -= len(x.Email)
+			copy(dAtA[i:], x.Email)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Email)))
+			i--
+			dAtA[i] = 0x62
+		}
+		if len(x.Location) > 0 {
+			i -= len(x.Location)
+			copy(dAtA[i:], x.Location)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Location)))
+			i--
+			dAtA[i] = 0x5a
+		}
+		if len(x.Avatar) > 0 {
+			i -= len(x.Avatar)
+			copy(dAtA[i:], x.Avatar)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Avatar)))
+			i--
+			dAtA[i] = 0x52
+		}
+		if len(x.Twitter) > 0 {
+			i -= len(x.Twitter)
+			copy(dAtA[i:], x.Twitter)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Twitter)))
+			i--
+			dAtA[i] = 0x4a
+		}
+		if len(x.Linkedin) > 0 {
+			i -= len(x.Linkedin)
+			copy(dAtA[i:], x.Linkedin)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Linkedin)))
+			i--
+			dAtA[i] = 0x42
+		}
+		if len(x.Github) > 0 {
+			i -= len(x.Github)
+			copy(dAtA[i:], x.Github)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Github)))
+			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.Website) > 0 {
+			i -= len(x.Website)
+			copy(dAtA[i:], x.Website)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Website)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.Experiences) > 0 {
+			for iNdEx := len(x.Experiences) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Experiences[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x2a
+			}
+		}
+		if len(x.Skills) > 0 {
+			for iNdEx := len(x.Skills) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.Skills[iNdEx])
+				copy(dAtA[i:], x.Skills[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Skills[iNdEx])))
+				i--
+				dAtA[i] = 0x22
+			}
 		}
 		if len(x.Bio) > 0 {
 			i -= len(x.Bio)
@@ -3128,6 +4322,296 @@ func (x *fastReflection_MsgUpdateProfile) ProtoMethods() *protoiface.Methods {
 				}
 				x.Bio = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Skills = append(x.Skills, string(dAtA[iNdEx:postIndex]))
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Experiences", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Experiences = append(x.Experiences, &Experience{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Experiences[len(x.Experiences)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Website = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Github = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Linkedin = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Twitter", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Twitter = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 10:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Avatar", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Avatar = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 11:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Location", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Location = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 12:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Email = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -3164,12 +4648,14 @@ func (x *fastReflection_MsgUpdateProfile) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgUpdateProfileResponse protoreflect.MessageDescriptor
+	md_MsgUpdateProfileResponse          protoreflect.MessageDescriptor
+	fd_MsgUpdateProfileResponse_username protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_skillchain_profile_tx_proto_init()
 	md_MsgUpdateProfileResponse = File_skillchain_profile_tx_proto.Messages().ByName("MsgUpdateProfileResponse")
+	fd_MsgUpdateProfileResponse_username = md_MsgUpdateProfileResponse.Fields().ByName("username")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgUpdateProfileResponse)(nil)
@@ -3237,6 +4723,12 @@ func (x *fastReflection_MsgUpdateProfileResponse) Interface() protoreflect.Proto
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgUpdateProfileResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Username != "" {
+		value := protoreflect.ValueOfString(x.Username)
+		if !f(fd_MsgUpdateProfileResponse_username, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -3252,6 +4744,8 @@ func (x *fastReflection_MsgUpdateProfileResponse) Range(f func(protoreflect.Fiel
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgUpdateProfileResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		return x.Username != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3268,6 +4762,8 @@ func (x *fastReflection_MsgUpdateProfileResponse) Has(fd protoreflect.FieldDescr
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateProfileResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		x.Username = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3284,6 +4780,9 @@ func (x *fastReflection_MsgUpdateProfileResponse) Clear(fd protoreflect.FieldDes
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgUpdateProfileResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		value := x.Username
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3304,6 +4803,8 @@ func (x *fastReflection_MsgUpdateProfileResponse) Get(descriptor protoreflect.Fi
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateProfileResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		x.Username = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3324,6 +4825,8 @@ func (x *fastReflection_MsgUpdateProfileResponse) Set(fd protoreflect.FieldDescr
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgUpdateProfileResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		panic(fmt.Errorf("field username of message skillchain.profile.MsgUpdateProfileResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3337,6 +4840,8 @@ func (x *fastReflection_MsgUpdateProfileResponse) Mutable(fd protoreflect.FieldD
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgUpdateProfileResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.MsgUpdateProfileResponse.username":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.MsgUpdateProfileResponse"))
@@ -3406,6 +4911,10 @@ func (x *fastReflection_MsgUpdateProfileResponse) ProtoMethods() *protoiface.Met
 		var n int
 		var l int
 		_ = l
+		l = len(x.Username)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -3434,6 +4943,13 @@ func (x *fastReflection_MsgUpdateProfileResponse) ProtoMethods() *protoiface.Met
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Username) > 0 {
+			i -= len(x.Username)
+			copy(dAtA[i:], x.Username)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Username)))
+			i--
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -3484,6 +5000,38 @@ func (x *fastReflection_MsgUpdateProfileResponse) ProtoMethods() *protoiface.Met
 				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Username = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -3611,9 +5159,18 @@ type MsgCreateProfile struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Creator     string        `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Username    string        `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Bio         string        `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Skills      []string      `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
+	Experiences []*Experience `protobuf:"bytes,5,rep,name=experiences,proto3" json:"experiences,omitempty"`
+	Website     string        `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Github      string        `protobuf:"bytes,7,opt,name=github,proto3" json:"github,omitempty"`
+	Linkedin    string        `protobuf:"bytes,8,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
+	Twitter     string        `protobuf:"bytes,9,opt,name=twitter,proto3" json:"twitter,omitempty"`
+	Avatar      string        `protobuf:"bytes,10,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Location    string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
+	Email       string        `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (x *MsgCreateProfile) Reset() {
@@ -3657,10 +5214,75 @@ func (x *MsgCreateProfile) GetBio() string {
 	return ""
 }
 
+func (x *MsgCreateProfile) GetSkills() []string {
+	if x != nil {
+		return x.Skills
+	}
+	return nil
+}
+
+func (x *MsgCreateProfile) GetExperiences() []*Experience {
+	if x != nil {
+		return x.Experiences
+	}
+	return nil
+}
+
+func (x *MsgCreateProfile) GetWebsite() string {
+	if x != nil {
+		return x.Website
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetGithub() string {
+	if x != nil {
+		return x.Github
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetLinkedin() string {
+	if x != nil {
+		return x.Linkedin
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetTwitter() string {
+	if x != nil {
+		return x.Twitter
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetLocation() string {
+	if x != nil {
+		return x.Location
+	}
+	return ""
+}
+
+func (x *MsgCreateProfile) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type MsgCreateProfileResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 }
 
 func (x *MsgCreateProfileResponse) Reset() {
@@ -3681,6 +5303,13 @@ func (*MsgCreateProfileResponse) ProtoMessage() {}
 // Deprecated: Use MsgCreateProfileResponse.ProtoReflect.Descriptor instead.
 func (*MsgCreateProfileResponse) Descriptor() ([]byte, []int) {
 	return file_skillchain_profile_tx_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *MsgCreateProfileResponse) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
 }
 
 type MsgDeleteProfile struct {
@@ -3757,9 +5386,18 @@ type MsgUpdateProfile struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Creator     string        `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Username    string        `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Bio         string        `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Skills      []string      `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
+	Experiences []*Experience `protobuf:"bytes,5,rep,name=experiences,proto3" json:"experiences,omitempty"`
+	Website     string        `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Github      string        `protobuf:"bytes,7,opt,name=github,proto3" json:"github,omitempty"`
+	Linkedin    string        `protobuf:"bytes,8,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
+	Twitter     string        `protobuf:"bytes,9,opt,name=twitter,proto3" json:"twitter,omitempty"`
+	Avatar      string        `protobuf:"bytes,10,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Location    string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
+	Email       string        `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (x *MsgUpdateProfile) Reset() {
@@ -3803,10 +5441,75 @@ func (x *MsgUpdateProfile) GetBio() string {
 	return ""
 }
 
+func (x *MsgUpdateProfile) GetSkills() []string {
+	if x != nil {
+		return x.Skills
+	}
+	return nil
+}
+
+func (x *MsgUpdateProfile) GetExperiences() []*Experience {
+	if x != nil {
+		return x.Experiences
+	}
+	return nil
+}
+
+func (x *MsgUpdateProfile) GetWebsite() string {
+	if x != nil {
+		return x.Website
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetGithub() string {
+	if x != nil {
+		return x.Github
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetLinkedin() string {
+	if x != nil {
+		return x.Linkedin
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetTwitter() string {
+	if x != nil {
+		return x.Twitter
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetLocation() string {
+	if x != nil {
+		return x.Location
+	}
+	return ""
+}
+
+func (x *MsgUpdateProfile) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type MsgUpdateProfileResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 }
 
 func (x *MsgUpdateProfileResponse) Reset() {
@@ -3829,6 +5532,13 @@ func (*MsgUpdateProfileResponse) Descriptor() ([]byte, []int) {
 	return file_skillchain_profile_tx_proto_rawDescGZIP(), []int{7}
 }
 
+func (x *MsgUpdateProfileResponse) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
 var File_skillchain_profile_tx_proto protoreflect.FileDescriptor
 
 var file_skillchain_profile_tx_proto_rawDesc = []byte{
@@ -3842,84 +5552,124 @@ var file_skillchain_profile_tx_proto_rawDesc = []byte{
 	0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f,
 	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
-	0xc1, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
-	0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x3d, 0x0a, 0x06, 0x70,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x73, 0x6b,
-	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0,
-	0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x37, 0x82, 0xe7, 0xb0, 0x2a,
-	0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x24, 0x73,
-	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x78, 0x2f, 0x70, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x68,
-	0x0a, 0x10, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08,
-	0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69, 0x6f, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a,
-	0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x56, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x6c, 0x65, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+	0x20, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x22, 0xc1, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
+	0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x3d, 0x0a,
+	0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8,
+	0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x37, 0x82, 0xe7,
+	0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a,
+	0x24, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x78, 0x2f, 0x70, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0xf4, 0x02, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12,
+	0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x62,
+	0x69, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69, 0x6f, 0x12, 0x16, 0x0a,
+	0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x73,
+	0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x40, 0x0a, 0x0b, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65,
+	0x6e, 0x63, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x73, 0x6b, 0x69,
+	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e,
+	0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x0b, 0x65, 0x78, 0x70, 0x65,
+	0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x77, 0x65, 0x62, 0x73, 0x69,
+	0x74, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x77, 0x65, 0x62, 0x73, 0x69, 0x74,
+	0x65, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x18, 0x07, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x69, 0x6e,
+	0x6b, 0x65, 0x64, 0x69, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x69, 0x6e,
+	0x6b, 0x65, 0x64, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x77, 0x69, 0x74, 0x74, 0x65, 0x72,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x77, 0x69, 0x74, 0x74, 0x65, 0x72, 0x12,
+	0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x0c, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x36, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x22,
+	0x56, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a,
+	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0xf4, 0x02, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61,
 	0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
 	0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x0c,
-	0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18,
-	0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x68, 0x0a, 0x10, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07,
-	0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
-	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
-	0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x03, 0x62, 0x69, 0x6f, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
-	0x6f, 0x72, 0x22, 0x1a, 0x0a, 0x18, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
-	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x9d,
-	0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x60, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x23, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2b, 0x2e, 0x73, 0x6b,
-	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c,
-	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d,
-	0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x1a,
-	0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a,
-	0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x24,
-	0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x1a, 0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x63, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66,
-	0x69, 0x6c, 0x65, 0x12, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x1a, 0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c,
-	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0xc6,
-	0x01, 0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73,
-	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x6b,
-	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0xa2, 0x02, 0x03, 0x53, 0x50, 0x58, 0xaa, 0x02, 0x12, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xca, 0x02, 0x12, 0x53, 0x6b,
-	0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0xe2, 0x02, 0x1e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0xea, 0x02, 0x13, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69, 0x6f,
+	0x12, 0x16, 0x0a, 0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x40, 0x0a, 0x0b, 0x65, 0x78, 0x70, 0x65,
+	0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x52, 0x0b, 0x65,
+	0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x77, 0x65,
+	0x62, 0x73, 0x69, 0x74, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x77, 0x65, 0x62,
+	0x73, 0x69, 0x74, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x18, 0x07,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x12, 0x1a, 0x0a, 0x08,
+	0x6c, 0x69, 0x6e, 0x6b, 0x65, 0x64, 0x69, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x6c, 0x69, 0x6e, 0x6b, 0x65, 0x64, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x77, 0x69, 0x74,
+	0x74, 0x65, 0x72, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x77, 0x69, 0x74, 0x74,
+	0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18, 0x0a, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x6f,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x6f,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18,
+	0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x3a, 0x0c, 0x82, 0xe7,
+	0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x36, 0x0a, 0x18, 0x4d, 0x73,
+	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x32, 0x9d, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x60, 0x0a, 0x0c, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x23, 0x2e, 0x73, 0x6b, 0x69,
+	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e,
+	0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a,
+	0x2b, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0d,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x24, 0x2e,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x1a, 0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x63, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x12, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x1a, 0x2c, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73,
+	0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x24, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x1a, 0x2c, 0x2e,
+	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0,
+	0x2a, 0x01, 0x42, 0xc6, 0x01, 0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x42, 0x07, 0x54,
+	0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c,
+	0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0xa2, 0x02, 0x03, 0x53, 0x50, 0x58, 0xaa, 0x02, 0x12, 0x53, 0x6b, 0x69,
+	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xca,
+	0x02, 0x12, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0xe2, 0x02, 0x1e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x5c, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x3a, 0x3a, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3945,22 +5695,25 @@ var file_skillchain_profile_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateProfile)(nil),         // 6: skillchain.profile.MsgUpdateProfile
 	(*MsgUpdateProfileResponse)(nil), // 7: skillchain.profile.MsgUpdateProfileResponse
 	(*Params)(nil),                   // 8: skillchain.profile.Params
+	(*Experience)(nil),               // 9: skillchain.profile.Experience
 }
 var file_skillchain_profile_tx_proto_depIdxs = []int32{
 	8, // 0: skillchain.profile.MsgUpdateParams.params:type_name -> skillchain.profile.Params
-	0, // 1: skillchain.profile.Msg.UpdateParams:input_type -> skillchain.profile.MsgUpdateParams
-	2, // 2: skillchain.profile.Msg.CreateProfile:input_type -> skillchain.profile.MsgCreateProfile
-	4, // 3: skillchain.profile.Msg.DeleteProfile:input_type -> skillchain.profile.MsgDeleteProfile
-	6, // 4: skillchain.profile.Msg.UpdateProfile:input_type -> skillchain.profile.MsgUpdateProfile
-	1, // 5: skillchain.profile.Msg.UpdateParams:output_type -> skillchain.profile.MsgUpdateParamsResponse
-	3, // 6: skillchain.profile.Msg.CreateProfile:output_type -> skillchain.profile.MsgCreateProfileResponse
-	5, // 7: skillchain.profile.Msg.DeleteProfile:output_type -> skillchain.profile.MsgDeleteProfileResponse
-	7, // 8: skillchain.profile.Msg.UpdateProfile:output_type -> skillchain.profile.MsgUpdateProfileResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	9, // 1: skillchain.profile.MsgCreateProfile.experiences:type_name -> skillchain.profile.Experience
+	9, // 2: skillchain.profile.MsgUpdateProfile.experiences:type_name -> skillchain.profile.Experience
+	0, // 3: skillchain.profile.Msg.UpdateParams:input_type -> skillchain.profile.MsgUpdateParams
+	2, // 4: skillchain.profile.Msg.CreateProfile:input_type -> skillchain.profile.MsgCreateProfile
+	4, // 5: skillchain.profile.Msg.DeleteProfile:input_type -> skillchain.profile.MsgDeleteProfile
+	6, // 6: skillchain.profile.Msg.UpdateProfile:input_type -> skillchain.profile.MsgUpdateProfile
+	1, // 7: skillchain.profile.Msg.UpdateParams:output_type -> skillchain.profile.MsgUpdateParamsResponse
+	3, // 8: skillchain.profile.Msg.CreateProfile:output_type -> skillchain.profile.MsgCreateProfileResponse
+	5, // 9: skillchain.profile.Msg.DeleteProfile:output_type -> skillchain.profile.MsgDeleteProfileResponse
+	7, // 10: skillchain.profile.Msg.UpdateProfile:output_type -> skillchain.profile.MsgUpdateProfileResponse
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_skillchain_profile_tx_proto_init() }
@@ -3969,6 +5722,7 @@ func file_skillchain_profile_tx_proto_init() {
 		return
 	}
 	file_skillchain_profile_params_proto_init()
+	file_skillchain_profile_profile_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_skillchain_profile_tx_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgUpdateParams); i {

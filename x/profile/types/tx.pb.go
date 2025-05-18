@@ -125,9 +125,18 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
 type MsgCreateProfile struct {
-	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Creator     string        `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Username    string        `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Bio         string        `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Skills      []string      `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
+	Experiences []*Experience `protobuf:"bytes,5,rep,name=experiences,proto3" json:"experiences,omitempty"`
+	Website     string        `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Github      string        `protobuf:"bytes,7,opt,name=github,proto3" json:"github,omitempty"`
+	Linkedin    string        `protobuf:"bytes,8,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
+	Twitter     string        `protobuf:"bytes,9,opt,name=twitter,proto3" json:"twitter,omitempty"`
+	Avatar      string        `protobuf:"bytes,10,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Location    string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
+	Email       string        `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (m *MsgCreateProfile) Reset()         { *m = MsgCreateProfile{} }
@@ -184,7 +193,71 @@ func (m *MsgCreateProfile) GetBio() string {
 	return ""
 }
 
+func (m *MsgCreateProfile) GetSkills() []string {
+	if m != nil {
+		return m.Skills
+	}
+	return nil
+}
+
+func (m *MsgCreateProfile) GetExperiences() []*Experience {
+	if m != nil {
+		return m.Experiences
+	}
+	return nil
+}
+
+func (m *MsgCreateProfile) GetWebsite() string {
+	if m != nil {
+		return m.Website
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetGithub() string {
+	if m != nil {
+		return m.Github
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetLinkedin() string {
+	if m != nil {
+		return m.Linkedin
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetTwitter() string {
+	if m != nil {
+		return m.Twitter
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetAvatar() string {
+	if m != nil {
+		return m.Avatar
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetLocation() string {
+	if m != nil {
+		return m.Location
+	}
+	return ""
+}
+
+func (m *MsgCreateProfile) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
 type MsgCreateProfileResponse struct {
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 }
 
 func (m *MsgCreateProfileResponse) Reset()         { *m = MsgCreateProfileResponse{} }
@@ -219,6 +292,13 @@ func (m *MsgCreateProfileResponse) XXX_DiscardUnknown() {
 }
 
 var xxx_messageInfo_MsgCreateProfileResponse proto.InternalMessageInfo
+
+func (m *MsgCreateProfileResponse) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
 
 type MsgDeleteProfile struct {
 	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
@@ -309,9 +389,18 @@ func (m *MsgDeleteProfileResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_MsgDeleteProfileResponse proto.InternalMessageInfo
 
 type MsgUpdateProfile struct {
-	Creator  string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Creator     string        `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Username    string        `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Bio         string        `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Skills      []string      `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
+	Experiences []*Experience `protobuf:"bytes,5,rep,name=experiences,proto3" json:"experiences,omitempty"`
+	Website     string        `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Github      string        `protobuf:"bytes,7,opt,name=github,proto3" json:"github,omitempty"`
+	Linkedin    string        `protobuf:"bytes,8,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
+	Twitter     string        `protobuf:"bytes,9,opt,name=twitter,proto3" json:"twitter,omitempty"`
+	Avatar      string        `protobuf:"bytes,10,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Location    string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
+	Email       string        `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (m *MsgUpdateProfile) Reset()         { *m = MsgUpdateProfile{} }
@@ -368,7 +457,71 @@ func (m *MsgUpdateProfile) GetBio() string {
 	return ""
 }
 
+func (m *MsgUpdateProfile) GetSkills() []string {
+	if m != nil {
+		return m.Skills
+	}
+	return nil
+}
+
+func (m *MsgUpdateProfile) GetExperiences() []*Experience {
+	if m != nil {
+		return m.Experiences
+	}
+	return nil
+}
+
+func (m *MsgUpdateProfile) GetWebsite() string {
+	if m != nil {
+		return m.Website
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetGithub() string {
+	if m != nil {
+		return m.Github
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetLinkedin() string {
+	if m != nil {
+		return m.Linkedin
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetTwitter() string {
+	if m != nil {
+		return m.Twitter
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetAvatar() string {
+	if m != nil {
+		return m.Avatar
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetLocation() string {
+	if m != nil {
+		return m.Location
+	}
+	return ""
+}
+
+func (m *MsgUpdateProfile) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
 type MsgUpdateProfileResponse struct {
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 }
 
 func (m *MsgUpdateProfileResponse) Reset()         { *m = MsgUpdateProfileResponse{} }
@@ -404,6 +557,13 @@ func (m *MsgUpdateProfileResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateProfileResponse proto.InternalMessageInfo
 
+func (m *MsgUpdateProfileResponse) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "skillchain.profile.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "skillchain.profile.MsgUpdateParamsResponse")
@@ -418,38 +578,48 @@ func init() {
 func init() { proto.RegisterFile("skillchain/profile/tx.proto", fileDescriptor_7445e0494a312d6e) }
 
 var fileDescriptor_7445e0494a312d6e = []byte{
-	// 493 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2e, 0xce, 0xce, 0xcc,
-	0xc9, 0x49, 0xce, 0x48, 0xcc, 0xcc, 0xd3, 0x2f, 0x28, 0xca, 0x4f, 0xcb, 0xcc, 0x49, 0xd5, 0x2f,
-	0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x42, 0x48, 0xea, 0x41, 0x25, 0xa5, 0x04,
-	0x13, 0x73, 0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x99, 0x94, 0x78, 0x72, 0x7e, 0x71, 0x6e,
-	0x7e, 0xb1, 0x7e, 0x6e, 0x71, 0xba, 0x7e, 0x99, 0x21, 0x88, 0x82, 0x4a, 0x48, 0x42, 0x24, 0xe2,
-	0xc1, 0x3c, 0x7d, 0x08, 0x07, 0x2a, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x11, 0x07, 0xb1, 0xa0,
-	0xa2, 0xf2, 0x58, 0x5c, 0x53, 0x90, 0x58, 0x94, 0x98, 0x0b, 0xd5, 0xa6, 0x74, 0x90, 0x91, 0x8b,
-	0xdf, 0xb7, 0x38, 0x3d, 0xb4, 0x20, 0x25, 0xb1, 0x24, 0x35, 0x00, 0x2c, 0x23, 0x64, 0xc6, 0xc5,
-	0x99, 0x58, 0x5a, 0x92, 0x91, 0x5f, 0x94, 0x59, 0x52, 0x29, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0xe9,
-	0x24, 0x71, 0x69, 0x8b, 0xae, 0x08, 0xd4, 0x3e, 0xc7, 0x94, 0x94, 0xa2, 0xd4, 0xe2, 0xe2, 0xe0,
-	0x92, 0xa2, 0xcc, 0xbc, 0xf4, 0x20, 0x84, 0x52, 0x21, 0x5b, 0x2e, 0x36, 0x88, 0xd9, 0x12, 0x4c,
-	0x0a, 0x8c, 0x1a, 0xdc, 0x46, 0x52, 0x7a, 0x98, 0xde, 0xd5, 0x83, 0xd8, 0xe1, 0xc4, 0x79, 0xe2,
-	0x9e, 0x3c, 0xc3, 0x8a, 0xe7, 0x1b, 0xb4, 0x18, 0x83, 0xa0, 0x9a, 0xac, 0xcc, 0x9b, 0x9e, 0x6f,
-	0xd0, 0x42, 0x18, 0xd7, 0xf5, 0x7c, 0x83, 0x96, 0x0a, 0x92, 0xf3, 0x2b, 0xe0, 0x1e, 0x40, 0x73,
-	0xaf, 0x92, 0x24, 0x97, 0x38, 0x9a, 0x50, 0x50, 0x6a, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0xaa, 0x52,
-	0x06, 0x97, 0x80, 0x6f, 0x71, 0xba, 0x73, 0x51, 0x2a, 0x48, 0x0a, 0xa2, 0x5d, 0x48, 0x82, 0x8b,
-	0x3d, 0x19, 0x24, 0x90, 0x5f, 0x04, 0xf1, 0x5c, 0x10, 0x8c, 0x2b, 0x24, 0xc5, 0xc5, 0x51, 0x5a,
-	0x9c, 0x5a, 0x94, 0x97, 0x98, 0x9b, 0x0a, 0xf6, 0x02, 0x67, 0x10, 0x9c, 0x2f, 0x24, 0xc0, 0xc5,
-	0x9c, 0x94, 0x99, 0x2f, 0xc1, 0x0c, 0x16, 0x06, 0x31, 0xad, 0x78, 0x40, 0xee, 0x85, 0xe9, 0x55,
-	0x92, 0xe2, 0x92, 0x40, 0xb7, 0x09, 0xee, 0x8a, 0x30, 0xb0, 0x2b, 0x5c, 0x52, 0x73, 0x52, 0x29,
-	0x74, 0x05, 0x56, 0x3b, 0x51, 0xcc, 0x45, 0xf3, 0x39, 0x34, 0x50, 0xe8, 0xe0, 0x73, 0x14, 0x9b,
-	0x60, 0xae, 0x30, 0x9a, 0xcb, 0xcc, 0xc5, 0xec, 0x5b, 0x9c, 0x2e, 0x94, 0xc0, 0xc5, 0x83, 0x92,
-	0xc4, 0x94, 0xb1, 0x25, 0x0d, 0xb4, 0x48, 0x94, 0xd2, 0x26, 0x42, 0x11, 0xcc, 0x26, 0xa1, 0x64,
-	0x2e, 0x5e, 0xd4, 0x68, 0x56, 0xc1, 0xa1, 0x1b, 0x45, 0x95, 0x94, 0x0e, 0x31, 0xaa, 0x90, 0x2d,
-	0x41, 0x8d, 0x45, 0x5c, 0x96, 0xa0, 0xa8, 0xc2, 0x69, 0x09, 0xd6, 0x98, 0x03, 0x59, 0x82, 0x1a,
-	0x6d, 0x2a, 0xf8, 0xc3, 0x81, 0x80, 0x25, 0x58, 0x23, 0x46, 0x8a, 0xb5, 0x01, 0x94, 0xf7, 0x9c,
-	0x7c, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f,
-	0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0xca, 0x38, 0x3d, 0xb3, 0x24,
-	0xa3, 0x34, 0x49, 0x2f, 0x39, 0x3f, 0x57, 0x3f, 0x18, 0x64, 0xb0, 0x33, 0xc8, 0x60, 0x9f, 0xc4,
-	0x24, 0x7d, 0xac, 0x79, 0xb2, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d, 0x5c, 0xa8, 0x18, 0x03,
-	0x02, 0x00, 0x00, 0xff, 0xff, 0xa2, 0x5f, 0x12, 0xfc, 0x05, 0x05, 0x00, 0x00,
+	// 644 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x55, 0xbb, 0x6e, 0xd4, 0x4c,
+	0x14, 0x5e, 0xc7, 0x7f, 0x36, 0xf1, 0x6c, 0x7e, 0x11, 0xac, 0x88, 0x4c, 0x8c, 0xe4, 0xac, 0x96,
+	0x14, 0xab, 0x00, 0x6b, 0x91, 0x48, 0x41, 0x8a, 0x84, 0x04, 0x09, 0x74, 0xac, 0x84, 0x1c, 0x41,
+	0x41, 0x03, 0xb3, 0xde, 0xc1, 0x19, 0xc5, 0xf6, 0x58, 0x33, 0x93, 0x5b, 0x87, 0x28, 0xa9, 0x78,
+	0x01, 0x7a, 0xca, 0x14, 0xbc, 0x00, 0x5d, 0xca, 0x88, 0x8a, 0x0a, 0xa1, 0xa4, 0xc8, 0x0b, 0xf0,
+	0x00, 0x68, 0x2e, 0xbb, 0x89, 0x8d, 0x17, 0x56, 0x42, 0xa2, 0xa2, 0x59, 0xfb, 0x3b, 0x97, 0xef,
+	0x7c, 0x3e, 0xe7, 0xe8, 0x2c, 0xb8, 0xce, 0x77, 0x48, 0x92, 0x44, 0xdb, 0x88, 0x64, 0x41, 0xce,
+	0xe8, 0x2b, 0x92, 0xe0, 0x40, 0x1c, 0x74, 0x72, 0x46, 0x05, 0x75, 0xdd, 0x0b, 0x67, 0xc7, 0x38,
+	0xbd, 0xab, 0x28, 0x25, 0x19, 0x0d, 0xd4, 0xaf, 0x0e, 0xf3, 0xe6, 0x23, 0xca, 0x53, 0xca, 0x83,
+	0x94, 0xc7, 0xc1, 0xde, 0x1d, 0xf9, 0x30, 0x8e, 0x05, 0xed, 0x78, 0xa1, 0x50, 0xa0, 0x81, 0x71,
+	0xcd, 0xc5, 0x34, 0xa6, 0xda, 0x2e, 0xdf, 0x8c, 0x75, 0xb1, 0x42, 0x4d, 0x8e, 0x18, 0x4a, 0x07,
+	0x69, 0xcd, 0xaa, 0x00, 0xfd, 0xd4, 0x11, 0xad, 0x4f, 0x16, 0xb8, 0xd2, 0xe5, 0xf1, 0xd3, 0xbc,
+	0x8f, 0x04, 0x7e, 0xa2, 0x72, 0xdd, 0x35, 0xe0, 0xa0, 0x5d, 0xb1, 0x4d, 0x19, 0x11, 0x87, 0xd0,
+	0x6a, 0x5a, 0x6d, 0x67, 0x03, 0x7e, 0xfe, 0x78, 0x7b, 0xce, 0x28, 0x7a, 0xd0, 0xef, 0x33, 0xcc,
+	0xf9, 0x96, 0x60, 0x24, 0x8b, 0xc3, 0x8b, 0x50, 0xf7, 0x1e, 0xa8, 0xeb, 0xea, 0x70, 0xa2, 0x69,
+	0xb5, 0x1b, 0x2b, 0x5e, 0xe7, 0xe7, 0x86, 0x74, 0x74, 0x8d, 0x0d, 0xe7, 0xf8, 0xeb, 0x62, 0xed,
+	0xc3, 0xf9, 0xd1, 0xb2, 0x15, 0x9a, 0xa4, 0xf5, 0xbb, 0x6f, 0xce, 0x8f, 0x96, 0x2f, 0xe8, 0xde,
+	0x9e, 0x1f, 0x2d, 0x2f, 0x5d, 0xd2, 0x7f, 0x30, 0xfc, 0x82, 0x92, 0xde, 0xd6, 0x02, 0x98, 0x2f,
+	0x99, 0x42, 0xcc, 0x73, 0x9a, 0x71, 0xdc, 0xfa, 0x3e, 0x01, 0x66, 0xbb, 0x3c, 0xde, 0x64, 0x58,
+	0xfa, 0x74, 0xbe, 0x0b, 0xc1, 0x54, 0x24, 0x0d, 0x94, 0xe9, 0xaf, 0x0b, 0x07, 0xd0, 0xf5, 0xc0,
+	0xf4, 0x2e, 0xc7, 0x2c, 0x43, 0x29, 0x56, 0xdf, 0xe0, 0x84, 0x43, 0xec, 0xce, 0x02, 0xbb, 0x47,
+	0x28, 0xb4, 0x95, 0x59, 0xbe, 0xba, 0xd7, 0x40, 0x5d, 0xe9, 0xe3, 0xf0, 0xbf, 0xa6, 0xdd, 0x76,
+	0x42, 0x83, 0xdc, 0xfb, 0xa0, 0x81, 0x0f, 0x72, 0xcc, 0x08, 0xce, 0x22, 0xcc, 0xe1, 0x64, 0xd3,
+	0x6e, 0x37, 0x56, 0xfc, 0xaa, 0x66, 0x3c, 0x1a, 0x86, 0x85, 0x97, 0x53, 0xa4, 0xc2, 0x7d, 0xdc,
+	0xe3, 0x44, 0x60, 0x58, 0xd7, 0x0a, 0x0d, 0x94, 0x35, 0x63, 0x22, 0xb6, 0x77, 0x7b, 0x70, 0x4a,
+	0x39, 0x0c, 0x92, 0xca, 0x13, 0x92, 0xed, 0xe0, 0x3e, 0xc9, 0xe0, 0xb4, 0x56, 0x3e, 0xc0, 0x92,
+	0x4d, 0xec, 0x13, 0x21, 0x30, 0x83, 0x8e, 0x66, 0x33, 0x50, 0xb2, 0xa1, 0x3d, 0x24, 0x10, 0x83,
+	0x40, 0xb3, 0x69, 0xa4, 0xd8, 0x68, 0x84, 0x04, 0xa1, 0x19, 0x6c, 0x18, 0x36, 0x83, 0xdd, 0x39,
+	0x30, 0x89, 0x53, 0x44, 0x12, 0x38, 0xa3, 0x1c, 0x1a, 0xac, 0xcf, 0xc8, 0xe1, 0x0d, 0xfa, 0xd8,
+	0x5a, 0x03, 0xb0, 0xdc, 0xf5, 0xc1, 0x48, 0x0a, 0x3d, 0xb6, 0x8a, 0x3d, 0x6e, 0x3d, 0x53, 0xd3,
+	0x7a, 0x88, 0x13, 0xfc, 0x87, 0xd3, 0x2a, 0xe9, 0xf1, 0x94, 0x9e, 0x02, 0x6f, 0x79, 0x45, 0xcc,
+	0xfa, 0xfc, 0x5b, 0x91, 0xbf, 0xba, 0x22, 0x85, 0xae, 0x8f, 0xb3, 0x22, 0x2b, 0xef, 0x6d, 0x60,
+	0x77, 0x79, 0xec, 0xbe, 0x04, 0x33, 0x85, 0xa3, 0x75, 0xa3, 0xaa, 0x79, 0xa5, 0xb3, 0xe0, 0xdd,
+	0x1c, 0x23, 0x68, 0xa8, 0x22, 0x02, 0xff, 0x17, 0xef, 0xc6, 0xd2, 0x88, 0xec, 0x42, 0x94, 0x77,
+	0x6b, 0x9c, 0xa8, 0xcb, 0x45, 0x8a, 0xeb, 0x3e, 0xaa, 0x48, 0x21, 0x6a, 0x64, 0x91, 0xca, 0x15,
+	0x97, 0x45, 0x8a, 0xeb, 0xbd, 0xf4, 0xeb, 0x3e, 0xfc, 0xa6, 0x48, 0xe5, 0xd0, 0xbc, 0xc9, 0xd7,
+	0xf2, 0x9a, 0x6f, 0x74, 0x8f, 0x4f, 0x7d, 0xeb, 0xe4, 0xd4, 0xb7, 0xbe, 0x9d, 0xfa, 0xd6, 0xbb,
+	0x33, 0xbf, 0x76, 0x72, 0xe6, 0xd7, 0xbe, 0x9c, 0xf9, 0xb5, 0xe7, 0xab, 0x7a, 0x0f, 0x3b, 0x11,
+	0x4d, 0x83, 0x2d, 0x49, 0xbc, 0x29, 0x89, 0x1f, 0xa3, 0x5e, 0x50, 0x79, 0xe5, 0xc5, 0x61, 0x8e,
+	0x79, 0xaf, 0xae, 0xfe, 0xa6, 0x56, 0x7f, 0x04, 0x00, 0x00, 0xff, 0xff, 0x9b, 0x10, 0xbf, 0xe1,
+	0x79, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -728,6 +898,78 @@ func (m *MsgCreateProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.Location) > 0 {
+		i -= len(m.Location)
+		copy(dAtA[i:], m.Location)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Location)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.Avatar) > 0 {
+		i -= len(m.Avatar)
+		copy(dAtA[i:], m.Avatar)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Avatar)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Twitter) > 0 {
+		i -= len(m.Twitter)
+		copy(dAtA[i:], m.Twitter)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Twitter)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Linkedin) > 0 {
+		i -= len(m.Linkedin)
+		copy(dAtA[i:], m.Linkedin)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Linkedin)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.Github) > 0 {
+		i -= len(m.Github)
+		copy(dAtA[i:], m.Github)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Github)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Website) > 0 {
+		i -= len(m.Website)
+		copy(dAtA[i:], m.Website)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Website)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Experiences) > 0 {
+		for iNdEx := len(m.Experiences) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Experiences[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x2a
+		}
+	}
+	if len(m.Skills) > 0 {
+		for iNdEx := len(m.Skills) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Skills[iNdEx])
+			copy(dAtA[i:], m.Skills[iNdEx])
+			i = encodeVarintTx(dAtA, i, uint64(len(m.Skills[iNdEx])))
+			i--
+			dAtA[i] = 0x22
+		}
+	}
 	if len(m.Bio) > 0 {
 		i -= len(m.Bio)
 		copy(dAtA[i:], m.Bio)
@@ -772,6 +1014,13 @@ func (m *MsgCreateProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	_ = i
 	var l int
 	_ = l
+	if len(m.Username) > 0 {
+		i -= len(m.Username)
+		copy(dAtA[i:], m.Username)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Username)))
+		i--
+		dAtA[i] = 0xa
+	}
 	return len(dAtA) - i, nil
 }
 
@@ -855,6 +1104,78 @@ func (m *MsgUpdateProfile) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.Email) > 0 {
+		i -= len(m.Email)
+		copy(dAtA[i:], m.Email)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Email)))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.Location) > 0 {
+		i -= len(m.Location)
+		copy(dAtA[i:], m.Location)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Location)))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.Avatar) > 0 {
+		i -= len(m.Avatar)
+		copy(dAtA[i:], m.Avatar)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Avatar)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Twitter) > 0 {
+		i -= len(m.Twitter)
+		copy(dAtA[i:], m.Twitter)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Twitter)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Linkedin) > 0 {
+		i -= len(m.Linkedin)
+		copy(dAtA[i:], m.Linkedin)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Linkedin)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.Github) > 0 {
+		i -= len(m.Github)
+		copy(dAtA[i:], m.Github)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Github)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Website) > 0 {
+		i -= len(m.Website)
+		copy(dAtA[i:], m.Website)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Website)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Experiences) > 0 {
+		for iNdEx := len(m.Experiences) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Experiences[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x2a
+		}
+	}
+	if len(m.Skills) > 0 {
+		for iNdEx := len(m.Skills) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Skills[iNdEx])
+			copy(dAtA[i:], m.Skills[iNdEx])
+			i = encodeVarintTx(dAtA, i, uint64(len(m.Skills[iNdEx])))
+			i--
+			dAtA[i] = 0x22
+		}
+	}
 	if len(m.Bio) > 0 {
 		i -= len(m.Bio)
 		copy(dAtA[i:], m.Bio)
@@ -899,6 +1220,13 @@ func (m *MsgUpdateProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	_ = i
 	var l int
 	_ = l
+	if len(m.Username) > 0 {
+		i -= len(m.Username)
+		copy(dAtA[i:], m.Username)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Username)))
+		i--
+		dAtA[i] = 0xa
+	}
 	return len(dAtA) - i, nil
 }
 
@@ -955,6 +1283,46 @@ func (m *MsgCreateProfile) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	if len(m.Skills) > 0 {
+		for _, s := range m.Skills {
+			l = len(s)
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	if len(m.Experiences) > 0 {
+		for _, e := range m.Experiences {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	l = len(m.Website)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Github)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Linkedin)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Twitter)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Avatar)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Location)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	return n
 }
 
@@ -964,6 +1332,10 @@ func (m *MsgCreateProfileResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
+	l = len(m.Username)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	return n
 }
 
@@ -1011,6 +1383,46 @@ func (m *MsgUpdateProfile) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	if len(m.Skills) > 0 {
+		for _, s := range m.Skills {
+			l = len(s)
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	if len(m.Experiences) > 0 {
+		for _, e := range m.Experiences {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	l = len(m.Website)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Github)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Linkedin)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Twitter)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Avatar)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Location)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Email)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	return n
 }
 
@@ -1020,6 +1432,10 @@ func (m *MsgUpdateProfileResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
+	l = len(m.Username)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	return n
 }
 
@@ -1319,6 +1735,296 @@ func (m *MsgCreateProfile) Unmarshal(dAtA []byte) error {
 			}
 			m.Bio = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Skills = append(m.Skills, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Experiences", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Experiences = append(m.Experiences, &Experience{})
+			if err := m.Experiences[len(m.Experiences)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Website = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Github = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Linkedin = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Twitter", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Twitter = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Avatar", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Avatar = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Location", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Location = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
@@ -1369,6 +2075,38 @@ func (m *MsgCreateProfileResponse) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: MsgCreateProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Username = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
@@ -1679,6 +2417,296 @@ func (m *MsgUpdateProfile) Unmarshal(dAtA []byte) error {
 			}
 			m.Bio = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Skills = append(m.Skills, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Experiences", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Experiences = append(m.Experiences, &Experience{})
+			if err := m.Experiences[len(m.Experiences)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Website = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Github = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Linkedin = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Twitter", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Twitter = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Avatar", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Avatar = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Location", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Location = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Email = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])
@@ -1729,6 +2757,38 @@ func (m *MsgUpdateProfileResponse) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: MsgUpdateProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Username = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

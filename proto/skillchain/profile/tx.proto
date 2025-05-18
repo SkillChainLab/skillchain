@@ -7,6 +7,7 @@ import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "skillchain/profile/params.proto";
+import "skillchain/profile/profile.proto";
 
 option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
 
@@ -41,12 +42,23 @@ message MsgUpdateParamsResponse {}
 
 message MsgCreateProfile {
   option (cosmos.msg.v1.signer) = "creator";
-  string creator  = 1;
+  string creator = 1;
   string username = 2;
-  string bio      = 3;
+  string bio = 3;
+  repeated string skills = 4;
+  repeated Experience experiences = 5;
+  string website = 6;
+  string github = 7;
+  string linkedin = 8;
+  string twitter = 9;
+  string avatar = 10;
+  string location = 11;
+  string email = 12;
 }
 
-message MsgCreateProfileResponse {}
+message MsgCreateProfileResponse {
+  string username = 1;
+}
 
 message MsgDeleteProfile {
   option (cosmos.msg.v1.signer) = "creator";
@@ -58,10 +70,21 @@ message MsgDeleteProfileResponse {}
 
 message MsgUpdateProfile {
   option (cosmos.msg.v1.signer) = "creator";
-  string creator  = 1;
+  string creator = 1;
   string username = 2;
-  string bio      = 3;
+  string bio = 3;
+  repeated string skills = 4;
+  repeated Experience experiences = 5;
+  string website = 6;
+  string github = 7;
+  string linkedin = 8;
+  string twitter = 9;
+  string avatar = 10;
+  string location = 11;
+  string email = 12;
 }
 
-message MsgUpdateProfileResponse {}
+message MsgUpdateProfileResponse {
+  string username = 1;
+}
 

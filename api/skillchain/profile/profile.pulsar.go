@@ -2,8 +2,10 @@
 package profile
 
 import (
+	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -12,27 +14,134 @@ import (
 	sync "sync"
 )
 
+var _ protoreflect.List = (*_Profile_4_list)(nil)
+
+type _Profile_4_list struct {
+	list *[]string
+}
+
+func (x *_Profile_4_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_Profile_4_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfString((*x.list)[i])
+}
+
+func (x *_Profile_4_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_Profile_4_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_Profile_4_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message Profile at list field Skills as it is not of Message kind"))
+}
+
+func (x *_Profile_4_list) Truncate(n int) {
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_Profile_4_list) NewElement() protoreflect.Value {
+	v := ""
+	return protoreflect.ValueOfString(v)
+}
+
+func (x *_Profile_4_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_Profile_5_list)(nil)
+
+type _Profile_5_list struct {
+	list *[]*Experience
+}
+
+func (x *_Profile_5_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_Profile_5_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_Profile_5_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_Profile_5_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*Experience)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_Profile_5_list) AppendMutable() protoreflect.Value {
+	v := new(Experience)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_Profile_5_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_Profile_5_list) NewElement() protoreflect.Value {
+	v := new(Experience)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_Profile_5_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_Profile          protoreflect.MessageDescriptor
-	fd_Profile_username protoreflect.FieldDescriptor
-	fd_Profile_bio      protoreflect.FieldDescriptor
-	fd_Profile_github   protoreflect.FieldDescriptor
-	fd_Profile_linkedin protoreflect.FieldDescriptor
-	fd_Profile_website  protoreflect.FieldDescriptor
-	fd_Profile_skills   protoreflect.FieldDescriptor
-	fd_Profile_creator  protoreflect.FieldDescriptor
+	md_Profile             protoreflect.MessageDescriptor
+	fd_Profile_creator     protoreflect.FieldDescriptor
+	fd_Profile_username    protoreflect.FieldDescriptor
+	fd_Profile_bio         protoreflect.FieldDescriptor
+	fd_Profile_skills      protoreflect.FieldDescriptor
+	fd_Profile_experiences protoreflect.FieldDescriptor
+	fd_Profile_website     protoreflect.FieldDescriptor
+	fd_Profile_github      protoreflect.FieldDescriptor
+	fd_Profile_linkedin    protoreflect.FieldDescriptor
+	fd_Profile_twitter     protoreflect.FieldDescriptor
+	fd_Profile_avatar      protoreflect.FieldDescriptor
+	fd_Profile_location    protoreflect.FieldDescriptor
+	fd_Profile_email       protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_skillchain_profile_profile_proto_init()
 	md_Profile = File_skillchain_profile_profile_proto.Messages().ByName("Profile")
+	fd_Profile_creator = md_Profile.Fields().ByName("creator")
 	fd_Profile_username = md_Profile.Fields().ByName("username")
 	fd_Profile_bio = md_Profile.Fields().ByName("bio")
+	fd_Profile_skills = md_Profile.Fields().ByName("skills")
+	fd_Profile_experiences = md_Profile.Fields().ByName("experiences")
+	fd_Profile_website = md_Profile.Fields().ByName("website")
 	fd_Profile_github = md_Profile.Fields().ByName("github")
 	fd_Profile_linkedin = md_Profile.Fields().ByName("linkedin")
-	fd_Profile_website = md_Profile.Fields().ByName("website")
-	fd_Profile_skills = md_Profile.Fields().ByName("skills")
-	fd_Profile_creator = md_Profile.Fields().ByName("creator")
+	fd_Profile_twitter = md_Profile.Fields().ByName("twitter")
+	fd_Profile_avatar = md_Profile.Fields().ByName("avatar")
+	fd_Profile_location = md_Profile.Fields().ByName("location")
+	fd_Profile_email = md_Profile.Fields().ByName("email")
 }
 
 var _ protoreflect.Message = (*fastReflection_Profile)(nil)
@@ -100,6 +209,12 @@ func (x *fastReflection_Profile) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_Profile) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_Profile_creator, value) {
+			return
+		}
+	}
 	if x.Username != "" {
 		value := protoreflect.ValueOfString(x.Username)
 		if !f(fd_Profile_username, value) {
@@ -109,6 +224,24 @@ func (x *fastReflection_Profile) Range(f func(protoreflect.FieldDescriptor, prot
 	if x.Bio != "" {
 		value := protoreflect.ValueOfString(x.Bio)
 		if !f(fd_Profile_bio, value) {
+			return
+		}
+	}
+	if len(x.Skills) != 0 {
+		value := protoreflect.ValueOfList(&_Profile_4_list{list: &x.Skills})
+		if !f(fd_Profile_skills, value) {
+			return
+		}
+	}
+	if len(x.Experiences) != 0 {
+		value := protoreflect.ValueOfList(&_Profile_5_list{list: &x.Experiences})
+		if !f(fd_Profile_experiences, value) {
+			return
+		}
+	}
+	if x.Website != "" {
+		value := protoreflect.ValueOfString(x.Website)
+		if !f(fd_Profile_website, value) {
 			return
 		}
 	}
@@ -124,21 +257,27 @@ func (x *fastReflection_Profile) Range(f func(protoreflect.FieldDescriptor, prot
 			return
 		}
 	}
-	if x.Website != "" {
-		value := protoreflect.ValueOfString(x.Website)
-		if !f(fd_Profile_website, value) {
+	if x.Twitter != "" {
+		value := protoreflect.ValueOfString(x.Twitter)
+		if !f(fd_Profile_twitter, value) {
 			return
 		}
 	}
-	if x.Skills != "" {
-		value := protoreflect.ValueOfString(x.Skills)
-		if !f(fd_Profile_skills, value) {
+	if x.Avatar != "" {
+		value := protoreflect.ValueOfString(x.Avatar)
+		if !f(fd_Profile_avatar, value) {
 			return
 		}
 	}
-	if x.Creator != "" {
-		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_Profile_creator, value) {
+	if x.Location != "" {
+		value := protoreflect.ValueOfString(x.Location)
+		if !f(fd_Profile_location, value) {
+			return
+		}
+	}
+	if x.Email != "" {
+		value := protoreflect.ValueOfString(x.Email)
+		if !f(fd_Profile_email, value) {
 			return
 		}
 	}
@@ -157,20 +296,30 @@ func (x *fastReflection_Profile) Range(f func(protoreflect.FieldDescriptor, prot
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_Profile) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "skillchain.profile.Profile.creator":
+		return x.Creator != ""
 	case "skillchain.profile.Profile.username":
 		return x.Username != ""
 	case "skillchain.profile.Profile.bio":
 		return x.Bio != ""
+	case "skillchain.profile.Profile.skills":
+		return len(x.Skills) != 0
+	case "skillchain.profile.Profile.experiences":
+		return len(x.Experiences) != 0
+	case "skillchain.profile.Profile.website":
+		return x.Website != ""
 	case "skillchain.profile.Profile.github":
 		return x.Github != ""
 	case "skillchain.profile.Profile.linkedin":
 		return x.Linkedin != ""
-	case "skillchain.profile.Profile.website":
-		return x.Website != ""
-	case "skillchain.profile.Profile.skills":
-		return x.Skills != ""
-	case "skillchain.profile.Profile.creator":
-		return x.Creator != ""
+	case "skillchain.profile.Profile.twitter":
+		return x.Twitter != ""
+	case "skillchain.profile.Profile.avatar":
+		return x.Avatar != ""
+	case "skillchain.profile.Profile.location":
+		return x.Location != ""
+	case "skillchain.profile.Profile.email":
+		return x.Email != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Profile"))
@@ -187,20 +336,30 @@ func (x *fastReflection_Profile) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Profile) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "skillchain.profile.Profile.creator":
+		x.Creator = ""
 	case "skillchain.profile.Profile.username":
 		x.Username = ""
 	case "skillchain.profile.Profile.bio":
 		x.Bio = ""
+	case "skillchain.profile.Profile.skills":
+		x.Skills = nil
+	case "skillchain.profile.Profile.experiences":
+		x.Experiences = nil
+	case "skillchain.profile.Profile.website":
+		x.Website = ""
 	case "skillchain.profile.Profile.github":
 		x.Github = ""
 	case "skillchain.profile.Profile.linkedin":
 		x.Linkedin = ""
-	case "skillchain.profile.Profile.website":
-		x.Website = ""
-	case "skillchain.profile.Profile.skills":
-		x.Skills = ""
-	case "skillchain.profile.Profile.creator":
-		x.Creator = ""
+	case "skillchain.profile.Profile.twitter":
+		x.Twitter = ""
+	case "skillchain.profile.Profile.avatar":
+		x.Avatar = ""
+	case "skillchain.profile.Profile.location":
+		x.Location = ""
+	case "skillchain.profile.Profile.email":
+		x.Email = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Profile"))
@@ -217,11 +376,29 @@ func (x *fastReflection_Profile) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_Profile) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "skillchain.profile.Profile.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
 	case "skillchain.profile.Profile.username":
 		value := x.Username
 		return protoreflect.ValueOfString(value)
 	case "skillchain.profile.Profile.bio":
 		value := x.Bio
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Profile.skills":
+		if len(x.Skills) == 0 {
+			return protoreflect.ValueOfList(&_Profile_4_list{})
+		}
+		listValue := &_Profile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.Profile.experiences":
+		if len(x.Experiences) == 0 {
+			return protoreflect.ValueOfList(&_Profile_5_list{})
+		}
+		listValue := &_Profile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(listValue)
+	case "skillchain.profile.Profile.website":
+		value := x.Website
 		return protoreflect.ValueOfString(value)
 	case "skillchain.profile.Profile.github":
 		value := x.Github
@@ -229,14 +406,17 @@ func (x *fastReflection_Profile) Get(descriptor protoreflect.FieldDescriptor) pr
 	case "skillchain.profile.Profile.linkedin":
 		value := x.Linkedin
 		return protoreflect.ValueOfString(value)
-	case "skillchain.profile.Profile.website":
-		value := x.Website
+	case "skillchain.profile.Profile.twitter":
+		value := x.Twitter
 		return protoreflect.ValueOfString(value)
-	case "skillchain.profile.Profile.skills":
-		value := x.Skills
+	case "skillchain.profile.Profile.avatar":
+		value := x.Avatar
 		return protoreflect.ValueOfString(value)
-	case "skillchain.profile.Profile.creator":
-		value := x.Creator
+	case "skillchain.profile.Profile.location":
+		value := x.Location
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Profile.email":
+		value := x.Email
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -258,20 +438,34 @@ func (x *fastReflection_Profile) Get(descriptor protoreflect.FieldDescriptor) pr
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Profile) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "skillchain.profile.Profile.creator":
+		x.Creator = value.Interface().(string)
 	case "skillchain.profile.Profile.username":
 		x.Username = value.Interface().(string)
 	case "skillchain.profile.Profile.bio":
 		x.Bio = value.Interface().(string)
+	case "skillchain.profile.Profile.skills":
+		lv := value.List()
+		clv := lv.(*_Profile_4_list)
+		x.Skills = *clv.list
+	case "skillchain.profile.Profile.experiences":
+		lv := value.List()
+		clv := lv.(*_Profile_5_list)
+		x.Experiences = *clv.list
+	case "skillchain.profile.Profile.website":
+		x.Website = value.Interface().(string)
 	case "skillchain.profile.Profile.github":
 		x.Github = value.Interface().(string)
 	case "skillchain.profile.Profile.linkedin":
 		x.Linkedin = value.Interface().(string)
-	case "skillchain.profile.Profile.website":
-		x.Website = value.Interface().(string)
-	case "skillchain.profile.Profile.skills":
-		x.Skills = value.Interface().(string)
-	case "skillchain.profile.Profile.creator":
-		x.Creator = value.Interface().(string)
+	case "skillchain.profile.Profile.twitter":
+		x.Twitter = value.Interface().(string)
+	case "skillchain.profile.Profile.avatar":
+		x.Avatar = value.Interface().(string)
+	case "skillchain.profile.Profile.location":
+		x.Location = value.Interface().(string)
+	case "skillchain.profile.Profile.email":
+		x.Email = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Profile"))
@@ -292,20 +486,38 @@ func (x *fastReflection_Profile) Set(fd protoreflect.FieldDescriptor, value prot
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Profile) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.Profile.skills":
+		if x.Skills == nil {
+			x.Skills = []string{}
+		}
+		value := &_Profile_4_list{list: &x.Skills}
+		return protoreflect.ValueOfList(value)
+	case "skillchain.profile.Profile.experiences":
+		if x.Experiences == nil {
+			x.Experiences = []*Experience{}
+		}
+		value := &_Profile_5_list{list: &x.Experiences}
+		return protoreflect.ValueOfList(value)
+	case "skillchain.profile.Profile.creator":
+		panic(fmt.Errorf("field creator of message skillchain.profile.Profile is not mutable"))
 	case "skillchain.profile.Profile.username":
 		panic(fmt.Errorf("field username of message skillchain.profile.Profile is not mutable"))
 	case "skillchain.profile.Profile.bio":
 		panic(fmt.Errorf("field bio of message skillchain.profile.Profile is not mutable"))
+	case "skillchain.profile.Profile.website":
+		panic(fmt.Errorf("field website of message skillchain.profile.Profile is not mutable"))
 	case "skillchain.profile.Profile.github":
 		panic(fmt.Errorf("field github of message skillchain.profile.Profile is not mutable"))
 	case "skillchain.profile.Profile.linkedin":
 		panic(fmt.Errorf("field linkedin of message skillchain.profile.Profile is not mutable"))
-	case "skillchain.profile.Profile.website":
-		panic(fmt.Errorf("field website of message skillchain.profile.Profile is not mutable"))
-	case "skillchain.profile.Profile.skills":
-		panic(fmt.Errorf("field skills of message skillchain.profile.Profile is not mutable"))
-	case "skillchain.profile.Profile.creator":
-		panic(fmt.Errorf("field creator of message skillchain.profile.Profile is not mutable"))
+	case "skillchain.profile.Profile.twitter":
+		panic(fmt.Errorf("field twitter of message skillchain.profile.Profile is not mutable"))
+	case "skillchain.profile.Profile.avatar":
+		panic(fmt.Errorf("field avatar of message skillchain.profile.Profile is not mutable"))
+	case "skillchain.profile.Profile.location":
+		panic(fmt.Errorf("field location of message skillchain.profile.Profile is not mutable"))
+	case "skillchain.profile.Profile.email":
+		panic(fmt.Errorf("field email of message skillchain.profile.Profile is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Profile"))
@@ -319,19 +531,31 @@ func (x *fastReflection_Profile) Mutable(fd protoreflect.FieldDescriptor) protor
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_Profile) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "skillchain.profile.Profile.creator":
+		return protoreflect.ValueOfString("")
 	case "skillchain.profile.Profile.username":
 		return protoreflect.ValueOfString("")
 	case "skillchain.profile.Profile.bio":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Profile.skills":
+		list := []string{}
+		return protoreflect.ValueOfList(&_Profile_4_list{list: &list})
+	case "skillchain.profile.Profile.experiences":
+		list := []*Experience{}
+		return protoreflect.ValueOfList(&_Profile_5_list{list: &list})
+	case "skillchain.profile.Profile.website":
 		return protoreflect.ValueOfString("")
 	case "skillchain.profile.Profile.github":
 		return protoreflect.ValueOfString("")
 	case "skillchain.profile.Profile.linkedin":
 		return protoreflect.ValueOfString("")
-	case "skillchain.profile.Profile.website":
+	case "skillchain.profile.Profile.twitter":
 		return protoreflect.ValueOfString("")
-	case "skillchain.profile.Profile.skills":
+	case "skillchain.profile.Profile.avatar":
 		return protoreflect.ValueOfString("")
-	case "skillchain.profile.Profile.creator":
+	case "skillchain.profile.Profile.location":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Profile.email":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -402,11 +626,31 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		l = len(x.Username)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		l = len(x.Bio)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if len(x.Skills) > 0 {
+			for _, s := range x.Skills {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if len(x.Experiences) > 0 {
+			for _, e := range x.Experiences {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		l = len(x.Website)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -418,15 +662,19 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Website)
+		l = len(x.Twitter)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Skills)
+		l = len(x.Avatar)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Creator)
+		l = len(x.Location)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Email)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -459,52 +707,98 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Creator) > 0 {
-			i -= len(x.Creator)
-			copy(dAtA[i:], x.Creator)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+		if len(x.Email) > 0 {
+			i -= len(x.Email)
+			copy(dAtA[i:], x.Email)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Email)))
 			i--
-			dAtA[i] = 0x3a
+			dAtA[i] = 0x62
 		}
-		if len(x.Skills) > 0 {
-			i -= len(x.Skills)
-			copy(dAtA[i:], x.Skills)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Skills)))
+		if len(x.Location) > 0 {
+			i -= len(x.Location)
+			copy(dAtA[i:], x.Location)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Location)))
 			i--
-			dAtA[i] = 0x32
+			dAtA[i] = 0x5a
 		}
-		if len(x.Website) > 0 {
-			i -= len(x.Website)
-			copy(dAtA[i:], x.Website)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Website)))
+		if len(x.Avatar) > 0 {
+			i -= len(x.Avatar)
+			copy(dAtA[i:], x.Avatar)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Avatar)))
 			i--
-			dAtA[i] = 0x2a
+			dAtA[i] = 0x52
+		}
+		if len(x.Twitter) > 0 {
+			i -= len(x.Twitter)
+			copy(dAtA[i:], x.Twitter)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Twitter)))
+			i--
+			dAtA[i] = 0x4a
 		}
 		if len(x.Linkedin) > 0 {
 			i -= len(x.Linkedin)
 			copy(dAtA[i:], x.Linkedin)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Linkedin)))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x42
 		}
 		if len(x.Github) > 0 {
 			i -= len(x.Github)
 			copy(dAtA[i:], x.Github)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Github)))
 			i--
-			dAtA[i] = 0x1a
+			dAtA[i] = 0x3a
+		}
+		if len(x.Website) > 0 {
+			i -= len(x.Website)
+			copy(dAtA[i:], x.Website)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Website)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.Experiences) > 0 {
+			for iNdEx := len(x.Experiences) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Experiences[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x2a
+			}
+		}
+		if len(x.Skills) > 0 {
+			for iNdEx := len(x.Skills) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.Skills[iNdEx])
+				copy(dAtA[i:], x.Skills[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Skills[iNdEx])))
+				i--
+				dAtA[i] = 0x22
+			}
 		}
 		if len(x.Bio) > 0 {
 			i -= len(x.Bio)
 			copy(dAtA[i:], x.Bio)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Bio)))
 			i--
-			dAtA[i] = 0x12
+			dAtA[i] = 0x1a
 		}
 		if len(x.Username) > 0 {
 			i -= len(x.Username)
 			copy(dAtA[i:], x.Username)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Username)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -559,6 +853,38 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
 				}
 				var stringLen uint64
@@ -589,7 +915,7 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 				}
 				x.Username = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 2:
+			case 3:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Bio", wireType)
 				}
@@ -621,41 +947,9 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 				}
 				x.Bio = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 3:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Github = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -683,9 +977,43 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Linkedin = string(dAtA[iNdEx:postIndex])
+				x.Skills = append(x.Skills, string(dAtA[iNdEx:postIndex]))
 				iNdEx = postIndex
 			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Experiences", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Experiences = append(x.Experiences, &Experience{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Experiences[len(x.Experiences)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 6:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Website", wireType)
 				}
@@ -717,41 +1045,9 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 				}
 				x.Website = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 6:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Skills", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Skills = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 7:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Github", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -779,8 +1075,898 @@ func (x *fastReflection_Profile) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Creator = string(dAtA[iNdEx:postIndex])
+				x.Github = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Linkedin", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Linkedin = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Twitter", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Twitter = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 10:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Avatar", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Avatar = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 11:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Location", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Location = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 12:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Email = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_Experience             protoreflect.MessageDescriptor
+	fd_Experience_title       protoreflect.FieldDescriptor
+	fd_Experience_company     protoreflect.FieldDescriptor
+	fd_Experience_description protoreflect.FieldDescriptor
+	fd_Experience_startDate   protoreflect.FieldDescriptor
+	fd_Experience_endDate     protoreflect.FieldDescriptor
+	fd_Experience_isCurrent   protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_skillchain_profile_profile_proto_init()
+	md_Experience = File_skillchain_profile_profile_proto.Messages().ByName("Experience")
+	fd_Experience_title = md_Experience.Fields().ByName("title")
+	fd_Experience_company = md_Experience.Fields().ByName("company")
+	fd_Experience_description = md_Experience.Fields().ByName("description")
+	fd_Experience_startDate = md_Experience.Fields().ByName("startDate")
+	fd_Experience_endDate = md_Experience.Fields().ByName("endDate")
+	fd_Experience_isCurrent = md_Experience.Fields().ByName("isCurrent")
+}
+
+var _ protoreflect.Message = (*fastReflection_Experience)(nil)
+
+type fastReflection_Experience Experience
+
+func (x *Experience) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_Experience)(x)
+}
+
+func (x *Experience) slowProtoReflect() protoreflect.Message {
+	mi := &file_skillchain_profile_profile_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_Experience_messageType fastReflection_Experience_messageType
+var _ protoreflect.MessageType = fastReflection_Experience_messageType{}
+
+type fastReflection_Experience_messageType struct{}
+
+func (x fastReflection_Experience_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_Experience)(nil)
+}
+func (x fastReflection_Experience_messageType) New() protoreflect.Message {
+	return new(fastReflection_Experience)
+}
+func (x fastReflection_Experience_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_Experience
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_Experience) Descriptor() protoreflect.MessageDescriptor {
+	return md_Experience
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_Experience) Type() protoreflect.MessageType {
+	return _fastReflection_Experience_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_Experience) New() protoreflect.Message {
+	return new(fastReflection_Experience)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_Experience) Interface() protoreflect.ProtoMessage {
+	return (*Experience)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_Experience) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Title != "" {
+		value := protoreflect.ValueOfString(x.Title)
+		if !f(fd_Experience_title, value) {
+			return
+		}
+	}
+	if x.Company != "" {
+		value := protoreflect.ValueOfString(x.Company)
+		if !f(fd_Experience_company, value) {
+			return
+		}
+	}
+	if x.Description != "" {
+		value := protoreflect.ValueOfString(x.Description)
+		if !f(fd_Experience_description, value) {
+			return
+		}
+	}
+	if x.StartDate != "" {
+		value := protoreflect.ValueOfString(x.StartDate)
+		if !f(fd_Experience_startDate, value) {
+			return
+		}
+	}
+	if x.EndDate != "" {
+		value := protoreflect.ValueOfString(x.EndDate)
+		if !f(fd_Experience_endDate, value) {
+			return
+		}
+	}
+	if x.IsCurrent != false {
+		value := protoreflect.ValueOfBool(x.IsCurrent)
+		if !f(fd_Experience_isCurrent, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_Experience) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "skillchain.profile.Experience.title":
+		return x.Title != ""
+	case "skillchain.profile.Experience.company":
+		return x.Company != ""
+	case "skillchain.profile.Experience.description":
+		return x.Description != ""
+	case "skillchain.profile.Experience.startDate":
+		return x.StartDate != ""
+	case "skillchain.profile.Experience.endDate":
+		return x.EndDate != ""
+	case "skillchain.profile.Experience.isCurrent":
+		return x.IsCurrent != false
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_Experience) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "skillchain.profile.Experience.title":
+		x.Title = ""
+	case "skillchain.profile.Experience.company":
+		x.Company = ""
+	case "skillchain.profile.Experience.description":
+		x.Description = ""
+	case "skillchain.profile.Experience.startDate":
+		x.StartDate = ""
+	case "skillchain.profile.Experience.endDate":
+		x.EndDate = ""
+	case "skillchain.profile.Experience.isCurrent":
+		x.IsCurrent = false
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_Experience) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "skillchain.profile.Experience.title":
+		value := x.Title
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Experience.company":
+		value := x.Company
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Experience.description":
+		value := x.Description
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Experience.startDate":
+		value := x.StartDate
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Experience.endDate":
+		value := x.EndDate
+		return protoreflect.ValueOfString(value)
+	case "skillchain.profile.Experience.isCurrent":
+		value := x.IsCurrent
+		return protoreflect.ValueOfBool(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_Experience) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "skillchain.profile.Experience.title":
+		x.Title = value.Interface().(string)
+	case "skillchain.profile.Experience.company":
+		x.Company = value.Interface().(string)
+	case "skillchain.profile.Experience.description":
+		x.Description = value.Interface().(string)
+	case "skillchain.profile.Experience.startDate":
+		x.StartDate = value.Interface().(string)
+	case "skillchain.profile.Experience.endDate":
+		x.EndDate = value.Interface().(string)
+	case "skillchain.profile.Experience.isCurrent":
+		x.IsCurrent = value.Bool()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_Experience) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.profile.Experience.title":
+		panic(fmt.Errorf("field title of message skillchain.profile.Experience is not mutable"))
+	case "skillchain.profile.Experience.company":
+		panic(fmt.Errorf("field company of message skillchain.profile.Experience is not mutable"))
+	case "skillchain.profile.Experience.description":
+		panic(fmt.Errorf("field description of message skillchain.profile.Experience is not mutable"))
+	case "skillchain.profile.Experience.startDate":
+		panic(fmt.Errorf("field startDate of message skillchain.profile.Experience is not mutable"))
+	case "skillchain.profile.Experience.endDate":
+		panic(fmt.Errorf("field endDate of message skillchain.profile.Experience is not mutable"))
+	case "skillchain.profile.Experience.isCurrent":
+		panic(fmt.Errorf("field isCurrent of message skillchain.profile.Experience is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_Experience) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "skillchain.profile.Experience.title":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Experience.company":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Experience.description":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Experience.startDate":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Experience.endDate":
+		return protoreflect.ValueOfString("")
+	case "skillchain.profile.Experience.isCurrent":
+		return protoreflect.ValueOfBool(false)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.profile.Experience"))
+		}
+		panic(fmt.Errorf("message skillchain.profile.Experience does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_Experience) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in skillchain.profile.Experience", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_Experience) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_Experience) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_Experience) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_Experience) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*Experience)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Title)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Company)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Description)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.StartDate)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.EndDate)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.IsCurrent {
+			n += 2
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*Experience)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.IsCurrent {
+			i--
+			if x.IsCurrent {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
+			}
+			i--
+			dAtA[i] = 0x30
+		}
+		if len(x.EndDate) > 0 {
+			i -= len(x.EndDate)
+			copy(dAtA[i:], x.EndDate)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.EndDate)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.StartDate) > 0 {
+			i -= len(x.StartDate)
+			copy(dAtA[i:], x.StartDate)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.StartDate)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.Description) > 0 {
+			i -= len(x.Description)
+			copy(dAtA[i:], x.Description)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Description)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if len(x.Company) > 0 {
+			i -= len(x.Company)
+			copy(dAtA[i:], x.Company)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Company)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Title) > 0 {
+			i -= len(x.Title)
+			copy(dAtA[i:], x.Title)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Title)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*Experience)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: Experience: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: Experience: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Title = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Company", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Company = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Description = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field StartDate", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.StartDate = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field EndDate", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.EndDate = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field IsCurrent", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.IsCurrent = bool(v != 0)
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -834,13 +2020,18 @@ type Profile struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,2,opt,name=bio,proto3" json:"bio,omitempty"`
-	Github   string `protobuf:"bytes,3,opt,name=github,proto3" json:"github,omitempty"`
-	Linkedin string `protobuf:"bytes,4,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
-	Website  string `protobuf:"bytes,5,opt,name=website,proto3" json:"website,omitempty"`
-	Skills   string `protobuf:"bytes,6,opt,name=skills,proto3" json:"skills,omitempty"`
-	Creator  string `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
+	Creator     string        `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Username    string        `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Bio         string        `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	Skills      []string      `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
+	Experiences []*Experience `protobuf:"bytes,5,rep,name=experiences,proto3" json:"experiences,omitempty"`
+	Website     string        `protobuf:"bytes,6,opt,name=website,proto3" json:"website,omitempty"`
+	Github      string        `protobuf:"bytes,7,opt,name=github,proto3" json:"github,omitempty"`
+	Linkedin    string        `protobuf:"bytes,8,opt,name=linkedin,proto3" json:"linkedin,omitempty"`
+	Twitter     string        `protobuf:"bytes,9,opt,name=twitter,proto3" json:"twitter,omitempty"`
+	Avatar      string        `protobuf:"bytes,10,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Location    string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
+	Email       string        `protobuf:"bytes,12,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (x *Profile) Reset() {
@@ -863,6 +2054,13 @@ func (*Profile) Descriptor() ([]byte, []int) {
 	return file_skillchain_profile_profile_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *Profile) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
 func (x *Profile) GetUsername() string {
 	if x != nil {
 		return x.Username
@@ -873,6 +2071,27 @@ func (x *Profile) GetUsername() string {
 func (x *Profile) GetBio() string {
 	if x != nil {
 		return x.Bio
+	}
+	return ""
+}
+
+func (x *Profile) GetSkills() []string {
+	if x != nil {
+		return x.Skills
+	}
+	return nil
+}
+
+func (x *Profile) GetExperiences() []*Experience {
+	if x != nil {
+		return x.Experiences
+	}
+	return nil
+}
+
+func (x *Profile) GetWebsite() string {
+	if x != nil {
+		return x.Website
 	}
 	return ""
 }
@@ -891,25 +2110,107 @@ func (x *Profile) GetLinkedin() string {
 	return ""
 }
 
-func (x *Profile) GetWebsite() string {
+func (x *Profile) GetTwitter() string {
 	if x != nil {
-		return x.Website
+		return x.Twitter
 	}
 	return ""
 }
 
-func (x *Profile) GetSkills() string {
+func (x *Profile) GetAvatar() string {
 	if x != nil {
-		return x.Skills
+		return x.Avatar
 	}
 	return ""
 }
 
-func (x *Profile) GetCreator() string {
+func (x *Profile) GetLocation() string {
 	if x != nil {
-		return x.Creator
+		return x.Location
 	}
 	return ""
+}
+
+func (x *Profile) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type Experience struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Title       string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Company     string `protobuf:"bytes,2,opt,name=company,proto3" json:"company,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	StartDate   string `protobuf:"bytes,4,opt,name=startDate,proto3" json:"startDate,omitempty"`
+	EndDate     string `protobuf:"bytes,5,opt,name=endDate,proto3" json:"endDate,omitempty"`
+	IsCurrent   bool   `protobuf:"varint,6,opt,name=isCurrent,proto3" json:"isCurrent,omitempty"`
+}
+
+func (x *Experience) Reset() {
+	*x = Experience{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_skillchain_profile_profile_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Experience) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Experience) ProtoMessage() {}
+
+// Deprecated: Use Experience.ProtoReflect.Descriptor instead.
+func (*Experience) Descriptor() ([]byte, []int) {
+	return file_skillchain_profile_profile_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Experience) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Experience) GetCompany() string {
+	if x != nil {
+		return x.Company
+	}
+	return ""
+}
+
+func (x *Experience) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Experience) GetStartDate() string {
+	if x != nil {
+		return x.StartDate
+	}
+	return ""
+}
+
+func (x *Experience) GetEndDate() string {
+	if x != nil {
+		return x.EndDate
+	}
+	return ""
+}
+
+func (x *Experience) GetIsCurrent() bool {
+	if x != nil {
+		return x.IsCurrent
+	}
+	return false
 }
 
 var File_skillchain_profile_profile_proto protoreflect.FileDescriptor
@@ -918,32 +2219,56 @@ var file_skillchain_profile_profile_proto_rawDesc = []byte{
 	0x0a, 0x20, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f,
 	0x66, 0x69, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x12, 0x12, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x22, 0xb7, 0x01, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10,
-	0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69, 0x6f,
-	0x12, 0x16, 0x0a, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x69, 0x6e, 0x6b,
-	0x65, 0x64, 0x69, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c, 0x69, 0x6e, 0x6b,
-	0x65, 0x64, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x77, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x77, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x12, 0x16,
-	0x0a, 0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
-	0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f,
-	0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
-	0x42, 0xcb, 0x01, 0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x42, 0x0c, 0x50, 0x72, 0x6f,
-	0x66, 0x69, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x3a, 0x67, 0x69, 0x74,
-	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61,
-	0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
-	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xa2, 0x02, 0x03, 0x53, 0x50, 0x58, 0xaa, 0x02, 0x12,
-	0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0xca, 0x02, 0x12, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c,
-	0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xe2, 0x02, 0x1e, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x13, 0x53, 0x6b, 0x69, 0x6c, 0x6c,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d,
+	0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
+	0xdd, 0x02, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x62, 0x69, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x18, 0x04, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x40, 0x0a, 0x0b, 0x65,
+	0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x1e, 0x2e, 0x73, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65,
+	0x52, 0x0b, 0x65, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x18, 0x0a,
+	0x07, 0x77, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x77, 0x65, 0x62, 0x73, 0x69, 0x74, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x12,
+	0x1a, 0x0a, 0x08, 0x6c, 0x69, 0x6e, 0x6b, 0x65, 0x64, 0x69, 0x6e, 0x18, 0x08, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x6c, 0x69, 0x6e, 0x6b, 0x65, 0x64, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x74,
+	0x77, 0x69, 0x74, 0x74, 0x65, 0x72, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x77,
+	0x69, 0x74, 0x74, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x18,
+	0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x76, 0x61, 0x74, 0x61, 0x72, 0x12, 0x1a, 0x0a,
+	0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61,
+	0x69, 0x6c, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22,
+	0xb4, 0x01, 0x0a, 0x0a, 0x45, 0x78, 0x70, 0x65, 0x72, 0x69, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x14,
+	0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74,
+	0x69, 0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x12, 0x20,
+	0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x1c, 0x0a, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x44, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x44, 0x61, 0x74, 0x65, 0x12, 0x18,
+	0x0a, 0x07, 0x65, 0x6e, 0x64, 0x44, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x65, 0x6e, 0x64, 0x44, 0x61, 0x74, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x69, 0x73, 0x43, 0x75,
+	0x72, 0x72, 0x65, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x43,
+	0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x42, 0xcb, 0x01, 0x0a, 0x16, 0x63, 0x6f, 0x6d, 0x2e, 0x73,
+	0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c,
+	0x65, 0x42, 0x0c, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
+	0x01, 0x5a, 0x3a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6b,
+	0x69, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x69, 0x6e, 0x4c, 0x61, 0x62, 0x2f, 0x73, 0x6b, 0x69, 0x6c,
+	0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x6b, 0x69, 0x6c, 0x6c,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xa2, 0x02, 0x03,
+	0x53, 0x50, 0x58, 0xaa, 0x02, 0x12, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xca, 0x02, 0x12, 0x53, 0x6b, 0x69, 0x6c, 0x6c,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0xe2, 0x02, 0x1e,
+	0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x50, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x13, 0x53, 0x6b, 0x69, 0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x50, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -958,16 +2283,18 @@ func file_skillchain_profile_profile_proto_rawDescGZIP() []byte {
 	return file_skillchain_profile_profile_proto_rawDescData
 }
 
-var file_skillchain_profile_profile_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_skillchain_profile_profile_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_skillchain_profile_profile_proto_goTypes = []interface{}{
-	(*Profile)(nil), // 0: skillchain.profile.Profile
+	(*Profile)(nil),    // 0: skillchain.profile.Profile
+	(*Experience)(nil), // 1: skillchain.profile.Experience
 }
 var file_skillchain_profile_profile_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: skillchain.profile.Profile.experiences:type_name -> skillchain.profile.Experience
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_skillchain_profile_profile_proto_init() }
@@ -988,6 +2315,18 @@ func file_skillchain_profile_profile_proto_init() {
 				return nil
 			}
 		}
+		file_skillchain_profile_profile_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Experience); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -995,7 +2334,7 @@ func file_skillchain_profile_profile_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_skillchain_profile_profile_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

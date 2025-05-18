@@ -40,9 +40,23 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 
 				{
 					RpcMethod:      "ListMyApplications",
-					Use:            "list-my-applications [applicant]",
+					Use:            "list-my-applications [applicant] [status]",
 					Short:          "Query list-my-applications",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "applicant"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "applicant"}, {ProtoField: "status", Optional: true}},
+				},
+
+				{
+					RpcMethod:      "ListJobApplications",
+					Use:            "list-job-applications [job_id]",
+					Short:          "Query list-job-applications",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "job_id"}},
+				},
+
+				{
+					RpcMethod:      "ListJobsByCreator",
+					Use:            "list-jobs-by-creator [creator]",
+					Short:          "Query jobs created by a specific address",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "creator"}},
 				},
 
 				// this line is used by ignite scaffolding # autocli/query

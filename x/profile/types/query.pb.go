@@ -6,7 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
@@ -31,7 +31,102 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// Request to get one profile
+type QueryListProfileRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListProfileRequest) Reset()         { *m = QueryListProfileRequest{} }
+func (m *QueryListProfileRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListProfileRequest) ProtoMessage()    {}
+func (*QueryListProfileRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{0}
+}
+func (m *QueryListProfileRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListProfileRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListProfileRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListProfileRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListProfileRequest.Merge(m, src)
+}
+func (m *QueryListProfileRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListProfileRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListProfileRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListProfileRequest proto.InternalMessageInfo
+
+func (m *QueryListProfileRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryListProfileResponse struct {
+	Profiles   []Profile           `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListProfileResponse) Reset()         { *m = QueryListProfileResponse{} }
+func (m *QueryListProfileResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListProfileResponse) ProtoMessage()    {}
+func (*QueryListProfileResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{1}
+}
+func (m *QueryListProfileResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListProfileResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListProfileResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListProfileResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListProfileResponse.Merge(m, src)
+}
+func (m *QueryListProfileResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListProfileResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListProfileResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListProfileResponse proto.InternalMessageInfo
+
+func (m *QueryListProfileResponse) GetProfiles() []Profile {
+	if m != nil {
+		return m.Profiles
+	}
+	return nil
+}
+
+func (m *QueryListProfileResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 type QueryShowProfileRequest struct {
 	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 }
@@ -40,7 +135,7 @@ func (m *QueryShowProfileRequest) Reset()         { *m = QueryShowProfileRequest
 func (m *QueryShowProfileRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryShowProfileRequest) ProtoMessage()    {}
 func (*QueryShowProfileRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_14f9e7c6ae31292b, []int{0}
+	return fileDescriptor_14f9e7c6ae31292b, []int{2}
 }
 func (m *QueryShowProfileRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -76,17 +171,15 @@ func (m *QueryShowProfileRequest) GetUsername() string {
 	return ""
 }
 
-// Response containing the profile
 type QueryShowProfileResponse struct {
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Bio      string `protobuf:"bytes,2,opt,name=bio,proto3" json:"bio,omitempty"`
+	Profile *Profile `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
 }
 
 func (m *QueryShowProfileResponse) Reset()         { *m = QueryShowProfileResponse{} }
 func (m *QueryShowProfileResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryShowProfileResponse) ProtoMessage()    {}
 func (*QueryShowProfileResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_14f9e7c6ae31292b, []int{1}
+	return fileDescriptor_14f9e7c6ae31292b, []int{3}
 }
 func (m *QueryShowProfileResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -115,35 +208,29 @@ func (m *QueryShowProfileResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryShowProfileResponse proto.InternalMessageInfo
 
-func (m *QueryShowProfileResponse) GetUsername() string {
+func (m *QueryShowProfileResponse) GetProfile() *Profile {
 	if m != nil {
-		return m.Username
+		return m.Profile
 	}
-	return ""
+	return nil
 }
 
-func (m *QueryShowProfileResponse) GetBio() string {
-	if m != nil {
-		return m.Bio
-	}
-	return ""
+type QueryShowProfileByAddressRequest struct {
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
 }
 
-type QueryListProfileRequest struct {
+func (m *QueryShowProfileByAddressRequest) Reset()         { *m = QueryShowProfileByAddressRequest{} }
+func (m *QueryShowProfileByAddressRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryShowProfileByAddressRequest) ProtoMessage()    {}
+func (*QueryShowProfileByAddressRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{4}
 }
-
-func (m *QueryListProfileRequest) Reset()         { *m = QueryListProfileRequest{} }
-func (m *QueryListProfileRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryListProfileRequest) ProtoMessage()    {}
-func (*QueryListProfileRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_14f9e7c6ae31292b, []int{2}
-}
-func (m *QueryListProfileRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryShowProfileByAddressRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryListProfileRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryShowProfileByAddressRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryListProfileRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryShowProfileByAddressRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -153,34 +240,41 @@ func (m *QueryListProfileRequest) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *QueryListProfileRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryListProfileRequest.Merge(m, src)
+func (m *QueryShowProfileByAddressRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryShowProfileByAddressRequest.Merge(m, src)
 }
-func (m *QueryListProfileRequest) XXX_Size() int {
+func (m *QueryShowProfileByAddressRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryListProfileRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryListProfileRequest.DiscardUnknown(m)
+func (m *QueryShowProfileByAddressRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryShowProfileByAddressRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryListProfileRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryShowProfileByAddressRequest proto.InternalMessageInfo
 
-type QueryListProfileResponse struct {
-	Profiles []*Profile `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles,omitempty"`
+func (m *QueryShowProfileByAddressRequest) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
 }
 
-func (m *QueryListProfileResponse) Reset()         { *m = QueryListProfileResponse{} }
-func (m *QueryListProfileResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryListProfileResponse) ProtoMessage()    {}
-func (*QueryListProfileResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_14f9e7c6ae31292b, []int{3}
+type QueryShowProfileByAddressResponse struct {
+	Profile *Profile `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
 }
-func (m *QueryListProfileResponse) XXX_Unmarshal(b []byte) error {
+
+func (m *QueryShowProfileByAddressResponse) Reset()         { *m = QueryShowProfileByAddressResponse{} }
+func (m *QueryShowProfileByAddressResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryShowProfileByAddressResponse) ProtoMessage()    {}
+func (*QueryShowProfileByAddressResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{5}
+}
+func (m *QueryShowProfileByAddressResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryListProfileResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryShowProfileByAddressResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryListProfileResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryShowProfileByAddressResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -190,64 +284,175 @@ func (m *QueryListProfileResponse) XXX_Marshal(b []byte, deterministic bool) ([]
 		return b[:n], nil
 	}
 }
-func (m *QueryListProfileResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryListProfileResponse.Merge(m, src)
+func (m *QueryShowProfileByAddressResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryShowProfileByAddressResponse.Merge(m, src)
 }
-func (m *QueryListProfileResponse) XXX_Size() int {
+func (m *QueryShowProfileByAddressResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryListProfileResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryListProfileResponse.DiscardUnknown(m)
+func (m *QueryShowProfileByAddressResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryShowProfileByAddressResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryListProfileResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryShowProfileByAddressResponse proto.InternalMessageInfo
 
-func (m *QueryListProfileResponse) GetProfiles() []*Profile {
+func (m *QueryShowProfileByAddressResponse) GetProfile() *Profile {
+	if m != nil {
+		return m.Profile
+	}
+	return nil
+}
+
+type QueryListProfilesRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListProfilesRequest) Reset()         { *m = QueryListProfilesRequest{} }
+func (m *QueryListProfilesRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListProfilesRequest) ProtoMessage()    {}
+func (*QueryListProfilesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{6}
+}
+func (m *QueryListProfilesRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListProfilesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListProfilesRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListProfilesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListProfilesRequest.Merge(m, src)
+}
+func (m *QueryListProfilesRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListProfilesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListProfilesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListProfilesRequest proto.InternalMessageInfo
+
+func (m *QueryListProfilesRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryListProfilesResponse struct {
+	Profiles   []Profile           `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListProfilesResponse) Reset()         { *m = QueryListProfilesResponse{} }
+func (m *QueryListProfilesResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListProfilesResponse) ProtoMessage()    {}
+func (*QueryListProfilesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_14f9e7c6ae31292b, []int{7}
+}
+func (m *QueryListProfilesResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListProfilesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListProfilesResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListProfilesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListProfilesResponse.Merge(m, src)
+}
+func (m *QueryListProfilesResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListProfilesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListProfilesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListProfilesResponse proto.InternalMessageInfo
+
+func (m *QueryListProfilesResponse) GetProfiles() []Profile {
 	if m != nil {
 		return m.Profiles
 	}
 	return nil
 }
 
+func (m *QueryListProfilesResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterType((*QueryShowProfileRequest)(nil), "skillchain.profile.QueryShowProfileRequest")
-	proto.RegisterType((*QueryShowProfileResponse)(nil), "skillchain.profile.QueryShowProfileResponse")
 	proto.RegisterType((*QueryListProfileRequest)(nil), "skillchain.profile.QueryListProfileRequest")
 	proto.RegisterType((*QueryListProfileResponse)(nil), "skillchain.profile.QueryListProfileResponse")
+	proto.RegisterType((*QueryShowProfileRequest)(nil), "skillchain.profile.QueryShowProfileRequest")
+	proto.RegisterType((*QueryShowProfileResponse)(nil), "skillchain.profile.QueryShowProfileResponse")
+	proto.RegisterType((*QueryShowProfileByAddressRequest)(nil), "skillchain.profile.QueryShowProfileByAddressRequest")
+	proto.RegisterType((*QueryShowProfileByAddressResponse)(nil), "skillchain.profile.QueryShowProfileByAddressResponse")
+	proto.RegisterType((*QueryListProfilesRequest)(nil), "skillchain.profile.QueryListProfilesRequest")
+	proto.RegisterType((*QueryListProfilesResponse)(nil), "skillchain.profile.QueryListProfilesResponse")
 }
 
 func init() { proto.RegisterFile("skillchain/profile/query.proto", fileDescriptor_14f9e7c6ae31292b) }
 
 var fileDescriptor_14f9e7c6ae31292b = []byte{
-	// 442 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0x3f, 0x8f, 0xd3, 0x30,
-	0x18, 0xc6, 0xeb, 0xab, 0x38, 0x1d, 0xee, 0x02, 0x16, 0x12, 0x21, 0xa0, 0x50, 0x65, 0x80, 0xea,
-	0x38, 0xc5, 0x77, 0x2d, 0x7f, 0x76, 0x58, 0x18, 0x8a, 0x54, 0xda, 0x8d, 0x05, 0x39, 0x95, 0x49,
-	0x2d, 0x12, 0xbf, 0x69, 0xec, 0x00, 0x15, 0x62, 0x61, 0x65, 0x41, 0x62, 0x47, 0x7c, 0x1c, 0xc6,
-	0x4a, 0x2c, 0xb0, 0xa1, 0x96, 0x0f, 0x82, 0xe2, 0xb8, 0xa5, 0x55, 0xd2, 0x96, 0x25, 0xb1, 0xfd,
-	0x3e, 0xcf, 0xfb, 0xfe, 0xe2, 0x47, 0xc1, 0x9e, 0x7a, 0x2d, 0xe2, 0x78, 0x3c, 0x61, 0x42, 0xd2,
-	0x34, 0x83, 0x57, 0x22, 0xe6, 0x74, 0x9a, 0xf3, 0x6c, 0x16, 0xa4, 0x19, 0x68, 0x20, 0xe4, 0x5f,
-	0x3d, 0xb0, 0x75, 0xf7, 0x2a, 0x4b, 0x84, 0x04, 0x6a, 0x9e, 0xa5, 0xcc, 0xbd, 0x16, 0x41, 0x04,
-	0x66, 0x49, 0x8b, 0x95, 0x3d, 0xbd, 0x15, 0x01, 0x44, 0x31, 0xa7, 0x2c, 0x15, 0x94, 0x49, 0x09,
-	0x9a, 0x69, 0x01, 0x52, 0xd9, 0xea, 0xe9, 0x18, 0x54, 0x02, 0x8a, 0x86, 0x4c, 0xd9, 0x99, 0xf4,
-	0xcd, 0x45, 0xc8, 0x35, 0xbb, 0xa0, 0x29, 0x8b, 0x84, 0x34, 0x62, 0xab, 0xbd, 0x5d, 0x83, 0x99,
-	0xb2, 0x8c, 0x25, 0xab, 0x66, 0xed, 0x3a, 0x41, 0xf9, 0x2e, 0x15, 0xfe, 0x03, 0x7c, 0xfd, 0x79,
-	0x31, 0x64, 0x34, 0x81, 0xb7, 0x83, 0xb2, 0x32, 0xe4, 0xd3, 0x9c, 0x2b, 0x4d, 0x5c, 0x7c, 0x92,
-	0x2b, 0x9e, 0x49, 0x96, 0x70, 0x07, 0xb5, 0x51, 0xe7, 0xf2, 0x70, 0xbd, 0xf7, 0x9f, 0x62, 0xa7,
-	0x6a, 0x53, 0x29, 0x48, 0xc5, 0xf7, 0xf9, 0xc8, 0x15, 0xdc, 0x0c, 0x05, 0x38, 0x47, 0xe6, 0xb8,
-	0x58, 0xfa, 0x37, 0x2c, 0x40, 0x5f, 0x28, 0xbd, 0x0d, 0xe0, 0x8f, 0xec, 0x90, 0xad, 0x92, 0x1d,
-	0xf2, 0x08, 0x9f, 0xd8, 0x0f, 0x51, 0x0e, 0x6a, 0x37, 0x3b, 0xad, 0xee, 0xcd, 0xa0, 0x1a, 0x4a,
-	0xb0, 0xb2, 0xad, 0xc5, 0xdd, 0x5f, 0x4d, 0x7c, 0xc9, 0x74, 0x25, 0x9f, 0x10, 0x3e, 0x1e, 0x98,
-	0xdb, 0x22, 0x77, 0xea, 0xbc, 0x46, 0x55, 0x0a, 0x2c, 0x91, 0x7b, 0xf7, 0xa0, 0xae, 0xc4, 0xf3,
-	0xcf, 0x3f, 0xfe, 0xf8, 0xf3, 0xe5, 0xe8, 0x94, 0x74, 0xe8, 0xa8, 0x30, 0x3c, 0x29, 0x0c, 0x7d,
-	0x16, 0xd2, 0x9d, 0x81, 0x91, 0xaf, 0x08, 0xb7, 0x36, 0x6e, 0x93, 0xdc, 0xdb, 0x39, 0xaa, 0x1a,
-	0x95, 0x7b, 0xf6, 0x7f, 0x62, 0x0b, 0x77, 0xdf, 0xc0, 0x05, 0xe4, 0xec, 0x30, 0xdc, 0xfb, 0x55,
-	0x72, 0x1f, 0xc8, 0x37, 0x84, 0x5b, 0x1b, 0x49, 0xec, 0x01, 0xac, 0x46, 0xb9, 0x07, 0xb0, 0x26,
-	0x5c, 0xff, 0xa1, 0x01, 0x3c, 0x27, 0xc1, 0x61, 0xc0, 0x58, 0x28, 0xfd, 0xd2, 0x6e, 0x1e, 0x3f,
-	0xfb, 0xbe, 0xf0, 0xd0, 0x7c, 0xe1, 0xa1, 0xdf, 0x0b, 0x0f, 0x7d, 0x5e, 0x7a, 0x8d, 0xf9, 0xd2,
-	0x6b, 0xfc, 0x5c, 0x7a, 0x8d, 0x17, 0xbd, 0x48, 0xe8, 0x49, 0x1e, 0x06, 0x63, 0x48, 0x76, 0xf7,
-	0x7c, 0xb7, 0xee, 0xaa, 0x67, 0x29, 0x57, 0xe1, 0xb1, 0xf9, 0x45, 0x7a, 0x7f, 0x03, 0x00, 0x00,
-	0xff, 0xff, 0xee, 0xcb, 0xcf, 0x7e, 0x0e, 0x04, 0x00, 0x00,
+	// 624 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x95, 0xcf, 0x6f, 0x12, 0x41,
+	0x14, 0xc7, 0x99, 0xaa, 0xb4, 0x0e, 0x5e, 0x9c, 0x34, 0x11, 0x57, 0xb3, 0xc5, 0x3d, 0xb4, 0xa4,
+	0xea, 0x4e, 0xa1, 0xa2, 0x31, 0xea, 0xa1, 0x34, 0xea, 0xc1, 0x9a, 0x50, 0x7a, 0xeb, 0x85, 0xcc,
+	0xd2, 0x71, 0xd9, 0x08, 0x3b, 0xdb, 0x9d, 0xc5, 0x4a, 0x9a, 0x5e, 0xbc, 0x7a, 0x31, 0xf1, 0x1f,
+	0x30, 0xea, 0xcd, 0x7f, 0xa4, 0x47, 0x12, 0x2f, 0x9e, 0x4c, 0x03, 0xfe, 0x21, 0x86, 0x99, 0x59,
+	0x0a, 0xec, 0xf2, 0x2b, 0x7a, 0xe8, 0x05, 0x76, 0x98, 0xef, 0x7b, 0xef, 0xf3, 0xde, 0xcc, 0x97,
+	0x85, 0x3a, 0x7f, 0xeb, 0xd4, 0xeb, 0xd5, 0x1a, 0x71, 0x5c, 0xec, 0xf9, 0xec, 0x8d, 0x53, 0xa7,
+	0xf8, 0xb0, 0x49, 0xfd, 0x96, 0xe9, 0xf9, 0x2c, 0x60, 0x08, 0x9d, 0xef, 0x9b, 0x6a, 0x5f, 0xbb,
+	0x4e, 0x1a, 0x8e, 0xcb, 0xb0, 0xf8, 0x94, 0x32, 0x6d, 0xd9, 0x66, 0x36, 0x13, 0x8f, 0xb8, 0xf7,
+	0xa4, 0x7e, 0xbd, 0x6d, 0x33, 0x66, 0xd7, 0x29, 0x26, 0x9e, 0x83, 0x89, 0xeb, 0xb2, 0x80, 0x04,
+	0x0e, 0x73, 0xb9, 0xda, 0x5d, 0xaf, 0x32, 0xde, 0x60, 0x1c, 0x5b, 0x84, 0xab, 0x9a, 0xf8, 0x5d,
+	0xce, 0xa2, 0x01, 0xc9, 0x61, 0x8f, 0xd8, 0x8e, 0x2b, 0xc4, 0x4a, 0xbb, 0x12, 0x83, 0xe9, 0x11,
+	0x9f, 0x34, 0xc2, 0x64, 0x99, 0x38, 0x81, 0xfc, 0x96, 0x0a, 0x83, 0xc0, 0x1b, 0xbb, 0xbd, 0x22,
+	0x3b, 0x0e, 0x0f, 0x4a, 0x72, 0xa7, 0x4c, 0x0f, 0x9b, 0x94, 0x07, 0xe8, 0x05, 0x84, 0xe7, 0x15,
+	0xd3, 0x20, 0x03, 0xb2, 0xa9, 0xfc, 0xaa, 0x29, 0xf1, 0xcc, 0x1e, 0x9e, 0x29, 0x47, 0xa2, 0xf0,
+	0xcc, 0x12, 0xb1, 0xc3, 0xd8, 0xf2, 0x40, 0xa4, 0xf1, 0x15, 0xc0, 0x74, 0xb4, 0x06, 0xf7, 0x98,
+	0xcb, 0x29, 0x7a, 0x06, 0x97, 0x14, 0x10, 0x4f, 0x83, 0xcc, 0xa5, 0x6c, 0x2a, 0x7f, 0xcb, 0x8c,
+	0x0e, 0xd7, 0x54, 0x61, 0xc5, 0xcb, 0xa7, 0xbf, 0x57, 0x12, 0xe5, 0x7e, 0x08, 0x7a, 0x39, 0xc4,
+	0xb8, 0x20, 0x18, 0xd7, 0xa6, 0x32, 0xca, 0xda, 0x43, 0x90, 0x05, 0x35, 0x87, 0xbd, 0x1a, 0x3b,
+	0x1a, 0x99, 0x83, 0x06, 0x97, 0x9a, 0x9c, 0xfa, 0x2e, 0x69, 0x50, 0x31, 0x85, 0xab, 0xe5, 0xfe,
+	0xda, 0xd8, 0x55, 0xad, 0x0d, 0x85, 0xa9, 0xd6, 0x0a, 0x70, 0x51, 0x71, 0xaa, 0xe1, 0x4d, 0xea,
+	0xac, 0x1c, 0x6a, 0x8d, 0xa7, 0x30, 0x33, 0x9a, 0xb2, 0xd8, 0xda, 0x3a, 0x38, 0xf0, 0x29, 0xe7,
+	0x21, 0x52, 0x1a, 0x2e, 0x56, 0x7d, 0x4a, 0x02, 0xe6, 0x2b, 0xa2, 0x70, 0x69, 0xec, 0xc3, 0x3b,
+	0x13, 0xa2, 0xff, 0x8d, 0xcc, 0x8a, 0x9e, 0x23, 0xff, 0xdf, 0x97, 0xe5, 0x1b, 0x80, 0x37, 0x63,
+	0x8a, 0x5c, 0xac, 0xdb, 0x92, 0x3f, 0x4b, 0xc2, 0x2b, 0x82, 0x12, 0x7d, 0x04, 0x30, 0x59, 0x12,
+	0x96, 0x43, 0xab, 0x71, 0x28, 0x42, 0x25, 0x05, 0xaa, 0x5d, 0x6d, 0x6d, 0xaa, 0x4e, 0x56, 0x34,
+	0x36, 0x3e, 0xfc, 0xfc, 0xf3, 0x79, 0x61, 0x1d, 0x65, 0xf1, 0x5e, 0x2f, 0x60, 0xbb, 0x17, 0xb0,
+	0x43, 0x2c, 0x3c, 0xd6, 0xf5, 0xe8, 0x0b, 0x80, 0xa9, 0x81, 0xc1, 0xa1, 0xbb, 0x63, 0x4b, 0x45,
+	0xfd, 0xae, 0xdd, 0x9b, 0x4d, 0xac, 0xe0, 0x1e, 0x0a, 0xb8, 0x0d, 0x64, 0x4e, 0x87, 0xab, 0x3b,
+	0x3c, 0xa8, 0xa8, 0x05, 0xfa, 0x01, 0x60, 0x6a, 0xe0, 0x72, 0x4e, 0x40, 0x8c, 0x5a, 0x71, 0x02,
+	0x62, 0x8c, 0x01, 0x8d, 0x2d, 0x81, 0xf8, 0x04, 0x3d, 0x9e, 0x8e, 0xc8, 0x6b, 0xec, 0x28, 0x44,
+	0xc4, 0xc7, 0xa1, 0xbd, 0x4f, 0x50, 0x1b, 0xc0, 0xe5, 0x38, 0x2b, 0xa1, 0x07, 0xb3, 0x90, 0x8c,
+	0xfa, 0x56, 0x2b, 0xcc, 0x19, 0xa5, 0x1a, 0x79, 0x25, 0x1a, 0x79, 0x8e, 0xb6, 0xe7, 0x6b, 0xa4,
+	0x62, 0xb5, 0x2a, 0x44, 0xa6, 0xc2, 0xc7, 0xea, 0x0f, 0xe2, 0x04, 0x7d, 0x07, 0xf0, 0xda, 0xa0,
+	0xb9, 0xd0, 0x4c, 0xe7, 0xde, 0x6f, 0xe1, 0xfe, 0x8c, 0x6a, 0x85, 0xfe, 0x48, 0xa0, 0xe7, 0x10,
+	0x9e, 0xef, 0x9a, 0xf0, 0xe2, 0xeb, 0xd3, 0x8e, 0x0e, 0xda, 0x1d, 0x1d, 0x9c, 0x75, 0x74, 0xf0,
+	0xa9, 0xab, 0x27, 0xda, 0x5d, 0x3d, 0xf1, 0xab, 0xab, 0x27, 0xf6, 0x37, 0x6d, 0x27, 0xa8, 0x35,
+	0x2d, 0xb3, 0xca, 0x1a, 0xe3, 0x93, 0xbe, 0xef, 0xa7, 0x0d, 0x5a, 0x1e, 0xe5, 0x56, 0x52, 0xbc,
+	0xee, 0x36, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff, 0xd6, 0x02, 0x0f, 0x71, 0xda, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -262,11 +467,16 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type QueryClient interface {
+	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Get a specific profile by username
-	ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error)
 	// Queries a list of ListProfile items.
 	ListProfile(ctx context.Context, in *QueryListProfileRequest, opts ...grpc.CallOption) (*QueryListProfileResponse, error)
+	// Queries a Profile by username.
+	ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error)
+	// Queries a Profile by creator address.
+	ShowProfileByAddress(ctx context.Context, in *QueryShowProfileByAddressRequest, opts ...grpc.CallOption) (*QueryShowProfileByAddressResponse, error)
+	// Queries all profiles.
+	ListProfiles(ctx context.Context, in *QueryListProfilesRequest, opts ...grpc.CallOption) (*QueryListProfilesResponse, error)
 }
 
 type queryClient struct {
@@ -286,15 +496,6 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error) {
-	out := new(QueryShowProfileResponse)
-	err := c.cc.Invoke(ctx, "/skillchain.profile.Query/ShowProfile", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *queryClient) ListProfile(ctx context.Context, in *QueryListProfileRequest, opts ...grpc.CallOption) (*QueryListProfileResponse, error) {
 	out := new(QueryListProfileResponse)
 	err := c.cc.Invoke(ctx, "/skillchain.profile.Query/ListProfile", in, out, opts...)
@@ -304,13 +505,45 @@ func (c *queryClient) ListProfile(ctx context.Context, in *QueryListProfileReque
 	return out, nil
 }
 
+func (c *queryClient) ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error) {
+	out := new(QueryShowProfileResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.profile.Query/ShowProfile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ShowProfileByAddress(ctx context.Context, in *QueryShowProfileByAddressRequest, opts ...grpc.CallOption) (*QueryShowProfileByAddressResponse, error) {
+	out := new(QueryShowProfileByAddressResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.profile.Query/ShowProfileByAddress", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListProfiles(ctx context.Context, in *QueryListProfilesRequest, opts ...grpc.CallOption) (*QueryListProfilesResponse, error) {
+	out := new(QueryListProfilesResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.profile.Query/ListProfiles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
+	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Get a specific profile by username
-	ShowProfile(context.Context, *QueryShowProfileRequest) (*QueryShowProfileResponse, error)
 	// Queries a list of ListProfile items.
 	ListProfile(context.Context, *QueryListProfileRequest) (*QueryListProfileResponse, error)
+	// Queries a Profile by username.
+	ShowProfile(context.Context, *QueryShowProfileRequest) (*QueryShowProfileResponse, error)
+	// Queries a Profile by creator address.
+	ShowProfileByAddress(context.Context, *QueryShowProfileByAddressRequest) (*QueryShowProfileByAddressResponse, error)
+	// Queries all profiles.
+	ListProfiles(context.Context, *QueryListProfilesRequest) (*QueryListProfilesResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -320,11 +553,17 @@ type UnimplementedQueryServer struct {
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
+func (*UnimplementedQueryServer) ListProfile(ctx context.Context, req *QueryListProfileRequest) (*QueryListProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProfile not implemented")
+}
 func (*UnimplementedQueryServer) ShowProfile(ctx context.Context, req *QueryShowProfileRequest) (*QueryShowProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowProfile not implemented")
 }
-func (*UnimplementedQueryServer) ListProfile(ctx context.Context, req *QueryListProfileRequest) (*QueryListProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListProfile not implemented")
+func (*UnimplementedQueryServer) ShowProfileByAddress(ctx context.Context, req *QueryShowProfileByAddressRequest) (*QueryShowProfileByAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShowProfileByAddress not implemented")
+}
+func (*UnimplementedQueryServer) ListProfiles(ctx context.Context, req *QueryListProfilesRequest) (*QueryListProfilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProfiles not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -349,24 +588,6 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ShowProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryShowProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).ShowProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/skillchain.profile.Query/ShowProfile",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ShowProfile(ctx, req.(*QueryShowProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Query_ListProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryListProfileRequest)
 	if err := dec(in); err != nil {
@@ -385,6 +606,60 @@ func _Query_ListProfile_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ShowProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryShowProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ShowProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.profile.Query/ShowProfile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ShowProfile(ctx, req.(*QueryShowProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ShowProfileByAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryShowProfileByAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ShowProfileByAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.profile.Query/ShowProfileByAddress",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ShowProfileByAddress(ctx, req.(*QueryShowProfileByAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ListProfiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListProfilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListProfiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.profile.Query/ListProfiles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListProfiles(ctx, req.(*QueryListProfilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "skillchain.profile.Query",
@@ -395,16 +670,108 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
+			MethodName: "ListProfile",
+			Handler:    _Query_ListProfile_Handler,
+		},
+		{
 			MethodName: "ShowProfile",
 			Handler:    _Query_ShowProfile_Handler,
 		},
 		{
-			MethodName: "ListProfile",
-			Handler:    _Query_ListProfile_Handler,
+			MethodName: "ShowProfileByAddress",
+			Handler:    _Query_ShowProfileByAddress_Handler,
+		},
+		{
+			MethodName: "ListProfiles",
+			Handler:    _Query_ListProfiles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "skillchain/profile/query.proto",
+}
+
+func (m *QueryListProfileRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListProfileRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListProfileRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListProfileResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListProfileResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Profiles) > 0 {
+		for iNdEx := len(m.Profiles) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Profiles[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *QueryShowProfileRequest) Marshal() (dAtA []byte, err error) {
@@ -457,24 +824,22 @@ func (m *QueryShowProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	_ = i
 	var l int
 	_ = l
-	if len(m.Bio) > 0 {
-		i -= len(m.Bio)
-		copy(dAtA[i:], m.Bio)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Bio)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Username) > 0 {
-		i -= len(m.Username)
-		copy(dAtA[i:], m.Username)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Username)))
+	if m.Profile != nil {
+		{
+			size, err := m.Profile.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryListProfileRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryShowProfileByAddressRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -484,20 +849,27 @@ func (m *QueryListProfileRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryListProfileRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryShowProfileByAddressRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryListProfileRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryShowProfileByAddressRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryListProfileResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryShowProfileByAddressResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -507,16 +879,98 @@ func (m *QueryListProfileResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryListProfileResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryShowProfileByAddressResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryListProfileResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryShowProfileByAddressResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	if m.Profile != nil {
+		{
+			size, err := m.Profile.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListProfilesRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListProfilesRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListProfilesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListProfilesResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListProfilesResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListProfilesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
 	if len(m.Profiles) > 0 {
 		for iNdEx := len(m.Profiles) - 1; iNdEx >= 0; iNdEx-- {
 			{
@@ -545,6 +999,38 @@ func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *QueryListProfileRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListProfileResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Profiles) > 0 {
+		for _, e := range m.Profiles {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
 func (m *QueryShowProfileRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -564,27 +1050,53 @@ func (m *QueryShowProfileResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Username)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Bio)
-	if l > 0 {
+	if m.Profile != nil {
+		l = m.Profile.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
 
-func (m *QueryListProfileRequest) Size() (n int) {
+func (m *QueryShowProfileByAddressRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
-func (m *QueryListProfileResponse) Size() (n int) {
+func (m *QueryShowProfileByAddressResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Profile != nil {
+		l = m.Profile.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListProfilesRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListProfilesResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -596,6 +1108,10 @@ func (m *QueryListProfileResponse) Size() (n int) {
 			n += 1 + l + sovQuery(uint64(l))
 		}
 	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
 	return n
 }
 
@@ -604,6 +1120,212 @@ func sovQuery(x uint64) (n int) {
 }
 func sozQuery(x uint64) (n int) {
 	return sovQuery(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *QueryListProfileRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListProfileRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListProfileRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListProfileResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListProfileResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Profiles", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Profiles = append(m.Profiles, Profile{})
+			if err := m.Profiles[len(m.Profiles)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *QueryShowProfileRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -718,9 +1440,9 @@ func (m *QueryShowProfileResponse) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Username", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Profile", wireType)
 			}
-			var stringLen uint64
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowQuery
@@ -730,55 +1452,27 @@ func (m *QueryShowProfileResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			if msglen < 0 {
 				return ErrInvalidLengthQuery
 			}
-			postIndex := iNdEx + intStringLen
+			postIndex := iNdEx + msglen
 			if postIndex < 0 {
 				return ErrInvalidLengthQuery
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Username = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Bio", wireType)
+			if m.Profile == nil {
+				m.Profile = &Profile{}
 			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
+			if err := m.Profile.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Bio = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -801,7 +1495,7 @@ func (m *QueryShowProfileResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryListProfileRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryShowProfileByAddressRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -824,12 +1518,44 @@ func (m *QueryListProfileRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryListProfileRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryShowProfileByAddressRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryListProfileRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryShowProfileByAddressRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])
@@ -851,7 +1577,7 @@ func (m *QueryListProfileRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryListProfileResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryShowProfileByAddressResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -874,10 +1600,182 @@ func (m *QueryListProfileResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryListProfileResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryShowProfileByAddressResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryListProfileResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryShowProfileByAddressResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Profile", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Profile == nil {
+				m.Profile = &Profile{}
+			}
+			if err := m.Profile.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListProfilesRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListProfilesRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListProfilesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListProfilesResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListProfilesResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListProfilesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -909,8 +1807,44 @@ func (m *QueryListProfileResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Profiles = append(m.Profiles, &Profile{})
+			m.Profiles = append(m.Profiles, Profile{})
 			if err := m.Profiles[len(m.Profiles)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

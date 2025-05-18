@@ -1,10 +1,11 @@
 package types
 
 import (
-	sdkerrors "cosmossdk.io/errors"
+	errorsmod "cosmossdk.io/errors"
 )
 
+// x/profile module sentinel errors
 var (
-	ErrProfileNotFound = sdkerrors.New(ModuleName, 1100, "profile not found")
-	ErrInvalidRequest  = sdkerrors.New(ModuleName, 1101, "invalid request")
+	ErrProfileNotFound = errorsmod.Register("profile", 1100, "profile not found")
+	ErrUnauthorized    = errorsmod.Register("profile", 1101, "unauthorized")
 )

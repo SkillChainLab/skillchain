@@ -19,20 +19,27 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName      = "/skillchain.profile.Query/Params"
-	Query_ShowProfile_FullMethodName = "/skillchain.profile.Query/ShowProfile"
-	Query_ListProfile_FullMethodName = "/skillchain.profile.Query/ListProfile"
+	Query_Params_FullMethodName               = "/skillchain.profile.Query/Params"
+	Query_ListProfile_FullMethodName          = "/skillchain.profile.Query/ListProfile"
+	Query_ShowProfile_FullMethodName          = "/skillchain.profile.Query/ShowProfile"
+	Query_ShowProfileByAddress_FullMethodName = "/skillchain.profile.Query/ShowProfileByAddress"
+	Query_ListProfiles_FullMethodName         = "/skillchain.profile.Query/ListProfiles"
 )
 
 // QueryClient is the client API for Query service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type QueryClient interface {
+	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Get a specific profile by username
-	ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error)
 	// Queries a list of ListProfile items.
 	ListProfile(ctx context.Context, in *QueryListProfileRequest, opts ...grpc.CallOption) (*QueryListProfileResponse, error)
+	// Queries a Profile by username.
+	ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error)
+	// Queries a Profile by creator address.
+	ShowProfileByAddress(ctx context.Context, in *QueryShowProfileByAddressRequest, opts ...grpc.CallOption) (*QueryShowProfileByAddressResponse, error)
+	// Queries all profiles.
+	ListProfiles(ctx context.Context, in *QueryListProfilesRequest, opts ...grpc.CallOption) (*QueryListProfilesResponse, error)
 }
 
 type queryClient struct {
@@ -52,6 +59,15 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) ListProfile(ctx context.Context, in *QueryListProfileRequest, opts ...grpc.CallOption) (*QueryListProfileResponse, error) {
+	out := new(QueryListProfileResponse)
+	err := c.cc.Invoke(ctx, Query_ListProfile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *queryClient) ShowProfile(ctx context.Context, in *QueryShowProfileRequest, opts ...grpc.CallOption) (*QueryShowProfileResponse, error) {
 	out := new(QueryShowProfileResponse)
 	err := c.cc.Invoke(ctx, Query_ShowProfile_FullMethodName, in, out, opts...)
@@ -61,9 +77,18 @@ func (c *queryClient) ShowProfile(ctx context.Context, in *QueryShowProfileReque
 	return out, nil
 }
 
-func (c *queryClient) ListProfile(ctx context.Context, in *QueryListProfileRequest, opts ...grpc.CallOption) (*QueryListProfileResponse, error) {
-	out := new(QueryListProfileResponse)
-	err := c.cc.Invoke(ctx, Query_ListProfile_FullMethodName, in, out, opts...)
+func (c *queryClient) ShowProfileByAddress(ctx context.Context, in *QueryShowProfileByAddressRequest, opts ...grpc.CallOption) (*QueryShowProfileByAddressResponse, error) {
+	out := new(QueryShowProfileByAddressResponse)
+	err := c.cc.Invoke(ctx, Query_ShowProfileByAddress_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListProfiles(ctx context.Context, in *QueryListProfilesRequest, opts ...grpc.CallOption) (*QueryListProfilesResponse, error) {
+	out := new(QueryListProfilesResponse)
+	err := c.cc.Invoke(ctx, Query_ListProfiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,11 +99,16 @@ func (c *queryClient) ListProfile(ctx context.Context, in *QueryListProfileReque
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
+	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Get a specific profile by username
-	ShowProfile(context.Context, *QueryShowProfileRequest) (*QueryShowProfileResponse, error)
 	// Queries a list of ListProfile items.
 	ListProfile(context.Context, *QueryListProfileRequest) (*QueryListProfileResponse, error)
+	// Queries a Profile by username.
+	ShowProfile(context.Context, *QueryShowProfileRequest) (*QueryShowProfileResponse, error)
+	// Queries a Profile by creator address.
+	ShowProfileByAddress(context.Context, *QueryShowProfileByAddressRequest) (*QueryShowProfileByAddressResponse, error)
+	// Queries all profiles.
+	ListProfiles(context.Context, *QueryListProfilesRequest) (*QueryListProfilesResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -89,11 +119,17 @@ type UnimplementedQueryServer struct {
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
+func (UnimplementedQueryServer) ListProfile(context.Context, *QueryListProfileRequest) (*QueryListProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProfile not implemented")
+}
 func (UnimplementedQueryServer) ShowProfile(context.Context, *QueryShowProfileRequest) (*QueryShowProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShowProfile not implemented")
 }
-func (UnimplementedQueryServer) ListProfile(context.Context, *QueryListProfileRequest) (*QueryListProfileResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListProfile not implemented")
+func (UnimplementedQueryServer) ShowProfileByAddress(context.Context, *QueryShowProfileByAddressRequest) (*QueryShowProfileByAddressResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ShowProfileByAddress not implemented")
+}
+func (UnimplementedQueryServer) ListProfiles(context.Context, *QueryListProfilesRequest) (*QueryListProfilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProfiles not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -126,24 +162,6 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ShowProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryShowProfileRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).ShowProfile(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_ShowProfile_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).ShowProfile(ctx, req.(*QueryShowProfileRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Query_ListProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryListProfileRequest)
 	if err := dec(in); err != nil {
@@ -162,6 +180,60 @@ func _Query_ListProfile_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ShowProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryShowProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ShowProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ShowProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ShowProfile(ctx, req.(*QueryShowProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ShowProfileByAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryShowProfileByAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ShowProfileByAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ShowProfileByAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ShowProfileByAddress(ctx, req.(*QueryShowProfileByAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ListProfiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListProfilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListProfiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListProfiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListProfiles(ctx, req.(*QueryListProfilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -174,12 +246,20 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
+			MethodName: "ListProfile",
+			Handler:    _Query_ListProfile_Handler,
+		},
+		{
 			MethodName: "ShowProfile",
 			Handler:    _Query_ShowProfile_Handler,
 		},
 		{
-			MethodName: "ListProfile",
-			Handler:    _Query_ListProfile_Handler,
+			MethodName: "ShowProfileByAddress",
+			Handler:    _Query_ShowProfileByAddress_Handler,
+		},
+		{
+			MethodName: "ListProfiles",
+			Handler:    _Query_ListProfiles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

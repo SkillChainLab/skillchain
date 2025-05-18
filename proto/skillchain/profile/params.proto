@@ -7,7 +7,7 @@ import "gogoproto/gogo.proto";
 option go_package = "github.com/SkillChainLab/skillchain/x/profile/types";
 
 message Params {
-  // Add module parameters here if needed later
+  uint64 max_profile_length = 1 [(gogoproto.moretags) = "yaml:\"max_profile_length\""];
 }
 
 message QueryParamsRequest {}

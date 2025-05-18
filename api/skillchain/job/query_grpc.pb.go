@@ -25,6 +25,7 @@ const (
 	Query_ListApplication_FullMethodName     = "/skillchain.job.Query/ListApplication"
 	Query_ListMyApplications_FullMethodName  = "/skillchain.job.Query/ListMyApplications"
 	Query_ListJobApplications_FullMethodName = "/skillchain.job.Query/ListJobApplications"
+	Query_ListJobsByCreator_FullMethodName   = "/skillchain.job.Query/ListJobsByCreator"
 )
 
 // QueryClient is the client API for Query service.
@@ -43,6 +44,8 @@ type QueryClient interface {
 	ListMyApplications(ctx context.Context, in *QueryListMyApplicationsRequest, opts ...grpc.CallOption) (*QueryListMyApplicationsResponse, error)
 	// Queries all applications for a specific job.
 	ListJobApplications(ctx context.Context, in *QueryListJobApplicationsRequest, opts ...grpc.CallOption) (*QueryListJobApplicationsResponse, error)
+	// Queries jobs created by a specific address
+	ListJobsByCreator(ctx context.Context, in *QueryListJobsByCreatorRequest, opts ...grpc.CallOption) (*QueryListJobsByCreatorResponse, error)
 }
 
 type queryClient struct {
@@ -107,6 +110,15 @@ func (c *queryClient) ListJobApplications(ctx context.Context, in *QueryListJobA
 	return out, nil
 }
 
+func (c *queryClient) ListJobsByCreator(ctx context.Context, in *QueryListJobsByCreatorRequest, opts ...grpc.CallOption) (*QueryListJobsByCreatorResponse, error) {
+	out := new(QueryListJobsByCreatorResponse)
+	err := c.cc.Invoke(ctx, Query_ListJobsByCreator_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -123,6 +135,8 @@ type QueryServer interface {
 	ListMyApplications(context.Context, *QueryListMyApplicationsRequest) (*QueryListMyApplicationsResponse, error)
 	// Queries all applications for a specific job.
 	ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error)
+	// Queries jobs created by a specific address
+	ListJobsByCreator(context.Context, *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -147,6 +161,9 @@ func (UnimplementedQueryServer) ListMyApplications(context.Context, *QueryListMy
 }
 func (UnimplementedQueryServer) ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobApplications not implemented")
+}
+func (UnimplementedQueryServer) ListJobsByCreator(context.Context, *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListJobsByCreator not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -269,6 +286,24 @@ func _Query_ListJobApplications_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListJobsByCreator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListJobsByCreatorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListJobsByCreator(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListJobsByCreator_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListJobsByCreator(ctx, req.(*QueryListJobsByCreatorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -299,6 +334,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobApplications",
 			Handler:    _Query_ListJobApplications_Handler,
+		},
+		{
+			MethodName: "ListJobsByCreator",
+			Handler:    _Query_ListJobsByCreator_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -43,6 +43,11 @@ service Query {
   rpc ListJobApplications (QueryListJobApplicationsRequest) returns (QueryListJobApplicationsResponse) {
     option (google.api.http).get = "/SkillChainLab/skillchain/job/list_job_applications/{job_id}";
   }
+
+  // Queries jobs created by a specific address
+  rpc ListJobsByCreator (QueryListJobsByCreatorRequest) returns (QueryListJobsByCreatorResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/list_jobs_by_creator/{creator}";
+  }
 }
 
 // Request/Response messages
@@ -77,6 +82,7 @@ message QueryListApplicationResponse {
 
 message QueryListMyApplicationsRequest {
   string applicant = 1;
+  string status = 2; // optional, filter by status (e.g., APPROVED)
 }
 
 message QueryListMyApplicationsResponse {
@@ -89,4 +95,12 @@ message QueryListJobApplicationsRequest {
 
 message QueryListJobApplicationsResponse {
   repeated Application applications = 1;
+}
+
+message QueryListJobsByCreatorRequest {
+  string creator = 1;
+}
+
+message QueryListJobsByCreatorResponse {
+  repeated Job jobs = 1 [(gogoproto.nullable) = false];
 }
