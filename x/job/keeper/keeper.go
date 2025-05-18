@@ -121,7 +121,7 @@ func (k Keeper) SetJobCount(ctx context.Context, count uint64) {
 
 func (k Keeper) AppendApplication(ctx context.Context, jobID uint64, applicant string, coverLetter string) error {
 	store := k.getStore(ctx)
-	key := types.ApplicationKey(jobID, applicant)
+	key := []byte(fmt.Sprintf("Application/value/%d", jobID))
 
 	if store.Has(key) {
 		return errorsmod.Wrapf(sdkerrors.ErrUnauthorized, "already applied to job %d", jobID)

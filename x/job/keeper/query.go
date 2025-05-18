@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/SkillChainLab/skillchain/x/job/types"
 )
@@ -12,17 +13,15 @@ func (k Keeper) ListJobApplications(ctx context.Context, req *types.QueryListJob
 	store := k.getStore(ctx)
 	applications := []*types.Application{}
 
-	// Get all applications for the specified job
-	iterator := store.Iterator(nil, nil)
+	// Create the prefix for the job ID
+	prefix := fmt.Sprintf("Application/value/%d", req.JobId)
+	iterator := store.Iterator([]byte(prefix), nil)
 	defer iterator.Close()
 
 	for ; iterator.Valid(); iterator.Next() {
 		var application types.Application
 		k.cdc.MustUnmarshal(iterator.Value(), &application)
-
-		if application.JobId == req.JobId {
-			applications = append(applications, &application)
-		}
+		applications = append(applications, &application)
 	}
 
 	return &types.QueryListJobApplicationsResponse{
