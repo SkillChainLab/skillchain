@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package skillchain.job;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
+
+// Notification represents a notification message
+message Notification {
+  string id = 1;
+  string recipient = 2;
+  string sender = 3;
+  string type = 4; // APPLICATION_RECEIVED, APPLICATION_REVIEWED, JOB_UPDATED
+  string content = 5;
+  bool is_read = 6;
+  google.protobuf.Timestamp created_at = 7 [(gogoproto.stdtime) = true];
+  string job_id = 8;
+  string application_id = 9; // Optional, only for application-related notifications
+} 

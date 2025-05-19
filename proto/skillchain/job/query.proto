@@ -9,6 +9,7 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "skillchain/job/params.proto";
 import "skillchain/job/job.proto";
 import "skillchain/job/application.proto";
+import "skillchain/job/notification.proto";
 
 option go_package = "github.com/SkillChainLab/skillchain/x/job/types";
 
@@ -47,6 +48,26 @@ service Query {
   // Queries jobs created by a specific address
   rpc ListJobsByCreator (QueryListJobsByCreatorRequest) returns (QueryListJobsByCreatorResponse) {
     option (google.api.http).get = "/SkillChainLab/skillchain/job/list_jobs_by_creator/{creator}";
+  }
+
+  // Search jobs by title, description, or budget range
+  rpc SearchJobs (QuerySearchJobsRequest) returns (QuerySearchJobsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/search_jobs";
+  }
+
+  // Filter jobs by various criteria
+  rpc FilterJobs (QueryFilterJobsRequest) returns (QueryFilterJobsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/job/filter_jobs";
+  }
+
+  // GetNotifications returns all notifications for a recipient
+  rpc GetNotifications(QueryGetNotificationsRequest) returns (QueryGetNotificationsResponse) {
+    option (google.api.http).get = "/skillchain/job/notifications/{recipient}";
+  }
+
+  // GetNotification returns a specific notification by ID
+  rpc GetNotification(QueryGetNotificationRequest) returns (QueryGetNotificationResponse) {
+    option (google.api.http).get = "/skillchain/job/notifications/{id}";
   }
 }
 
@@ -103,4 +124,50 @@ message QueryListJobsByCreatorRequest {
 
 message QueryListJobsByCreatorResponse {
   repeated Job jobs = 1 [(gogoproto.nullable) = false];
+}
+
+// Search and Filter messages
+message QuerySearchJobsRequest {
+  string search_term = 1; // Search term for title or description
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QuerySearchJobsResponse {
+  repeated Job jobs = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryFilterJobsRequest {
+  string title = 1; // Optional title filter
+  string min_budget = 2; // Optional minimum budget
+  string max_budget = 3; // Optional maximum budget
+  string creator = 4; // Optional creator filter
+  cosmos.base.query.v1beta1.PageRequest pagination = 5;
+}
+
+message QueryFilterJobsResponse {
+  repeated Job jobs = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetNotificationsRequest is request type for the Query/GetNotifications RPC method
+message QueryGetNotificationsRequest {
+  string recipient = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryGetNotificationsResponse is response type for the Query/GetNotifications RPC method
+message QueryGetNotificationsResponse {
+  repeated Notification notifications = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetNotificationRequest is request type for the Query/GetNotification RPC method
+message QueryGetNotificationRequest {
+  string id = 1;
+}
+
+// QueryGetNotificationResponse is response type for the Query/GetNotification RPC method
+message QueryGetNotificationResponse {
+  Notification notification = 1;
 }

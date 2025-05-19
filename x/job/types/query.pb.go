@@ -6,7 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/query"
+	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
@@ -639,6 +639,435 @@ func (m *QueryListJobsByCreatorResponse) GetJobs() []Job {
 	return nil
 }
 
+// Search and Filter messages
+type QuerySearchJobsRequest struct {
+	SearchTerm string             `protobuf:"bytes,1,opt,name=search_term,json=searchTerm,proto3" json:"search_term,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QuerySearchJobsRequest) Reset()         { *m = QuerySearchJobsRequest{} }
+func (m *QuerySearchJobsRequest) String() string { return proto.CompactTextString(m) }
+func (*QuerySearchJobsRequest) ProtoMessage()    {}
+func (*QuerySearchJobsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{14}
+}
+func (m *QuerySearchJobsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QuerySearchJobsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QuerySearchJobsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QuerySearchJobsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QuerySearchJobsRequest.Merge(m, src)
+}
+func (m *QuerySearchJobsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QuerySearchJobsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QuerySearchJobsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QuerySearchJobsRequest proto.InternalMessageInfo
+
+func (m *QuerySearchJobsRequest) GetSearchTerm() string {
+	if m != nil {
+		return m.SearchTerm
+	}
+	return ""
+}
+
+func (m *QuerySearchJobsRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QuerySearchJobsResponse struct {
+	Jobs       []Job               `protobuf:"bytes,1,rep,name=jobs,proto3" json:"jobs"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QuerySearchJobsResponse) Reset()         { *m = QuerySearchJobsResponse{} }
+func (m *QuerySearchJobsResponse) String() string { return proto.CompactTextString(m) }
+func (*QuerySearchJobsResponse) ProtoMessage()    {}
+func (*QuerySearchJobsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{15}
+}
+func (m *QuerySearchJobsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QuerySearchJobsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QuerySearchJobsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QuerySearchJobsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QuerySearchJobsResponse.Merge(m, src)
+}
+func (m *QuerySearchJobsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QuerySearchJobsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QuerySearchJobsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QuerySearchJobsResponse proto.InternalMessageInfo
+
+func (m *QuerySearchJobsResponse) GetJobs() []Job {
+	if m != nil {
+		return m.Jobs
+	}
+	return nil
+}
+
+func (m *QuerySearchJobsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryFilterJobsRequest struct {
+	Title      string             `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	MinBudget  string             `protobuf:"bytes,2,opt,name=min_budget,json=minBudget,proto3" json:"min_budget,omitempty"`
+	MaxBudget  string             `protobuf:"bytes,3,opt,name=max_budget,json=maxBudget,proto3" json:"max_budget,omitempty"`
+	Creator    string             `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,5,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryFilterJobsRequest) Reset()         { *m = QueryFilterJobsRequest{} }
+func (m *QueryFilterJobsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryFilterJobsRequest) ProtoMessage()    {}
+func (*QueryFilterJobsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{16}
+}
+func (m *QueryFilterJobsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryFilterJobsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryFilterJobsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryFilterJobsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryFilterJobsRequest.Merge(m, src)
+}
+func (m *QueryFilterJobsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryFilterJobsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryFilterJobsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryFilterJobsRequest proto.InternalMessageInfo
+
+func (m *QueryFilterJobsRequest) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *QueryFilterJobsRequest) GetMinBudget() string {
+	if m != nil {
+		return m.MinBudget
+	}
+	return ""
+}
+
+func (m *QueryFilterJobsRequest) GetMaxBudget() string {
+	if m != nil {
+		return m.MaxBudget
+	}
+	return ""
+}
+
+func (m *QueryFilterJobsRequest) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *QueryFilterJobsRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryFilterJobsResponse struct {
+	Jobs       []Job               `protobuf:"bytes,1,rep,name=jobs,proto3" json:"jobs"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryFilterJobsResponse) Reset()         { *m = QueryFilterJobsResponse{} }
+func (m *QueryFilterJobsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryFilterJobsResponse) ProtoMessage()    {}
+func (*QueryFilterJobsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{17}
+}
+func (m *QueryFilterJobsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryFilterJobsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryFilterJobsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryFilterJobsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryFilterJobsResponse.Merge(m, src)
+}
+func (m *QueryFilterJobsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryFilterJobsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryFilterJobsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryFilterJobsResponse proto.InternalMessageInfo
+
+func (m *QueryFilterJobsResponse) GetJobs() []Job {
+	if m != nil {
+		return m.Jobs
+	}
+	return nil
+}
+
+func (m *QueryFilterJobsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetNotificationsRequest is request type for the Query/GetNotifications RPC method
+type QueryGetNotificationsRequest struct {
+	Recipient  string             `protobuf:"bytes,1,opt,name=recipient,proto3" json:"recipient,omitempty"`
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetNotificationsRequest) Reset()         { *m = QueryGetNotificationsRequest{} }
+func (m *QueryGetNotificationsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNotificationsRequest) ProtoMessage()    {}
+func (*QueryGetNotificationsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{18}
+}
+func (m *QueryGetNotificationsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNotificationsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNotificationsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNotificationsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNotificationsRequest.Merge(m, src)
+}
+func (m *QueryGetNotificationsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNotificationsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNotificationsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNotificationsRequest proto.InternalMessageInfo
+
+func (m *QueryGetNotificationsRequest) GetRecipient() string {
+	if m != nil {
+		return m.Recipient
+	}
+	return ""
+}
+
+func (m *QueryGetNotificationsRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetNotificationsResponse is response type for the Query/GetNotifications RPC method
+type QueryGetNotificationsResponse struct {
+	Notifications []*Notification     `protobuf:"bytes,1,rep,name=notifications,proto3" json:"notifications,omitempty"`
+	Pagination    *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetNotificationsResponse) Reset()         { *m = QueryGetNotificationsResponse{} }
+func (m *QueryGetNotificationsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNotificationsResponse) ProtoMessage()    {}
+func (*QueryGetNotificationsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{19}
+}
+func (m *QueryGetNotificationsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNotificationsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNotificationsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNotificationsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNotificationsResponse.Merge(m, src)
+}
+func (m *QueryGetNotificationsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNotificationsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNotificationsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNotificationsResponse proto.InternalMessageInfo
+
+func (m *QueryGetNotificationsResponse) GetNotifications() []*Notification {
+	if m != nil {
+		return m.Notifications
+	}
+	return nil
+}
+
+func (m *QueryGetNotificationsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetNotificationRequest is request type for the Query/GetNotification RPC method
+type QueryGetNotificationRequest struct {
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (m *QueryGetNotificationRequest) Reset()         { *m = QueryGetNotificationRequest{} }
+func (m *QueryGetNotificationRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNotificationRequest) ProtoMessage()    {}
+func (*QueryGetNotificationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{20}
+}
+func (m *QueryGetNotificationRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNotificationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNotificationRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNotificationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNotificationRequest.Merge(m, src)
+}
+func (m *QueryGetNotificationRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNotificationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNotificationRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNotificationRequest proto.InternalMessageInfo
+
+func (m *QueryGetNotificationRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+// QueryGetNotificationResponse is response type for the Query/GetNotification RPC method
+type QueryGetNotificationResponse struct {
+	Notification *Notification `protobuf:"bytes,1,opt,name=notification,proto3" json:"notification,omitempty"`
+}
+
+func (m *QueryGetNotificationResponse) Reset()         { *m = QueryGetNotificationResponse{} }
+func (m *QueryGetNotificationResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetNotificationResponse) ProtoMessage()    {}
+func (*QueryGetNotificationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3763ee24d37bdf90, []int{21}
+}
+func (m *QueryGetNotificationResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetNotificationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetNotificationResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetNotificationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetNotificationResponse.Merge(m, src)
+}
+func (m *QueryGetNotificationResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetNotificationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetNotificationResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetNotificationResponse proto.InternalMessageInfo
+
+func (m *QueryGetNotificationResponse) GetNotification() *Notification {
+	if m != nil {
+		return m.Notification
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "skillchain.job.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "skillchain.job.QueryParamsResponse")
@@ -654,62 +1083,92 @@ func init() {
 	proto.RegisterType((*QueryListJobApplicationsResponse)(nil), "skillchain.job.QueryListJobApplicationsResponse")
 	proto.RegisterType((*QueryListJobsByCreatorRequest)(nil), "skillchain.job.QueryListJobsByCreatorRequest")
 	proto.RegisterType((*QueryListJobsByCreatorResponse)(nil), "skillchain.job.QueryListJobsByCreatorResponse")
+	proto.RegisterType((*QuerySearchJobsRequest)(nil), "skillchain.job.QuerySearchJobsRequest")
+	proto.RegisterType((*QuerySearchJobsResponse)(nil), "skillchain.job.QuerySearchJobsResponse")
+	proto.RegisterType((*QueryFilterJobsRequest)(nil), "skillchain.job.QueryFilterJobsRequest")
+	proto.RegisterType((*QueryFilterJobsResponse)(nil), "skillchain.job.QueryFilterJobsResponse")
+	proto.RegisterType((*QueryGetNotificationsRequest)(nil), "skillchain.job.QueryGetNotificationsRequest")
+	proto.RegisterType((*QueryGetNotificationsResponse)(nil), "skillchain.job.QueryGetNotificationsResponse")
+	proto.RegisterType((*QueryGetNotificationRequest)(nil), "skillchain.job.QueryGetNotificationRequest")
+	proto.RegisterType((*QueryGetNotificationResponse)(nil), "skillchain.job.QueryGetNotificationResponse")
 }
 
 func init() { proto.RegisterFile("skillchain/job/query.proto", fileDescriptor_3763ee24d37bdf90) }
 
 var fileDescriptor_3763ee24d37bdf90 = []byte{
-	// 788 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x96, 0x4b, 0x6f, 0xd3, 0x4a,
-	0x14, 0xc7, 0xe3, 0xb4, 0x4d, 0x6f, 0xa7, 0x57, 0xbd, 0xea, 0xf4, 0xa1, 0xc8, 0xed, 0x4d, 0x2b,
-	0xdf, 0xb6, 0xaa, 0xfa, 0xf0, 0xf4, 0x71, 0x85, 0xa8, 0x04, 0x05, 0x52, 0x8a, 0xd4, 0xaa, 0x88,
-	0x92, 0x4a, 0x2c, 0xd8, 0x44, 0x33, 0x89, 0x95, 0xd8, 0x24, 0x1e, 0x37, 0xe3, 0x50, 0xa2, 0x2a,
-	0x42, 0x42, 0x6c, 0xd8, 0x21, 0xf1, 0x15, 0x58, 0xb0, 0x64, 0xc9, 0x06, 0xd6, 0x5d, 0x56, 0x62,
-	0xc3, 0x0a, 0xa1, 0x16, 0x89, 0x6f, 0x81, 0x90, 0xc7, 0xe3, 0xc4, 0x71, 0xec, 0xc8, 0x54, 0x6c,
-	0x22, 0x7b, 0xe6, 0x7f, 0xce, 0xff, 0x77, 0xc6, 0x73, 0x8e, 0x02, 0x64, 0xf6, 0x44, 0xaf, 0x54,
-	0x0a, 0x65, 0xac, 0x9b, 0xc8, 0xa0, 0x04, 0x1d, 0xd7, 0xb5, 0x5a, 0x43, 0xb5, 0x6a, 0xd4, 0xa6,
-	0x70, 0xa4, 0xbd, 0xa7, 0x1a, 0x94, 0xc8, 0xa3, 0xb8, 0xaa, 0x9b, 0x14, 0xf1, 0x5f, 0x57, 0x22,
-	0x8f, 0x97, 0x68, 0x89, 0xf2, 0x47, 0xe4, 0x3c, 0x89, 0xd5, 0xe9, 0x12, 0xa5, 0xa5, 0x8a, 0x86,
-	0xb0, 0xa5, 0x23, 0x6c, 0x9a, 0xd4, 0xc6, 0xb6, 0x4e, 0x4d, 0x26, 0x76, 0x97, 0x0a, 0x94, 0x55,
-	0x29, 0x43, 0x04, 0x33, 0xcd, 0xf5, 0x43, 0x4f, 0xd7, 0x89, 0x66, 0xe3, 0x75, 0x64, 0xe1, 0x92,
-	0x6e, 0x72, 0xb1, 0xd0, 0x4e, 0x05, 0xf0, 0x2c, 0x5c, 0xc3, 0x55, 0x2f, 0x51, 0x3a, 0xb0, 0x69,
-	0x50, 0x22, 0x76, 0x66, 0x03, 0x3b, 0xd8, 0xb2, 0x2a, 0x7a, 0xc1, 0x97, 0x58, 0x19, 0x07, 0xf0,
-	0xa1, 0x63, 0x7d, 0xc8, 0x13, 0xe6, 0xb4, 0xe3, 0xba, 0xc6, 0x6c, 0xe5, 0x10, 0x8c, 0x75, 0xac,
-	0x32, 0x8b, 0x9a, 0x4c, 0x83, 0x5b, 0x20, 0xe5, 0x1a, 0xa7, 0xa5, 0x59, 0x69, 0x71, 0x78, 0x63,
-	0x52, 0xed, 0x3c, 0x19, 0xd5, 0xd5, 0x67, 0x87, 0xce, 0xbe, 0xce, 0x24, 0xde, 0xfd, 0x78, 0xbf,
-	0x24, 0xe5, 0x44, 0x80, 0x32, 0x21, 0x32, 0x1e, 0xe8, 0xcc, 0xde, 0xa7, 0xc4, 0x33, 0xda, 0x05,
-	0xe3, 0x9d, 0xcb, 0xc2, 0x69, 0x15, 0xf4, 0x1b, 0x94, 0x38, 0x3e, 0x7d, 0x8b, 0xc3, 0x1b, 0x63,
-	0x41, 0x9f, 0x7d, 0x4a, 0xb2, 0xfd, 0x8e, 0x49, 0x8e, 0xcb, 0x94, 0x79, 0x91, 0xfd, 0xa8, 0x4c,
-	0x4f, 0xda, 0xd9, 0xe1, 0x08, 0x48, 0xea, 0x45, 0xce, 0x3a, 0x94, 0x4b, 0xea, 0x45, 0xe5, 0xa6,
-	0x70, 0x6b, 0xc9, 0x84, 0xdb, 0x3c, 0xe8, 0x33, 0x28, 0x11, 0x45, 0x85, 0x99, 0xe5, 0x9c, 0x7d,
-	0xe5, 0x7f, 0x30, 0xd5, 0x82, 0xbd, 0xd3, 0x3e, 0x49, 0xcf, 0x6d, 0x02, 0xa4, 0x0c, 0x4a, 0xf2,
-	0xc2, 0xb1, 0x3f, 0x37, 0x60, 0x50, 0xb2, 0x57, 0x54, 0x34, 0x30, 0x1d, 0x1e, 0x25, 0xcc, 0x77,
-	0xc1, 0xdf, 0xbe, 0xcf, 0xe2, 0x95, 0x3c, 0x15, 0xa4, 0xf0, 0x85, 0x8a, 0xd2, 0x3b, 0xc2, 0x94,
-	0x47, 0x20, 0xd3, 0xb2, 0xb9, 0xdf, 0xf0, 0xa9, 0xbd, 0x8f, 0x0a, 0xa7, 0xc1, 0x90, 0x88, 0x30,
-	0x6d, 0x71, 0x28, 0xed, 0x05, 0x38, 0x09, 0x52, 0xcc, 0xc6, 0x76, 0x9d, 0xa5, 0x93, 0x7c, 0x4b,
-	0xbc, 0x29, 0x04, 0xcc, 0x44, 0xe6, 0x15, 0x15, 0xdc, 0xfa, 0xed, 0x0a, 0x02, 0xec, 0xd7, 0x7d,
-	0x1e, 0xfb, 0x94, 0x84, 0xc1, 0x47, 0x1c, 0x6e, 0x01, 0xcc, 0x46, 0x47, 0xfe, 0x29, 0xbc, 0x2d,
-	0xf0, 0xaf, 0xdf, 0x84, 0x65, 0x1b, 0x3b, 0x35, 0x0d, 0xdb, 0xb4, 0xe6, 0xc1, 0xa5, 0xc1, 0x60,
-	0xc1, 0x5d, 0x11, 0xe7, 0xea, 0xbd, 0x2a, 0x0f, 0x7c, 0x5f, 0x25, 0x10, 0x7a, 0xa5, 0x9b, 0xbe,
-	0xf1, 0xf3, 0x2f, 0x30, 0xc0, 0x33, 0xc2, 0xe7, 0x20, 0xe5, 0xb6, 0x1b, 0x54, 0x82, 0x41, 0xdd,
-	0x1d, 0x2d, 0xff, 0xd7, 0x53, 0xe3, 0xb2, 0x28, 0x2b, 0x2f, 0x3e, 0x7f, 0x7f, 0x93, 0x5c, 0x80,
-	0x73, 0xe8, 0xc8, 0x11, 0xef, 0x38, 0xe2, 0x03, 0x4c, 0x50, 0xe8, 0xf0, 0x81, 0x2f, 0x25, 0x30,
-	0x28, 0xea, 0x82, 0xe1, 0xe9, 0x3b, 0x9b, 0x5d, 0x9e, 0xeb, 0x2d, 0x12, 0x10, 0x2a, 0x87, 0x58,
-	0x84, 0x0b, 0xbd, 0x21, 0x2a, 0x3a, 0xb3, 0xf3, 0x06, 0x25, 0xf0, 0x95, 0x04, 0x06, 0x45, 0x43,
-	0x47, 0x60, 0x74, 0x4e, 0x85, 0x08, 0x8c, 0xc0, 0x4c, 0x50, 0x36, 0x39, 0xc6, 0x2a, 0x5c, 0xee,
-	0x8d, 0xc1, 0xca, 0xf4, 0xc4, 0xc1, 0x40, 0xa7, 0x7a, 0xb1, 0x09, 0xdf, 0x4a, 0xe0, 0x9f, 0x40,
-	0x9f, 0xc3, 0xe5, 0xc8, 0xaa, 0xbb, 0x67, 0x88, 0xbc, 0x12, 0x4f, 0x2c, 0x18, 0xaf, 0x71, 0xc6,
-	0x35, 0xa8, 0xc6, 0x38, 0x2a, 0xdf, 0x8d, 0x86, 0x1f, 0x25, 0x00, 0xbb, 0xfb, 0x19, 0xaa, 0x91,
-	0xe6, 0xa1, 0x03, 0x45, 0x46, 0xb1, 0xf5, 0x82, 0xf7, 0x1e, 0xe7, 0xbd, 0x0d, 0xb7, 0x63, 0xf0,
-	0x56, 0x1b, 0x7e, 0x64, 0x86, 0x4e, 0x5b, 0xa3, 0xaa, 0x09, 0x3f, 0x49, 0x60, 0x2c, 0xa4, 0xe3,
-	0x21, 0xea, 0x75, 0xc1, 0xc2, 0x2a, 0x58, 0x8b, 0x1f, 0x20, 0x4a, 0xb8, 0xcb, 0x4b, 0xd8, 0x86,
-	0x37, 0xe2, 0xdd, 0xce, 0x40, 0x0d, 0xee, 0x08, 0x6b, 0xc2, 0x0f, 0x12, 0x18, 0xed, 0x1a, 0x09,
-	0x70, 0xb5, 0x17, 0x4d, 0xd7, 0xd4, 0x91, 0xd5, 0xb8, 0xf2, 0xab, 0xa1, 0xb3, 0x3c, 0x69, 0xe4,
-	0xc5, 0x1c, 0x43, 0xa7, 0xe2, 0xa1, 0x99, 0xdd, 0x3b, 0xbb, 0xc8, 0x48, 0xe7, 0x17, 0x19, 0xe9,
-	0xdb, 0x45, 0x46, 0x7a, 0x7d, 0x99, 0x49, 0x9c, 0x5f, 0x66, 0x12, 0x5f, 0x2e, 0x33, 0x89, 0xc7,
-	0xa8, 0xa4, 0xdb, 0xe5, 0x3a, 0x51, 0x0b, 0xb4, 0x1a, 0xed, 0xf0, 0x8c, 0x7b, 0xd8, 0x0d, 0x4b,
-	0x63, 0x24, 0xc5, 0xff, 0x82, 0x6c, 0xfe, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x8d, 0x3a, 0x37, 0x6d,
-	0x7c, 0x09, 0x00, 0x00,
+	// 1138 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x97, 0xcd, 0x6f, 0x1b, 0x45,
+	0x14, 0xc0, 0xb3, 0xf9, 0x54, 0x5e, 0xfa, 0x41, 0x27, 0x69, 0x88, 0x36, 0xa9, 0x13, 0x96, 0x34,
+	0x0d, 0xf9, 0xd8, 0x6d, 0x52, 0x84, 0xa8, 0x04, 0xa5, 0xb8, 0x34, 0x55, 0xa3, 0x02, 0xc1, 0x45,
+	0x1c, 0xb8, 0x98, 0x5d, 0x7b, 0xea, 0x8c, 0xb1, 0x77, 0xdc, 0xdd, 0x09, 0x8d, 0x15, 0x59, 0x08,
+	0xd4, 0x0b, 0xb7, 0x22, 0x2e, 0x9c, 0x11, 0x07, 0x0e, 0x1c, 0x38, 0x72, 0x81, 0x73, 0x4f, 0xa8,
+	0x12, 0x17, 0x4e, 0x08, 0x25, 0x95, 0xf8, 0x37, 0xd0, 0xce, 0xbe, 0xb5, 0xf7, 0xd3, 0x59, 0x42,
+	0x24, 0x2e, 0xd6, 0xee, 0xbc, 0xaf, 0xdf, 0x7b, 0x33, 0x3b, 0xef, 0x19, 0x54, 0xf7, 0x53, 0xd6,
+	0x68, 0x54, 0x76, 0x4d, 0x66, 0x1b, 0x75, 0x6e, 0x19, 0x0f, 0xf7, 0xa8, 0xd3, 0xd6, 0x5b, 0x0e,
+	0x17, 0x9c, 0x9c, 0xeb, 0xc9, 0xf4, 0x3a, 0xb7, 0xd4, 0x0b, 0x66, 0x93, 0xd9, 0xdc, 0x90, 0xbf,
+	0xbe, 0x8a, 0x3a, 0x55, 0xe3, 0x35, 0x2e, 0x1f, 0x0d, 0xef, 0x09, 0x57, 0xe7, 0x6a, 0x9c, 0xd7,
+	0x1a, 0xd4, 0x30, 0x5b, 0xcc, 0x30, 0x6d, 0x9b, 0x0b, 0x53, 0x30, 0x6e, 0xbb, 0x28, 0x5d, 0xa9,
+	0x70, 0xb7, 0xc9, 0x5d, 0xc3, 0x32, 0x5d, 0xea, 0xc7, 0x33, 0x3e, 0xdb, 0xb0, 0xa8, 0x30, 0x37,
+	0x8c, 0x96, 0x59, 0x63, 0xb6, 0x54, 0x46, 0xdd, 0xd9, 0x18, 0x5e, 0xcb, 0x74, 0xcc, 0x66, 0xe0,
+	0x68, 0x26, 0x26, 0xac, 0x73, 0x0b, 0x25, 0x0b, 0x31, 0x89, 0xd9, 0x6a, 0x35, 0x58, 0x25, 0xec,
+	0xf8, 0xa5, 0x98, 0x86, 0xcd, 0x05, 0x7b, 0x10, 0x51, 0xd1, 0xa6, 0x80, 0x7c, 0xe0, 0xd1, 0xed,
+	0xc8, 0x98, 0x25, 0xfa, 0x70, 0x8f, 0xba, 0x42, 0xdb, 0x81, 0xc9, 0xc8, 0xaa, 0xdb, 0xe2, 0xb6,
+	0x4b, 0xc9, 0x75, 0x18, 0xf5, 0xd9, 0x66, 0x94, 0x05, 0x65, 0x79, 0x62, 0x73, 0x5a, 0x8f, 0x16,
+	0x4f, 0xf7, 0xf5, 0x8b, 0xe3, 0x4f, 0xff, 0x9c, 0x1f, 0xf8, 0xe1, 0xef, 0x9f, 0x56, 0x94, 0x12,
+	0x1a, 0x68, 0x17, 0xd1, 0xe3, 0x3d, 0xe6, 0x8a, 0x6d, 0x6e, 0x05, 0x81, 0x6e, 0xc3, 0x54, 0x74,
+	0x19, 0x23, 0xad, 0xc3, 0x70, 0x9d, 0x5b, 0x5e, 0x9c, 0xa1, 0xe5, 0x89, 0xcd, 0xc9, 0x78, 0x9c,
+	0x6d, 0x6e, 0x15, 0x87, 0xbd, 0x20, 0x25, 0xa9, 0xa6, 0x5d, 0x46, 0xef, 0xf7, 0x77, 0xf9, 0xa3,
+	0x9e, 0x77, 0x72, 0x0e, 0x06, 0x59, 0x55, 0xb2, 0x8e, 0x97, 0x06, 0x59, 0x55, 0x7b, 0x13, 0xa3,
+	0x75, 0xd5, 0x30, 0xda, 0x65, 0x18, 0xaa, 0x73, 0x0b, 0x93, 0x4a, 0x0b, 0x56, 0xf2, 0xe4, 0xda,
+	0xab, 0x30, 0xdb, 0x85, 0x7d, 0xbb, 0x57, 0xec, 0x20, 0xda, 0x45, 0x18, 0xad, 0x73, 0xab, 0x8c,
+	0x11, 0x87, 0x4b, 0x23, 0x75, 0x6e, 0xdd, 0xad, 0x6a, 0x14, 0xe6, 0xd2, 0xad, 0x30, 0xf8, 0x6d,
+	0x38, 0x13, 0xda, 0xb9, 0x20, 0xe5, 0xd9, 0x38, 0x45, 0xc8, 0x14, 0x53, 0x8f, 0x98, 0x69, 0x1f,
+	0x41, 0xa1, 0x1b, 0xe6, 0xdd, 0x76, 0x48, 0x3b, 0xd8, 0x54, 0x32, 0x07, 0xe3, 0x68, 0x61, 0x0b,
+	0x2c, 0x4a, 0x6f, 0x81, 0x4c, 0xc3, 0xa8, 0x2b, 0x4c, 0xb1, 0xe7, 0xce, 0x0c, 0x4a, 0x11, 0xbe,
+	0x69, 0x16, 0xcc, 0x67, 0xfa, 0xc5, 0x0c, 0xde, 0xfa, 0xd7, 0x19, 0xc4, 0xd8, 0x5f, 0x0f, 0xc5,
+	0xd8, 0xe6, 0x56, 0x1a, 0x7c, 0x46, 0x71, 0x2b, 0xb0, 0x90, 0x6d, 0x79, 0x5a, 0x78, 0xd7, 0xe1,
+	0x52, 0x38, 0x88, 0x5b, 0x6c, 0xdf, 0x72, 0xa8, 0x29, 0xb8, 0x13, 0xc0, 0xcd, 0xc0, 0x58, 0xc5,
+	0x5f, 0xc1, 0xba, 0x06, 0xaf, 0xda, 0xfb, 0xa1, 0x5d, 0x89, 0x99, 0x9e, 0xec, 0xa4, 0x7f, 0xa1,
+	0xc0, 0xb4, 0x7f, 0x86, 0xa9, 0xe9, 0x54, 0x76, 0x3d, 0x9f, 0x01, 0xc5, 0x3c, 0x4c, 0xb8, 0x72,
+	0xb1, 0x2c, 0xa8, 0xd3, 0x44, 0x12, 0xf0, 0x97, 0x3e, 0xa4, 0x4e, 0x93, 0x6c, 0x01, 0xf4, 0xee,
+	0x1e, 0xb9, 0xcd, 0x13, 0x9b, 0x4b, 0xba, 0x7f, 0x51, 0xe9, 0xde, 0x45, 0xa5, 0xfb, 0x17, 0x23,
+	0x5e, 0x54, 0xfa, 0x8e, 0x59, 0xa3, 0xe8, 0xbc, 0x14, 0xb2, 0xd4, 0xbe, 0x56, 0xe0, 0xc5, 0x04,
+	0xc3, 0x89, 0xd2, 0x21, 0x77, 0x52, 0x90, 0xae, 0x1c, 0x8b, 0xe4, 0xc7, 0x8a, 0x30, 0xfd, 0x16,
+	0xd4, 0x65, 0x8b, 0x35, 0x04, 0x75, 0xc2, 0x75, 0x99, 0x82, 0x11, 0xc1, 0x44, 0x83, 0x62, 0x45,
+	0xfc, 0x17, 0x72, 0x09, 0xa0, 0xc9, 0xec, 0xb2, 0xb5, 0x57, 0xad, 0x51, 0x81, 0x67, 0x7e, 0xbc,
+	0xc9, 0xec, 0xa2, 0x5c, 0x90, 0x62, 0x73, 0x3f, 0x10, 0x0f, 0xa1, 0xd8, 0xdc, 0x47, 0x71, 0x68,
+	0xc7, 0x87, 0x23, 0x3b, 0x1e, 0x2b, 0xf2, 0xc8, 0x7f, 0x2f, 0x72, 0x38, 0xa1, 0xff, 0xb9, 0xc8,
+	0x8f, 0x15, 0xbc, 0xcb, 0xee, 0x50, 0xf1, 0x5e, 0xa8, 0x97, 0x84, 0xaf, 0x18, 0x87, 0x56, 0x58,
+	0x8b, 0xd1, 0xde, 0x15, 0xd3, 0x5d, 0x38, 0xb5, 0xf3, 0xf7, 0xa3, 0x82, 0x1f, 0x64, 0x12, 0x03,
+	0x0b, 0x54, 0x84, 0xb3, 0xe1, 0x5e, 0x17, 0x54, 0x6a, 0x2e, 0x5e, 0xa9, 0xb0, 0x75, 0x29, 0x6a,
+	0x72, 0x7a, 0x55, 0x5b, 0xc7, 0xb6, 0x11, 0xa3, 0xcd, 0x6a, 0x52, 0x9f, 0xa4, 0xd7, 0xb8, 0x9b,
+	0xdb, 0x4d, 0x38, 0x13, 0x06, 0xc5, 0xae, 0xd5, 0x3f, 0xb5, 0x88, 0xc5, 0xe6, 0xf3, 0xb3, 0x30,
+	0x22, 0x43, 0x90, 0xcf, 0x61, 0xd4, 0x6f, 0xd9, 0x44, 0x8b, 0xdb, 0x27, 0xa7, 0x02, 0xf5, 0xe5,
+	0xbe, 0x3a, 0x3e, 0x9e, 0xb6, 0xf6, 0xe5, 0xef, 0xcf, 0xbf, 0x19, 0x5c, 0x22, 0x8b, 0xc6, 0x7d,
+	0x4f, 0xf9, 0x96, 0xa7, 0x7c, 0xcf, 0xb4, 0x8c, 0xd4, 0x19, 0x87, 0x3c, 0x56, 0x60, 0x0c, 0xef,
+	0x46, 0x92, 0xee, 0x3e, 0x3a, 0x30, 0xa8, 0x8b, 0xfd, 0x95, 0x10, 0x42, 0x97, 0x10, 0xcb, 0x64,
+	0xa9, 0x3f, 0x44, 0x83, 0xb9, 0xa2, 0x5c, 0xe7, 0x16, 0xf9, 0x4a, 0x81, 0x31, 0x1c, 0x0a, 0x32,
+	0x30, 0xa2, 0x93, 0x45, 0x06, 0x46, 0x6c, 0xae, 0xd0, 0xae, 0x49, 0x8c, 0x75, 0xb2, 0xda, 0x1f,
+	0xc3, 0xdd, 0xe5, 0x8f, 0x3c, 0x0c, 0xe3, 0x80, 0x55, 0x3b, 0xe4, 0x7b, 0x05, 0xce, 0xc7, 0x66,
+	0x05, 0xb2, 0x9a, 0x99, 0x75, 0x72, 0x0e, 0x51, 0xd7, 0xf2, 0x29, 0x23, 0xe3, 0x6b, 0x92, 0xf1,
+	0x2a, 0xd1, 0x73, 0x94, 0x2a, 0xd4, 0x15, 0xc9, 0x2f, 0x0a, 0x90, 0xe4, 0x4c, 0x40, 0xf4, 0xcc,
+	0xe0, 0xa9, 0x43, 0x89, 0x6a, 0xe4, 0xd6, 0x47, 0xde, 0x2d, 0xc9, 0x7b, 0x93, 0xdc, 0xc8, 0xc1,
+	0xdb, 0x6c, 0x87, 0x91, 0x5d, 0xe3, 0xa0, 0x3b, 0xee, 0x74, 0xc8, 0xaf, 0x0a, 0x4c, 0xa6, 0x4c,
+	0x0d, 0xc4, 0xe8, 0x77, 0xc0, 0xd2, 0x32, 0xb8, 0x9a, 0xdf, 0x00, 0x53, 0x78, 0x47, 0xa6, 0x70,
+	0x83, 0xbc, 0x91, 0xef, 0x74, 0xc6, 0x72, 0xf0, 0xc7, 0xa0, 0x0e, 0xf9, 0x59, 0x81, 0x0b, 0x89,
+	0xb1, 0x82, 0xac, 0xf7, 0xa3, 0x49, 0x4c, 0x2e, 0xaa, 0x9e, 0x57, 0xfd, 0x64, 0xe8, 0x6e, 0xd9,
+	0x6a, 0x97, 0xb1, 0x33, 0x1a, 0x07, 0xf8, 0xd0, 0x21, 0x4f, 0x14, 0x80, 0xde, 0xec, 0x40, 0x96,
+	0xd2, 0x3f, 0xa6, 0xf8, 0x80, 0xa3, 0x5e, 0x39, 0x56, 0x0f, 0x29, 0x37, 0x24, 0xe5, 0x2a, 0x79,
+	0xe5, 0x98, 0xef, 0xce, 0x9f, 0x96, 0x64, 0x8f, 0xf4, 0x90, 0x7a, 0x9d, 0x36, 0x03, 0x29, 0x31,
+	0x5b, 0x64, 0x20, 0x25, 0x5b, 0x76, 0x5e, 0xa4, 0x07, 0xd2, 0xd2, 0x47, 0xfa, 0x4e, 0x81, 0x17,
+	0xe2, 0x1d, 0x8e, 0xa4, 0x7f, 0xdc, 0x19, 0xfd, 0x58, 0x5d, 0xcf, 0xa9, 0x9d, 0x80, 0xec, 0xf3,
+	0xc7, 0xd1, 0x35, 0x0e, 0xba, 0x2d, 0xbd, 0x43, 0xbe, 0x55, 0xe0, 0x7c, 0xcc, 0x5f, 0xc6, 0x6d,
+	0x95, 0xde, 0xfe, 0xd4, 0xb5, 0x7c, 0xca, 0x48, 0xb8, 0x22, 0x09, 0x17, 0x89, 0x76, 0x0c, 0x21,
+	0xab, 0x76, 0x8a, 0x77, 0x9f, 0x1e, 0x16, 0x94, 0x67, 0x87, 0x05, 0xe5, 0xaf, 0xc3, 0x82, 0xf2,
+	0xe4, 0xa8, 0x30, 0xf0, 0xec, 0xa8, 0x30, 0xf0, 0xc7, 0x51, 0x61, 0xe0, 0x63, 0xa3, 0xc6, 0xc4,
+	0xee, 0x9e, 0xa5, 0x57, 0x78, 0x33, 0x7b, 0x3b, 0xf6, 0xa5, 0x5f, 0xd1, 0x6e, 0x51, 0xd7, 0x1a,
+	0x95, 0x7f, 0x96, 0xaf, 0xfd, 0x13, 0x00, 0x00, 0xff, 0xff, 0x50, 0x2c, 0x2d, 0x5a, 0x49, 0x10,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -738,6 +1197,14 @@ type QueryClient interface {
 	ListJobApplications(ctx context.Context, in *QueryListJobApplicationsRequest, opts ...grpc.CallOption) (*QueryListJobApplicationsResponse, error)
 	// Queries jobs created by a specific address
 	ListJobsByCreator(ctx context.Context, in *QueryListJobsByCreatorRequest, opts ...grpc.CallOption) (*QueryListJobsByCreatorResponse, error)
+	// Search jobs by title, description, or budget range
+	SearchJobs(ctx context.Context, in *QuerySearchJobsRequest, opts ...grpc.CallOption) (*QuerySearchJobsResponse, error)
+	// Filter jobs by various criteria
+	FilterJobs(ctx context.Context, in *QueryFilterJobsRequest, opts ...grpc.CallOption) (*QueryFilterJobsResponse, error)
+	// GetNotifications returns all notifications for a recipient
+	GetNotifications(ctx context.Context, in *QueryGetNotificationsRequest, opts ...grpc.CallOption) (*QueryGetNotificationsResponse, error)
+	// GetNotification returns a specific notification by ID
+	GetNotification(ctx context.Context, in *QueryGetNotificationRequest, opts ...grpc.CallOption) (*QueryGetNotificationResponse, error)
 }
 
 type queryClient struct {
@@ -811,6 +1278,42 @@ func (c *queryClient) ListJobsByCreator(ctx context.Context, in *QueryListJobsBy
 	return out, nil
 }
 
+func (c *queryClient) SearchJobs(ctx context.Context, in *QuerySearchJobsRequest, opts ...grpc.CallOption) (*QuerySearchJobsResponse, error) {
+	out := new(QuerySearchJobsResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.job.Query/SearchJobs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) FilterJobs(ctx context.Context, in *QueryFilterJobsRequest, opts ...grpc.CallOption) (*QueryFilterJobsResponse, error) {
+	out := new(QueryFilterJobsResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.job.Query/FilterJobs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetNotifications(ctx context.Context, in *QueryGetNotificationsRequest, opts ...grpc.CallOption) (*QueryGetNotificationsResponse, error) {
+	out := new(QueryGetNotificationsResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.job.Query/GetNotifications", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetNotification(ctx context.Context, in *QueryGetNotificationRequest, opts ...grpc.CallOption) (*QueryGetNotificationResponse, error) {
+	out := new(QueryGetNotificationResponse)
+	err := c.cc.Invoke(ctx, "/skillchain.job.Query/GetNotification", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -827,6 +1330,14 @@ type QueryServer interface {
 	ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error)
 	// Queries jobs created by a specific address
 	ListJobsByCreator(context.Context, *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error)
+	// Search jobs by title, description, or budget range
+	SearchJobs(context.Context, *QuerySearchJobsRequest) (*QuerySearchJobsResponse, error)
+	// Filter jobs by various criteria
+	FilterJobs(context.Context, *QueryFilterJobsRequest) (*QueryFilterJobsResponse, error)
+	// GetNotifications returns all notifications for a recipient
+	GetNotifications(context.Context, *QueryGetNotificationsRequest) (*QueryGetNotificationsResponse, error)
+	// GetNotification returns a specific notification by ID
+	GetNotification(context.Context, *QueryGetNotificationRequest) (*QueryGetNotificationResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -853,6 +1364,18 @@ func (*UnimplementedQueryServer) ListJobApplications(ctx context.Context, req *Q
 }
 func (*UnimplementedQueryServer) ListJobsByCreator(ctx context.Context, req *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobsByCreator not implemented")
+}
+func (*UnimplementedQueryServer) SearchJobs(ctx context.Context, req *QuerySearchJobsRequest) (*QuerySearchJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchJobs not implemented")
+}
+func (*UnimplementedQueryServer) FilterJobs(ctx context.Context, req *QueryFilterJobsRequest) (*QueryFilterJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterJobs not implemented")
+}
+func (*UnimplementedQueryServer) GetNotifications(ctx context.Context, req *QueryGetNotificationsRequest) (*QueryGetNotificationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNotifications not implemented")
+}
+func (*UnimplementedQueryServer) GetNotification(ctx context.Context, req *QueryGetNotificationRequest) (*QueryGetNotificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNotification not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -985,6 +1508,78 @@ func _Query_ListJobsByCreator_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_SearchJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuerySearchJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).SearchJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.job.Query/SearchJobs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).SearchJobs(ctx, req.(*QuerySearchJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_FilterJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryFilterJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FilterJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.job.Query/FilterJobs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FilterJobs(ctx, req.(*QueryFilterJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetNotifications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNotificationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetNotifications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.job.Query/GetNotifications",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetNotifications(ctx, req.(*QueryGetNotificationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNotificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/skillchain.job.Query/GetNotification",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetNotification(ctx, req.(*QueryGetNotificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "skillchain.job.Query",
@@ -1017,6 +1612,22 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobsByCreator",
 			Handler:    _Query_ListJobsByCreator_Handler,
+		},
+		{
+			MethodName: "SearchJobs",
+			Handler:    _Query_SearchJobs_Handler,
+		},
+		{
+			MethodName: "FilterJobs",
+			Handler:    _Query_FilterJobs_Handler,
+		},
+		{
+			MethodName: "GetNotifications",
+			Handler:    _Query_GetNotifications_Handler,
+		},
+		{
+			MethodName: "GetNotification",
+			Handler:    _Query_GetNotification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1475,6 +2086,365 @@ func (m *QueryListJobsByCreatorResponse) MarshalToSizedBuffer(dAtA []byte) (int,
 	return len(dAtA) - i, nil
 }
 
+func (m *QuerySearchJobsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QuerySearchJobsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QuerySearchJobsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.SearchTerm) > 0 {
+		i -= len(m.SearchTerm)
+		copy(dAtA[i:], m.SearchTerm)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.SearchTerm)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QuerySearchJobsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QuerySearchJobsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QuerySearchJobsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Jobs) > 0 {
+		for iNdEx := len(m.Jobs) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Jobs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryFilterJobsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryFilterJobsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryFilterJobsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.MaxBudget) > 0 {
+		i -= len(m.MaxBudget)
+		copy(dAtA[i:], m.MaxBudget)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.MaxBudget)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.MinBudget) > 0 {
+		i -= len(m.MinBudget)
+		copy(dAtA[i:], m.MinBudget)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.MinBudget)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Title) > 0 {
+		i -= len(m.Title)
+		copy(dAtA[i:], m.Title)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Title)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryFilterJobsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryFilterJobsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryFilterJobsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Jobs) > 0 {
+		for iNdEx := len(m.Jobs) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Jobs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNotificationsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNotificationsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNotificationsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Recipient) > 0 {
+		i -= len(m.Recipient)
+		copy(dAtA[i:], m.Recipient)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Recipient)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNotificationsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNotificationsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNotificationsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Notifications) > 0 {
+		for iNdEx := len(m.Notifications) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Notifications[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNotificationRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNotificationRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNotificationRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Id)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetNotificationResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetNotificationResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetNotificationResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Notification != nil {
+		{
+			size, err := m.Notification.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1666,6 +2636,152 @@ func (m *QueryListJobsByCreatorResponse) Size() (n int) {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
+	}
+	return n
+}
+
+func (m *QuerySearchJobsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.SearchTerm)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QuerySearchJobsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Jobs) > 0 {
+		for _, e := range m.Jobs {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryFilterJobsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Title)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.MinBudget)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.MaxBudget)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryFilterJobsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Jobs) > 0 {
+		for _, e := range m.Jobs {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetNotificationsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Recipient)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetNotificationsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Notifications) > 0 {
+		for _, e := range m.Notifications {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetNotificationRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Id)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetNotificationResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Notification != nil {
+		l = m.Notification.Size()
+		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
@@ -2757,6 +3873,984 @@ func (m *QueryListJobsByCreatorResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Jobs = append(m.Jobs, Job{})
 			if err := m.Jobs[len(m.Jobs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QuerySearchJobsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QuerySearchJobsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QuerySearchJobsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SearchTerm", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SearchTerm = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QuerySearchJobsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QuerySearchJobsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QuerySearchJobsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Jobs", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Jobs = append(m.Jobs, Job{})
+			if err := m.Jobs[len(m.Jobs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryFilterJobsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryFilterJobsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryFilterJobsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Title = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MinBudget", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.MinBudget = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxBudget", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.MaxBudget = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryFilterJobsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryFilterJobsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryFilterJobsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Jobs", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Jobs = append(m.Jobs, Job{})
+			if err := m.Jobs[len(m.Jobs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNotificationsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNotificationsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNotificationsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Recipient", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Recipient = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNotificationsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNotificationsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNotificationsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Notifications", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Notifications = append(m.Notifications, &Notification{})
+			if err := m.Notifications[len(m.Notifications)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNotificationRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNotificationRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNotificationRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetNotificationResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetNotificationResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetNotificationResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Notification", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Notification == nil {
+				m.Notification = &Notification{}
+			}
+			if err := m.Notification.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

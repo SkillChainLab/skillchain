@@ -26,6 +26,10 @@ const (
 	Query_ListMyApplications_FullMethodName  = "/skillchain.job.Query/ListMyApplications"
 	Query_ListJobApplications_FullMethodName = "/skillchain.job.Query/ListJobApplications"
 	Query_ListJobsByCreator_FullMethodName   = "/skillchain.job.Query/ListJobsByCreator"
+	Query_SearchJobs_FullMethodName          = "/skillchain.job.Query/SearchJobs"
+	Query_FilterJobs_FullMethodName          = "/skillchain.job.Query/FilterJobs"
+	Query_GetNotifications_FullMethodName    = "/skillchain.job.Query/GetNotifications"
+	Query_GetNotification_FullMethodName     = "/skillchain.job.Query/GetNotification"
 )
 
 // QueryClient is the client API for Query service.
@@ -46,6 +50,14 @@ type QueryClient interface {
 	ListJobApplications(ctx context.Context, in *QueryListJobApplicationsRequest, opts ...grpc.CallOption) (*QueryListJobApplicationsResponse, error)
 	// Queries jobs created by a specific address
 	ListJobsByCreator(ctx context.Context, in *QueryListJobsByCreatorRequest, opts ...grpc.CallOption) (*QueryListJobsByCreatorResponse, error)
+	// Search jobs by title, description, or budget range
+	SearchJobs(ctx context.Context, in *QuerySearchJobsRequest, opts ...grpc.CallOption) (*QuerySearchJobsResponse, error)
+	// Filter jobs by various criteria
+	FilterJobs(ctx context.Context, in *QueryFilterJobsRequest, opts ...grpc.CallOption) (*QueryFilterJobsResponse, error)
+	// GetNotifications returns all notifications for a recipient
+	GetNotifications(ctx context.Context, in *QueryGetNotificationsRequest, opts ...grpc.CallOption) (*QueryGetNotificationsResponse, error)
+	// GetNotification returns a specific notification by ID
+	GetNotification(ctx context.Context, in *QueryGetNotificationRequest, opts ...grpc.CallOption) (*QueryGetNotificationResponse, error)
 }
 
 type queryClient struct {
@@ -119,6 +131,42 @@ func (c *queryClient) ListJobsByCreator(ctx context.Context, in *QueryListJobsBy
 	return out, nil
 }
 
+func (c *queryClient) SearchJobs(ctx context.Context, in *QuerySearchJobsRequest, opts ...grpc.CallOption) (*QuerySearchJobsResponse, error) {
+	out := new(QuerySearchJobsResponse)
+	err := c.cc.Invoke(ctx, Query_SearchJobs_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) FilterJobs(ctx context.Context, in *QueryFilterJobsRequest, opts ...grpc.CallOption) (*QueryFilterJobsResponse, error) {
+	out := new(QueryFilterJobsResponse)
+	err := c.cc.Invoke(ctx, Query_FilterJobs_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetNotifications(ctx context.Context, in *QueryGetNotificationsRequest, opts ...grpc.CallOption) (*QueryGetNotificationsResponse, error) {
+	out := new(QueryGetNotificationsResponse)
+	err := c.cc.Invoke(ctx, Query_GetNotifications_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetNotification(ctx context.Context, in *QueryGetNotificationRequest, opts ...grpc.CallOption) (*QueryGetNotificationResponse, error) {
+	out := new(QueryGetNotificationResponse)
+	err := c.cc.Invoke(ctx, Query_GetNotification_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -137,6 +185,14 @@ type QueryServer interface {
 	ListJobApplications(context.Context, *QueryListJobApplicationsRequest) (*QueryListJobApplicationsResponse, error)
 	// Queries jobs created by a specific address
 	ListJobsByCreator(context.Context, *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error)
+	// Search jobs by title, description, or budget range
+	SearchJobs(context.Context, *QuerySearchJobsRequest) (*QuerySearchJobsResponse, error)
+	// Filter jobs by various criteria
+	FilterJobs(context.Context, *QueryFilterJobsRequest) (*QueryFilterJobsResponse, error)
+	// GetNotifications returns all notifications for a recipient
+	GetNotifications(context.Context, *QueryGetNotificationsRequest) (*QueryGetNotificationsResponse, error)
+	// GetNotification returns a specific notification by ID
+	GetNotification(context.Context, *QueryGetNotificationRequest) (*QueryGetNotificationResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -164,6 +220,18 @@ func (UnimplementedQueryServer) ListJobApplications(context.Context, *QueryListJ
 }
 func (UnimplementedQueryServer) ListJobsByCreator(context.Context, *QueryListJobsByCreatorRequest) (*QueryListJobsByCreatorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListJobsByCreator not implemented")
+}
+func (UnimplementedQueryServer) SearchJobs(context.Context, *QuerySearchJobsRequest) (*QuerySearchJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchJobs not implemented")
+}
+func (UnimplementedQueryServer) FilterJobs(context.Context, *QueryFilterJobsRequest) (*QueryFilterJobsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FilterJobs not implemented")
+}
+func (UnimplementedQueryServer) GetNotifications(context.Context, *QueryGetNotificationsRequest) (*QueryGetNotificationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNotifications not implemented")
+}
+func (UnimplementedQueryServer) GetNotification(context.Context, *QueryGetNotificationRequest) (*QueryGetNotificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNotification not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -304,6 +372,78 @@ func _Query_ListJobsByCreator_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_SearchJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuerySearchJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).SearchJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_SearchJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).SearchJobs(ctx, req.(*QuerySearchJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_FilterJobs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryFilterJobsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FilterJobs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_FilterJobs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FilterJobs(ctx, req.(*QueryFilterJobsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetNotifications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNotificationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetNotifications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetNotifications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetNotifications(ctx, req.(*QueryGetNotificationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetNotificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetNotification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetNotification(ctx, req.(*QueryGetNotificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -338,6 +478,22 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListJobsByCreator",
 			Handler:    _Query_ListJobsByCreator_Handler,
+		},
+		{
+			MethodName: "SearchJobs",
+			Handler:    _Query_SearchJobs_Handler,
+		},
+		{
+			MethodName: "FilterJobs",
+			Handler:    _Query_FilterJobs_Handler,
+		},
+		{
+			MethodName: "GetNotifications",
+			Handler:    _Query_GetNotifications_Handler,
+		},
+		{
+			MethodName: "GetNotification",
+			Handler:    _Query_GetNotification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

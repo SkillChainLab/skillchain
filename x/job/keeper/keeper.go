@@ -169,3 +169,10 @@ func (k Keeper) SetApplicationCount(ctx context.Context, count uint64) {
 	binary.BigEndian.PutUint64(bz, count)
 	store.Set(types.ApplicationCountKey(), bz)
 }
+
+func (k Keeper) SetJob(ctx context.Context, job types.Job) {
+	store := k.getStore(ctx)
+	key := types.JobKey(job.Id)
+	bz := k.cdc.MustMarshal(&job)
+	store.Set(key, bz)
+}

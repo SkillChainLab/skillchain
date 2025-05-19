@@ -23,6 +23,7 @@ const (
 	Msg_CreateJob_FullMethodName         = "/skillchain.job.Msg/CreateJob"
 	Msg_ApplyJob_FullMethodName          = "/skillchain.job.Msg/ApplyJob"
 	Msg_ReviewApplication_FullMethodName = "/skillchain.job.Msg/ReviewApplication"
+	Msg_UpdateJob_FullMethodName         = "/skillchain.job.Msg/UpdateJob"
 )
 
 // MsgClient is the client API for Msg service.
@@ -35,6 +36,7 @@ type MsgClient interface {
 	CreateJob(ctx context.Context, in *MsgCreateJob, opts ...grpc.CallOption) (*MsgCreateJobResponse, error)
 	ApplyJob(ctx context.Context, in *MsgApplyJob, opts ...grpc.CallOption) (*MsgApplyJobResponse, error)
 	ReviewApplication(ctx context.Context, in *MsgReviewApplication, opts ...grpc.CallOption) (*MsgReviewApplicationResponse, error)
+	UpdateJob(ctx context.Context, in *MsgUpdateJob, opts ...grpc.CallOption) (*MsgUpdateJobResponse, error)
 }
 
 type msgClient struct {
@@ -81,6 +83,15 @@ func (c *msgClient) ReviewApplication(ctx context.Context, in *MsgReviewApplicat
 	return out, nil
 }
 
+func (c *msgClient) UpdateJob(ctx context.Context, in *MsgUpdateJob, opts ...grpc.CallOption) (*MsgUpdateJobResponse, error) {
+	out := new(MsgUpdateJobResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateJob_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -91,6 +102,7 @@ type MsgServer interface {
 	CreateJob(context.Context, *MsgCreateJob) (*MsgCreateJobResponse, error)
 	ApplyJob(context.Context, *MsgApplyJob) (*MsgApplyJobResponse, error)
 	ReviewApplication(context.Context, *MsgReviewApplication) (*MsgReviewApplicationResponse, error)
+	UpdateJob(context.Context, *MsgUpdateJob) (*MsgUpdateJobResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -109,6 +121,9 @@ func (UnimplementedMsgServer) ApplyJob(context.Context, *MsgApplyJob) (*MsgApply
 }
 func (UnimplementedMsgServer) ReviewApplication(context.Context, *MsgReviewApplication) (*MsgReviewApplicationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReviewApplication not implemented")
+}
+func (UnimplementedMsgServer) UpdateJob(context.Context, *MsgUpdateJob) (*MsgUpdateJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateJob not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -195,6 +210,24 @@ func _Msg_ReviewApplication_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_UpdateJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateJob)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateJob(ctx, req.(*MsgUpdateJob))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -217,6 +250,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReviewApplication",
 			Handler:    _Msg_ReviewApplication_Handler,
+		},
+		{
+			MethodName: "UpdateJob",
+			Handler:    _Msg_UpdateJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

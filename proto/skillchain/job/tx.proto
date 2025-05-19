@@ -20,6 +20,7 @@ service Msg {
   rpc CreateJob         (MsgCreateJob        ) returns (MsgCreateJobResponse        );
   rpc ApplyJob          (MsgApplyJob         ) returns (MsgApplyJobResponse         );
   rpc ReviewApplication (MsgReviewApplication) returns (MsgReviewApplicationResponse);
+  rpc UpdateJob         (MsgUpdateJob        ) returns (MsgUpdateJobResponse        );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -73,4 +74,15 @@ message MsgReviewApplication {
 }
 
 message MsgReviewApplicationResponse {}
+
+message MsgUpdateJob {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id = 2;
+  string title = 3;
+  string description = 4;
+  string budget = 5;
+}
+
+message MsgUpdateJobResponse {}
 
