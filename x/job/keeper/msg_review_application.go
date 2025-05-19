@@ -14,21 +14,15 @@ import (
 func (k msgServer) ReviewApplication(goCtx context.Context, msg *types.MsgReviewApplication) (*types.MsgReviewApplicationResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Check authorization
+	if err := k.Keeper.CheckJobReviewAuthorization(ctx, msg.JobId, msg.Creator); err != nil {
+		return nil, err
+	}
+
 	// Get the application
 	application, found := k.Keeper.GetJobApplication(ctx, msg.JobId, msg.Applicant)
 	if !found {
 		return nil, errors.Wrapf(sdkerrors.ErrNotFound, "application not found for job %d and applicant %s", msg.JobId, msg.Applicant)
-	}
-
-	// Get the job
-	job, found := k.Keeper.GetJob(ctx, msg.JobId)
-	if !found {
-		return nil, errors.Wrapf(sdkerrors.ErrNotFound, "job %d not found", msg.JobId)
-	}
-
-	// Verify the reviewer is the job creator
-	if msg.Creator != job.Creator {
-		return nil, errors.Wrapf(sdkerrors.ErrUnauthorized, "only job creator can review applications")
 	}
 
 	// Update application status

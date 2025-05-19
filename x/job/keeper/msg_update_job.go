@@ -14,15 +14,15 @@ import (
 func (k msgServer) UpdateJob(goCtx context.Context, msg *types.MsgUpdateJob) (*types.MsgUpdateJobResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Check authorization
+	if err := k.Keeper.CheckJobUpdateAuthorization(ctx, msg.Id, msg.Creator); err != nil {
+		return nil, err
+	}
+
 	// Get the job
 	job, found := k.Keeper.GetJob(ctx, msg.Id)
 	if !found {
 		return nil, errors.Wrapf(sdkerrors.ErrNotFound, "job %d not found", msg.Id)
-	}
-
-	// Verify the updater is the job creator
-	if msg.Creator != job.Creator {
-		return nil, errors.Wrapf(sdkerrors.ErrUnauthorized, "only job creator can update job")
 	}
 
 	// Update job fields

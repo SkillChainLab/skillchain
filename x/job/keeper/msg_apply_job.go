@@ -14,6 +14,11 @@ import (
 func (k msgServer) ApplyJob(goCtx context.Context, msg *types.MsgApplyJob) (*types.MsgApplyJobResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Check authorization
+	if err := k.Keeper.CheckApplicationAuthorization(ctx, msg.JobId, msg.Creator); err != nil {
+		return nil, err
+	}
+
 	// Check if job exists
 	job, found := k.Keeper.GetJob(ctx, msg.JobId)
 	if !found {
