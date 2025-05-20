@@ -21,6 +21,7 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
+	verificationcli "github.com/SkillChainLab/skillchain/x/verification/client/cli"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -112,6 +113,11 @@ func txCommand() *cobra.Command {
 		authcmd.GetEncodeCommand(),
 		authcmd.GetDecodeCommand(),
 		authcmd.GetSimulateCmd(),
+		verificationcli.GetTxCmd(),
+		verificationcli.CmdCreateVerifiedInstitution(),
+		verificationcli.CmdCreateVerificationRequest(),
+		verificationcli.CmdApproveVerificationRequest(),
+		verificationcli.CmdRejectVerificationRequest(),
 	)
 	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
