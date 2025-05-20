@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"github.com/spf13/cobra"
 	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/spf13/cobra"
 )
 
 func GetTxCmd() *cobra.Command {
@@ -34,4 +34,4 @@ func GetQueryCmd(queryRoute string) *cobra.Command {
 	cmd.AddCommand(CmdListProfile())
 
 	return cmd
-} 
+}

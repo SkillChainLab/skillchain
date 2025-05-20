@@ -46,4 +46,4 @@ func (k Keeper) GetNotification(ctx context.Context, req *types.QueryGetNotifica
 	return &types.QueryGetNotificationResponse{
 		Notification: &notification,
 	}, nil
-} 
+}

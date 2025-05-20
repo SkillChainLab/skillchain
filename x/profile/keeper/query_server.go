@@ -62,4 +62,4 @@ func (k QueryServerImpl) ListProfiles(ctx context.Context, req *types.QueryListP
 	return &types.QueryListProfilesResponse{
 		Profiles: profiles,
 	}, nil
-} 
+}

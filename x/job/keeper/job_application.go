@@ -56,4 +56,4 @@ func (k Keeper) GetJobApplications(ctx context.Context, jobId uint64) []types.Ap
 	}
 
 	return applications
-} 
+}

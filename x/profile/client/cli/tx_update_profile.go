@@ -55,4 +55,4 @@ func CmdUpdateProfile() *cobra.Command {
 	flags.AddTxFlagsToCmd(cmd)
 
 	return cmd
-} 
+}

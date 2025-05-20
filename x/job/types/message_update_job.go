@@ -1,8 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"fmt"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 const TypeMsgUpdateJob = "update_job"
@@ -46,4 +47,4 @@ func (msg *MsgUpdateJob) ValidateBasic() error {
 		return fmt.Errorf("invalid creator address: %w", err)
 	}
 	return nil
-} 
+}

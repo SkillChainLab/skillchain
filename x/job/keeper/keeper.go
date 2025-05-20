@@ -17,6 +17,9 @@ import (
 	"github.com/SkillChainLab/skillchain/x/job/types"
 )
 
+// Ensure Keeper implements the JobKeeper interface
+var _ types.JobKeeper = Keeper{}
+
 type (
 	Keeper struct {
 		cdc          codec.BinaryCodec
@@ -77,10 +80,10 @@ func (k Keeper) GetJob(ctx context.Context, id uint64) (types.Job, bool) {
 
 	var job types.Job
 	k.cdc.MustUnmarshal(bz, &job)
-	
+
 	// Ensure ID is set
 	job.Id = id
-	
+
 	fmt.Printf("DEBUG: Found job: %+v\n", job)
 	return job, true
 }
@@ -139,13 +142,13 @@ func (k Keeper) AppendApplication(ctx context.Context, jobID uint64, applicant s
 	}
 
 	app := types.Application{
-		JobId:           jobID,
-		Applicant:       applicant,
-		CoverLetter:     coverLetter,
-		Status:          "PENDING",
-		JobTitle:        job.Title,
-		JobDescription:  job.Description,
-		JobBudget:       job.Budget,
+		JobId:          jobID,
+		Applicant:      applicant,
+		CoverLetter:    coverLetter,
+		Status:         "PENDING",
+		JobTitle:       job.Title,
+		JobDescription: job.Description,
+		JobBudget:      job.Budget,
 	}
 
 	bz := k.cdc.MustMarshal(&app)

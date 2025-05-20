@@ -57,6 +57,7 @@ import (
 	jobmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/job/module"
 	profilemodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/profile/module"
 	skillchainmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/skillchain/module"
+	verificationmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/verification/module"
 	_ "github.com/SkillChainLab/skillchain/x/application/module" // import for side-effects
 	applicationmoduletypes "github.com/SkillChainLab/skillchain/x/application/types"
 	_ "github.com/SkillChainLab/skillchain/x/job/module" // import for side-effects
@@ -65,6 +66,8 @@ import (
 	profilemoduletypes "github.com/SkillChainLab/skillchain/x/profile/types"
 	_ "github.com/SkillChainLab/skillchain/x/skillchain/module" // import for side-effects
 	skillchainmoduletypes "github.com/SkillChainLab/skillchain/x/skillchain/types"
+	_ "github.com/SkillChainLab/skillchain/x/verification/module" // import for side-effects
+	verificationmoduletypes "github.com/SkillChainLab/skillchain/x/verification/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -106,6 +109,7 @@ var (
 		profilemoduletypes.ModuleName,
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
+		verificationmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -134,6 +138,7 @@ var (
 		profilemoduletypes.ModuleName,
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
+		verificationmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -156,6 +161,7 @@ var (
 		profilemoduletypes.ModuleName,
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
+		verificationmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -317,7 +323,9 @@ var (
 			},
 			{
 				Name:   profilemoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&profilemodulev1.Module{}),
+				Config: appconfig.WrapAny(&profilemodulev1.Module{
+					// Ensure ProfileKeeper is provided here
+				}),
 			},
 			{
 				Name:   jobmoduletypes.ModuleName,
@@ -326,6 +334,12 @@ var (
 			{
 				Name:   applicationmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&applicationmodulev1.Module{}),
+			},
+			{
+				Name:   verificationmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&verificationmodulev1.Module{
+					// Ensure ProfileKeeper is used here
+				}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

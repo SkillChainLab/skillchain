@@ -36,4 +36,4 @@ func (k msgServer) ReviewApplication(goCtx context.Context, msg *types.MsgReview
 	}
 
 	return &types.MsgReviewApplicationResponse{}, nil
-} 
+}

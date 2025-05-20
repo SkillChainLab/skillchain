@@ -7,11 +7,11 @@ import (
 	"cosmossdk.io/core/store"
 	"cosmossdk.io/log"
 	"cosmossdk.io/store/prefix"
+	storetypes "cosmossdk.io/store/types"
 	"github.com/SkillChainLab/skillchain/x/profile/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/runtime"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	storetypes "cosmossdk.io/store/types"
 )
 
 type (
@@ -27,6 +27,9 @@ type (
 		authority string
 	}
 )
+
+// Ensure Keeper implements the ProfileKeeper interface
+var _ types.ProfileKeeper = Keeper{}
 
 func NewKeeper(
 	cdc codec.BinaryCodec,

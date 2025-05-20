@@ -79,4 +79,4 @@ func (k Keeper) FilterJobs(ctx context.Context, req *types.QueryFilterJobsReques
 		Jobs:       jobs,
 		Pagination: pageRes,
 	}, nil
-} 
+}

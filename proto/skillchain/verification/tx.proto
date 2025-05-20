@@ -1,0 +1,103 @@
+syntax = "proto3";
+package skillchain.verification;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/verification/params.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/verification/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
+  // Create a new VerifiedInstitution
+  rpc CreateVerifiedInstitution(MsgCreateVerifiedInstitution) returns (MsgCreateVerifiedInstitutionResponse);
+
+  // Create a new VerificationRequest
+  rpc CreateVerificationRequest(MsgCreateVerificationRequest) returns (MsgCreateVerificationRequestResponse);
+
+  // Approve a verification request
+  rpc ApproveVerificationRequest(MsgApproveVerificationRequest) returns (MsgApproveVerificationRequestResponse);
+
+  // Reject a verification request
+  rpc RejectVerificationRequest(MsgRejectVerificationRequest) returns (MsgRejectVerificationRequestResponse);
+}
+
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "skillchain/x/verification/MsgUpdateParams";
+
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+// MsgCreateVerifiedInstitution is the request type for creating a new institution
+message MsgCreateVerifiedInstitution {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string address = 2;
+  string name = 3;
+  string website = 4;
+  repeated string verification_categories = 5;
+  uint32 verification_level = 6;
+}
+
+message MsgCreateVerifiedInstitutionResponse {
+  string address = 1;
+}
+
+// MsgCreateVerificationRequest is the request type for creating a new verification request
+message MsgCreateVerificationRequest {
+  option (cosmos.msg.v1.signer) = "user_address";
+  string user_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string institution_address = 2;
+  repeated string skills = 3;
+  string evidence = 4;
+}
+
+message MsgCreateVerificationRequestResponse {
+  string request_id = 1;
+}
+
+// MsgApproveVerificationRequest is the request type for approving a verification request
+message MsgApproveVerificationRequest {
+  option (cosmos.msg.v1.signer) = "institution_address";
+  string institution_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string request_id = 2;
+}
+
+message MsgApproveVerificationRequestResponse {
+  string request_id = 1;
+}
+
+// MsgRejectVerificationRequest is the request type for rejecting a verification request
+message MsgRejectVerificationRequest {
+  option (cosmos.msg.v1.signer) = "institution_address";
+  string institution_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string request_id = 2;
+  string reason = 3;
+}
+
+message MsgRejectVerificationRequestResponse {
+  string request_id = 1;
+}

@@ -1,10 +1,10 @@
 package cli
 
 import (
+	"github.com/SkillChainLab/skillchain/x/profile/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
-	"github.com/SkillChainLab/skillchain/x/profile/types"
 )
 
 func CmdShowProfile() *cobra.Command {
@@ -64,4 +64,4 @@ func CmdListProfile() *cobra.Command {
 	flags.AddQueryFlagsToCmd(cmd)
 
 	return cmd
-} 
+}

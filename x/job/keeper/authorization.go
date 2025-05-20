@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"cosmossdk.io/errors"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/SkillChainLab/skillchain/x/job/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 // Authorization errors
@@ -28,11 +28,11 @@ const (
 
 // Authorization roles
 const (
-	RoleNone      = "none"
-	RoleUser      = "user"
-	RoleVerified  = "verified"
+	RoleNone        = "none"
+	RoleUser        = "user"
+	RoleVerified    = "verified"
 	RoleInstitution = "institution"
-	RoleAdmin     = "admin"
+	RoleAdmin       = "admin"
 )
 
 // Authorization checks for job operations
@@ -145,11 +145,11 @@ func (k Keeper) HasRequiredRole(ctx context.Context, user string, requiredRole s
 	userRole := k.GetUserRole(ctx, user)
 	// Role hierarchy
 	roleHierarchy := map[string]int{
-		RoleNone:       0,
-		RoleUser:       1,
-		RoleVerified:   2,
+		RoleNone:        0,
+		RoleUser:        1,
+		RoleVerified:    2,
 		RoleInstitution: 3,
-		RoleAdmin:      4,
+		RoleAdmin:       4,
 	}
 	return roleHierarchy[userRole] >= roleHierarchy[requiredRole]
-} 
+}

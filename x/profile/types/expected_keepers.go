@@ -23,3 +23,11 @@ type ParamSubspace interface {
 	Get(context.Context, []byte, interface{})
 	Set(context.Context, []byte, interface{})
 }
+
+// ProfileKeeper defines the expected interface for the Profile module.
+type ProfileKeeper interface {
+	GetProfile(ctx context.Context, username string) (Profile, bool)
+	SetProfile(ctx context.Context, profile Profile)
+	RemoveProfile(ctx context.Context, username string)
+	GetAllProfile(ctx context.Context) []Profile
+}

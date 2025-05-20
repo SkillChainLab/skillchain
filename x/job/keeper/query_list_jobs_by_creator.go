@@ -31,4 +31,4 @@ func (k Keeper) ListJobsByCreator(goCtx context.Context, req *types.QueryListJob
 	return &types.QueryListJobsByCreatorResponse{
 		Jobs: jobs,
 	}, nil
-} 
+}

@@ -24,9 +24,9 @@ import (
 	// this line is used by starport scaffolding # 1
 
 	modulev1 "github.com/SkillChainLab/skillchain/api/skillchain/profile/module"
+	"github.com/SkillChainLab/skillchain/x/profile/client/cli"
 	"github.com/SkillChainLab/skillchain/x/profile/keeper"
 	profiletypes "github.com/SkillChainLab/skillchain/x/profile/types"
-	"github.com/SkillChainLab/skillchain/x/profile/client/cli"
 )
 
 var (

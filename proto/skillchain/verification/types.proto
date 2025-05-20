@@ -1,0 +1,28 @@
+syntax = "proto3";
+package skillchain.verification;
+
+option go_package = "github.com/SkillChainLab/skillchain/x/verification/types";
+
+// Doğrulama Kurumu
+message VerifiedInstitution {
+    string address = 1;      // Kurum cüzdan adresi
+    string name = 2;         // Kurum adı
+    string website = 3;      // Web sitesi
+    string added_by = 4;     // Yetkili
+    repeated string verification_categories = 5;  // Doğrulama kategorileri
+    uint32 verification_level = 6;               // Doğrulama seviyesi (1-5)
+    string status = 7;       // aktif, askıya alınmış, iptal edilmiş
+    uint64 last_verification_date = 8;           // Son doğrulama tarihi
+}
+
+// Doğrulama İsteği
+message VerificationRequest {
+    string request_id = 1;
+    string user_address = 2;
+    string institution_address = 3;
+    repeated string skills = 4;
+    string status = 5;       // bekliyor, onaylandı, reddedildi
+    string evidence = 6;     // Doğrulama kanıtı
+    uint64 created_at = 7;
+    uint64 updated_at = 8;
+} 

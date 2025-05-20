@@ -49,4 +49,4 @@ func (k Keeper) SearchJobs(ctx context.Context, req *types.QuerySearchJobsReques
 		Jobs:       jobs,
 		Pagination: pageRes,
 	}, nil
-} 
+}

@@ -1,0 +1,85 @@
+syntax = "proto3";
+package skillchain.verification;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/verification/params.proto";
+import "skillchain/verification/types.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/verification/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/verification/params";
+  }
+
+  // Get a single VerifiedInstitution by address
+  rpc VerifiedInstitution(QueryVerifiedInstitutionRequest) returns (QueryVerifiedInstitutionResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/verification/institution/{address}";
+  }
+
+  // List all VerifiedInstitutions
+  rpc VerifiedInstitutionAll(QueryAllVerifiedInstitutionRequest) returns (QueryAllVerifiedInstitutionResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/verification/institutions";
+  }
+
+  // Get a single VerificationRequest by request_id
+  rpc VerificationRequest(QueryVerificationRequestRequest) returns (QueryVerificationRequestResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/verification/request/{request_id}";
+  }
+
+  // List all VerificationRequests
+  rpc VerificationRequestAll(QueryAllVerificationRequestRequest) returns (QueryAllVerificationRequestResponse) {
+    option (google.api.http).get = "/SkillChainLab/skillchain/verification/requests";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+// Query for a single VerifiedInstitution
+message QueryVerifiedInstitutionRequest {
+  string address = 1;
+}
+message QueryVerifiedInstitutionResponse {
+  VerifiedInstitution institution = 1;
+}
+
+// Query for all VerifiedInstitutions
+message QueryAllVerifiedInstitutionRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+message QueryAllVerifiedInstitutionResponse {
+  repeated VerifiedInstitution institutions = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Query for a single VerificationRequest
+message QueryVerificationRequestRequest {
+  string request_id = 1;
+}
+message QueryVerificationRequestResponse {
+  VerificationRequest request = 1;
+}
+
+// Query for all VerificationRequests
+message QueryAllVerificationRequestRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+message QueryAllVerificationRequestResponse {
+  repeated VerificationRequest requests = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

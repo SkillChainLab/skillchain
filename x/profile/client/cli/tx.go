@@ -1,11 +1,11 @@
 package cli
 
 import (
+	"github.com/SkillChainLab/skillchain/x/profile/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/spf13/cobra"
-	"github.com/SkillChainLab/skillchain/x/profile/types"
 )
 
 func CmdCreateProfile() *cobra.Command {
@@ -67,4 +67,4 @@ func CmdDeleteProfile() *cobra.Command {
 	flags.AddTxFlagsToCmd(cmd)
 
 	return cmd
-} 
+}

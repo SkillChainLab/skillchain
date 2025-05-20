@@ -3,9 +3,9 @@ package keeper
 import (
 	"context"
 
+	errorsmod "cosmossdk.io/errors"
 	"github.com/SkillChainLab/skillchain/x/profile/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	errorsmod "cosmossdk.io/errors"
 )
 
 func (k msgServer) UpdateProfile(goCtx context.Context, msg *types.MsgUpdateProfile) (*types.MsgUpdateProfileResponse, error) {

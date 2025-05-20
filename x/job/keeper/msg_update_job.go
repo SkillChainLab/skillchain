@@ -54,4 +54,4 @@ func (k msgServer) UpdateJob(goCtx context.Context, msg *types.MsgUpdateJob) (*t
 	}
 
 	return &types.MsgUpdateJobResponse{}, nil
-} 
+}

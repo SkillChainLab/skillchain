@@ -139,4 +139,4 @@ func (k Keeper) CreateJobUpdateNotification(ctx context.Context, jobId string, j
 	}
 
 	return nil
-} 
+}

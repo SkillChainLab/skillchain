@@ -50,4 +50,4 @@ func (k msgServer) ApplyJob(goCtx context.Context, msg *types.MsgApplyJob) (*typ
 		Applicant: msg.Creator,
 		JobTitle:  job.Title,
 	}, nil
-} 
+}
