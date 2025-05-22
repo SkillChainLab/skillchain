@@ -96,6 +96,11 @@ func (AppModuleBasic) GetTxCmd() *cobra.Command {
 	return verificationcli.GetTxCmd()
 }
 
+// GetQueryCmd returns the root query command for the module
+func (AppModuleBasic) GetQueryCmd() *cobra.Command {
+	return verificationcli.GetQueryCmd()
+}
+
 // ----------------------------------------------------------------------------
 // AppModule
 // ----------------------------------------------------------------------------

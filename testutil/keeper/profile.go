@@ -23,10 +23,12 @@ import (
 
 func ProfileKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 	storeKey := storetypes.NewKVStoreKey(types.StoreKey)
+	memKey := storetypes.NewMemoryStoreKey("mem_profile")
 
 	db := dbm.NewMemDB()
 	stateStore := store.NewCommitMultiStore(db, log.NewNopLogger(), metrics.NewNoOpMetrics())
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)
+	stateStore.MountStoreWithDB(memKey, storetypes.StoreTypeMemory, nil)
 	require.NoError(t, stateStore.LoadLatestVersion())
 
 	registry := codectypes.NewInterfaceRegistry()
@@ -37,6 +39,8 @@ func ProfileKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		cdc,
 		runtime.NewKVStoreService(storeKey),
 		log.NewNopLogger(),
+		storeKey,
+		memKey,
 		authority.String(),
 	)
 

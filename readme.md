@@ -8,18 +8,18 @@ SkillChain is a decentralized platform that enables users to create professional
 
 ## ✅ Status Overview
 
-| Feature                         | Status     |
-|---------------------------------|------------|
-| Profile Creation & Update       | ✅ Done     |
-| Job Posting & Application       | ✅ Done     |
-| Application Tracking            | ✅ Done     |
-| Notification System             | ✅ Done     |
-| Job Search & Filtering          | ✅ Done     |
-| Skill Verification System       | 🔜 In Progress |
-| Institutional Trust System      | 🔜 Planned  |
-| Multisig Security              | 🔜 Planned  |
-| Skill Tokenization             | 🔜 Planned  |
-| DAO Governance                  | 🔜 Planned  |
+| Feature                         | Status     | Notes |
+|---------------------------------|------------|-------|
+| Profile Creation & Update       | ✅ Done     | Tested and working |
+| Job Posting & Application       | ✅ Done     | Tested and working |
+| Application Tracking            | ✅ Done     | Tested and working |
+| Notification System             | ✅ Done     | Basic notifications working |
+| Job Search & Filtering          | ✅ Done     | Basic search working |
+| Skill Verification System       | 🔄 In Progress | Core structure implemented |
+| Institutional Trust System      | 🔜 Planned  | Design phase |
+| Multisig Security              | 🔜 Planned  | Design phase |
+| Skill Tokenization             | 🔜 Planned  | Design phase |
+| DAO Governance                  | 🔜 Planned  | Design phase |
 
 ## 🧩 Modules
 
@@ -117,30 +117,31 @@ This command will:
 - Start the chain in development mode
 - Enable auto-reloading on code changes
 - Provide a local REST API endpoint
+- Create test accounts (alice, bob, testuser)
 
 ### Create a Profile
 ```bash
-skillchaind tx profile create-profile johndoe "Full-stack Dev" --from alice --chain-id skillchain --yes
+skillchaind tx profile create-profile [username] [bio] [email] [wallet-address] --from [account] --chain-id skillchain --yes
 ```
 
 ### Post a Job
 ```bash
-skillchaind tx job create-job "Blockchain Engineer" "5+ years with Go/Cosmos SDK" "5000stake" --from bob --chain-id skillchain --yes
+skillchaind tx job create-job [title] [description] [budget] --from [account] --chain-id skillchain --yes
 ```
 
 ### Apply for a Job
 ```bash
-skillchaind tx job apply-job 1 "I'm excited to contribute!" --from alice --chain-id skillchain --yes
+skillchaind tx job apply-job [job-id] [cover-letter] --from [account] --chain-id skillchain --yes
 ```
 
-### Review an Application
+### List Job Applications
 ```bash
-skillchaind tx job review-application 1 cosmos1... "ACCEPTED" --from bob --chain-id skillchain --yes
+skillchaind query job list-job-applications [job-id]
 ```
 
 ### Check Notifications
 ```bash
-skillchaind query job get-notifications --recipient cosmos1...
+skillchaind query job get-notifications --recipient [address]
 ```
 
 ## 🛠️ Troubleshooting
@@ -151,6 +152,8 @@ Common issues and their solutions:
 - ❌ `error: cannot build app` → Ensure all required modules are installed (`go mod tidy`)
 - ❌ `connection refused` → Check if the chain is running (`ignite chain serve`)
 - ❌ `invalid account` → Make sure you have created an account (`skillchaind keys add mykey`)
+- ❌ `account not found` → Ensure the account is added to genesis (`skillchaind genesis add-genesis-account`)
+- ❌ `transaction failed` → Check if you have enough tokens for gas fees
 
 ## 🏗️ Project Structure
 
