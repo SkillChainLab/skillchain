@@ -134,4 +134,4 @@ func GetCmdQueryAllVerifiedInstitutions() *cobra.Command {
 
 	flags.AddQueryFlagsToCmd(cmd)
 	return cmd
-} 
+}

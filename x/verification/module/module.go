@@ -22,11 +22,11 @@ import (
 	// this line is used by starport scaffolding # 1
 
 	modulev1 "github.com/SkillChainLab/skillchain/api/skillchain/verification/module"
+	jobtypes "github.com/SkillChainLab/skillchain/x/job/types"
+	profiletypes "github.com/SkillChainLab/skillchain/x/profile/types"
+	verificationcli "github.com/SkillChainLab/skillchain/x/verification/client/cli"
 	"github.com/SkillChainLab/skillchain/x/verification/keeper"
 	"github.com/SkillChainLab/skillchain/x/verification/types"
-	profiletypes "github.com/SkillChainLab/skillchain/x/profile/types"
-	jobtypes "github.com/SkillChainLab/skillchain/x/job/types"
-	verificationcli "github.com/SkillChainLab/skillchain/x/verification/client/cli"
 )
 
 var (

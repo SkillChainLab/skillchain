@@ -1,18 +1,76 @@
 # SkillChain Platform Roadmap
 
-## ✅ Completed Features
+## Completed Features
+- ✅ Basic blockchain infrastructure
+- ✅ Job posting and application system
+- ✅ Notification system for applications and job updates
+- ✅ Skill Verification System
+  - ✅ Verified Institution creation and management
+  - ✅ Verification request creation and approval
+  - ✅ Multi-skill verification support
+  - ✅ Verification status tracking
 
-### Job Posting and Application System
-- Job posting creation and updates
-- Job application submission
-- Application review
-- Job search and filtering
-- Notification system
+## Ongoing Developments
+- 🔄 Notification system improvements
+- 🔄 Search and filtering enhancements
+- 🔄 User profile verification system integration
 
-### Profile System
-- Profile creation and updates
-- Skills and experience management
-- Social media connections
+## Planned Features
+
+### Authorization & Security Layer
+- Role-based access control
+- Permission management
+- Security audit system
+
+### Profile Verification System
+- Verified institutions
+- Certificates
+- References
+- Community endorsements
+
+#### Technical Details
+- Verification request mechanism
+- Verification history tracking
+- Institution verification levels
+- Multi-skill verification support
+
+#### Usability & Security
+- Easy verification request process
+- Secure evidence submission
+- Verification status tracking
+- Institution reputation system
+
+#### Potential Challenges
+- Verification process scalability
+- Evidence authenticity verification
+- Institution trust management
+- Multi-skill verification complexity
+
+#### Next Steps
+1. Technical Improvements
+   - Implement verification request pagination
+   - Add verification request filtering
+   - Enhance verification evidence storage
+   - Improve verification status tracking
+
+2. Testing & Validation
+   - Comprehensive verification flow testing
+   - Institution verification process validation
+   - Multi-skill verification testing
+   - Performance optimization
+
+3. Documentation & Support
+   - Update API documentation
+   - Create verification process guides
+   - Document institution verification requirements
+   - Provide verification troubleshooting guides
+
+### Future Enhancements
+- Advanced search capabilities
+- Enhanced notification system
+- Profile verification badges
+- Institution verification levels
+- Community feedback system
 
 ## 🔄 Ongoing Developments
 

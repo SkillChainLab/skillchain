@@ -8,9 +8,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/SkillChainLab/skillchain/x/verification/types"
-	profiletypes "github.com/SkillChainLab/skillchain/x/profile/types"
 	jobtypes "github.com/SkillChainLab/skillchain/x/job/types"
+	profiletypes "github.com/SkillChainLab/skillchain/x/profile/types"
+	"github.com/SkillChainLab/skillchain/x/verification/types"
 )
 
 type (

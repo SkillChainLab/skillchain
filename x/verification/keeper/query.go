@@ -5,9 +5,9 @@ import (
 	// "cosmossdk.io/store/prefix" // unused
 	// "github.com/cosmos/cosmos-sdk/types/query" // unused
 	"github.com/SkillChainLab/skillchain/x/verification/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 var _ types.QueryServer = Keeper{}

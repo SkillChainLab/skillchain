@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/SkillChainLab/skillchain/x/verification/types"
-	"github.com/google/uuid"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/google/uuid"
 )
 
 type msgServer struct {
@@ -25,14 +25,14 @@ var _ types.MsgServer = msgServer{}
 func (k msgServer) CreateVerifiedInstitution(ctx context.Context, msg *types.MsgCreateVerifiedInstitution) (*types.MsgCreateVerifiedInstitutionResponse, error) {
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 	institution := types.VerifiedInstitution{
-		Address:               msg.Address,
-		Name:                  msg.Name,
-		Website:               msg.Website,
-		AddedBy:               msg.Creator,
+		Address:                msg.Address,
+		Name:                   msg.Name,
+		Website:                msg.Website,
+		AddedBy:                msg.Creator,
 		VerificationCategories: msg.VerificationCategories,
-		VerificationLevel:     msg.VerificationLevel,
-		Status:                "active",
-		LastVerificationDate:  uint64(sdkCtx.BlockTime().Unix()),
+		VerificationLevel:      msg.VerificationLevel,
+		Status:                 "active",
+		LastVerificationDate:   uint64(sdkCtx.BlockTime().Unix()),
 	}
 	k.SetVerifiedInstitution(sdkCtx, institution)
 	return &types.MsgCreateVerifiedInstitutionResponse{Address: institution.Address}, nil
@@ -49,10 +49,22 @@ func (k msgServer) CreateVerificationRequest(ctx context.Context, msg *types.Msg
 		Skills:             msg.Skills,
 		Status:             "pending",
 		Evidence:           msg.Evidence,
-		CreatedAt:          uint64(sdkCtx.BlockTime().Unix()),
-		UpdatedAt:          uint64(sdkCtx.BlockTime().Unix()),
+		CreatedAt:          sdkCtx.BlockTime().Unix(),
+		UpdatedAt:          sdkCtx.BlockTime().Unix(),
 	}
 	k.SetVerificationRequest(sdkCtx, request)
+
+	// Emit an event for the creation
+	sdkCtx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeVerificationRequestCreated,
+			sdk.NewAttribute(types.AttributeKeyRequestID, request.RequestId),
+			sdk.NewAttribute(types.AttributeKeyUserAddress, request.UserAddress),
+			sdk.NewAttribute(types.AttributeKeyInstitutionAddress, request.InstitutionAddress),
+			sdk.NewAttribute(types.AttributeKeyStatus, request.Status),
+		),
+	)
+
 	return &types.MsgCreateVerificationRequestResponse{RequestId: requestID}, nil
 }
 
@@ -77,8 +89,21 @@ func (k msgServer) ApproveVerificationRequest(ctx context.Context, msg *types.Ms
 
 	// Update the request status
 	request.Status = "approved"
-	request.UpdatedAt = uint64(sdkCtx.BlockTime().Unix())
+	request.UpdatedAt = sdkCtx.BlockTime().Unix()
+
+	// Save the updated request
 	k.SetVerificationRequest(sdkCtx, request)
+
+	// Emit an event for the approval
+	sdkCtx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeVerificationRequestApproved,
+			sdk.NewAttribute(types.AttributeKeyRequestID, request.RequestId),
+			sdk.NewAttribute(types.AttributeKeyInstitutionAddress, request.InstitutionAddress),
+			sdk.NewAttribute(types.AttributeKeyUserAddress, request.UserAddress),
+			sdk.NewAttribute(types.AttributeKeyStatus, request.Status),
+		),
+	)
 
 	return &types.MsgApproveVerificationRequestResponse{
 		RequestId: request.RequestId,
@@ -106,8 +131,21 @@ func (k msgServer) RejectVerificationRequest(ctx context.Context, msg *types.Msg
 
 	// Update the request status
 	request.Status = "rejected"
-	request.UpdatedAt = uint64(sdkCtx.BlockTime().Unix())
+	request.UpdatedAt = sdkCtx.BlockTime().Unix()
+
+	// Save the updated request
 	k.SetVerificationRequest(sdkCtx, request)
+
+	// Emit an event for the rejection
+	sdkCtx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeVerificationRequestRejected,
+			sdk.NewAttribute(types.AttributeKeyRequestID, request.RequestId),
+			sdk.NewAttribute(types.AttributeKeyInstitutionAddress, request.InstitutionAddress),
+			sdk.NewAttribute(types.AttributeKeyUserAddress, request.UserAddress),
+			sdk.NewAttribute(types.AttributeKeyStatus, request.Status),
+		),
+	)
 
 	return &types.MsgRejectVerificationRequestResponse{
 		RequestId: request.RequestId,

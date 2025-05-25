@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName      = "/skillchain.job.Msg/UpdateParams"
-	Msg_CreateJob_FullMethodName         = "/skillchain.job.Msg/CreateJob"
-	Msg_ApplyJob_FullMethodName          = "/skillchain.job.Msg/ApplyJob"
-	Msg_ReviewApplication_FullMethodName = "/skillchain.job.Msg/ReviewApplication"
-	Msg_UpdateJob_FullMethodName         = "/skillchain.job.Msg/UpdateJob"
+	Msg_UpdateParams_FullMethodName           = "/skillchain.job.Msg/UpdateParams"
+	Msg_CreateJob_FullMethodName              = "/skillchain.job.Msg/CreateJob"
+	Msg_ApplyJob_FullMethodName               = "/skillchain.job.Msg/ApplyJob"
+	Msg_ReviewApplication_FullMethodName      = "/skillchain.job.Msg/ReviewApplication"
+	Msg_UpdateJob_FullMethodName              = "/skillchain.job.Msg/UpdateJob"
+	Msg_MarkNotificationAsRead_FullMethodName = "/skillchain.job.Msg/MarkNotificationAsRead"
 )
 
 // MsgClient is the client API for Msg service.
@@ -37,6 +38,7 @@ type MsgClient interface {
 	ApplyJob(ctx context.Context, in *MsgApplyJob, opts ...grpc.CallOption) (*MsgApplyJobResponse, error)
 	ReviewApplication(ctx context.Context, in *MsgReviewApplication, opts ...grpc.CallOption) (*MsgReviewApplicationResponse, error)
 	UpdateJob(ctx context.Context, in *MsgUpdateJob, opts ...grpc.CallOption) (*MsgUpdateJobResponse, error)
+	MarkNotificationAsRead(ctx context.Context, in *MsgMarkNotificationAsRead, opts ...grpc.CallOption) (*MsgMarkNotificationAsReadResponse, error)
 }
 
 type msgClient struct {
@@ -92,6 +94,15 @@ func (c *msgClient) UpdateJob(ctx context.Context, in *MsgUpdateJob, opts ...grp
 	return out, nil
 }
 
+func (c *msgClient) MarkNotificationAsRead(ctx context.Context, in *MsgMarkNotificationAsRead, opts ...grpc.CallOption) (*MsgMarkNotificationAsReadResponse, error) {
+	out := new(MsgMarkNotificationAsReadResponse)
+	err := c.cc.Invoke(ctx, Msg_MarkNotificationAsRead_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -103,6 +114,7 @@ type MsgServer interface {
 	ApplyJob(context.Context, *MsgApplyJob) (*MsgApplyJobResponse, error)
 	ReviewApplication(context.Context, *MsgReviewApplication) (*MsgReviewApplicationResponse, error)
 	UpdateJob(context.Context, *MsgUpdateJob) (*MsgUpdateJobResponse, error)
+	MarkNotificationAsRead(context.Context, *MsgMarkNotificationAsRead) (*MsgMarkNotificationAsReadResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -124,6 +136,9 @@ func (UnimplementedMsgServer) ReviewApplication(context.Context, *MsgReviewAppli
 }
 func (UnimplementedMsgServer) UpdateJob(context.Context, *MsgUpdateJob) (*MsgUpdateJobResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateJob not implemented")
+}
+func (UnimplementedMsgServer) MarkNotificationAsRead(context.Context, *MsgMarkNotificationAsRead) (*MsgMarkNotificationAsReadResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MarkNotificationAsRead not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -228,6 +243,24 @@ func _Msg_UpdateJob_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_MarkNotificationAsRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgMarkNotificationAsRead)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).MarkNotificationAsRead(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_MarkNotificationAsRead_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).MarkNotificationAsRead(ctx, req.(*MsgMarkNotificationAsRead))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -254,6 +287,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateJob",
 			Handler:    _Msg_UpdateJob_Handler,
+		},
+		{
+			MethodName: "MarkNotificationAsRead",
+			Handler:    _Msg_MarkNotificationAsRead_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

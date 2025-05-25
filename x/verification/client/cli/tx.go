@@ -24,4 +24,4 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(CmdRejectVerificationRequest())
 
 	return cmd
-} 
+}

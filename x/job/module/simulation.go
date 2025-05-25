@@ -35,6 +35,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgReviewApplication int = 100
 
+	opWeightMsgMarkNotificationAsRead = "op_weight_msg_mark_notification_as_read"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgMarkNotificationAsRead int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -91,6 +95,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		jobsimulation.SimulateMsgReviewApplication(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgMarkNotificationAsRead int
+	simState.AppParams.GetOrGenerate(opWeightMsgMarkNotificationAsRead, &weightMsgMarkNotificationAsRead, nil,
+		func(_ *rand.Rand) {
+			weightMsgMarkNotificationAsRead = defaultWeightMsgMarkNotificationAsRead
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgMarkNotificationAsRead,
+		jobsimulation.SimulateMsgMarkNotificationAsRead(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -120,6 +135,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgReviewApplication,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				jobsimulation.SimulateMsgReviewApplication(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgMarkNotificationAsRead,
+			defaultWeightMsgMarkNotificationAsRead,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				jobsimulation.SimulateMsgMarkNotificationAsRead(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

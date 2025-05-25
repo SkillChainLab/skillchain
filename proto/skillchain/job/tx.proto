@@ -16,11 +16,12 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams      (MsgUpdateParams     ) returns (MsgUpdateParamsResponse     );
-  rpc CreateJob         (MsgCreateJob        ) returns (MsgCreateJobResponse        );
-  rpc ApplyJob          (MsgApplyJob         ) returns (MsgApplyJobResponse         );
-  rpc ReviewApplication (MsgReviewApplication) returns (MsgReviewApplicationResponse);
-  rpc UpdateJob         (MsgUpdateJob        ) returns (MsgUpdateJobResponse        );
+  rpc UpdateParams           (MsgUpdateParams          ) returns (MsgUpdateParamsResponse          );
+  rpc CreateJob              (MsgCreateJob             ) returns (MsgCreateJobResponse             );
+  rpc ApplyJob               (MsgApplyJob              ) returns (MsgApplyJobResponse              );
+  rpc ReviewApplication      (MsgReviewApplication     ) returns (MsgReviewApplicationResponse     );
+  rpc UpdateJob              (MsgUpdateJob             ) returns (MsgUpdateJobResponse             );
+  rpc MarkNotificationAsRead (MsgMarkNotificationAsRead) returns (MsgMarkNotificationAsReadResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -60,9 +61,9 @@ message MsgApplyJob {
 }
 
 message MsgApplyJobResponse {
-  uint64 jobId = 1;
+  uint64 jobId     = 1;
   string applicant = 2;
-  string jobTitle = 3;
+  string jobTitle  = 3;
 }
 
 message MsgReviewApplication {
@@ -77,12 +78,20 @@ message MsgReviewApplicationResponse {}
 
 message MsgUpdateJob {
   option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
-  uint64 id = 2;
-  string title = 3;
+  string creator     = 1;
+  uint64 id          = 2;
+  string title       = 3;
   string description = 4;
-  string budget = 5;
+  string budget      = 5;
 }
 
 message MsgUpdateJobResponse {}
+
+message MsgMarkNotificationAsRead {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator        = 1;
+  string notificationId = 2;
+}
+
+message MsgMarkNotificationAsReadResponse {}
 

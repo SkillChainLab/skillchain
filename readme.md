@@ -1,6 +1,95 @@
 # SkillChain
 
-A decentralized, blockchain-based job and skill verification platform built with Cosmos SDK.
+SkillChain is a decentralized platform built on Cosmos SDK that connects job seekers with employers through a transparent and efficient blockchain-based system.
+
+## Features
+
+### Job Management
+- Create and manage job postings
+- Submit and track job applications
+- Real-time application status updates
+- Job search and filtering capabilities
+
+### Notification System
+- Application status notifications
+- Job update notifications
+- Real-time alerts for important events
+
+### Skill Verification System
+- Verified Institution Management
+  - Create and manage verified institutions
+  - Set verification categories and levels
+  - Track institution verification status
+
+- Skill Verification Process
+  - Submit verification requests
+  - Support for multiple skills per request
+  - Evidence submission and tracking
+  - Verification status management
+
+## Getting Started
+
+### Prerequisites
+- Go 1.20 or later
+- Ignite CLI
+- Cosmos SDK v0.50.13
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/SkillChainLab/skillchain.git
+cd skillchain
+```
+
+2. Install dependencies:
+```bash
+go mod tidy
+```
+
+3. Build the chain:
+```bash
+ignite chain build
+```
+
+4. Start the chain:
+```bash
+ignite chain serve
+```
+
+### Testing the Verification System
+
+1. Create a verified institution:
+```bash
+skillchaind tx verification create-verified-institution <address> <name> <website> <categories> <level> --from <account> --chain-id skillchain --yes
+```
+
+2. Create a verification request:
+```bash
+skillchaind tx verification create-verification-request <institution_address> <skills> <evidence> --from <account> --chain-id skillchain --yes
+```
+
+3. Approve a verification request:
+```bash
+skillchaind tx verification approve-verification-request <request_id> --from <institution_account> --chain-id skillchain --yes
+```
+
+4. Query verification requests:
+```bash
+skillchaind query verification verification-request <request_id>
+```
+
+## Contributing
+
+We welcome contributions to SkillChain! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or support, please open an issue in the GitHub repository.
 
 ## 🌟 Overview
 
@@ -13,10 +102,10 @@ SkillChain is a decentralized platform that enables users to create professional
 | Profile Creation & Update       | ✅ Done     | Tested and working |
 | Job Posting & Application       | ✅ Done     | Tested and working |
 | Application Tracking            | ✅ Done     | Tested and working |
-| Notification System             | ✅ Done     | Basic notifications working |
+| Notification System             | ✅ Done     | Notifications for applications and job updates working |
 | Job Search & Filtering          | ✅ Done     | Basic search working |
-| Skill Verification System       | 🔄 In Progress | Core structure implemented |
-| Institutional Trust System      | 🔜 Planned  | Design phase |
+| Skill Verification System       | ✅ Done     | Verified institutions, multi-skill verification, and approval process implemented |
+| Institutional Trust System      | ✅ Done     | Institution verification levels and categories implemented |
 | Multisig Security              | 🔜 Planned  | Design phase |
 | Skill Tokenization             | 🔜 Planned  | Design phase |
 | DAO Governance                  | 🔜 Planned  | Design phase |
@@ -158,53 +247,3 @@ Common issues and their solutions:
 ## 🏗️ Project Structure
 
 ```
-skillchain/
-├── app/              # Application entry point
-├── cmd/              # Command-line interface
-├── proto/            # Protocol buffer definitions
-├── x/                # Cosmos SDK modules
-├── api/              # API definitions
-├── docs/             # Documentation
-├── testutil/         # Testing utilities
-└── tools/            # Development tools
-```
-
-## 🧪 Testing
-
-Run the test suite:
-```bash
-make test
-```
-
-## 📚 Documentation
-
-- [Technical Documentation](docs/)
-- [API Reference](api/)
-- [Roadmap](roadmap.md)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/SkillChainLab/skillchain)
-- [Documentation](https://docs.skillchain.io)
-- [Discord Community](https://discord.gg/skillchain)
-
-## 🙏 Acknowledgments
-
-- Cosmos SDK team for the amazing framework
-- All contributors and community members
-
----
-
-Built with ❤️ by the SkillChain Team

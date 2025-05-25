@@ -1080,14 +1080,14 @@ func (x *fastReflection_VerificationRequest) Range(f func(protoreflect.FieldDesc
 			return
 		}
 	}
-	if x.CreatedAt != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.CreatedAt)
+	if x.CreatedAt != int64(0) {
+		value := protoreflect.ValueOfInt64(x.CreatedAt)
 		if !f(fd_VerificationRequest_created_at, value) {
 			return
 		}
 	}
-	if x.UpdatedAt != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.UpdatedAt)
+	if x.UpdatedAt != int64(0) {
+		value := protoreflect.ValueOfInt64(x.UpdatedAt)
 		if !f(fd_VerificationRequest_updated_at, value) {
 			return
 		}
@@ -1120,9 +1120,9 @@ func (x *fastReflection_VerificationRequest) Has(fd protoreflect.FieldDescriptor
 	case "skillchain.verification.VerificationRequest.evidence":
 		return x.Evidence != ""
 	case "skillchain.verification.VerificationRequest.created_at":
-		return x.CreatedAt != uint64(0)
+		return x.CreatedAt != int64(0)
 	case "skillchain.verification.VerificationRequest.updated_at":
-		return x.UpdatedAt != uint64(0)
+		return x.UpdatedAt != int64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.verification.VerificationRequest"))
@@ -1152,9 +1152,9 @@ func (x *fastReflection_VerificationRequest) Clear(fd protoreflect.FieldDescript
 	case "skillchain.verification.VerificationRequest.evidence":
 		x.Evidence = ""
 	case "skillchain.verification.VerificationRequest.created_at":
-		x.CreatedAt = uint64(0)
+		x.CreatedAt = int64(0)
 	case "skillchain.verification.VerificationRequest.updated_at":
-		x.UpdatedAt = uint64(0)
+		x.UpdatedAt = int64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.verification.VerificationRequest"))
@@ -1194,10 +1194,10 @@ func (x *fastReflection_VerificationRequest) Get(descriptor protoreflect.FieldDe
 		return protoreflect.ValueOfString(value)
 	case "skillchain.verification.VerificationRequest.created_at":
 		value := x.CreatedAt
-		return protoreflect.ValueOfUint64(value)
+		return protoreflect.ValueOfInt64(value)
 	case "skillchain.verification.VerificationRequest.updated_at":
 		value := x.UpdatedAt
-		return protoreflect.ValueOfUint64(value)
+		return protoreflect.ValueOfInt64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.verification.VerificationRequest"))
@@ -1233,9 +1233,9 @@ func (x *fastReflection_VerificationRequest) Set(fd protoreflect.FieldDescriptor
 	case "skillchain.verification.VerificationRequest.evidence":
 		x.Evidence = value.Interface().(string)
 	case "skillchain.verification.VerificationRequest.created_at":
-		x.CreatedAt = value.Uint()
+		x.CreatedAt = value.Int()
 	case "skillchain.verification.VerificationRequest.updated_at":
-		x.UpdatedAt = value.Uint()
+		x.UpdatedAt = value.Int()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.verification.VerificationRequest"))
@@ -1303,9 +1303,9 @@ func (x *fastReflection_VerificationRequest) NewField(fd protoreflect.FieldDescr
 	case "skillchain.verification.VerificationRequest.evidence":
 		return protoreflect.ValueOfString("")
 	case "skillchain.verification.VerificationRequest.created_at":
-		return protoreflect.ValueOfUint64(uint64(0))
+		return protoreflect.ValueOfInt64(int64(0))
 	case "skillchain.verification.VerificationRequest.updated_at":
-		return protoreflect.ValueOfUint64(uint64(0))
+		return protoreflect.ValueOfInt64(int64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: skillchain.verification.VerificationRequest"))
@@ -1745,7 +1745,7 @@ func (x *fastReflection_VerificationRequest) ProtoMethods() *protoiface.Methods 
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.CreatedAt |= uint64(b&0x7F) << shift
+					x.CreatedAt |= int64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -1764,7 +1764,7 @@ func (x *fastReflection_VerificationRequest) ProtoMethods() *protoiface.Methods 
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.UpdatedAt |= uint64(b&0x7F) << shift
+					x.UpdatedAt |= int64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -1919,10 +1919,10 @@ type VerificationRequest struct {
 	UserAddress        string   `protobuf:"bytes,2,opt,name=user_address,json=userAddress,proto3" json:"user_address,omitempty"`
 	InstitutionAddress string   `protobuf:"bytes,3,opt,name=institution_address,json=institutionAddress,proto3" json:"institution_address,omitempty"`
 	Skills             []string `protobuf:"bytes,4,rep,name=skills,proto3" json:"skills,omitempty"`
-	Status             string   `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`     // bekliyor, onaylandı, reddedildi
-	Evidence           string   `protobuf:"bytes,6,opt,name=evidence,proto3" json:"evidence,omitempty"` // Doğrulama kanıtı
-	CreatedAt          uint64   `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt          uint64   `protobuf:"varint,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Status             string   `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`                         // bekliyor, onaylandı, reddedildi
+	Evidence           string   `protobuf:"bytes,6,opt,name=evidence,proto3" json:"evidence,omitempty"`                     // Doğrulama kanıtı
+	CreatedAt          int64    `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // Unix timestamp
+	UpdatedAt          int64    `protobuf:"varint,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // Unix timestamp
 }
 
 func (x *VerificationRequest) Reset() {
@@ -1987,14 +1987,14 @@ func (x *VerificationRequest) GetEvidence() string {
 	return ""
 }
 
-func (x *VerificationRequest) GetCreatedAt() uint64 {
+func (x *VerificationRequest) GetCreatedAt() int64 {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return 0
 }
 
-func (x *VerificationRequest) GetUpdatedAt() uint64 {
+func (x *VerificationRequest) GetUpdatedAt() int64 {
 	if x != nil {
 		return x.UpdatedAt
 	}
@@ -2041,9 +2041,9 @@ var file_skillchain_verification_types_proto_rawDesc = []byte{
 	0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x65, 0x76,
 	0x69, 0x64, 0x65, 0x6e, 0x63, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x65, 0x76,
 	0x69, 0x64, 0x65, 0x6e, 0x63, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x64, 0x5f, 0x61, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61,
+	0x64, 0x5f, 0x61, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64,
-	0x5f, 0x61, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x5f, 0x61, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x64, 0x41, 0x74, 0x42, 0xe7, 0x01, 0x0a, 0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x6b, 0x69,
 	0x6c, 0x6c, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x63, 0x61,
 	0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f,

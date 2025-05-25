@@ -18,10 +18,18 @@ const (
 	NotificationKeyPrefix = "Notification/value/"
 )
 
-// CreateNotification creates a new notification
+// CreateNotification creates a new notification or updates an existing one
 func (k Keeper) CreateNotification(ctx context.Context, notification types.Notification) error {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(NotificationKeyPrefix))
+
+	// Check if the notification already exists
+	existingNotification, err := k.GetNotificationByID(ctx, notification.Id)
+	if err == nil {
+		// Update the existing notification
+		existingNotification.IsRead = notification.IsRead
+		notification = existingNotification
+	}
 
 	// Set notification
 	b := k.cdc.MustMarshal(&notification)

@@ -1,11 +1,11 @@
 package cli
 
 import (
+	"github.com/SkillChainLab/skillchain/x/verification/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/spf13/cobra"
-	"github.com/SkillChainLab/skillchain/x/verification/types"
 )
 
 func CmdApproveVerificationRequest() *cobra.Command {
@@ -36,4 +36,4 @@ func CmdApproveVerificationRequest() *cobra.Command {
 	flags.AddTxFlagsToCmd(cmd)
 
 	return cmd
-} 
+}

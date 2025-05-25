@@ -23,6 +23,6 @@ message VerificationRequest {
     repeated string skills = 4;
     string status = 5;       // bekliyor, onaylandı, reddedildi
     string evidence = 6;     // Doğrulama kanıtı
-    uint64 created_at = 7;
-    uint64 updated_at = 8;
+    int64 created_at = 7;    // Unix timestamp
+    int64 updated_at = 8;    // Unix timestamp
 } 

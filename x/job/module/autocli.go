@@ -88,6 +88,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a review-application tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "jobId"}, {ProtoField: "applicant"}, {ProtoField: "status"}},
 				},
+				{
+					RpcMethod:      "MarkNotificationAsRead",
+					Use:            "mark-notification-as-read [notification-id]",
+					Short:          "Send a mark-notification-as-read tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "notificationId"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

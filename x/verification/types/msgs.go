@@ -22,12 +22,12 @@ func NewMsgRejectVerificationRequest(institutionAddress, requestId, reason strin
 
 func NewMsgCreateVerifiedInstitution(creator, address, name, website string, verificationCategories []string, verificationLevel uint32) *MsgCreateVerifiedInstitution {
 	return &MsgCreateVerifiedInstitution{
-		Creator:               creator,
-		Address:               address,
-		Name:                  name,
-		Website:               website,
+		Creator:                creator,
+		Address:                address,
+		Name:                   name,
+		Website:                website,
 		VerificationCategories: verificationCategories,
-		VerificationLevel:     verificationLevel,
+		VerificationLevel:      verificationLevel,
 	}
 }
 
@@ -96,4 +96,4 @@ func (msg *MsgCreateVerificationRequest) ValidateBasic() error {
 		return sdkerrors.ErrInvalidRequest.Wrap("evidence cannot be empty")
 	}
 	return nil
-} 
+}
