@@ -57,6 +57,7 @@ import (
 	jobmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/job/module"
 	profilemodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/profile/module"
 	skillchainmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/skillchain/module"
+	skilltokenmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/skilltoken/module"
 	verificationmodulev1 "github.com/SkillChainLab/skillchain/api/skillchain/verification/module"
 	_ "github.com/SkillChainLab/skillchain/x/application/module" // import for side-effects
 	applicationmoduletypes "github.com/SkillChainLab/skillchain/x/application/types"
@@ -66,6 +67,8 @@ import (
 	profilemoduletypes "github.com/SkillChainLab/skillchain/x/profile/types"
 	_ "github.com/SkillChainLab/skillchain/x/skillchain/module" // import for side-effects
 	skillchainmoduletypes "github.com/SkillChainLab/skillchain/x/skillchain/types"
+	_ "github.com/SkillChainLab/skillchain/x/skilltoken/module" // import for side-effects
+	skilltokenmoduletypes "github.com/SkillChainLab/skillchain/x/skilltoken/types"
 	_ "github.com/SkillChainLab/skillchain/x/verification/module" // import for side-effects
 	verificationmoduletypes "github.com/SkillChainLab/skillchain/x/verification/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
@@ -110,6 +113,7 @@ var (
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
 		verificationmoduletypes.ModuleName,
+		skilltokenmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -139,6 +143,7 @@ var (
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
 		verificationmoduletypes.ModuleName,
+		skilltokenmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -162,6 +167,7 @@ var (
 		jobmoduletypes.ModuleName,
 		applicationmoduletypes.ModuleName,
 		verificationmoduletypes.ModuleName,
+		skilltokenmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -182,6 +188,7 @@ var (
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
+		{Account: skilltokenmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -340,6 +347,10 @@ var (
 				Config: appconfig.WrapAny(&verificationmodulev1.Module{
 					// Ensure ProfileKeeper is used here
 				}),
+			},
+			{
+				Name:   skilltokenmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&skilltokenmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

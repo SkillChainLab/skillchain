@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package skillchain.skilltoken;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/skilltoken/params.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/skilltoken/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
+  rpc CreateToken   (MsgCreateToken  ) returns (MsgCreateTokenResponse  );
+  rpc TransferToken (MsgTransferToken) returns (MsgTransferTokenResponse);
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                               "authority";
+  option           (amino.name) = "skillchain/x/skilltoken/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateToken {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator      = 1;
+  string symbol       = 2;
+  string name         = 3;
+  string decimals     = 4;
+  string mintable     = 5;
+  string burnable     = 6;
+  string transferable = 7;
+}
+
+message MsgCreateTokenResponse {}
+
+message MsgTransferToken {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string to      = 2;
+  string amount  = 3;
+}
+
+message MsgTransferTokenResponse {}
+

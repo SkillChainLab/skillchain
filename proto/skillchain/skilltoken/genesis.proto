@@ -1,0 +1,30 @@
+syntax = "proto3";
+package skillchain.skilltoken;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/skilltoken/params.proto";
+
+option go_package = "github.com/SkillChainLab/skillchain/x/skilltoken/types";
+
+// Token represents the custom token structure.
+message Token {
+  string symbol = 1;
+  string name = 2;
+  string total_supply = 3;
+  uint32 decimals = 4;
+  string owner = 5;
+  bool mintable = 6;
+  bool burnable = 7;
+  bool transferable = 8;
+}
+
+// GenesisState defines the skilltoken module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  repeated Token tokens = 2;
+}
