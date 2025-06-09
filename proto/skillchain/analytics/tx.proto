@@ -1,0 +1,168 @@
+syntax = "proto3";
+
+package skillchain.analytics;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/analytics/params.proto";
+import "skillchain/analytics/platform_metric.proto";
+import "skillchain/analytics/user_activity.proto";
+import "skillchain/analytics/revenue_record.proto";
+
+option go_package = "skillchain/x/analytics/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams         (MsgUpdateParams        ) returns (MsgUpdateParamsResponse        );
+  rpc CreatePlatformMetric (MsgCreatePlatformMetric) returns (MsgCreatePlatformMetricResponse);
+  rpc UpdatePlatformMetric (MsgUpdatePlatformMetric) returns (MsgUpdatePlatformMetricResponse);
+  rpc DeletePlatformMetric (MsgDeletePlatformMetric) returns (MsgDeletePlatformMetricResponse);
+  rpc CreateUserActivity   (MsgCreateUserActivity  ) returns (MsgCreateUserActivityResponse  );
+  rpc UpdateUserActivity   (MsgUpdateUserActivity  ) returns (MsgUpdateUserActivityResponse  );
+  rpc DeleteUserActivity   (MsgDeleteUserActivity  ) returns (MsgDeleteUserActivityResponse  );
+  rpc CreateRevenueRecord  (MsgCreateRevenueRecord ) returns (MsgCreateRevenueRecordResponse );
+  rpc UpdateRevenueRecord  (MsgUpdateRevenueRecord ) returns (MsgUpdateRevenueRecordResponse );
+  rpc DeleteRevenueRecord  (MsgDeleteRevenueRecord ) returns (MsgDeleteRevenueRecordResponse );
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                              "authority";
+  option           (amino.name) = "skillchain/x/analytics/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreatePlatformMetric {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string index       = 2;
+  string metricName  = 3;
+  uint64 metricValue = 4;
+  string metricType  = 5;
+  string period      = 6;
+  uint64 timestamp   = 7;
+  string metadata    = 8;
+}
+
+message MsgCreatePlatformMetricResponse {}
+
+message MsgUpdatePlatformMetric {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string index       = 2;
+  string metricName  = 3;
+  uint64 metricValue = 4;
+  string metricType  = 5;
+  string period      = 6;
+  uint64 timestamp   = 7;
+  string metadata    = 8;
+}
+
+message MsgUpdatePlatformMetricResponse {}
+
+message MsgDeletePlatformMetric {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeletePlatformMetricResponse {}
+
+message MsgCreateUserActivity {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator      =  1;
+  string index        =  2;
+  string userAddress  =  3;
+  string activityType =  4;
+  string action       =  5;
+  string resourceId   =  6;
+  uint64 timestamp    =  7;
+  string ipAddress    =  8;
+  string userAgent    =  9;
+  string metadata     = 10;
+}
+
+message MsgCreateUserActivityResponse {}
+
+message MsgUpdateUserActivity {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator      =  1;
+  string index        =  2;
+  string userAddress  =  3;
+  string activityType =  4;
+  string action       =  5;
+  string resourceId   =  6;
+  uint64 timestamp    =  7;
+  string ipAddress    =  8;
+  string userAgent    =  9;
+  string metadata     = 10;
+}
+
+message MsgUpdateUserActivityResponse {}
+
+message MsgDeleteUserActivity {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteUserActivityResponse {}
+
+message MsgCreateRevenueRecord {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string transactionType =  3;
+  uint64 amount          =  4;
+  string currency        =  5;
+  string fromAddress     =  6;
+  string toAddress       =  7;
+  uint64 timestamp       =  8;
+  uint64 feeAmount       =  9;
+  string projectId       = 10;
+  uint64 platformFee     = 11;
+}
+
+message MsgCreateRevenueRecordResponse {}
+
+message MsgUpdateRevenueRecord {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string transactionType =  3;
+  uint64 amount          =  4;
+  string currency        =  5;
+  string fromAddress     =  6;
+  string toAddress       =  7;
+  uint64 timestamp       =  8;
+  uint64 feeAmount       =  9;
+  string projectId       = 10;
+  uint64 platformFee     = 11;
+}
+
+message MsgUpdateRevenueRecordResponse {}
+
+message MsgDeleteRevenueRecord {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteRevenueRecordResponse {}
+

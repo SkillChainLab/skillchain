@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/profile/params.proto";
+import "skillchain/profile/user_profile.proto";
+import "skillchain/profile/user_skill.proto";
+import "skillchain/profile/skill_endorsement.proto";
+
+option go_package = "skillchain/x/profile/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/profile/params";
+  
+  }
+  
+  // Queries a list of UserProfile items.
+  rpc UserProfile    (QueryGetUserProfileRequest) returns (QueryGetUserProfileResponse) {
+    option (google.api.http).get = "/skillchain/profile/user_profile/{index}";
+  
+  }
+  rpc UserProfileAll (QueryAllUserProfileRequest) returns (QueryAllUserProfileResponse) {
+    option (google.api.http).get = "/skillchain/profile/user_profile";
+  
+  }
+  
+  // Queries a list of UserSkill items.
+  rpc UserSkill    (QueryGetUserSkillRequest) returns (QueryGetUserSkillResponse) {
+    option (google.api.http).get = "/skillchain/profile/user_skill/{index}";
+  
+  }
+  rpc UserSkillAll (QueryAllUserSkillRequest) returns (QueryAllUserSkillResponse) {
+    option (google.api.http).get = "/skillchain/profile/user_skill";
+  
+  }
+  
+  // Queries a list of SkillEndorsement items.
+  rpc SkillEndorsement    (QueryGetSkillEndorsementRequest) returns (QueryGetSkillEndorsementResponse) {
+    option (google.api.http).get = "/skillchain/profile/skill_endorsement/{index}";
+  
+  }
+  rpc SkillEndorsementAll (QueryAllSkillEndorsementRequest) returns (QueryAllSkillEndorsementResponse) {
+    option (google.api.http).get = "/skillchain/profile/skill_endorsement";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetUserProfileRequest {
+  string index = 1;
+}
+
+message QueryGetUserProfileResponse {
+  UserProfile userProfile = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUserProfileRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUserProfileResponse {
+  repeated UserProfile                            userProfile = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
+}
+
+message QueryGetUserSkillRequest {
+  string index = 1;
+}
+
+message QueryGetUserSkillResponse {
+  UserSkill userSkill = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUserSkillRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUserSkillResponse {
+  repeated UserSkill                              userSkill  = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSkillEndorsementRequest {
+  string index = 1;
+}
+
+message QueryGetSkillEndorsementResponse {
+  SkillEndorsement skillEndorsement = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSkillEndorsementRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSkillEndorsementResponse {
+  repeated SkillEndorsement                       skillEndorsement = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination       = 2;
+}
+

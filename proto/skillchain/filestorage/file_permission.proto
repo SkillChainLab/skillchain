@@ -1,0 +1,16 @@
+syntax = "proto3";
+package skillchain.filestorage;
+
+option go_package = "skillchain/x/filestorage/types";
+
+message FilePermission {
+  string index = 1; 
+  string fileId = 2; 
+  string userAddress = 3; 
+  string permissionLevel = 4; 
+  string grantedBy = 5; 
+  uint64 grantedAt = 6; 
+  uint64 expiresAt = 7; 
+  string creator = 8;
+}
+

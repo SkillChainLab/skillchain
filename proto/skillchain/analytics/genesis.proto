@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package skillchain.analytics;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/analytics/params.proto";
+import "skillchain/analytics/platform_metric.proto";
+import "skillchain/analytics/user_activity.proto";
+import "skillchain/analytics/revenue_record.proto";
+
+option go_package = "skillchain/x/analytics/types";
+
+// GenesisState defines the analytics module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params         params             = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated PlatformMetric platformMetricList = 2 [(gogoproto.nullable) = false] ;
+  repeated UserActivity   userActivityList   = 3 [(gogoproto.nullable) = false] ;
+  repeated RevenueRecord  revenueRecordList  = 4 [(gogoproto.nullable) = false] ;
+}
+

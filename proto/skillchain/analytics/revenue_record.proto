@@ -1,0 +1,19 @@
+syntax = "proto3";
+package skillchain.analytics;
+
+option go_package = "skillchain/x/analytics/types";
+
+message RevenueRecord {
+  string index = 1; 
+  string transactionType = 2; 
+  uint64 amount = 3; 
+  string currency = 4; 
+  string fromAddress = 5; 
+  string toAddress = 6; 
+  uint64 timestamp = 7; 
+  uint64 feeAmount = 8; 
+  string projectId = 9; 
+  uint64 platformFee = 10; 
+  string creator = 11;
+}
+

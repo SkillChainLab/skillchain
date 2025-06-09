@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/profile/params.proto";
+import "skillchain/profile/user_profile.proto";
+import "skillchain/profile/user_skill.proto";
+import "skillchain/profile/skill_endorsement.proto";
+
+option go_package = "skillchain/x/profile/types";
+
+// GenesisState defines the profile module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params           params               = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated UserProfile      userProfileList      = 2 [(gogoproto.nullable) = false] ;
+  repeated UserSkill        userSkillList        = 3 [(gogoproto.nullable) = false] ;
+  repeated SkillEndorsement skillEndorsementList = 4 [(gogoproto.nullable) = false] ;
+}
+

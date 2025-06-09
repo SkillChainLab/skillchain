@@ -1,0 +1,59 @@
+syntax = "proto3";
+package skillchain.skillchain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "cosmos/base/v1beta1/coin.proto";
+
+option go_package = "skillchain/x/skillchain/types";
+
+// VUSDTreasury tracks the global state of the vUSD system
+message VUSDTreasury {
+  // Total SKILL tokens locked as collateral
+  string total_skill_locked = 1 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Total vUSD tokens in circulation
+  string total_vusd_supply = 2 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Current SKILL/USD price (mock for now)
+  string current_skill_price = 3;
+  
+  // Last price update timestamp
+  int64 last_update = 4;
+  
+  // Global collateral ratio
+  string global_collateral_ratio = 5;
+}
+
+// UserVUSDPosition tracks individual user's collateral and debt
+message UserVUSDPosition {
+  // User's address
+  string address = 1;
+  
+  // SKILL tokens locked as collateral
+  string skill_collateral = 2 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // vUSD tokens minted (debt)
+  string vusd_debt = 3 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Individual collateral ratio
+  string collateral_ratio = 4;
+  
+  // Position creation timestamp
+  int64 created_at = 5;
+  
+  // Last update timestamp
+  int64 updated_at = 6;
+} 

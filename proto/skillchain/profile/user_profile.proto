@@ -1,0 +1,21 @@
+syntax = "proto3";
+package skillchain.profile;
+
+option go_package = "skillchain/x/profile/types";
+
+message UserProfile {
+  string index = 1; 
+  string owner = 2; 
+  string displayName = 3; 
+  string bio = 4; 
+  string location = 5; 
+  string website = 6; 
+  string github = 7; 
+  string linkedin = 8; 
+  string twitter = 9; 
+  uint64 reputationScore = 10; 
+  uint64 createdAt = 11; 
+  uint64 updatedAt = 12; 
+  string creator = 13;
+}
+

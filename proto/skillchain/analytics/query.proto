@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package skillchain.analytics;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/analytics/params.proto";
+import "skillchain/analytics/platform_metric.proto";
+import "skillchain/analytics/user_activity.proto";
+import "skillchain/analytics/revenue_record.proto";
+
+option go_package = "skillchain/x/analytics/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/analytics/params";
+  
+  }
+  
+  // Queries a list of PlatformMetric items.
+  rpc PlatformMetric    (QueryGetPlatformMetricRequest) returns (QueryGetPlatformMetricResponse) {
+    option (google.api.http).get = "/skillchain/analytics/platform_metric/{index}";
+  
+  }
+  rpc PlatformMetricAll (QueryAllPlatformMetricRequest) returns (QueryAllPlatformMetricResponse) {
+    option (google.api.http).get = "/skillchain/analytics/platform_metric";
+  
+  }
+  
+  // Queries a list of UserActivity items.
+  rpc UserActivity    (QueryGetUserActivityRequest) returns (QueryGetUserActivityResponse) {
+    option (google.api.http).get = "/skillchain/analytics/user_activity/{index}";
+  
+  }
+  rpc UserActivityAll (QueryAllUserActivityRequest) returns (QueryAllUserActivityResponse) {
+    option (google.api.http).get = "/skillchain/analytics/user_activity";
+  
+  }
+  
+  // Queries a list of RevenueRecord items.
+  rpc RevenueRecord    (QueryGetRevenueRecordRequest) returns (QueryGetRevenueRecordResponse) {
+    option (google.api.http).get = "/skillchain/analytics/revenue_record/{index}";
+  
+  }
+  rpc RevenueRecordAll (QueryAllRevenueRecordRequest) returns (QueryAllRevenueRecordResponse) {
+    option (google.api.http).get = "/skillchain/analytics/revenue_record";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetPlatformMetricRequest {
+  string index = 1;
+}
+
+message QueryGetPlatformMetricResponse {
+  PlatformMetric platformMetric = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPlatformMetricRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPlatformMetricResponse {
+  repeated PlatformMetric                         platformMetric = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
+}
+
+message QueryGetUserActivityRequest {
+  string index = 1;
+}
+
+message QueryGetUserActivityResponse {
+  UserActivity userActivity = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUserActivityRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUserActivityResponse {
+  repeated UserActivity                           userActivity = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+}
+
+message QueryGetRevenueRecordRequest {
+  string index = 1;
+}
+
+message QueryGetRevenueRecordResponse {
+  RevenueRecord revenueRecord = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllRevenueRecordRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllRevenueRecordResponse {
+  repeated RevenueRecord                          revenueRecord = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination    = 2;
+}
+

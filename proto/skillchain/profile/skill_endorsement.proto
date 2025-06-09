@@ -1,0 +1,17 @@
+syntax = "proto3";
+package skillchain.profile;
+
+option go_package = "skillchain/x/profile/types";
+
+message SkillEndorsement {
+  string index = 1; 
+  string endorser = 2; 
+  string targetUser = 3; 
+  string skillName = 4; 
+  string endorsementType = 5; 
+  string comment = 6; 
+  uint64 createdAt = 7; 
+  uint64 skillTokensStaked = 8; 
+  string creator = 9;
+}
+

@@ -1,0 +1,26 @@
+syntax = "proto3";
+package skillchain.skillchain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "skillchain/x/skillchain/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "skillchain/x/skillchain/Params";
+  option (gogoproto.equal) = true;
+
+  bool burn_enabled = 1;
+  bool vusd_enabled = 2;
+  string price_update_authority = 3;
+  string vusd_mock_price = 4;
+  string token_name = 5;
+  string token_symbol = 6;
+  uint32 token_decimals = 7;
+  string token_description = 8;
+  string max_supply = 9;
+  string chain_description = 10;
+  string website_url = 11;
+  string min_collateral_ratio = 12;
+}

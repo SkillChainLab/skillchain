@@ -1,0 +1,19 @@
+syntax = "proto3";
+package skillchain.marketplace;
+
+option go_package = "skillchain/x/marketplace/types";
+
+message Proposal {
+  string index = 1; 
+  string jobPostingId = 2; 
+  string freelancerAddress = 3; 
+  uint64 proposedAmount = 4; 
+  string proposedCurrency = 5; 
+  string proposedTimeline = 6; 
+  string coverLetter = 7; 
+  uint64 freelancerReputation = 8; 
+  bool isAccepted = 9; 
+  int64 createdAt = 10; 
+  string creator = 11;
+}
+

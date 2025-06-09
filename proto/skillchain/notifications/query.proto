@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package skillchain.notifications;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/notifications/params.proto";
+import "skillchain/notifications/notification.proto";
+import "skillchain/notifications/notification_settings.proto";
+
+option go_package = "skillchain/x/notifications/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/notifications/params";
+  
+  }
+  
+  // Queries a list of Notification items.
+  rpc Notification    (QueryGetNotificationRequest) returns (QueryGetNotificationResponse) {
+    option (google.api.http).get = "/skillchain/notifications/notification/{index}";
+  
+  }
+  rpc NotificationAll (QueryAllNotificationRequest) returns (QueryAllNotificationResponse) {
+    option (google.api.http).get = "/skillchain/notifications/notification";
+  
+  }
+  
+  // Queries a list of NotificationSettings items.
+  rpc NotificationSettings    (QueryGetNotificationSettingsRequest) returns (QueryGetNotificationSettingsResponse) {
+    option (google.api.http).get = "/skillchain/notifications/notification_settings/{index}";
+  
+  }
+  rpc NotificationSettingsAll (QueryAllNotificationSettingsRequest) returns (QueryAllNotificationSettingsResponse) {
+    option (google.api.http).get = "/skillchain/notifications/notification_settings";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetNotificationRequest {
+  string index = 1;
+}
+
+message QueryGetNotificationResponse {
+  Notification notification = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllNotificationRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllNotificationResponse {
+  repeated Notification                           notification = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+}
+
+message QueryGetNotificationSettingsRequest {
+  string index = 1;
+}
+
+message QueryGetNotificationSettingsResponse {
+  NotificationSettings notificationSettings = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllNotificationSettingsRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllNotificationSettingsResponse {
+  repeated NotificationSettings                   notificationSettings = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination           = 2;
+}
+

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package skillchain.notifications;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/notifications/params.proto";
+import "skillchain/notifications/notification.proto";
+import "skillchain/notifications/notification_settings.proto";
+
+option go_package = "skillchain/x/notifications/types";
+
+// GenesisState defines the notifications module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params               params                   = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Notification         notificationList         = 2 [(gogoproto.nullable) = false] ;
+  repeated NotificationSettings notificationSettingsList = 3 [(gogoproto.nullable) = false] ;
+}
+

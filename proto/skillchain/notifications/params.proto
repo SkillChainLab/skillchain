@@ -1,0 +1,15 @@
+syntax = "proto3";
+package skillchain.notifications;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "skillchain/x/notifications/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "skillchain/x/notifications/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

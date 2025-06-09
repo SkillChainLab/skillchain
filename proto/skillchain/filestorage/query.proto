@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package skillchain.filestorage;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/filestorage/params.proto";
+import "skillchain/filestorage/file_record.proto";
+import "skillchain/filestorage/file_permission.proto";
+
+option go_package = "skillchain/x/filestorage/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/filestorage/params";
+  
+  }
+  
+  // Queries a list of FileRecord items.
+  rpc FileRecord    (QueryGetFileRecordRequest) returns (QueryGetFileRecordResponse) {
+    option (google.api.http).get = "/skillchain/filestorage/file_record/{index}";
+  
+  }
+  rpc FileRecordAll (QueryAllFileRecordRequest) returns (QueryAllFileRecordResponse) {
+    option (google.api.http).get = "/skillchain/filestorage/file_record";
+  
+  }
+  
+  // Queries a list of FilePermission items.
+  rpc FilePermission    (QueryGetFilePermissionRequest) returns (QueryGetFilePermissionResponse) {
+    option (google.api.http).get = "/skillchain/filestorage/file_permission/{index}";
+  
+  }
+  rpc FilePermissionAll (QueryAllFilePermissionRequest) returns (QueryAllFilePermissionResponse) {
+    option (google.api.http).get = "/skillchain/filestorage/file_permission";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetFileRecordRequest {
+  string index = 1;
+}
+
+message QueryGetFileRecordResponse {
+  FileRecord fileRecord = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllFileRecordRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllFileRecordResponse {
+  repeated FileRecord                             fileRecord = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetFilePermissionRequest {
+  string index = 1;
+}
+
+message QueryGetFilePermissionResponse {
+  FilePermission filePermission = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllFilePermissionRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllFilePermissionResponse {
+  repeated FilePermission                         filePermission = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
+}
+

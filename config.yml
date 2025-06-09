@@ -1,0 +1,49 @@
+version: 1
+validation: sovereign
+accounts: 
+- name: alice
+  coins:
+  - 220000000uskill
+- name: bob
+  coins:
+  - 110000000uskill
+client:
+  openapi:
+    path: docs/static/openapi.yml
+faucet:
+  name: bob
+  coins:
+  - 100000uskill
+validators:
+- name: alice
+  bonded: 100000000uskill
+- name: validator1
+  bonded: 100000000uskill
+- name: validator2
+  bonded: 200000000uskill
+- name: validator3
+  bonded: 300000000uskill
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: "uskill"
+    crisis:
+      constant_fee:
+        denom: "uskill"
+        amount: "1000"
+    mint:
+      params:
+        mint_denom: "uskill"
+    gov:
+      deposit_params:
+        min_deposit:
+          - denom: "uskill"
+            amount: "10000000"
+      params:
+        expedited_min_deposit:
+          - denom: "uskill"
+            amount: "50000000"
+        min_deposit:
+          - denom: "uskill"
+            amount: "10000000"

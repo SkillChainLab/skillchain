@@ -1,0 +1,222 @@
+syntax = "proto3";
+
+package skillchain.profile;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/profile/params.proto";
+import "skillchain/profile/user_profile.proto";
+import "skillchain/profile/user_skill.proto";
+import "skillchain/profile/skill_endorsement.proto";
+
+option go_package = "skillchain/x/profile/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams           (MsgUpdateParams          ) returns (MsgUpdateParamsResponse          );
+  rpc CreateProfile          (MsgCreateProfile         ) returns (MsgCreateProfileResponse         );
+  rpc CreateUserProfile      (MsgCreateUserProfile     ) returns (MsgCreateUserProfileResponse     );
+  rpc UpdateUserProfile      (MsgUpdateUserProfile     ) returns (MsgUpdateUserProfileResponse     );
+  rpc DeleteUserProfile      (MsgDeleteUserProfile     ) returns (MsgDeleteUserProfileResponse     );
+  rpc CreateUserSkill        (MsgCreateUserSkill       ) returns (MsgCreateUserSkillResponse       );
+  rpc UpdateUserSkill        (MsgUpdateUserSkill       ) returns (MsgUpdateUserSkillResponse       );
+  rpc DeleteUserSkill        (MsgDeleteUserSkill       ) returns (MsgDeleteUserSkillResponse       );
+  rpc EndorseSkill           (MsgEndorseSkill          ) returns (MsgEndorseSkillResponse          );
+  rpc CreateSkillEndorsement (MsgCreateSkillEndorsement) returns (MsgCreateSkillEndorsementResponse);
+  rpc UpdateSkillEndorsement (MsgUpdateSkillEndorsement) returns (MsgUpdateSkillEndorsementResponse);
+  rpc DeleteSkillEndorsement (MsgDeleteSkillEndorsement) returns (MsgDeleteSkillEndorsementResponse);
+  rpc DisputeEndorsement     (MsgDisputeEndorsement     ) returns (MsgDisputeEndorsementResponse     );
+  rpc WithdrawStakedTokens   (MsgWithdrawStakedTokens   ) returns (MsgWithdrawStakedTokensResponse   );
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                            "authority";
+  option           (amino.name) = "skillchain/x/profile/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateProfile {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string displayName = 2;
+  string bio         = 3;
+  string location    = 4;
+  string website     = 5;
+  string github      = 6;
+  string linkedin    = 7;
+  string twitter     = 8;
+}
+
+message MsgCreateProfileResponse {}
+
+message MsgCreateUserProfile {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string owner           =  3;
+  string displayName     =  4;
+  string bio             =  5;
+  string location        =  6;
+  string website         =  7;
+  string github          =  8;
+  string linkedin        =  9;
+  string twitter         = 10;
+  uint64 reputationScore = 11;
+  uint64 createdAt       = 12;
+  uint64 updatedAt       = 13;
+}
+
+message MsgCreateUserProfileResponse {}
+
+message MsgUpdateUserProfile {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string owner           =  3;
+  string displayName     =  4;
+  string bio             =  5;
+  string location        =  6;
+  string website         =  7;
+  string github          =  8;
+  string linkedin        =  9;
+  string twitter         = 10;
+  uint64 reputationScore = 11;
+  uint64 createdAt       = 12;
+  uint64 updatedAt       = 13;
+}
+
+message MsgUpdateUserProfileResponse {}
+
+message MsgDeleteUserProfile {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteUserProfileResponse {}
+
+message MsgCreateUserSkill {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator          =  1;
+  string index            =  2;
+  string owner            =  3;
+  string skillName        =  4;
+  string proficiencyLevel =  5;
+  uint64 yearsExperience  =  6;
+  bool   verified         =  7;
+  string verifiedBy       =  8;
+  uint64 verificationDate =  9;
+  uint64 endorsementCount = 10;
+}
+
+message MsgCreateUserSkillResponse {}
+
+message MsgUpdateUserSkill {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator          =  1;
+  string index            =  2;
+  string owner            =  3;
+  string skillName        =  4;
+  string proficiencyLevel =  5;
+  uint64 yearsExperience  =  6;
+  bool   verified         =  7;
+  string verifiedBy       =  8;
+  uint64 verificationDate =  9;
+  uint64 endorsementCount = 10;
+}
+
+message MsgUpdateUserSkillResponse {}
+
+message MsgDeleteUserSkill {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteUserSkillResponse {}
+
+message MsgEndorseSkill {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         = 1;
+  string targetUser      = 2;
+  string skillName       = 3;
+  string endorsementType = 4;
+  string comment         = 5;
+  uint64 stakeTokens     = 6;
+}
+
+message MsgEndorseSkillResponse {}
+
+message MsgCreateSkillEndorsement {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator           = 1;
+  string index             = 2;
+  string endorser          = 3;
+  string targetUser        = 4;
+  string skillName         = 5;
+  string endorsementType   = 6;
+  string comment           = 7;
+  uint64 createdAt         = 8;
+  uint64 skillTokensStaked = 9;
+}
+
+message MsgCreateSkillEndorsementResponse {}
+
+message MsgUpdateSkillEndorsement {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator           = 1;
+  string index             = 2;
+  string endorser          = 3;
+  string targetUser        = 4;
+  string skillName         = 5;
+  string endorsementType   = 6;
+  string comment           = 7;
+  uint64 createdAt         = 8;
+  uint64 skillTokensStaked = 9;
+}
+
+message MsgUpdateSkillEndorsementResponse {}
+
+message MsgDeleteSkillEndorsement {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteSkillEndorsementResponse {}
+
+message MsgDisputeEndorsement {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator        = 1;  // Client who hired the freelancer
+  string endorsementId  = 2;  // The endorsement being disputed
+  string disputeReason  = 3;  // Why the job was unsuccessful
+  string evidence       = 4;  // Additional evidence or documentation
+}
+
+message MsgDisputeEndorsementResponse {}
+
+message MsgWithdrawStakedTokens {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string skillName = 2;
+}
+
+message MsgWithdrawStakedTokensResponse {}
+

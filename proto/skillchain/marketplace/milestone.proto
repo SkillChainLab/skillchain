@@ -1,0 +1,20 @@
+syntax = "proto3";
+package skillchain.marketplace;
+
+option go_package = "skillchain/x/marketplace/types";
+
+message Milestone {
+  string index = 1; 
+  string projectId = 2; 
+  string title = 3; 
+  string description = 4; 
+  uint64 amount = 5; 
+  int64 dueDate = 6; 
+  string status = 7; 
+  bool isCompleted = 8; 
+  bool isPaid = 9; 
+  int64 submittedAt = 10; 
+  int64 approvedAt = 11; 
+  string creator = 12;
+}
+

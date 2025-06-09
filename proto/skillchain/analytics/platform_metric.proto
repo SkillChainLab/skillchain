@@ -1,0 +1,16 @@
+syntax = "proto3";
+package skillchain.analytics;
+
+option go_package = "skillchain/x/analytics/types";
+
+message PlatformMetric {
+  string index = 1; 
+  string metricName = 2; 
+  uint64 metricValue = 3; 
+  string metricType = 4; 
+  string period = 5; 
+  uint64 timestamp = 6; 
+  string metadata = 7; 
+  string creator = 8;
+}
+

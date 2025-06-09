@@ -1,0 +1,18 @@
+syntax = "proto3";
+package skillchain.notifications;
+
+option go_package = "skillchain/x/notifications/types";
+
+message NotificationSettings {
+  string index = 1; 
+  string userAddress = 2; 
+  bool emailEnabled = 3; 
+  bool pushEnabled = 4; 
+  bool smsEnabled = 5; 
+  string emailAddress = 6; 
+  string phoneNumber = 7; 
+  repeated string notificationTypes = 8; 
+  string frequency = 9; 
+  string creator = 10;
+}
+

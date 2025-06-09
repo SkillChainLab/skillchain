@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package skillchain.filestorage;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/filestorage/params.proto";
+import "skillchain/filestorage/file_record.proto";
+import "skillchain/filestorage/file_permission.proto";
+
+option go_package = "skillchain/x/filestorage/types";
+
+// GenesisState defines the filestorage module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params         params             = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated FileRecord     fileRecordList     = 2 [(gogoproto.nullable) = false] ;
+  repeated FilePermission filePermissionList = 3 [(gogoproto.nullable) = false] ;
+}
+

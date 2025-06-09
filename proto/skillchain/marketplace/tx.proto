@@ -1,0 +1,269 @@
+syntax = "proto3";
+
+package skillchain.marketplace;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/marketplace/params.proto";
+import "skillchain/marketplace/job_posting.proto";
+import "skillchain/marketplace/proposal.proto";
+import "skillchain/marketplace/project.proto";
+import "skillchain/marketplace/milestone.proto";
+
+option go_package = "skillchain/x/marketplace/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams      (MsgUpdateParams     ) returns (MsgUpdateParamsResponse     );
+  rpc CreateJobPosting  (MsgCreateJobPosting ) returns (MsgCreateJobPostingResponse );
+  rpc UpdateJobPosting  (MsgUpdateJobPosting ) returns (MsgUpdateJobPostingResponse );
+  rpc DeleteJobPosting  (MsgDeleteJobPosting ) returns (MsgDeleteJobPostingResponse );
+  rpc CreateProposal    (MsgCreateProposal   ) returns (MsgCreateProposalResponse   );
+  rpc UpdateProposal    (MsgUpdateProposal   ) returns (MsgUpdateProposalResponse   );
+  rpc DeleteProposal    (MsgDeleteProposal   ) returns (MsgDeleteProposalResponse   );
+  rpc CreateProject     (MsgCreateProject    ) returns (MsgCreateProjectResponse    );
+  rpc UpdateProject     (MsgUpdateProject    ) returns (MsgUpdateProjectResponse    );
+  rpc DeleteProject     (MsgDeleteProject    ) returns (MsgDeleteProjectResponse    );
+  rpc CreateMilestone   (MsgCreateMilestone  ) returns (MsgCreateMilestoneResponse  );
+  rpc UpdateMilestone   (MsgUpdateMilestone  ) returns (MsgUpdateMilestoneResponse  );
+  rpc DeleteMilestone   (MsgDeleteMilestone  ) returns (MsgDeleteMilestoneResponse  );
+  rpc AcceptProposal    (MsgAcceptProposal   ) returns (MsgAcceptProposalResponse   );
+  rpc CompleteMilestone (MsgCompleteMilestone) returns (MsgCompleteMilestoneResponse);
+  rpc ReleasePayment    (MsgReleasePayment   ) returns (MsgReleasePaymentResponse   );
+  rpc DisputeProject    (MsgDisputeProject   ) returns (MsgDisputeProjectResponse   );
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                                "authority";
+  option           (amino.name) = "skillchain/x/marketplace/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateJobPosting {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string clientAddress   =  3;
+  string title           =  4;
+  string description     =  5;
+  string skillsRequired  =  6;
+  string budgetAmount    =  7;
+  string paymentCurrency =  8;
+  string deadline        =  9;
+  string isActive        = 10;
+  string createdAt       = 11;
+}
+
+message MsgCreateJobPostingResponse {}
+
+message MsgUpdateJobPosting {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator         =  1;
+  string index           =  2;
+  string clientAddress   =  3;
+  string title           =  4;
+  string description     =  5;
+  string skillsRequired  =  6;
+  string budgetAmount    =  7;
+  string paymentCurrency =  8;
+  string deadline        =  9;
+  string isActive        = 10;
+  string createdAt       = 11;
+}
+
+message MsgUpdateJobPostingResponse {}
+
+message MsgDeleteJobPosting {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteJobPostingResponse {}
+
+message MsgCreateProposal {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator              =  1;
+  string index                =  2;
+  string jobPostingId         =  3;
+  string freelancerAddress    =  4;
+  string proposedAmount       =  5;
+  string proposedCurrency     =  6;
+  string proposedTimeline     =  7;
+  string coverLetter          =  8;
+  string freelancerReputation =  9;
+  string isAccepted           = 10;
+  string createdAt            = 11;
+}
+
+message MsgCreateProposalResponse {}
+
+message MsgUpdateProposal {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator              =  1;
+  string index                =  2;
+  string jobPostingId         =  3;
+  string freelancerAddress    =  4;
+  string proposedAmount       =  5;
+  string proposedCurrency     =  6;
+  string proposedTimeline     =  7;
+  string coverLetter          =  8;
+  string freelancerReputation =  9;
+  string isAccepted           = 10;
+  string createdAt            = 11;
+}
+
+message MsgUpdateProposalResponse {}
+
+message MsgDeleteProposal {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteProposalResponse {}
+
+message MsgCreateProject {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator           =  1;
+  string index             =  2;
+  string jobPostingId      =  3;
+  string proposalId        =  4;
+  string clientAddress     =  5;
+  string freelancerAddress =  6;
+  string totalAmount       =  7;
+  string paidAmount        =  8;
+  string escrowAmount      =  9;
+  string status            = 10;
+  string startDate         = 11;
+  string expectedEndDate   = 12;
+  string actualEndDate     = 13;
+}
+
+message MsgCreateProjectResponse {}
+
+message MsgUpdateProject {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator           =  1;
+  string index             =  2;
+  string jobPostingId      =  3;
+  string proposalId        =  4;
+  string clientAddress     =  5;
+  string freelancerAddress =  6;
+  string totalAmount       =  7;
+  string paidAmount        =  8;
+  string escrowAmount      =  9;
+  string status            = 10;
+  string startDate         = 11;
+  string expectedEndDate   = 12;
+  string actualEndDate     = 13;
+}
+
+message MsgUpdateProjectResponse {}
+
+message MsgDeleteProject {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteProjectResponse {}
+
+message MsgCreateMilestone {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     =  1;
+  string index       =  2;
+  string projectId   =  3;
+  string title       =  4;
+  string description =  5;
+  string amount      =  6;
+  string dueDate     =  7;
+  string status      =  8;
+  string isCompleted =  9;
+  string isPaid      = 10;
+  string submittedAt = 11;
+  string approvedAt  = 12;
+}
+
+message MsgCreateMilestoneResponse {}
+
+message MsgUpdateMilestone {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     =  1;
+  string index       =  2;
+  string projectId   =  3;
+  string title       =  4;
+  string description =  5;
+  string amount      =  6;
+  string dueDate     =  7;
+  string status      =  8;
+  string isCompleted =  9;
+  string isPaid      = 10;
+  string submittedAt = 11;
+  string approvedAt  = 12;
+}
+
+message MsgUpdateMilestoneResponse {}
+
+message MsgDeleteMilestone {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteMilestoneResponse {}
+
+message MsgAcceptProposal {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator    = 1;
+  string proposalId = 2;
+}
+
+message MsgAcceptProposalResponse {}
+
+message MsgCompleteMilestone {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator       = 1;
+  string milestoneId   = 2;
+  string deliveryNotes = 3;
+}
+
+message MsgCompleteMilestoneResponse {}
+
+message MsgReleasePayment {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string milestoneId = 2;
+  string rating      = 3;
+  string feedback    = 4;
+}
+
+message MsgReleasePaymentResponse {}
+
+message MsgDisputeProject {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator   = 1;
+  string projectId = 2;
+  string reason    = 3;
+  string evidence  = 4;
+}
+
+message MsgDisputeProjectResponse {}
+

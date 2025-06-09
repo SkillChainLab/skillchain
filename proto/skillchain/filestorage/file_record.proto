@@ -1,0 +1,19 @@
+syntax = "proto3";
+package skillchain.filestorage;
+
+option go_package = "skillchain/x/filestorage/types";
+
+message FileRecord {
+  string index = 1; 
+  string owner = 2; 
+  string filename = 3; 
+  string fileHash = 4; 
+  uint64 fileSize = 5; 
+  string contentType = 6; 
+  uint64 uploadDate = 7; 
+  string ipfsHash = 8; 
+  string metadata = 9; 
+  bool isPublic = 10; 
+  string creator = 11;
+}
+

@@ -1,0 +1,78 @@
+syntax = "proto3";
+package skillchain.skillchain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/skillchain/params.proto";
+
+option go_package = "skillchain/x/skillchain/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/skillchain/params";
+  }
+  
+  rpc TokenInfo(QueryTokenInfoRequest) returns (QueryTokenInfoResponse) {
+    option (google.api.http).get = "/skillchain/skillchain/token_info";
+  }
+  
+  rpc VUSDTreasury(QueryVUSDTreasuryRequest) returns (QueryVUSDTreasuryResponse) {
+    option (google.api.http).get = "/skillchain/skillchain/vusd_treasury";
+  }
+  
+  rpc UserVUSDPosition(QueryUserVUSDPositionRequest) returns (QueryUserVUSDPositionResponse) {
+    option (google.api.http).get = "/skillchain/skillchain/user_vusd_position/{address}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+message QueryTokenInfoRequest {}
+
+message QueryTokenInfoResponse {
+  string name = 1;
+  string symbol = 2;
+  uint32 decimals = 3;
+  string description = 4;
+  string total_supply = 5;
+  string circulating_supply = 6;
+  string burned_amount = 7;
+  string max_supply = 8;
+  bool burn_enabled = 9;
+  string chain_description = 10;
+  string website_url = 11;
+}
+
+message QueryVUSDTreasuryRequest {}
+
+message QueryVUSDTreasuryResponse {
+  string skill_balance = 1;
+  string vusd_supply = 2;
+  string exchange_rate = 3;
+}
+
+message QueryUserVUSDPositionRequest {
+  string address = 1;
+}
+
+message QueryUserVUSDPositionResponse {
+  string vusd_balance = 1;
+  string skill_collateral = 2;
+  string health_factor = 3;
+  string position = 4;
+  bool exists = 5;
+}

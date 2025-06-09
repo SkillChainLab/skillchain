@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package skillchain.notifications;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/notifications/params.proto";
+import "skillchain/notifications/notification.proto";
+import "skillchain/notifications/notification_settings.proto";
+
+option go_package = "skillchain/x/notifications/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams               (MsgUpdateParams              ) returns (MsgUpdateParamsResponse              );
+  rpc CreateNotification         (MsgCreateNotification        ) returns (MsgCreateNotificationResponse        );
+  rpc UpdateNotification         (MsgUpdateNotification        ) returns (MsgUpdateNotificationResponse        );
+  rpc DeleteNotification         (MsgDeleteNotification        ) returns (MsgDeleteNotificationResponse        );
+  rpc CreateNotificationSettings (MsgCreateNotificationSettings) returns (MsgCreateNotificationSettingsResponse);
+  rpc UpdateNotificationSettings (MsgUpdateNotificationSettings) returns (MsgUpdateNotificationSettingsResponse);
+  rpc DeleteNotificationSettings (MsgDeleteNotificationSettings) returns (MsgDeleteNotificationSettingsResponse);
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                                  "authority";
+  option           (amino.name) = "skillchain/x/notifications/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateNotification {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator          =  1;
+  string index            =  2;
+  string userAddress      =  3;
+  string notificationType =  4;
+  string title            =  5;
+  string message          =  6;
+  string data             =  7;
+  bool   isRead           =  8;
+  uint64 createdAt        =  9;
+  string priority         = 10;
+  string sourceModule     = 11;
+  string sourceAction     = 12;
+}
+
+message MsgCreateNotificationResponse {}
+
+message MsgUpdateNotification {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator          =  1;
+  string index            =  2;
+  string userAddress      =  3;
+  string notificationType =  4;
+  string title            =  5;
+  string message          =  6;
+  string data             =  7;
+  bool   isRead           =  8;
+  uint64 createdAt        =  9;
+  string priority         = 10;
+  string sourceModule     = 11;
+  string sourceAction     = 12;
+}
+
+message MsgUpdateNotificationResponse {}
+
+message MsgDeleteNotification {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteNotificationResponse {}
+
+message MsgCreateNotificationSettings {
+  option (cosmos.msg.v1.signer) = "creator";
+           string creator           =  1;
+           string index             =  2;
+           string userAddress       =  3;
+           bool   emailEnabled      =  4;
+           bool   pushEnabled       =  5;
+           bool   smsEnabled        =  6;
+           string emailAddress      =  7;
+           string phoneNumber       =  8;
+  repeated string notificationTypes =  9;
+           string frequency         = 10;
+}
+
+message MsgCreateNotificationSettingsResponse {}
+
+message MsgUpdateNotificationSettings {
+  option (cosmos.msg.v1.signer) = "creator";
+           string creator           =  1;
+           string index             =  2;
+           string userAddress       =  3;
+           bool   emailEnabled      =  4;
+           bool   pushEnabled       =  5;
+           bool   smsEnabled        =  6;
+           string emailAddress      =  7;
+           string phoneNumber       =  8;
+  repeated string notificationTypes =  9;
+           string frequency         = 10;
+}
+
+message MsgUpdateNotificationSettingsResponse {}
+
+message MsgDeleteNotificationSettings {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteNotificationSettingsResponse {}
+

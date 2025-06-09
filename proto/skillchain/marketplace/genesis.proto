@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package skillchain.marketplace;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "skillchain/marketplace/params.proto";
+import "skillchain/marketplace/job_posting.proto";
+import "skillchain/marketplace/proposal.proto";
+import "skillchain/marketplace/project.proto";
+import "skillchain/marketplace/milestone.proto";
+
+option go_package = "skillchain/x/marketplace/types";
+
+// GenesisState defines the marketplace module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params     params         = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated JobPosting jobPostingList = 2 [(gogoproto.nullable) = false] ;
+  repeated Proposal   proposalList   = 3 [(gogoproto.nullable) = false] ;
+  repeated Project    projectList    = 4 [(gogoproto.nullable) = false] ;
+  repeated Milestone  milestoneList  = 5 [(gogoproto.nullable) = false] ;
+}
+

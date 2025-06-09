@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package skillchain.marketplace;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "skillchain/marketplace/params.proto";
+import "skillchain/marketplace/job_posting.proto";
+import "skillchain/marketplace/proposal.proto";
+import "skillchain/marketplace/project.proto";
+import "skillchain/marketplace/milestone.proto";
+
+option go_package = "skillchain/x/marketplace/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/params";
+  
+  }
+  
+  // Queries a list of JobPosting items.
+  rpc JobPosting    (QueryGetJobPostingRequest) returns (QueryGetJobPostingResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/job_posting/{index}";
+  
+  }
+  rpc JobPostingAll (QueryAllJobPostingRequest) returns (QueryAllJobPostingResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/job_posting";
+  
+  }
+  
+  // Queries a list of Proposal items.
+  rpc Proposal    (QueryGetProposalRequest) returns (QueryGetProposalResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/proposal/{index}";
+  
+  }
+  rpc ProposalAll (QueryAllProposalRequest) returns (QueryAllProposalResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/proposal";
+  
+  }
+  
+  // Queries a list of Project items.
+  rpc Project    (QueryGetProjectRequest) returns (QueryGetProjectResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/project/{index}";
+  
+  }
+  rpc ProjectAll (QueryAllProjectRequest) returns (QueryAllProjectResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/project";
+  
+  }
+  
+  // Queries a list of Milestone items.
+  rpc Milestone    (QueryGetMilestoneRequest) returns (QueryGetMilestoneResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/milestone/{index}";
+  
+  }
+  rpc MilestoneAll (QueryAllMilestoneRequest) returns (QueryAllMilestoneResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/milestone";
+  
+  }
+  
+  // Queries a list of ListJobPostings items.
+  rpc ListJobPostings (QueryListJobPostingsRequest) returns (QueryListJobPostingsResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/list_job_postings";
+  
+  }
+  
+  // Queries a list of ListProposals items.
+  rpc ListProposals (QueryListProposalsRequest) returns (QueryListProposalsResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/list_proposals";
+  
+  }
+  
+  // Queries a list of ListProjects items.
+  rpc ListProjects (QueryListProjectsRequest) returns (QueryListProjectsResponse) {
+    option (google.api.http).get = "/skillchain/marketplace/list_projects";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetJobPostingRequest {
+  string index = 1;
+}
+
+message QueryGetJobPostingResponse {
+  JobPosting jobPosting = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllJobPostingRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllJobPostingResponse {
+  repeated JobPosting                             jobPosting = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetProposalRequest {
+  string index = 1;
+}
+
+message QueryGetProposalResponse {
+  Proposal proposal = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProposalRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProposalResponse {
+  repeated Proposal                               proposal   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetProjectRequest {
+  string index = 1;
+}
+
+message QueryGetProjectResponse {
+  Project project = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProjectRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProjectResponse {
+  repeated Project                                project    = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMilestoneRequest {
+  string index = 1;
+}
+
+message QueryGetMilestoneResponse {
+  Milestone milestone = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMilestoneRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMilestoneResponse {
+  repeated Milestone                              milestone  = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryListJobPostingsRequest {}
+
+message QueryListJobPostingsResponse {}
+
+message QueryListProposalsRequest {}
+
+message QueryListProposalsResponse {}
+
+message QueryListProjectsRequest {}
+
+message QueryListProjectsResponse {}
+

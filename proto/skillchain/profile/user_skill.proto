@@ -1,0 +1,18 @@
+syntax = "proto3";
+package skillchain.profile;
+
+option go_package = "skillchain/x/profile/types";
+
+message UserSkill {
+  string index = 1; 
+  string owner = 2; 
+  string skillName = 3; 
+  string proficiencyLevel = 4; 
+  uint64 yearsExperience = 5; 
+  bool verified = 6; 
+  string verifiedBy = 7; 
+  uint64 verificationDate = 8; 
+  uint64 endorsementCount = 9; 
+  string creator = 10;
+}
+
