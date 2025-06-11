@@ -34,6 +34,11 @@ func (app *App) RegisterCustomAPIRoutes(router *mux.Router, clientCtx client.Con
 	skillchainRouter.HandleFunc("/vusd/convert/vusd-to-skill", app.handleConvertVUSDToSKILL(clientCtx)).Methods("POST")
 	skillchainRouter.HandleFunc("/tokens/burn", app.handleBurnTokens(clientCtx)).Methods("POST")
 
+	// Bank Module Routes (for wallet integration)
+	skillchainRouter.HandleFunc("/bank/balances/{address}", app.handleGetBalances(clientCtx)).Methods("GET")
+	skillchainRouter.HandleFunc("/bank/supply", app.handleGetSupply(clientCtx)).Methods("GET")
+	skillchainRouter.HandleFunc("/bank/supply/{denom}", app.handleGetSupplyByDenom(clientCtx)).Methods("GET")
+
 	// Profile Module Routes  
 	skillchainRouter.HandleFunc("/profiles", app.handleCreateProfile(clientCtx)).Methods("POST")
 	skillchainRouter.HandleFunc("/profiles", app.handleListProfiles(clientCtx)).Methods("GET")
