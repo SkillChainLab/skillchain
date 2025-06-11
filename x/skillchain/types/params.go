@@ -18,7 +18,12 @@ func NewParams() Params {
 
 // DefaultParams returns a default set of parameters
 func DefaultParams() Params {
-	return NewParams()
+	return Params{
+		VusdEnabled:         true,
+		VusdMockPrice:       "0.50", // 1 SKILL = $0.50 USD
+		MinCollateralRatio:  "1.50", // 150% minimum collateral ratio
+		PriceUpdateAuthority: "skill1rpu3l6rlvrxgp0drjquu9p5kr0dt7lrfzxac3l", // Alice as default authority
+	}
 }
 
 // ParamSetPairs get the params.ParamSet
