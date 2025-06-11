@@ -411,6 +411,10 @@ func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig
 
 	// register app's OpenAPI routes.
 	docs.RegisterOpenAPIService(Name, apiSvr.Router)
+	
+	// Register custom SkillChain API routes
+	router := apiSvr.Router
+	app.RegisterCustomAPIRoutes(router, apiSvr.ClientCtx)
 }
 
 // GetMaccPerms returns a copy of the module account permissions
