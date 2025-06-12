@@ -72,6 +72,23 @@ func (k Keeper) GetAllUserProfile(ctx context.Context) (list []types.UserProfile
 	return
 }
 
+// GetUserProfileByOwner returns a userProfile from its owner address
+func (k Keeper) GetUserProfileByOwner(
+	ctx context.Context,
+	ownerAddress string,
+) (val types.UserProfile, found bool) {
+	// Get all profiles and search for matching owner
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	for _, profile := range allProfiles {
+		if profile.Owner == ownerAddress {
+			return profile, true
+		}
+	}
+	
+	return val, false
+}
+
 // CalculateUserReputation calculates user reputation based on endorsements received
 func (k Keeper) CalculateUserReputation(ctx context.Context, userAddress string) uint64 {
 	baseReputation := uint64(100) // Starting reputation

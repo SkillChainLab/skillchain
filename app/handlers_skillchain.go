@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os/exec"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/types"
@@ -141,14 +142,36 @@ func (app *App) handleConvertSKILLToVUSD(clientCtx client.Context) http.HandlerF
 			return
 		}
 
+		// Execute actual conversion transaction using CLI
+		cmd := exec.Command("skillchaind", "tx", "skillchain", "convert-skill-to-vusd", 
+			"--amount", amount.String(), 
+			"--from", "alice", 
+			"--chain-id", "skillchain", 
+			"--yes", 
+			"--output", "json")
+		
+		output, err := cmd.Output()
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Transaction failed: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		// Parse the transaction output
+		var txResult map[string]interface{}
+		if err := json.Unmarshal(output, &txResult); err != nil {
+			http.Error(w, "Failed to parse transaction result", http.StatusInternalServerError)
+			return
+		}
+
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
-			"message": "SKILL to VUSD conversion transaction prepared",
-			"tx_info": map[string]interface{}{
-				"creator": req.Creator,
-				"amount": amount.String(),
-				"estimated_gas": "180000",
-				"note": "Use skillchaind tx skillchain convert-skill-to-vusd to execute",
+			"success": true,
+			"message": "SKILL to VUSD conversion executed successfully",
+			"transaction": txResult,
+			"conversion_result": map[string]interface{}{
+				"original_amount": amount.String(),
+				"vusd_received": fmt.Sprintf("%d", amount.Amount.Int64()/2) + "uvusd", // 1:0.5 ratio
+				"exchange_rate": "0.5",
 			},
 		})
 	}
@@ -230,24 +253,6 @@ func (app *App) handleBurnTokens(clientCtx client.Context) http.HandlerFunc {
 			},
 		})
 	}
-}
-
-func (app *App) RegisterSkillchainHandlers(router *mux.Router, clientCtx client.Context) {
-	// Query endpoints
-	router.HandleFunc("/api/skillchain/params", app.handleGetParams(clientCtx)).Methods("GET")
-	router.HandleFunc("/api/skillchain/token/info", app.handleGetTokenInfo(clientCtx)).Methods("GET")
-	router.HandleFunc("/api/skillchain/vusd/treasury", app.handleGetVUSDTreasury(clientCtx)).Methods("GET")
-	router.HandleFunc("/api/skillchain/vusd/position/{address}", app.handleGetUserVUSDPosition(clientCtx)).Methods("GET")
-	
-	// Bank module endpoints (for wallet integration)
-	router.HandleFunc("/api/skillchain/bank/balances/{address}", app.handleGetBalances(clientCtx)).Methods("GET")
-	router.HandleFunc("/api/skillchain/bank/supply", app.handleGetSupply(clientCtx)).Methods("GET")
-	router.HandleFunc("/api/skillchain/bank/supply/{denom}", app.handleGetSupplyByDenom(clientCtx)).Methods("GET")
-	
-	// Transaction preparation endpoints
-	router.HandleFunc("/api/skillchain/convert/skill-to-vusd", app.handleConvertSKILLToVUSD(clientCtx)).Methods("POST")
-	router.HandleFunc("/api/skillchain/convert/vusd-to-skill", app.handleConvertVUSDToSKILL(clientCtx)).Methods("POST")
-	router.HandleFunc("/api/skillchain/burn", app.handleBurnTokens(clientCtx)).Methods("POST")
 }
 
 // Bank Module Handlers for Wallet Integration

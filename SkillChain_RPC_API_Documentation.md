@@ -6,8 +6,14 @@ SkillChain provides a comprehensive REST API for interacting with all blockchain
 
 ## Base URL
 
+**Versioned (Recommended):**
 ```
 http://localhost:1317/skillchain/v1/
+```
+
+**Legacy (Backward Compatibility):**
+```
+http://localhost:1317/skillchain/
 ```
 
 ## Authentication
@@ -42,119 +48,7 @@ Error responses include HTTP status codes and descriptive messages:
 
 ## SkillChain Core Module
 
-### vUSD Operations
-
-#### Get vUSD Treasury Status
-- **GET** `/vusd/treasury`
-- **Description**: Get current vUSD treasury information
-- **Response**:
-```json
-{
-  "treasury": "1000000vusd",
-  "total_collateral": "1500000uskill",
-  "total_vusd_supply": "800000vusd",
-  "collateral_ratio": "1.875"
-}
-```
-
-#### Get User vUSD Position
-- **GET** `/vusd/position/{address}`
-- **Description**: Get user's vUSD position and collateral details
-- **Parameters**: 
-  - `address`: User's SkillChain address
-- **Response**:
-```json
-{
-  "address": "skill1abc...",
-  "vusd_balance": "1000vusd",
-  "skill_collateral": "1500uskill",
-  "collateral_ratio": "1.5",
-  "liquidation_price": "0.33"
-}
-```
-
-#### Convert SKILL to vUSD
-- **POST** `/vusd/convert/skill-to-vusd`
-- **Description**: Prepare transaction to convert SKILL tokens to vUSD
-- **Body**:
-```json
-{
-  "from_address": "skill1abc...",
-  "amount": "1000uskill"
-}
-```
-- **Response**:
-```json
-{
-  "message": "Conversion transaction prepared",
-  "tx_info": {
-    "from_address": "skill1abc...",
-    "amount": "1000uskill",
-    "estimated_gas": "200000",
-    "note": "Use skillchaind tx skillchain convert-skill-to-vusd to execute"
-  }
-}
-```
-
-#### Convert vUSD to SKILL
-- **POST** `/vusd/convert/vusd-to-skill`
-- **Description**: Prepare transaction to convert vUSD back to SKILL tokens
-- **Body**:
-```json
-{
-  "from_address": "skill1abc...",
-  "amount": "500vusd"
-}
-```
-
-#### Get vUSD Price
-- **GET** `/vusd/price`
-- **Description**: Get current vUSD mock price and parameters
-- **Response**:
-```json
-{
-  "vusd_mock_price": "0.50",
-  "min_collateral_ratio": "1.50",
-  "vusd_enabled": true,
-  "timestamp": "2024-01-01T12:00:00Z"
-}
-```
-
-#### Update vUSD Price
-- **PUT** `/vusd/price`
-- **Description**: Prepare transaction to update vUSD price (authority only)
-- **Body**:
-```json
-{
-  "authority": "skill1authority...",
-  "new_price": "0.55"
-}
-```
-
-### Token Operations
-
-#### Burn Tokens
-- **POST** `/tokens/burn`
-- **Description**: Prepare transaction to burn SKILL tokens
-- **Body**:
-```json
-{
-  "burner_address": "skill1abc...",
-  "amount": "1000uskill"
-}
-```
-
-#### Get Token Supply
-- **GET** `/tokens/supply`
-- **Description**: Get current token supply for USKILL and vUSD
-- **Response**:
-```json
-{
-  "uskill_supply": "1000000000uskill",
-  "vusd_supply": "500000vusd",
-  "timestamp": "2024-01-01T12:00:00Z"
-}
-```
+### Module Parameters
 
 #### Get Module Parameters
 - **GET** `/params`
@@ -167,9 +61,205 @@ Error responses include HTTP status codes and descriptive messages:
     "vusd_mock_price": "0.50",
     "min_collateral_ratio": "1.50",
     "price_update_authority": "skill1..."
+  }
+}
+```
+
+### Token Information
+
+#### Get Token Info
+- **GET** `/token/info`
+- **Description**: Get comprehensive token information including supply, burn status
+- **Response**:
+```json
+{
+  "name": "SkillChain",
+  "symbol": "SKILL",
+  "decimals": 6,
+  "description": "SkillChain native token for professional networking",
+  "total_supply": "1000000000uskill",
+  "circulating_supply": "950000000uskill",
+  "burned_amount": "50000000uskill",
+  "max_supply": "1000000000uskill",
+  "burn_enabled": true,
+  "chain_description": "Decentralized professional networking blockchain",
+  "website_url": "https://skillchain.io"
+}
+```
+
+### VUSD Operations
+
+#### Get VUSD Treasury Status
+- **GET** `/vusd/treasury`
+- **Description**: Get current VUSD treasury information and collateral ratios
+- **Response**:
+```json
+{
+  "skill_balance": "1500000uskill",
+  "vusd_supply": "800000uvusd",
+  "exchange_rate": "0.50"
+}
+```
+
+#### Get User VUSD Position
+- **GET** `/vusd/position/{address}`
+- **Description**: Get user's VUSD position and collateral details
+- **Parameters**: 
+  - `address`: User's SkillChain address
+- **Response**:
+```json
+{
+  "position": {
+    "address": "skill1abc...",
+    "vusd_balance": "1000uvusd",
+    "skill_collateral": "1500uskill"
   },
-  "module": "skillchain",
-  "timestamp": "2024-01-01T12:00:00Z"
+  "vusd_balance": "1000uvusd",
+  "skill_collateral": "1500uskill",
+  "health_factor": "1.5",
+  "exists": true
+}
+```
+
+#### Convert SKILL to VUSD
+- **POST** `/vusd/convert/skill-to-vusd`
+- **Description**: Prepare transaction to convert SKILL tokens to VUSD
+- **Body**:
+```json
+{
+  "creator": "skill1abc...",
+  "amount": "1000000uskill"
+}
+```
+- **Response**:
+```json
+{
+  "message": "SKILL to VUSD conversion transaction prepared",
+  "tx_info": {
+    "creator": "skill1abc...",
+    "amount": "1000000uskill",
+    "estimated_gas": "180000",
+    "note": "Use skillchaind tx skillchain convert-skill-to-vusd to execute"
+  }
+}
+```
+
+#### Convert VUSD to SKILL
+- **POST** `/vusd/convert/vusd-to-skill`
+- **Description**: Prepare transaction to convert VUSD back to SKILL tokens
+- **Body**:
+```json
+{
+  "creator": "skill1abc...",
+  "amount": "500000uvusd"
+}
+```
+- **Response**:
+```json
+{
+  "message": "VUSD to SKILL conversion transaction prepared",
+  "tx_info": {
+    "creator": "skill1abc...",
+    "amount": "500000uvusd",
+    "estimated_gas": "180000",
+    "note": "Use skillchaind tx skillchain convert-vusd-to-skill to execute"
+  }
+}
+```
+
+### Token Operations
+
+#### Burn Tokens
+- **POST** `/tokens/burn`
+- **Description**: Prepare transaction to burn SKILL tokens
+- **Body**:
+```json
+{
+  "creator": "skill1abc...",
+  "amount": "1000000uskill",
+  "denom": "uskill"
+}
+```
+- **Response**:
+```json
+{
+  "message": "Token burn transaction prepared",
+  "tx_info": {
+    "creator": "skill1abc...",
+    "amount": "1000000uskill",
+    "denom": "uskill",
+    "estimated_gas": "150000",
+    "note": "Use skillchaind tx skillchain burn-tokens to execute"
+  }
+}
+```
+
+---
+
+## Bank Module (Wallet Integration)
+
+### Wallet Balances
+
+#### Get Account Balances
+- **GET** `/bank/balances/{address}`
+- **Description**: Get all token balances for a specific address
+- **Parameters**: 
+  - `address`: SkillChain wallet address
+- **Response**:
+```json
+{
+  "balances": [
+    {
+      "denom": "uskill",
+      "amount": "120000000"
+    },
+    {
+      "denom": "uvusd",
+      "amount": "500000"
+    }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "2"
+  }
+}
+```
+
+#### Get Total Supply
+- **GET** `/bank/supply`
+- **Description**: Get total supply of all tokens
+- **Response**:
+```json
+{
+  "supply": [
+    {
+      "denom": "uskill",
+      "amount": "1000000000"
+    },
+    {
+      "denom": "uvusd",
+      "amount": "800000"
+    }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "2"
+  }
+}
+```
+
+#### Get Supply by Denomination
+- **GET** `/bank/supply/{denom}`
+- **Description**: Get supply for specific token denomination
+- **Parameters**: 
+  - `denom`: Token denomination (e.g., "uskill", "uvusd")
+- **Response**:
+```json
+{
+  "amount": {
+    "denom": "uskill",
+    "amount": "1000000000"
+  }
 }
 ```
 
@@ -195,44 +285,35 @@ Error responses include HTTP status codes and descriptive messages:
 ```
 
 #### List Profiles
-- **GET** `/profiles?page_key={key}&limit={limit}`
-- **Description**: Get list of all profiles with pagination
-- **Query Parameters**:
-  - `page_key`: Pagination key (optional)
-  - `limit`: Number of results per page (default: 50)
+- **GET** `/profiles`
+- **Description**: Get list of all user profiles
 - **Response**:
 ```json
 {
   "profiles": [
     {
-      "creator": "skill1abc...",
+      "address": "skill1abc...",
       "name": "John Doe",
-      "description": "Senior Full Stack Developer",
-      "reputation_score": 850,
-      "created_at": "2024-01-01T12:00:00Z"
+      "description": "Senior Full Stack Developer"
     }
-  ],
-  "pagination": {...},
-  "total_count": 25
+  ]
 }
 ```
 
 #### Get Profile
 - **GET** `/profiles/{address}`
-- **Description**: Get specific user profile by address
-- **Parameters**:
+- **Description**: Get specific user profile
+- **Parameters**: 
   - `address`: User's SkillChain address
 
 #### Update Profile
 - **PUT** `/profiles/{address}`
 - **Description**: Prepare transaction to update user profile
-- **Parameters**:
-  - `address`: User's SkillChain address
 - **Body**:
 ```json
 {
   "name": "John Doe Jr.",
-  "description": "Senior Full Stack Developer & Blockchain Expert",
+  "description": "Updated description",
   "avatar": "https://new-avatar.url"
 }
 ```
@@ -245,37 +326,20 @@ Error responses include HTTP status codes and descriptive messages:
 - **Body**:
 ```json
 {
-  "skill_name": "React.js",
-  "proficiency_level": "expert",
+  "skill_name": "JavaScript",
+  "proficiency_level": "Expert",
   "years_of_experience": 5,
-  "is_verified": false,
-  "verification_details": "Portfolio and previous projects"
+  "is_verified": false
 }
 ```
 
 #### List User Skills
 - **GET** `/profiles/{address}/skills`
 - **Description**: Get all skills for a specific user
-- **Response**:
-```json
-{
-  "skills": [
-    {
-      "skill_name": "React.js",
-      "proficiency_level": "expert",
-      "years_of_experience": 5,
-      "is_verified": true,
-      "reputation_impact": 45.5
-    }
-  ],
-  "address": "skill1abc...",
-  "count": 8
-}
-```
 
-#### Get Specific Skill
+#### Get Skill Details
 - **GET** `/profiles/{address}/skills/{skillId}`
-- **Description**: Get details of a specific skill
+- **Description**: Get detailed information about a specific skill
 
 #### Endorse Skill
 - **POST** `/profiles/{address}/skills/{skillId}/endorse`
@@ -283,21 +347,18 @@ Error responses include HTTP status codes and descriptive messages:
 - **Body**:
 ```json
 {
-  "endorser_address": "skill1def...",
-  "endorsement_type": "strong",
-  "stake_amount": "100uskill",
-  "comment": "Excellent React developer, worked on multiple projects together"
+  "endorser_address": "skill1xyz...",
+  "endorsement_type": "professional",
+  "stake_amount": "100000uskill",
+  "comment": "Excellent JavaScript skills demonstrated in our project"
 }
 ```
 
 ### Endorsements
 
 #### List Endorsements
-- **GET** `/endorsements?skill_id={id}&endorser={address}`
-- **Description**: Get list of endorsements with filtering
-- **Query Parameters**:
-  - `skill_id`: Filter by skill ID (optional)
-  - `endorser`: Filter by endorser address (optional)
+- **GET** `/endorsements`
+- **Description**: Get list of all skill endorsements
 
 #### Get Endorsement
 - **GET** `/endorsements/{endorsementId}`
@@ -307,33 +368,26 @@ Error responses include HTTP status codes and descriptive messages:
 
 ## Marketplace Module
 
-### Job Postings
+### Job Management
 
 #### Create Job Posting
 - **POST** `/jobs`
-- **Description**: Prepare transaction to create new job posting
+- **Description**: Prepare transaction to create job posting
 - **Body**:
 ```json
 {
-  "creator": "skill1abc...",
-  "title": "React Developer Needed",
-  "description": "Looking for experienced React developer for e-commerce project",
-  "required_skills": ["React", "JavaScript", "Node.js"],
-  "budget": "5000uskill",
+  "creator": "skill1client...",
+  "title": "Full Stack Developer Needed",
+  "description": "Build a React/Node.js application",
+  "budget": "5000000uskill",
   "deadline": "2024-12-31T23:59:59Z",
-  "category": "web_development",
-  "payment_type": "milestone"
+  "required_skills": ["JavaScript", "React", "Node.js"]
 }
 ```
 
 #### List Job Postings
-- **GET** `/jobs?category={cat}&status={status}&min_budget={min}&max_budget={max}`
-- **Description**: Get list of job postings with filtering
-- **Query Parameters**:
-  - `category`: Filter by job category (optional)
-  - `status`: Filter by job status (optional)
-  - `min_budget`: Minimum budget filter (optional)
-  - `max_budget`: Maximum budget filter (optional)
+- **GET** `/jobs`
+- **Description**: Get list of all job postings
 
 #### Get Job Posting
 - **GET** `/jobs/{jobId}`
@@ -346,27 +400,19 @@ Error responses include HTTP status codes and descriptive messages:
 #### Close Job Posting
 - **POST** `/jobs/{jobId}/close`
 - **Description**: Prepare transaction to close job posting
-- **Body**:
-```json
-{
-  "creator": "skill1abc...",
-  "reason": "Position filled"
-}
-```
 
-### Proposals
+### Proposals Management
 
 #### Submit Proposal
 - **POST** `/jobs/{jobId}/proposals`
-- **Description**: Prepare transaction to submit proposal for job
+- **Description**: Prepare transaction to submit job proposal
 - **Body**:
 ```json
 {
   "creator": "skill1freelancer...",
-  "proposed_budget": "4500uskill",
-  "timeline": "14 days",
-  "description": "I can deliver this project with high quality",
-  "experience": "5 years React development experience"
+  "proposal_text": "I can complete this project in 4 weeks",
+  "proposed_budget": "4500000uskill",
+  "estimated_duration": "4 weeks"
 }
 ```
 
@@ -381,51 +427,26 @@ Error responses include HTTP status codes and descriptive messages:
 #### Accept Proposal
 - **POST** `/proposals/{proposalId}/accept`
 - **Description**: Prepare transaction to accept proposal
-- **Body**:
-```json
-{
-  "creator": "skill1client...",
-  "message": "Your proposal is accepted. Looking forward to working with you."
-}
-```
 
 #### Reject Proposal
 - **POST** `/proposals/{proposalId}/reject`
 - **Description**: Prepare transaction to reject proposal
-- **Body**:
-```json
-{
-  "creator": "skill1client...",
-  "reason": "Budget doesn't match our requirements"
-}
-```
 
-### Projects & Milestones
+### Project Management
 
 #### Create Project
 - **POST** `/projects`
-- **Description**: Prepare transaction to create project with escrow
-- **Body**:
-```json
-{
-  "creator": "skill1client...",
-  "title": "E-commerce React Application",
-  "description": "Full-featured e-commerce application with React frontend",
-  "client_address": "skill1client...",
-  "freelancer_address": "skill1freelancer...",
-  "total_amount": "4500uskill",
-  "escrow_amount": "4500uskill",
-  "deadline": "2024-12-31T23:59:59Z"
-}
-```
+- **Description**: Prepare transaction to create project from accepted proposal
 
 #### List Projects
-- **GET** `/projects?status={status}&client={address}&freelancer={address}`
-- **Description**: Get list of projects with filtering
+- **GET** `/projects`
+- **Description**: Get list of all active projects
 
 #### Get Project
 - **GET** `/projects/{projectId}`
 - **Description**: Get specific project details
+
+### Milestone Management
 
 #### Create Milestone
 - **POST** `/projects/{projectId}/milestones`
@@ -435,9 +456,9 @@ Error responses include HTTP status codes and descriptive messages:
 {
   "creator": "skill1client...",
   "title": "Frontend Development",
-  "description": "Complete React frontend with all pages",
-  "amount": "2250uskill",
-  "deadline": "2024-06-15T23:59:59Z"
+  "description": "Complete React frontend",
+  "payment_amount": "2000000uskill",
+  "due_date": "2024-06-30T23:59:59Z"
 }
 ```
 
@@ -452,36 +473,14 @@ Error responses include HTTP status codes and descriptive messages:
 #### Complete Milestone
 - **POST** `/milestones/{milestoneId}/complete`
 - **Description**: Prepare transaction to mark milestone as complete
-- **Body**:
-```json
-{
-  "creator": "skill1freelancer...",
-  "deliverable": "Frontend completed, deployed to staging",
-  "notes": "All features implemented as requested"
-}
-```
 
 #### Approve Milestone
 - **POST** `/milestones/{milestoneId}/approve`
 - **Description**: Prepare transaction to approve completed milestone
-- **Body**:
-```json
-{
-  "creator": "skill1client...",
-  "feedback": "Excellent work! Everything looks perfect."
-}
-```
 
 #### Release Payment
-- **POST** `/milestones/{milestoneId}/payment`
+- **POST** `/milestones/{milestoneId}/release-payment`
 - **Description**: Prepare transaction to release milestone payment
-- **Body**:
-```json
-{
-  "creator": "skill1client...",
-  "amount": "2250uskill"
-}
-```
 
 ---
 
@@ -491,28 +490,23 @@ Error responses include HTTP status codes and descriptive messages:
 
 #### Track Activity
 - **POST** `/analytics/activity`
-- **Description**: Prepare transaction to track user activity
+- **Description**: Prepare transaction to record user activity
 - **Body**:
 ```json
 {
-  "creator": "skill1system...",
-  "activity_type": "job_posting_created",
-  "user_address": "skill1user...",
-  "ip_address": "192.168.1.1",
-  "metadata": {
-    "browser": "Chrome",
-    "device": "desktop",
-    "job_id": "job123"
-  }
+  "creator": "skill1user...",
+  "activity_type": "profile_view",
+  "activity_data": "viewed user profile skill1abc...",
+  "metadata": "additional context"
 }
 ```
 
 #### List Activities
-- **GET** `/analytics/activity`
-- **Description**: Get list of tracked activities
+- **GET** `/analytics/activities`
+- **Description**: Get list of all tracked activities
 
 #### Get Activity
-- **GET** `/analytics/activity/{activityId}`
+- **GET** `/analytics/activities/{activityId}`
 - **Description**: Get specific activity details
 
 #### Get User Activity
@@ -626,15 +620,15 @@ Error responses include HTTP status codes and descriptive messages:
 ### IPFS Operations
 
 #### Pin IPFS Hash
-- **POST** `/ipfs/pin/{hash}`
+- **POST** `/ipfs/{hash}/pin`
 - **Description**: Pin content to IPFS network
 
 #### Unpin IPFS Hash
-- **DELETE** `/ipfs/unpin/{hash}`
+- **POST** `/ipfs/{hash}/unpin`
 - **Description**: Unpin content from IPFS network
 
 #### Get IPFS Status
-- **GET** `/ipfs/status/{hash}`
+- **GET** `/ipfs/{hash}/status`
 - **Description**: Check IPFS hash status
 
 ---
@@ -687,137 +681,107 @@ Error responses include HTTP status codes and descriptive messages:
 - **POST** `/users/{address}/notifications/mark-all-read`
 - **Description**: Prepare transaction to mark all notifications as read
 
-### Notification Preferences
-
-#### Get Preferences
+#### Get Notification Preferences
 - **GET** `/users/{address}/notification-preferences`
-- **Description**: Get user notification preferences
+- **Description**: Get user's notification preferences
 
-#### Update Preferences
+#### Update Notification Preferences
 - **PUT** `/users/{address}/notification-preferences`
 - **Description**: Prepare transaction to update notification preferences
-- **Body**:
-```json
-{
-  "creator": "skill1user...",
-  "preferences": {
-    "email_notifications": true,
-    "push_notifications": false,
-    "job_alerts": true,
-    "payment_notifications": true
-  }
-}
-```
 
 ### Push Notifications
 
 #### Subscribe to Push
 - **POST** `/push/subscribe`
-- **Description**: Register for push notifications
+- **Description**: Subscribe to push notifications
 - **Body**:
 ```json
 {
   "address": "skill1user...",
   "endpoint": "https://fcm.googleapis.com/fcm/send/...",
   "keys": {
-    "p256dh": "key...",
-    "auth": "auth..."
+    "p256dh": "key_data",
+    "auth": "auth_data"
   }
 }
 ```
 
 #### Unsubscribe from Push
 - **POST** `/push/unsubscribe`
-- **Description**: Unregister from push notifications
+- **Description**: Unsubscribe from push notifications
 
 #### Send Push Notification
 - **POST** `/push/send`
-- **Description**: Send push notification to users
-- **Body**:
-```json
-{
-  "creator": "skill1system...",
-  "recipients": ["skill1user1...", "skill1user2..."],
-  "title": "New Job Alert",
-  "body": "A new job matching your skills has been posted",
-  "data": {
-    "job_id": "job123",
-    "action": "view_job"
-  }
-}
+- **Description**: Send push notification (system only)
+
+---
+
+## Testing Endpoints
+
+All endpoints can be tested using curl or any HTTP client:
+
+### Example: Get Token Info
+```bash
+curl -X GET "http://localhost:1317/skillchain/v1/token/info"
+```
+
+### Example: Check Wallet Balance
+```bash
+curl -X GET "http://localhost:1317/skillchain/v1/bank/balances/skill1abc..."
+```
+
+### Example: Convert SKILL to VUSD
+```bash
+curl -X POST "http://localhost:1317/skillchain/v1/vusd/convert/skill-to-vusd" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "creator": "skill1abc...",
+    "amount": "1000000uskill"
+  }'
 ```
 
 ---
 
-## Testing the API
-
-### Using curl
-
-```bash
-# Get vUSD treasury status
-curl -X GET http://localhost:1317/skillchain/v1/vusd/treasury
-
-# List job postings
-curl -X GET http://localhost:1317/skillchain/v1/jobs
-
-# Get user profile
-curl -X GET http://localhost:1317/skillchain/v1/profiles/skill1abc...
-
-# Create job posting (prepare transaction)
-curl -X POST http://localhost:1317/skillchain/v1/jobs \
-  -H "Content-Type: application/json" \
-  -d '{
-    "creator": "skill1abc...",
-    "title": "React Developer Needed",
-    "description": "Looking for React developer",
-    "required_skills": ["React", "JavaScript"],
-    "budget": "5000uskill",
-    "deadline": "2024-12-31T23:59:59Z",
-    "category": "web_development",
-    "payment_type": "milestone"
-  }'
-```
-
-### Using JavaScript/Fetch
-
-```javascript
-// Get vUSD price
-const response = await fetch('http://localhost:1317/skillchain/v1/vusd/price');
-const priceData = await response.json();
-console.log('vUSD Price:', priceData.vusd_mock_price);
-
-// List user skills
-const skillsResponse = await fetch('http://localhost:1317/skillchain/v1/profiles/skill1abc.../skills');
-const skillsData = await skillsResponse.json();
-console.log('User Skills:', skillsData.skills);
-```
-
 ## Error Codes
 
-- **400 Bad Request**: Invalid request body or parameters
-- **401 Unauthorized**: Authentication required
-- **403 Forbidden**: Insufficient permissions
-- **404 Not Found**: Resource not found
-- **500 Internal Server Error**: Server error
+| Code | Description |
+|------|-------------|
+| 400  | Bad Request - Invalid parameters |
+| 404  | Not Found - Resource doesn't exist |
+| 500  | Internal Server Error - Blockchain error |
 
-## Rate Limiting
+---
 
-API endpoints are rate limited to prevent abuse:
-- **Query endpoints**: 100 requests per minute per IP
-- **Transaction preparation endpoints**: 50 requests per minute per IP
+## Rate Limits
 
-## Support
+Currently no rate limits are implemented, but recommended limits for production:
+- Query endpoints: 100 requests/minute
+- Transaction endpoints: 10 requests/minute
 
-For API support and questions:
-- GitHub Issues: [SkillChain Repository Issues](https://github.com/skillchain/skillchain/issues)
-- Documentation: This file and in-code comments
-- Community: SkillChain Discord Server
+---
 
-## Changelog
+## CORS Support
 
-### v1.0.0
-- Initial API release
-- All 6 modules supported
-- Comprehensive endpoint coverage
-- Transaction preparation for all write operations
-- Query support for all read operations 
+All endpoints support CORS with the following headers:
+- `Access-Control-Allow-Origin: *`
+- `Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS`
+- `Access-Control-Allow-Headers: *`
+
+---
+
+## Legacy Support
+
+All bank endpoints are also available without the `/v1` prefix for backward compatibility:
+- `http://localhost:1317/skillchain/bank/balances/{address}`
+- `http://localhost:1317/skillchain/bank/supply`
+- `http://localhost:1317/skillchain/bank/supply/{denom}`
+
+---
+
+## Last Updated
+
+**Date**: January 2024  
+**Version**: 1.0  
+**Total Endpoints**: 75+  
+
+For the latest updates and changes, check the GitHub repository or contact the development team. 

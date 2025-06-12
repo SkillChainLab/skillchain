@@ -90,29 +90,59 @@ func (app *App) handleListProfiles(clientCtx client.Context) http.HandlerFunc {
 func (app *App) handleGetProfile(clientCtx client.Context) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
-		address := vars["address"]
+		identifier := vars["address"] // This could be profile index or owner address
 		
-		// Validate address
-		if _, err := types.AccAddressFromBech32(address); err != nil {
-			http.Error(w, "Invalid address format", http.StatusBadRequest)
-			return
-		}
-
 		queryClient := profiletypes.NewQueryClient(clientCtx)
+		
+		// First try to get by index
 		req := &profiletypes.QueryGetUserProfileRequest{
-			Index: address,
+			Index: identifier,
 		}
 		
 		res, err := queryClient.UserProfile(r.Context(), req)
 		if err != nil {
-			http.Error(w, fmt.Sprintf("Failed to query profile: %v", err), http.StatusInternalServerError)
+			// If not found by index, try to search by owner address
+			// Get all profiles and search for matching owner
+			allReq := &profiletypes.QueryAllUserProfileRequest{
+				Pagination: &query.PageRequest{
+					Limit: 1000, // Get all profiles to search
+				},
+			}
+			
+			allRes, allErr := queryClient.UserProfileAll(r.Context(), allReq)
+			if allErr != nil {
+				http.Error(w, fmt.Sprintf("Failed to query profiles: %v", allErr), http.StatusInternalServerError)
+				return
+			}
+			
+			// Search for profile with matching owner
+			var foundProfile *profiletypes.UserProfile
+			for _, profile := range allRes.UserProfile {
+				if profile.Owner == identifier {
+					foundProfile = &profile
+					break
+				}
+			}
+			
+			if foundProfile == nil {
+				http.Error(w, "Profile not found", http.StatusNotFound)
+				return
+			}
+			
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(map[string]interface{}{
+				"profile": foundProfile,
+				"identifier": identifier,
+				"found_by": "owner_address",
+			})
 			return
 		}
 
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"profile": res.UserProfile,
-			"address": address,
+			"identifier": identifier,
+			"found_by": "index",
 		})
 	}
 }

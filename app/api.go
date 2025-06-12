@@ -17,15 +17,15 @@ func (app *App) RegisterCustomAPIRoutes(router *mux.Router, clientCtx client.Con
 		handlers.AllowedHeaders([]string{"*"}),
 	)
 	
-	// Create skillchain API subrouter
+	// Create skillchain API subrouter (versioned only)
 	skillchainRouter := router.PathPrefix("/skillchain/v1").Subrouter()
 	
-	// Add CORS middleware
+	// Add CORS middleware to router
 	skillchainRouter.Use(func(next http.Handler) http.Handler {
 		return corsHandler(next)
 	})
 
-	// SkillChain Core Module Routes - using existing handlers only
+	// SkillChain Core Module Routes
 	skillchainRouter.HandleFunc("/params", app.handleGetParams(clientCtx)).Methods("GET")
 	skillchainRouter.HandleFunc("/token/info", app.handleGetTokenInfo(clientCtx)).Methods("GET")
 	skillchainRouter.HandleFunc("/vusd/treasury", app.handleGetVUSDTreasury(clientCtx)).Methods("GET")

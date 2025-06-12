@@ -1,49 +1,54 @@
-version: 1
 validation: sovereign
-accounts: 
+version: 1
+accounts:
 - name: alice
   coins:
   - 220000000uskill
 - name: bob
   coins:
   - 110000000uskill
+- name: faucet
+  coins:
+  - 50000000uskill
+faucet:
+  name: faucet
+  coins:
+  - 1000000uskill
 client:
+  typescript:
+    path: ts-client
   openapi:
     path: docs/static/openapi.yml
-faucet:
-  name: bob
-  coins:
-  - 100000uskill
+genesis:
+  app_state:
+    crisis:
+      constant_fee:
+        amount: "1000"
+        denom: uskill
+    gov:
+      deposit_params:
+        min_deposit:
+        - amount: "10000000"
+          denom: uskill
+      params:
+        expedited_min_deposit:
+        - amount: "50000000"
+          denom: uskill
+        min_deposit:
+        - amount: "10000000"
+          denom: uskill
+    mint:
+      params:
+        mint_denom: uskill
+    staking:
+      params:
+        bond_denom: uskill
 validators:
 - name: alice
   bonded: 100000000uskill
 - name: validator1
   bonded: 100000000uskill
 - name: validator2
-  bonded: 200000000uskill
+  bonded: 100000000uskill
 - name: validator3
-  bonded: 300000000uskill
-genesis:
-  app_state:
-    staking:
-      params:
-        bond_denom: "uskill"
-    crisis:
-      constant_fee:
-        denom: "uskill"
-        amount: "1000"
-    mint:
-      params:
-        mint_denom: "uskill"
-    gov:
-      deposit_params:
-        min_deposit:
-          - denom: "uskill"
-            amount: "10000000"
-      params:
-        expedited_min_deposit:
-          - denom: "uskill"
-            amount: "50000000"
-        min_deposit:
-          - denom: "uskill"
-            amount: "10000000"
+  bonded: 100000000uskill
