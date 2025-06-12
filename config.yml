@@ -9,11 +9,11 @@ accounts:
   - 110000000uskill
 - name: faucet
   coins:
-  - 50000000uskill
+  - 500000000uskill
 faucet:
   name: faucet
   coins:
-  - 1000000uskill
+  - 20000000uskill
 client:
   typescript:
     path: ts-client

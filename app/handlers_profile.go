@@ -92,6 +92,8 @@ func (app *App) handleGetProfile(clientCtx client.Context) http.HandlerFunc {
 		vars := mux.Vars(r)
 		identifier := vars["address"] // This could be profile index or owner address
 		
+		fmt.Printf("DEBUG: Looking for profile with identifier: %s\n", identifier)
+		
 		queryClient := profiletypes.NewQueryClient(clientCtx)
 		
 		// First try to get by index
@@ -99,8 +101,10 @@ func (app *App) handleGetProfile(clientCtx client.Context) http.HandlerFunc {
 			Index: identifier,
 		}
 		
+		fmt.Printf("DEBUG: Trying to find by index: %s\n", identifier)
 		res, err := queryClient.UserProfile(r.Context(), req)
 		if err != nil {
+			fmt.Printf("DEBUG: Index lookup failed: %v\n", err)
 			// If not found by index, try to search by owner address
 			// Get all profiles and search for matching owner
 			allReq := &profiletypes.QueryAllUserProfileRequest{
@@ -109,27 +113,38 @@ func (app *App) handleGetProfile(clientCtx client.Context) http.HandlerFunc {
 				},
 			}
 			
+			fmt.Printf("DEBUG: Fetching all profiles to search by owner\n")
 			allRes, allErr := queryClient.UserProfileAll(r.Context(), allReq)
 			if allErr != nil {
+				fmt.Printf("DEBUG: Failed to get all profiles: %v\n", allErr)
 				http.Error(w, fmt.Sprintf("Failed to query profiles: %v", allErr), http.StatusInternalServerError)
 				return
 			}
 			
+			fmt.Printf("DEBUG: Found %d profiles to search through\n", len(allRes.UserProfile))
+			
 			// Search for profile with matching owner
 			var foundProfile *profiletypes.UserProfile
-			for _, profile := range allRes.UserProfile {
-				if profile.Owner == identifier {
+			for i, profile := range allRes.UserProfile {
+				fmt.Printf("DEBUG: Profile %d - Owner: %s, Creator: %s, Index: %s\n", i, profile.Owner, profile.Creator, profile.Index)
+				if profile.Owner == identifier || profile.Creator == identifier {
+					fmt.Printf("DEBUG: Found matching profile by owner/creator!\n")
 					foundProfile = &profile
 					break
 				}
 			}
 			
 			if foundProfile == nil {
-				http.Error(w, "Profile not found", http.StatusNotFound)
+				fmt.Printf("DEBUG: No profile found for address: %s\n", identifier)
+				http.Error(w, fmt.Sprintf("Profile not found for address: %s", identifier), http.StatusNotFound)
 				return
 			}
 			
+			fmt.Printf("DEBUG: Returning profile found by owner address\n")
 			w.Header().Set("Content-Type", "application/json")
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			json.NewEncoder(w).Encode(map[string]interface{}{
 				"profile": foundProfile,
 				"identifier": identifier,
@@ -138,7 +153,11 @@ func (app *App) handleGetProfile(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
+		fmt.Printf("DEBUG: Found profile by index\n")
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"profile": res.UserProfile,
 			"identifier": identifier,
@@ -242,10 +261,10 @@ func (app *App) handleListUserSkills(clientCtx client.Context) http.HandlerFunc 
 			return
 		}
 
-		// Filter skills by user address
+		// Filter skills by user address (use Owner instead of Creator)
 		var userSkills []interface{}
 		for _, skill := range res.UserSkill {
-			if skill.Creator == address {
+			if skill.Owner == address {
 				userSkills = append(userSkills, skill)
 			}
 		}
@@ -276,8 +295,8 @@ func (app *App) handleGetSkill(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
-		// Verify skill belongs to user
-		if res.UserSkill.Creator != address {
+		// Verify skill belongs to user (use Owner instead of Creator)
+		if res.UserSkill.Owner != address {
 			http.Error(w, "Skill does not belong to the specified user", http.StatusForbidden)
 			return
 		}

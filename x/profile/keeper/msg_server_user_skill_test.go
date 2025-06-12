@@ -19,18 +19,30 @@ func TestUserSkillMsgServerCreate(t *testing.T) {
 	k, ctx := keepertest.ProfileKeeper(t)
 	srv := keeper.NewMsgServerImpl(k)
 	creator := "A"
+	
+	// Test successful creation with matching creator and owner
 	for i := 0; i < 5; i++ {
-		expected := &types.MsgCreateUserSkill{Creator: creator,
-			Index: strconv.Itoa(i),
+		expected := &types.MsgCreateUserSkill{
+			Creator: creator,
+			Index:   strconv.Itoa(i),
+			Owner:   creator, // Owner must match creator
 		}
 		_, err := srv.CreateUserSkill(ctx, expected)
 		require.NoError(t, err)
-		rst, found := k.GetUserSkill(ctx,
-			expected.Index,
-		)
+		rst, found := k.GetUserSkill(ctx, expected.Index)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
+		require.Equal(t, expected.Owner, rst.Owner)
 	}
+
+	// Test authorization failure - creator != owner
+	unauthorizedMsg := &types.MsgCreateUserSkill{
+		Creator: "A",
+		Index:   "unauthorized-test",
+		Owner:   "B", // Different owner should fail
+	}
+	_, err := srv.CreateUserSkill(ctx, unauthorizedMsg)
+	require.ErrorIs(t, err, sdkerrors.ErrUnauthorized)
 }
 
 func TestUserSkillMsgServerUpdate(t *testing.T) {
@@ -66,8 +78,10 @@ func TestUserSkillMsgServerUpdate(t *testing.T) {
 		t.Run(tc.desc, func(t *testing.T) {
 			k, ctx := keepertest.ProfileKeeper(t)
 			srv := keeper.NewMsgServerImpl(k)
-			expected := &types.MsgCreateUserSkill{Creator: creator,
-				Index: strconv.Itoa(0),
+			expected := &types.MsgCreateUserSkill{
+				Creator: creator,
+				Index:   strconv.Itoa(0),
+				Owner:   creator, // Owner must match creator
 			}
 			_, err := srv.CreateUserSkill(ctx, expected)
 			require.NoError(t, err)
@@ -121,8 +135,10 @@ func TestUserSkillMsgServerDelete(t *testing.T) {
 			k, ctx := keepertest.ProfileKeeper(t)
 			srv := keeper.NewMsgServerImpl(k)
 
-			_, err := srv.CreateUserSkill(ctx, &types.MsgCreateUserSkill{Creator: creator,
-				Index: strconv.Itoa(0),
+			_, err := srv.CreateUserSkill(ctx, &types.MsgCreateUserSkill{
+				Creator: creator,
+				Index:   strconv.Itoa(0),
+				Owner:   creator, // Owner must match creator
 			})
 			require.NoError(t, err)
 			_, err = srv.DeleteUserSkill(ctx, tc.request)

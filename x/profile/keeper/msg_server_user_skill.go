@@ -13,6 +13,11 @@ import (
 func (k msgServer) CreateUserSkill(goCtx context.Context, msg *types.MsgCreateUserSkill) (*types.MsgCreateUserSkillResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Authorization check - only the skill owner can create skills for themselves
+	if msg.Creator != msg.Owner {
+		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "only skill owner can create skills for themselves")
+	}
+
 	// Check if the value already exists
 	_, isFound := k.GetUserSkill(
 		ctx,
