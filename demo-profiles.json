@@ -1,0 +1,247 @@
+{
+  "demo_profiles": [
+    {
+      "id": 1,
+      "personal_info": {
+        "display_name": "Alice Johnson",
+        "bio": "Full-stack developer with 5 years of experience in React and Node.js. Passionate about creating scalable web applications.",
+        "location": "San Francisco, USA",
+        "website": "https://alicejohnson.dev",
+        "github": "alice-johnson-dev",
+        "linkedin": "alice-johnson-sf",
+        "twitter": "alice_codes"
+      },
+      "skills": [
+        {"name": "React", "proficiency": "Expert", "years": 4},
+        {"name": "Node.js", "proficiency": "Advanced", "years": 3},
+        {"name": "TypeScript", "proficiency": "Advanced", "years": 3},
+        {"name": "GraphQL", "proficiency": "Intermediate", "years": 2}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq0dkwvf",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 2,
+      "personal_info": {
+        "display_name": "Bob Chen",
+        "bio": "Blockchain developer and smart contract specialist. Building the future of decentralized applications.",
+        "location": "Singapore",
+        "website": "https://bobchen.crypto",
+        "github": "bob-chen-blockchain",
+        "linkedin": "bob-chen-crypto",
+        "twitter": "bob_blockchain"
+      },
+      "skills": [
+        {"name": "Solidity", "proficiency": "Expert", "years": 4},
+        {"name": "Go", "proficiency": "Advanced", "years": 3},
+        {"name": "Cosmos SDK", "proficiency": "Advanced", "years": 2},
+        {"name": "Web3", "proficiency": "Expert", "years": 4}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqcgr3dg",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 3,
+      "personal_info": {
+        "display_name": "Carol Martinez",
+        "bio": "UX/UI Designer with a passion for creating intuitive and beautiful user experiences. 6 years in the industry.",
+        "location": "Barcelona, Spain",
+        "website": "https://carolmartinez.design",
+        "github": "carol-design",
+        "linkedin": "carol-martinez-ux",
+        "twitter": "carol_designs"
+      },
+      "skills": [
+        {"name": "Figma", "proficiency": "Expert", "years": 5},
+        {"name": "Adobe Creative Suite", "proficiency": "Expert", "years": 6},
+        {"name": "User Research", "proficiency": "Advanced", "years": 4},
+        {"name": "Prototyping", "proficiency": "Advanced", "years": 5}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon address",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2e8j5u",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 4,
+      "personal_info": {
+        "display_name": "David Kim",
+        "bio": "DevOps engineer specializing in cloud infrastructure and CI/CD pipelines. AWS and Kubernetes expert.",
+        "location": "Seoul, South Korea",
+        "website": "https://davidkim.cloud",
+        "github": "david-kim-devops",
+        "linkedin": "david-kim-cloud",
+        "twitter": "david_devops"
+      },
+      "skills": [
+        {"name": "AWS", "proficiency": "Expert", "years": 5},
+        {"name": "Kubernetes", "proficiency": "Advanced", "years": 4},
+        {"name": "Docker", "proficiency": "Expert", "years": 5},
+        {"name": "Terraform", "proficiency": "Advanced", "years": 3}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon age",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5k8x2p",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 5,
+      "personal_info": {
+        "display_name": "Emma Wilson",
+        "bio": "Data scientist and machine learning engineer. Turning data into actionable insights for businesses.",
+        "location": "London, UK",
+        "website": "https://emmawilson.ai",
+        "github": "emma-wilson-ml",
+        "linkedin": "emma-wilson-data",
+        "twitter": "emma_data_sci"
+      },
+      "skills": [
+        {"name": "Python", "proficiency": "Expert", "years": 6},
+        {"name": "Machine Learning", "proficiency": "Expert", "years": 5},
+        {"name": "TensorFlow", "proficiency": "Advanced", "years": 4},
+        {"name": "SQL", "proficiency": "Expert", "years": 6}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon air",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq8h9k7m",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 6,
+      "personal_info": {
+        "display_name": "Frank Rodriguez",
+        "bio": "Mobile app developer with expertise in both iOS and Android platforms. Creating amazing mobile experiences.",
+        "location": "Mexico City, Mexico",
+        "website": "https://frankrodriguez.mobile",
+        "github": "frank-mobile-dev",
+        "linkedin": "frank-rodriguez-mobile",
+        "twitter": "frank_mobile"
+      },
+      "skills": [
+        {"name": "Swift", "proficiency": "Expert", "years": 5},
+        {"name": "Kotlin", "proficiency": "Advanced", "years": 4},
+        {"name": "React Native", "proficiency": "Advanced", "years": 3},
+        {"name": "Flutter", "proficiency": "Intermediate", "years": 2}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon all",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2l3n8r",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 7,
+      "personal_info": {
+        "display_name": "Grace Zhang",
+        "bio": "Cybersecurity specialist with focus on penetration testing and security audits. Keeping systems safe.",
+        "location": "Toronto, Canada",
+        "website": "https://gracezhang.security",
+        "github": "grace-security",
+        "linkedin": "grace-zhang-security",
+        "twitter": "grace_security"
+      },
+      "skills": [
+        {"name": "Penetration Testing", "proficiency": "Expert", "years": 4},
+        {"name": "Network Security", "proficiency": "Advanced", "years": 5},
+        {"name": "Python", "proficiency": "Advanced", "years": 4},
+        {"name": "Linux", "proficiency": "Expert", "years": 6}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon always",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5m4p9s",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 8,
+      "personal_info": {
+        "display_name": "Henry Thompson",
+        "bio": "Game developer with passion for creating immersive gaming experiences. Unity and Unreal Engine expert.",
+        "location": "Austin, USA",
+        "website": "https://henrythompson.games",
+        "github": "henry-game-dev",
+        "linkedin": "henry-thompson-games",
+        "twitter": "henry_games"
+      },
+      "skills": [
+        {"name": "Unity", "proficiency": "Expert", "years": 6},
+        {"name": "C#", "proficiency": "Expert", "years": 7},
+        {"name": "Unreal Engine", "proficiency": "Advanced", "years": 3},
+        {"name": "3D Modeling", "proficiency": "Intermediate", "years": 4}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon amateur",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq8n5q0t",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 9,
+      "personal_info": {
+        "display_name": "Isabella Garcia",
+        "bio": "Digital marketing specialist with expertise in SEO, social media marketing, and content strategy.",
+        "location": "Madrid, Spain",
+        "website": "https://isabellagarcia.marketing",
+        "github": "isabella-marketing",
+        "linkedin": "isabella-garcia-marketing",
+        "twitter": "isabella_mkt"
+      },
+      "skills": [
+        {"name": "SEO", "proficiency": "Expert", "years": 5},
+        {"name": "Google Analytics", "proficiency": "Advanced", "years": 4},
+        {"name": "Social Media Marketing", "proficiency": "Expert", "years": 6},
+        {"name": "Content Strategy", "proficiency": "Advanced", "years": 4}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon ancient",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2o6r1u",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    },
+    {
+      "id": 10,
+      "personal_info": {
+        "display_name": "Jack Brown",
+        "bio": "Product manager with experience in agile methodologies and product strategy. Building products users love.",
+        "location": "Sydney, Australia",
+        "website": "https://jackbrown.pm",
+        "github": "jack-product-manager",
+        "linkedin": "jack-brown-pm",
+        "twitter": "jack_pm"
+      },
+      "skills": [
+        {"name": "Product Management", "proficiency": "Expert", "years": 5},
+        {"name": "Agile", "proficiency": "Expert", "years": 6},
+        {"name": "User Story Mapping", "proficiency": "Advanced", "years": 4},
+        {"name": "Data Analysis", "proficiency": "Advanced", "years": 3}
+      ],
+      "wallet_info": {
+        "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon anger",
+        "address": "skill1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq5p7s2v",
+        "note": "Demo wallet - DO NOT USE IN PRODUCTION"
+      }
+    }
+  ],
+  "setup_instructions": {
+    "step_1": "Create wallets using the mnemonic phrases",
+    "step_2": "Fund wallets with SKILL tokens using faucet",
+    "step_3": "Create profiles using the profile creation command",
+    "step_4": "Add skills to each profile",
+    "step_5": "Test search functionality with different criteria"
+  },
+  "important_notes": [
+    "These are DEMO wallets with predictable mnemonics",
+    "DO NOT use these wallets in production or with real funds",
+    "All personal information is fictional",
+    "Use these profiles for testing and demonstration purposes only"
+  ]
+} 

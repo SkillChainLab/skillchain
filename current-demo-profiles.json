@@ -1,0 +1,131 @@
+{
+  "demo_profiles": [
+    {
+      "id": 1,
+      "personal_info": {
+        "display_name": "Serdar",
+        "bio": "Deneme Hesabı oluşturduk",
+        "location": "Turkey",
+        "website": "http://localhost:3000/profile",
+        "github": "http://localhost:3000/profile",
+        "linkedin": "http://localhost:3000/profile",
+        "twitter": "http://localhost:3000/profile"
+      },
+      "skills": [],
+      "wallet_info": {
+        "key_name": "alice",
+        "address": "skill1jewcm8stxc465c5pqex04saz629au4d4wq7drd",
+        "note": "Original test wallet from genesis"
+      }
+    },
+    {
+      "id": 2,
+      "personal_info": {
+        "display_name": "Bob Chen",
+        "bio": "Blockchain developer and smart contract specialist. Building the future of decentralized applications.",
+        "location": "Singapore",
+        "website": "https://bobchen.crypto",
+        "github": "bob-chen-blockchain",
+        "linkedin": "bob-chen-crypto",
+        "twitter": "bob_blockchain"
+      },
+      "skills": [
+        {"name": "Solidity", "proficiency": "Expert", "years": 4},
+        {"name": "Go", "proficiency": "Advanced", "years": 3},
+        {"name": "Cosmos SDK", "proficiency": "Advanced", "years": 2},
+        {"name": "Web3", "proficiency": "Expert", "years": 4}
+      ],
+      "wallet_info": {
+        "key_name": "bob",
+        "address": "skill1jdacqhpxc5h5h4p0m2g6p7xzpqr2yzjy5qxz9s",
+        "note": "Demo wallet created for Bob Chen profile"
+      }
+    },
+    {
+      "id": 3,
+      "personal_info": {
+        "display_name": "Alice Johnson",
+        "bio": "Full-stack developer with 5 years of experience in React and Node.js. Passionate about creating scalable web applications.",
+        "location": "San Francisco, USA",
+        "website": "https://alicejohnson.dev",
+        "github": "alice-johnson-dev",
+        "linkedin": "alice-johnson-sf",
+        "twitter": "alice_codes"
+      },
+      "skills": [
+        {"name": "React", "proficiency": "Expert", "years": 4},
+        {"name": "Node.js", "proficiency": "Advanced", "years": 3},
+        {"name": "TypeScript", "proficiency": "Advanced", "years": 3},
+        {"name": "GraphQL", "proficiency": "Intermediate", "years": 2}
+      ],
+      "wallet_info": {
+        "key_name": "alice",
+        "address": "skill1jewcm8stxc465c5pqex04saz629au4d4wq7drd",
+        "note": "Same wallet as Serdar profile - created by Alice wallet"
+      }
+    }
+  ],
+  "search_examples": {
+    "by_name": {
+      "endpoint": "GET /skillchain/v1/profiles/search?name=Alice",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?name=Alice'",
+      "description": "Search profiles by display name (case-insensitive partial match)"
+    },
+    "by_location": {
+      "endpoint": "GET /skillchain/v1/profiles/search?location=USA",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?location=USA'",
+      "description": "Search profiles by location (case-insensitive partial match)"
+    },
+    "by_bio": {
+      "endpoint": "GET /skillchain/v1/profiles/search?bio=blockchain",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?bio=blockchain'",
+      "description": "Search profiles by bio content (case-insensitive partial match)"
+    },
+    "by_skill": {
+      "endpoint": "GET /skillchain/v1/profiles/search?skill=React",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?skill=React'",
+      "description": "Search profiles by skills they possess"
+    },
+    "by_github": {
+      "endpoint": "GET /skillchain/v1/profiles/search?github=alice-johnson",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?github=alice-johnson'",
+      "description": "Search profiles by GitHub username"
+    },
+    "advanced_search": {
+      "endpoint": "GET /skillchain/v1/profiles/search?location=USA&skill=React&type=advanced",
+      "example": "curl 'http://localhost:1317/skillchain/v1/profiles/search?location=USA&skill=React&type=advanced'",
+      "description": "Advanced search with multiple criteria"
+    }
+  },
+  "api_endpoints": {
+    "list_all_profiles": "GET /skillchain/v1/profiles",
+    "get_profile_by_address": "GET /skillchain/v1/profiles/{address}",
+    "search_profiles": "GET /skillchain/v1/profiles/search",
+    "create_profile": "POST /skillchain/v1/profiles",
+    "update_profile": "PUT /skillchain/v1/profiles/{address}"
+  },
+  "test_commands": [
+    "curl 'http://localhost:1317/skillchain/v1/profiles'",
+    "curl 'http://localhost:1317/skillchain/v1/profiles/search?name=Alice'",
+    "curl 'http://localhost:1317/skillchain/v1/profiles/search?location=USA'",
+    "curl 'http://localhost:1317/skillchain/v1/profiles/search?skill=React'",
+    "curl 'http://localhost:1317/skillchain/v1/profiles/search?bio=blockchain'",
+    "curl 'http://localhost:1317/skillchain/v1/profiles/search?location=USA&skill=React&type=advanced'"
+  ],
+  "blockchain_info": {
+    "chain_id": "skillchain",
+    "api_url": "http://localhost:1317",
+    "rpc_url": "http://localhost:26657",
+    "total_profiles": 3,
+    "total_skills": 8,
+    "search_functionality": "✅ Working",
+    "last_updated": "2025-06-18"
+  },
+  "important_notes": [
+    "All profiles are created using the same wallet (alice) for demo purposes",
+    "Each user can only create one profile per wallet address",
+    "Search functionality supports partial matches and is case-insensitive",
+    "Skills are linked to wallet addresses, not profile names",
+    "All demo data is fictional and for testing purposes only"
+  ]
+} 
