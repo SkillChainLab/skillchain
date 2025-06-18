@@ -19,6 +19,11 @@ func (k msgServer) CreateProfile(goCtx context.Context, msg *types.MsgCreateProf
 	}
 
 	// Create new user profile
+	avatar := msg.Avatar
+	if avatar == "" {
+		avatar = "QmZSpwmV3dfwVDVcaJmdga3VVW15SEgXQDY1wiEj8gzpqc" // Default IPFS hash
+	}
+
 	profile := types.UserProfile{
 		Index:           msg.Creator, // Use creator address as profile ID
 		Owner:           msg.Creator,
@@ -29,6 +34,7 @@ func (k msgServer) CreateProfile(goCtx context.Context, msg *types.MsgCreateProf
 		Github:          msg.Github,
 		Linkedin:        msg.Linkedin,
 		Twitter:         msg.Twitter,
+		Avatar:          avatar,
 		ReputationScore: 100, // Starting reputation score
 		CreatedAt:       uint64(time.Now().Unix()),
 		UpdatedAt:       uint64(time.Now().Unix()),

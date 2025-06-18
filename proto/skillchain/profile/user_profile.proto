@@ -13,9 +13,10 @@ message UserProfile {
   string github = 7; 
   string linkedin = 8; 
   string twitter = 9; 
-  uint64 reputationScore = 10; 
-  uint64 createdAt = 11; 
-  uint64 updatedAt = 12; 
-  string creator = 13;
+  string avatar = 10; 
+  uint64 reputationScore = 11; 
+  uint64 createdAt = 12; 
+  uint64 updatedAt = 13; 
+  string creator = 14;
 }
 

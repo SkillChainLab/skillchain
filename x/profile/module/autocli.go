@@ -63,21 +63,21 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "CreateProfile",
-					Use:            "create-profile [display-name] [bio] [location] [website] [github] [linkedin] [twitter]",
+					Use:            "create-profile [display-name] [bio] [location] [website] [github] [linkedin] [twitter] [avatar]",
 					Short:          "Send a create-profile tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}, {ProtoField: "avatar"}},
 				},
 				{
 					RpcMethod:      "CreateUserProfile",
-					Use:            "create-user-profile [index] [owner] [displayName] [bio] [location] [website] [github] [linkedin] [twitter] [reputationScore] [createdAt] [updatedAt]",
+					Use:            "create-user-profile [index] [owner] [displayName] [bio] [location] [website] [github] [linkedin] [twitter] [avatar] [reputationScore] [createdAt] [updatedAt]",
 					Short:          "Create a new user-profile",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "owner"}, {ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}, {ProtoField: "reputationScore"}, {ProtoField: "createdAt"}, {ProtoField: "updatedAt"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "owner"}, {ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}, {ProtoField: "avatar"}, {ProtoField: "reputationScore"}, {ProtoField: "createdAt"}, {ProtoField: "updatedAt"}},
 				},
 				{
 					RpcMethod:      "UpdateUserProfile",
-					Use:            "update-user-profile [index] [owner] [displayName] [bio] [location] [website] [github] [linkedin] [twitter] [reputationScore] [createdAt] [updatedAt]",
+					Use:            "update-user-profile [index] [owner] [displayName] [bio] [location] [website] [github] [linkedin] [twitter] [avatar] [reputationScore] [createdAt] [updatedAt]",
 					Short:          "Update user-profile",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "owner"}, {ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}, {ProtoField: "reputationScore"}, {ProtoField: "createdAt"}, {ProtoField: "updatedAt"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}, {ProtoField: "owner"}, {ProtoField: "displayName"}, {ProtoField: "bio"}, {ProtoField: "location"}, {ProtoField: "website"}, {ProtoField: "github"}, {ProtoField: "linkedin"}, {ProtoField: "twitter"}, {ProtoField: "avatar"}, {ProtoField: "reputationScore"}, {ProtoField: "createdAt"}, {ProtoField: "updatedAt"}},
 				},
 				{
 					RpcMethod:      "DeleteUserProfile",

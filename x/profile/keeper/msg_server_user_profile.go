@@ -22,6 +22,12 @@ func (k msgServer) CreateUserProfile(goCtx context.Context, msg *types.MsgCreate
 		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
+	// Set default avatar if empty
+	avatar := msg.Avatar
+	if avatar == "" {
+		avatar = "QmZSpwmV3dfwVDVcaJmdga3VVW15SEgXQDY1wiEj8gzpqc" // Default IPFS hash
+	}
+
 	var userProfile = types.UserProfile{
 		Creator:         msg.Creator,
 		Index:           msg.Index,
@@ -33,6 +39,7 @@ func (k msgServer) CreateUserProfile(goCtx context.Context, msg *types.MsgCreate
 		Github:          msg.Github,
 		Linkedin:        msg.Linkedin,
 		Twitter:         msg.Twitter,
+		Avatar:          avatar,
 		ReputationScore: msg.ReputationScore,
 		CreatedAt:       msg.CreatedAt,
 		UpdatedAt:       msg.UpdatedAt,
@@ -73,6 +80,7 @@ func (k msgServer) UpdateUserProfile(goCtx context.Context, msg *types.MsgUpdate
 		Github:          msg.Github,
 		Linkedin:        msg.Linkedin,
 		Twitter:         msg.Twitter,
+		Avatar:          msg.Avatar, // Use whatever the user sends, even if empty
 		ReputationScore: msg.ReputationScore,
 		CreatedAt:       msg.CreatedAt,
 		UpdatedAt:       msg.UpdatedAt,

@@ -37,6 +37,11 @@ func (app *App) handleCreateProfile(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
+		// Set default avatar if not provided
+		if req.Avatar == "" {
+			req.Avatar = "https://ipfs.io/ipfs/QmZSpwmV3dfwVDVcaJmdga3VVW15SEgXQDY1wiEj8gzpqc"
+		}
+
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"message": "Profile creation transaction prepared",
@@ -188,6 +193,11 @@ func (app *App) handleUpdateProfile(clientCtx client.Context) http.HandlerFunc {
 		if _, err := types.AccAddressFromBech32(address); err != nil {
 			http.Error(w, "Invalid address format", http.StatusBadRequest)
 			return
+		}
+
+		// If avatar is being set to empty, provide default
+		if req.Avatar == "" {
+			req.Avatar = "https://ipfs.io/ipfs/QmZSpwmV3dfwVDVcaJmdga3VVW15SEgXQDY1wiEj8gzpqc"
 		}
 
 		w.Header().Set("Content-Type", "application/json")

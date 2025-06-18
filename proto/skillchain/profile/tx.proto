@@ -62,6 +62,7 @@ message MsgCreateProfile {
   string github      = 6;
   string linkedin    = 7;
   string twitter     = 8;
+  string avatar      = 9;
 }
 
 message MsgCreateProfileResponse {}
@@ -78,9 +79,10 @@ message MsgCreateUserProfile {
   string github          =  8;
   string linkedin        =  9;
   string twitter         = 10;
-  uint64 reputationScore = 11;
-  uint64 createdAt       = 12;
-  uint64 updatedAt       = 13;
+  string avatar          = 11;
+  uint64 reputationScore = 12;
+  uint64 createdAt       = 13;
+  uint64 updatedAt       = 14;
 }
 
 message MsgCreateUserProfileResponse {}
@@ -97,9 +99,10 @@ message MsgUpdateUserProfile {
   string github          =  8;
   string linkedin        =  9;
   string twitter         = 10;
-  uint64 reputationScore = 11;
-  uint64 createdAt       = 12;
-  uint64 updatedAt       = 13;
+  string avatar          = 11;
+  uint64 reputationScore = 12;
+  uint64 createdAt       = 13;
+  uint64 updatedAt       = 14;
 }
 
 message MsgUpdateUserProfileResponse {}

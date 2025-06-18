@@ -1,6 +1,6 @@
 validation: sovereign
 version: 1
-accounts:
+accounts: 
 - name: alice
   coins:
   - 220000000uskill
