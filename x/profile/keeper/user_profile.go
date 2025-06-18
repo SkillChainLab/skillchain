@@ -3,6 +3,7 @@ package keeper
 import (
 	"context"
 	"fmt"
+	"strings"
 	"time"
 
 	"skillchain/x/profile/types"
@@ -87,6 +88,185 @@ func (k Keeper) GetUserProfileByOwner(
 	}
 	
 	return val, false
+}
+
+// SearchUserProfilesByName searches profiles by display name (case-insensitive partial match)
+func (k Keeper) SearchUserProfilesByName(
+	ctx context.Context,
+	searchTerm string,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	// Convert search term to lowercase for case-insensitive search
+	searchLower := strings.ToLower(searchTerm)
+	
+	for _, profile := range allProfiles {
+		displayNameLower := strings.ToLower(profile.DisplayName)
+		if strings.Contains(displayNameLower, searchLower) {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
+}
+
+// SearchUserProfilesByLocation searches profiles by location (case-insensitive partial match)
+func (k Keeper) SearchUserProfilesByLocation(
+	ctx context.Context,
+	location string,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	locationLower := strings.ToLower(location)
+	
+	for _, profile := range allProfiles {
+		profileLocationLower := strings.ToLower(profile.Location)
+		if strings.Contains(profileLocationLower, locationLower) {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
+}
+
+// SearchUserProfilesBySkill searches profiles by skill name
+func (k Keeper) SearchUserProfilesBySkill(
+	ctx context.Context,
+	skillName string,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allSkills := k.GetAllUserSkill(ctx)
+	
+	skillLower := strings.ToLower(skillName)
+	
+	// Find all users who have this skill
+	userAddresses := make(map[string]bool)
+	for _, skill := range allSkills {
+		if strings.Contains(strings.ToLower(skill.SkillName), skillLower) {
+			userAddresses[skill.Owner] = true
+		}
+	}
+	
+	// Get profiles for users who have the skill
+	allProfiles := k.GetAllUserProfile(ctx)
+	for _, profile := range allProfiles {
+		if userAddresses[profile.Owner] {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
+}
+
+// SearchUserProfilesByBio searches profiles by bio content (case-insensitive partial match)
+func (k Keeper) SearchUserProfilesByBio(
+	ctx context.Context,
+	searchTerm string,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	searchLower := strings.ToLower(searchTerm)
+	
+	for _, profile := range allProfiles {
+		bioLower := strings.ToLower(profile.Bio)
+		if strings.Contains(bioLower, searchLower) {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
+}
+
+// SearchUserProfilesByGithub searches profiles by GitHub username
+func (k Keeper) SearchUserProfilesByGithub(
+	ctx context.Context,
+	githubUsername string,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	githubLower := strings.ToLower(githubUsername)
+	
+	for _, profile := range allProfiles {
+		githubLower2 := strings.ToLower(profile.Github)
+		if strings.Contains(githubLower2, githubLower) {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
+}
+
+// SearchUserProfilesAdvanced performs advanced search with multiple criteria
+func (k Keeper) SearchUserProfilesAdvanced(
+	ctx context.Context,
+	name string,
+	location string,
+	skill string,
+	minReputation uint64,
+) []types.UserProfile {
+	var matchingProfiles []types.UserProfile
+	allProfiles := k.GetAllUserProfile(ctx)
+	
+	// Convert search terms to lowercase
+	nameLower := strings.ToLower(name)
+	locationLower := strings.ToLower(location)
+	skillLower := strings.ToLower(skill)
+	
+	// Get all skills if skill search is requested
+	var userSkillMap map[string]bool
+	if skill != "" {
+		userSkillMap = make(map[string]bool)
+		allSkills := k.GetAllUserSkill(ctx)
+		for _, userSkill := range allSkills {
+			if strings.Contains(strings.ToLower(userSkill.SkillName), skillLower) {
+				userSkillMap[userSkill.Owner] = true
+			}
+		}
+	}
+	
+	for _, profile := range allProfiles {
+		match := true
+		
+		// Check name match
+		if name != "" {
+			displayNameLower := strings.ToLower(profile.DisplayName)
+			if !strings.Contains(displayNameLower, nameLower) {
+				match = false
+			}
+		}
+		
+		// Check location match
+		if location != "" && match {
+			profileLocationLower := strings.ToLower(profile.Location)
+			if !strings.Contains(profileLocationLower, locationLower) {
+				match = false
+			}
+		}
+		
+		// Check skill match
+		if skill != "" && match {
+			if !userSkillMap[profile.Owner] {
+				match = false
+			}
+		}
+		
+		// Check reputation threshold
+		if minReputation > 0 && match {
+			if profile.ReputationScore < minReputation {
+				match = false
+			}
+		}
+		
+		if match {
+			matchingProfiles = append(matchingProfiles, profile)
+		}
+	}
+	
+	return matchingProfiles
 }
 
 // CalculateUserReputation calculates user reputation based on endorsements received

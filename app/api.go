@@ -42,6 +42,7 @@ func (app *App) RegisterCustomAPIRoutes(router *mux.Router, clientCtx client.Con
 	// Profile Module Routes  
 	skillchainRouter.HandleFunc("/profiles", app.handleCreateProfile(clientCtx)).Methods("POST")
 	skillchainRouter.HandleFunc("/profiles", app.handleListProfiles(clientCtx)).Methods("GET")
+	skillchainRouter.HandleFunc("/profiles/search", app.handleSearchProfiles(clientCtx)).Methods("GET")
 	skillchainRouter.HandleFunc("/profiles/{address}", app.handleGetProfile(clientCtx)).Methods("GET")
 	skillchainRouter.HandleFunc("/profiles/{address}", app.handleUpdateProfile(clientCtx)).Methods("PUT")
 	

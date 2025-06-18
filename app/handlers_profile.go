@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/types"
@@ -440,4 +441,236 @@ func (app *App) handleGetEndorsement(clientCtx client.Context) http.HandlerFunc 
 			"endorsement_id": endorsementID,
 		})
 	}
+}
+
+// handleSearchProfiles handles advanced profile search
+func (app *App) handleSearchProfiles(clientCtx client.Context) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Parse query parameters
+		name := r.URL.Query().Get("name")
+		location := r.URL.Query().Get("location") 
+		skill := r.URL.Query().Get("skill")
+		bio := r.URL.Query().Get("bio")
+		github := r.URL.Query().Get("github")
+		searchType := r.URL.Query().Get("type") // "name", "location", "skill", "bio", "github", "advanced"
+		
+		fmt.Printf("DEBUG: Search request - name: %s, location: %s, skill: %s, bio: %s, github: %s, type: %s\n", 
+			name, location, skill, bio, github, searchType)
+
+		// Get all profiles for client-side search (since we don't have gRPC methods for search yet)
+		queryClient := profiletypes.NewQueryClient(clientCtx)
+		allReq := &profiletypes.QueryAllUserProfileRequest{
+			Pagination: &query.PageRequest{
+				Limit: 1000, // Get all profiles
+			},
+		}
+
+		allRes, err := queryClient.UserProfileAll(r.Context(), allReq)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Failed to query profiles: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		var matchingProfiles []profiletypes.UserProfile
+
+		// Perform search based on type
+		switch searchType {
+		case "name":
+			if name != "" {
+				matchingProfiles = searchProfilesByName(allRes.UserProfile, name)
+			}
+		case "location":
+			if location != "" {
+				matchingProfiles = searchProfilesByLocation(allRes.UserProfile, location)
+			}
+		case "skill":
+			if skill != "" {
+				// For skill search, we need to get user skills too
+				matchingProfiles = searchProfilesBySkill(allRes.UserProfile, skill, clientCtx, r)
+			}
+		case "bio":
+			if bio != "" {
+				matchingProfiles = searchProfilesByBio(allRes.UserProfile, bio)
+			}
+		case "github":
+			if github != "" {
+				matchingProfiles = searchProfilesByGithub(allRes.UserProfile, github)
+			}
+		case "advanced":
+			matchingProfiles = searchProfilesAdvanced(allRes.UserProfile, name, location, skill, bio, clientCtx, r)
+		default:
+			// Default: search all fields if any search term is provided
+			if name != "" || location != "" || skill != "" || bio != "" || github != "" {
+				matchingProfiles = searchProfilesAdvanced(allRes.UserProfile, name, location, skill, bio, clientCtx, r)
+			} else {
+				matchingProfiles = allRes.UserProfile // Return all if no search criteria
+			}
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"profiles": matchingProfiles,
+			"total_count": len(matchingProfiles),
+			"search_criteria": map[string]string{
+				"name": name,
+				"location": location,
+				"skill": skill,
+				"bio": bio,
+				"github": github,
+				"type": searchType,
+			},
+		})
+	}
+}
+
+// Helper functions for profile search
+func searchProfilesByName(profiles []profiletypes.UserProfile, searchTerm string) []profiletypes.UserProfile {
+	var matches []profiletypes.UserProfile
+	searchLower := strings.ToLower(searchTerm)
+	
+	for _, profile := range profiles {
+		if strings.Contains(strings.ToLower(profile.DisplayName), searchLower) {
+			matches = append(matches, profile)
+		}
+	}
+	return matches
+}
+
+func searchProfilesByLocation(profiles []profiletypes.UserProfile, location string) []profiletypes.UserProfile {
+	var matches []profiletypes.UserProfile
+	locationLower := strings.ToLower(location)
+	
+	for _, profile := range profiles {
+		if strings.Contains(strings.ToLower(profile.Location), locationLower) {
+			matches = append(matches, profile)
+		}
+	}
+	return matches
+}
+
+func searchProfilesByBio(profiles []profiletypes.UserProfile, searchTerm string) []profiletypes.UserProfile {
+	var matches []profiletypes.UserProfile
+	searchLower := strings.ToLower(searchTerm)
+	
+	for _, profile := range profiles {
+		if strings.Contains(strings.ToLower(profile.Bio), searchLower) {
+			matches = append(matches, profile)
+		}
+	}
+	return matches
+}
+
+func searchProfilesByGithub(profiles []profiletypes.UserProfile, github string) []profiletypes.UserProfile {
+	var matches []profiletypes.UserProfile
+	githubLower := strings.ToLower(github)
+	
+	for _, profile := range profiles {
+		if strings.Contains(strings.ToLower(profile.Github), githubLower) {
+			matches = append(matches, profile)
+		}
+	}
+	return matches
+}
+
+func searchProfilesBySkill(profiles []profiletypes.UserProfile, skillName string, clientCtx client.Context, r *http.Request) []profiletypes.UserProfile {
+	// Get all user skills
+	queryClient := profiletypes.NewQueryClient(clientCtx)
+	skillsReq := &profiletypes.QueryAllUserSkillRequest{
+		Pagination: &query.PageRequest{
+			Limit: 1000,
+		},
+	}
+	
+	skillsRes, err := queryClient.UserSkillAll(r.Context(), skillsReq)
+	if err != nil {
+		return []profiletypes.UserProfile{} // Return empty if can't get skills
+	}
+	
+	// Find users with matching skills
+	userAddresses := make(map[string]bool)
+	skillLower := strings.ToLower(skillName)
+	
+	for _, skill := range skillsRes.UserSkill {
+		if strings.Contains(strings.ToLower(skill.SkillName), skillLower) {
+			userAddresses[skill.Owner] = true
+		}
+	}
+	
+	// Filter profiles by users who have the skill
+	var matches []profiletypes.UserProfile
+	for _, profile := range profiles {
+		if userAddresses[profile.Owner] {
+			matches = append(matches, profile)
+		}
+	}
+	
+	return matches
+}
+
+func searchProfilesAdvanced(profiles []profiletypes.UserProfile, name, location, skill, bio string, clientCtx client.Context, r *http.Request) []profiletypes.UserProfile {
+	var matches []profiletypes.UserProfile
+	
+	// Get user skills if skill search is needed
+	var userSkillMap map[string]bool
+	if skill != "" {
+		queryClient := profiletypes.NewQueryClient(clientCtx)
+		skillsReq := &profiletypes.QueryAllUserSkillRequest{
+			Pagination: &query.PageRequest{
+				Limit: 1000,
+			},
+		}
+		
+		skillsRes, err := queryClient.UserSkillAll(r.Context(), skillsReq)
+		if err == nil {
+			userSkillMap = make(map[string]bool)
+			skillLower := strings.ToLower(skill)
+			
+			for _, userSkill := range skillsRes.UserSkill {
+				if strings.Contains(strings.ToLower(userSkill.SkillName), skillLower) {
+					userSkillMap[userSkill.Owner] = true
+				}
+			}
+		}
+	}
+	
+	for _, profile := range profiles {
+		match := true
+		
+		// Check name match
+		if name != "" {
+			if !strings.Contains(strings.ToLower(profile.DisplayName), strings.ToLower(name)) {
+				match = false
+			}
+		}
+		
+		// Check location match
+		if location != "" && match {
+			if !strings.Contains(strings.ToLower(profile.Location), strings.ToLower(location)) {
+				match = false
+			}
+		}
+		
+		// Check bio match
+		if bio != "" && match {
+			if !strings.Contains(strings.ToLower(profile.Bio), strings.ToLower(bio)) {
+				match = false
+			}
+		}
+		
+		// Check skill match
+		if skill != "" && match && userSkillMap != nil {
+			if !userSkillMap[profile.Owner] {
+				match = false
+			}
+		}
+		
+		if match {
+			matches = append(matches, profile)
+		}
+	}
+	
+	return matches
 } 
